@@ -20,7 +20,7 @@ const DB = "rooted";
 // missing clock schedules nonsense, and nothing here is precious enough to
 // migrate: the photographs a real user has taken are the only thing that
 // would be, and this is still before anybody has taken any.
-const VERSION = 2;
+const VERSION = 4;
 
 export type StoredPlant = {
   id: string;
@@ -207,6 +207,24 @@ export function pointsFor(kind: TaskKind, streak: number) {
 /* ------------------------------------------------------------ first run */
 
 /**
+ * Where this device is, or a sensible place if it will not say.
+ *
+ * Only ever used to stand the demo plants somewhere real. A person who
+ * registers their own plant gives its spot explicitly, in the add flow.
+ */
+function fix(): Promise<{ lat: number; lon: number }> {
+  return new Promise((resolve) => {
+    const fallback = { lat: 26.9124, lon: 75.7873 };
+    if (!navigator.geolocation) return resolve(fallback);
+    navigator.geolocation.getCurrentPosition(
+      (p) => resolve({ lat: p.coords.latitude, lon: p.coords.longitude }),
+      () => resolve(fallback),
+      { timeout: 6000, maximumAge: 600_000 },
+    );
+  });
+}
+
+/**
  * A new account starts with the demo plants, so the app is never an empty
  * room and anybody following the demo link lands in a working account rather
  * than on an invitation to set one up.
@@ -219,10 +237,17 @@ export function pointsFor(kind: TaskKind, streak: number) {
 export async function seedIfEmpty() {
   if ((await plants()).length) return;
 
+  // The demo plants stand wherever this device is. They were pinned to one
+  // city at first, which meant anybody opening the demo anywhere else failed
+  // the location check on a plant the app had just handed them, and the
+  // check looked broken when it was working perfectly. A few metres apart, so
+  // they read as three plants around one home.
+  const here = await fix();
+
   const demo: Omit<StoredPlant, "baselinePhotoId">[] = [
-    { id: "neem-1", name: "Neem", speciesId: "neem", place: "backyard", plantedOn: "2026-06-14", lat: 26.9124, lon: 75.7873, streak: 12, points: 820, lastWatered: -5, lastFertilised: -20, lastCheckin: -30, lastPest: -22 },
-    { id: "tulsi-1", name: "Tulsi", speciesId: "tulsi", place: "balcony", plantedOn: "2026-08-02", lat: 26.9126, lon: 75.787, streak: 6, points: 310, lastWatered: -2, lastFertilised: -12, lastCheckin: -9, lastPest: -4 },
-    { id: "money-1", name: "Money plant", speciesId: "money-plant", place: "living room", plantedOn: "2026-05-20", lat: 26.9125, lon: 75.7871, streak: 21, points: 1010, lastWatered: -3, lastFertilised: -38, lastCheckin: -40, lastPest: -16 },
+    { id: "neem-1", name: "Neem", speciesId: "neem", place: "backyard", plantedOn: "2026-06-14", lat: here.lat + 0.00018, lon: here.lon + 0.00021, streak: 12, points: 820, lastWatered: -5, lastFertilised: -20, lastCheckin: -30, lastPest: -4 },
+    { id: "tulsi-1", name: "Tulsi", speciesId: "tulsi", place: "balcony", plantedOn: "2026-08-02", lat: here.lat - 0.00012, lon: here.lon + 0.00009, streak: 6, points: 310, lastWatered: -2, lastFertilised: -12, lastCheckin: -9, lastPest: -2 },
+    { id: "money-1", name: "Money plant", speciesId: "money-plant", place: "living room", plantedOn: "2026-05-20", lat: here.lat + 0.00007, lon: here.lon - 0.00014, streak: 21, points: 1010, lastWatered: -3, lastFertilised: -38, lastCheckin: -40, lastPest: -5 },
   ];
 
   const NOTES = ["The day it went in.", "Growing in.", "Latest look."];

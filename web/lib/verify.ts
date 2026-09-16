@@ -88,18 +88,26 @@ function greenness(img: ImageData) {
 /**
  * How much of the frame is arranged the way the baseline was.
  *
- * The frame is cut into an 8 by 8 grid and the brightness of each cell is
- * compared. A hash at this size cannot tell two plants apart, so this is never
- * reported as identity. It is reported as framing: whether the camera is
- * pointed at the same thing from roughly the same place, which is what makes
- * the soil comparison below meaningful at all.
+ * The plant, not the pot, is cut into an 8 by 8 grid and the brightness of each
+ * cell is compared. Only the top 62% of the frame is used, which is everything
+ * above the soil band, because the soil is the thing that is supposed to change
+ * when somebody waters. Measuring the whole frame meant a well-watered plant
+ * could fail "framed like the first photo" precisely because the watering
+ * worked.
+ *
+ * A hash at this size cannot tell two plants apart, so this is never reported
+ * as identity. It is reported as framing: whether the camera is pointed at the
+ * same thing from roughly the same place, which is what makes the soil
+ * comparison meaningful at all.
  */
 function framing(a: ImageData, b: ImageData) {
   const cells: number[][] = [[], []];
   for (const [k, img] of [a, b].entries())
     for (let gy = 0; gy < 8; gy++)
       for (let gx = 0; gx < 8; gx++)
-        cells[k].push(region(img, gx / 8, gy / 8, (gx + 1) / 8, (gy + 1) / 8));
+        cells[k].push(
+          region(img, gx / 8, (gy / 8) * 0.62, (gx + 1) / 8, ((gy + 1) / 8) * 0.62),
+        );
 
   const mean = (v: number[]) => v.reduce((s, x) => s + x, 0) / v.length;
   const [ma, mb] = [mean(cells[0]), mean(cells[1])];

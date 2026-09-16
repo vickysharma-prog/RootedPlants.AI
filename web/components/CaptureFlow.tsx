@@ -15,6 +15,7 @@ import {
   photo as readPhoto,
   photosFor,
   pointsFor,
+  seedIfEmpty,
   putPhoto,
   putPlant,
   type StoredPlant,
@@ -52,7 +53,12 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
 
   useEffect(() => {
     let url: string | undefined;
-    getPlant(plantId).then(async (p) => {
+    // A task URL can be the first thing this device ever opens, from a
+    // reminder or a shared link, so the account has to exist before the plant
+    // is looked up rather than only when Today happens to run first.
+    seedIfEmpty()
+      .then(() => getPlant(plantId))
+      .then(async (p) => {
       if (!p) return setMissing(true);
       setPlant(p);
       const base = p.baselinePhotoId ? await readPhoto(p.baselinePhotoId) : undefined;
@@ -60,7 +66,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
         url = URL.createObjectURL(base.full);
         setGhost(url);
       }
-    });
+      });
     return () => {
       if (url) URL.revokeObjectURL(url);
     };
