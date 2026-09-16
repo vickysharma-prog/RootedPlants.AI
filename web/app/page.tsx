@@ -96,11 +96,11 @@ export default function Landing() {
 
         <section className="mt-20">
           <Clip src="/video/planting.mp4" poster="/video/planting-poster.jpg" ratio="11 / 6" />
-          <p className="mt-6 max-w-[34rem] text-[17px] leading-[1.7] text-body">
+          <p className="mt-6 max-w-[36rem] text-[19px] leading-[1.72] text-body">
             A drive, a birthday, a festival, a company afternoon. Somewhere in
             this country a sapling goes into the ground every few seconds.
           </p>
-          <p className="mt-4 max-w-[34rem] text-[17px] leading-[1.7] text-cream">
+          <p className="mt-4 max-w-[36rem] text-[19px] leading-[1.72] text-cream">
             What happens over the next two years is what decides whether it was
             worth doing, and nobody is watching that part.
           </p>
@@ -117,7 +117,7 @@ export default function Landing() {
                 </span>
                 <div className="max-w-[34rem]">
                   <h2 className="step-title">{s.title}</h2>
-                  <p className="step-body mt-2.5 text-[15.5px] leading-[1.72] text-body">
+                  <p className="step-body mt-2.5 text-[16.5px] leading-[1.72] text-body">
                     {s.body}
                   </p>
                 </div>

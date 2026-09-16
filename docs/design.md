@@ -169,6 +169,13 @@ labels and dates, so figures line up and read as data.
 body copy, a dimmer grey for anything secondary. Body copy is never pure
 white.
 
+That warm grey started darker, and it was wrong. Text on a flat dark panel and
+text over a moving photograph are not the same problem: the photograph brings
+its own light and takes contrast away wherever it brightens. So body copy sits
+lighter here than it would on a plain background, and runs a size larger than
+felt necessary on a mockup. Reading is the one thing a page cannot ask anybody
+to do twice.
+
 **One accent, used sparingly.** A muted gold for numbers and labels, a sage
 green for what is alive and what is verified. Amber marks a task that is late,
 and marks it quietly, because guilt is not a retention strategy.

@@ -15,8 +15,8 @@
   --line-soft: rgba(237, 233, 222, 0.055);
 
   --cream: #ede9de;
-  --body: #a8afa2;
-  --faint: #6f776c;
+  --body: #c2c8bb;
+  --faint: #838b7e;
 
   --gold: #b08c4a;
   --gold-dim: #8a6f2e;
@@ -133,8 +133,8 @@ body {
 }
 
 .prose-lg {
-  font-size: clamp(16px, 1.35vw, 19px);
-  line-height: 1.78;
+  font-size: clamp(17.5px, 1.5vw, 21px);
+  line-height: 1.75;
 }
 
 /* Body copy sits at a generous line height. It is the cheapest thing that
@@ -142,8 +142,8 @@ body {
 /* Size and rhythm only. Colour stays a utility at the call site, so a
    paragraph can be lifted to cream without fighting this rule. */
 .prose {
-  font-size: 16px;
-  line-height: 1.78;
+  font-size: 17px;
+  line-height: 1.76;
 }
 
 .label {
