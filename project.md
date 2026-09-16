@@ -76,12 +76,14 @@ Six criteria, no published weights. Assume they are equal.
 
 | # | Criterion | What it is | How we serve it |
 |---|---|---|---|
-| 1 | **Originality** | creativity and novelty | TBD |
-| 2 | **Adherence to Track** | implementation of Earth Forward | TBD |
-| 3 | **Completion** | does it work, did it hit its goal | TBD |
-| 4 | **Learning** | skill development, technical stretch | TBD |
-| 5 | **Design** | user experience and interface | TBD |
-| 6 | **Technology** | technical complexity and innovation | TBD |
+| 1 | **Originality** | creativity and novelty | Rewards pointed at keeping something alive rather than at spending |
+| 2 | **Adherence to Track** | implementation of Earth Forward | A tree that survives is the whole product, nothing needs explaining |
+| 3 | **Completion** | does it work, did it hit its goal | One loop closed end to end, on a seeded account, on a phone |
+| 4 | **Learning** | skill development, technical stretch | `progress.md`, written the day each thing broke |
+| 5 | **Design** | user experience and interface | One world from the landing through to the app, `docs/design.md` |
+| 6 | **Technology** | technical complexity and innovation | Checks that measure the photograph and report the number, plus weather-moved scheduling |
+
+Filled in properly in "How this scores" below.
 
 Two of these are the ones a solo technical builder usually leaves on the table:
 
@@ -155,11 +157,13 @@ holding you to. Rooted holds you to it, and pays you for it.
    out, a heat spell pulls it in. A static timer would not do that.
 3. **Today list.** The app tells you what your plants need today, in one list.
 4. **Do it, prove it.** The task card says exactly what the photo has to show
-   before the camera opens. The photo is then verified: it came from our
-   camera, the server timestamped it, the location matches where the plant was
-   registered, and it registers onto the plant's baseline photo so the same
-   pixels can be compared over time. On top of that, a check specific to the
-   task. See [`docs/verification.md`](docs/verification.md).
+   before the camera opens, and the camera says the one thing that would make
+   the shot pass while you are lining it up. The photo is then checked: it came
+   off the camera rather than a file picker, the server timestamped it, the
+   location is within 120m of where the plant was registered, and it is framed
+   like that plant's first photograph closely enough to compare them. On top of
+   that, a check specific to the task, each one reporting the number it
+   measured. See [`docs/verification.md`](docs/verification.md).
 5. **Earn.** Verified tasks earn points. Streaks multiply, so consistency is
    worth far more than a single burst. Losing a plant to something outside your
    control costs nothing: points stay, the streak carries, replanting earns a
@@ -190,13 +194,20 @@ the same list against routes.
       a 5 minute video
 - [x] Written pages a judge can read: how it is verified, accessibility,
       privacy
-- [ ] Register a plant: photo, species picker, location
-- [ ] Mark a task done with a proof photo
-- [ ] Verification on the proof photo, built as its own screen showing each
+- [x] Register a plant: photo, species picker, location
+- [x] Mark a task done with a proof photo
+- [x] Verification on the proof photo, built as its own screen showing each
       check and its reason, non-blocking end to end
-- [ ] Points ledger, with the balance and the history of how it was earned
-- [ ] Rewards catalogue and redemption, seeded with demo partners
-- [ ] Plant profile page with the photo timeline, the screen people share
+- [x] A guide that reads the live frame and says what would make the shot
+      pass, out loud, before the shutter rather than after it
+- [x] Fertiliser and pest checks as their own tasks, with per-species advice
+      and a cadence that moves with the weather
+- [x] Plant health, measured from care against the schedule rather than
+      guessed from a photograph
+- [x] Loss report, keeping the points and carrying the streak
+- [x] Points ledger, with the balance and the history of how it was earned
+- [x] Rewards catalogue and redemption, seeded with demo partners
+- [x] Plant profile page with the photo timeline, the screen people share
 
 **Out of scope, decided and not revisited:**
 
@@ -227,8 +238,14 @@ A native build would spend a day of four on distribution instead of product.
 - Accounts in a signed cookie rather than a provider and a user table. Eight
   seconds from the landing page to inside the app, with nothing to go and
   fetch first. The trade, one device per account, is in the README.
-- Postgres and object storage go in when the points ledger needs them. Nothing
-  before it has.
+- Plants, photographs and the points ledger in IndexedDB on the device, behind
+  one module. The photographs never leave the phone, the app works with no
+  signal, and there is no account to lose. Postgres is for the thing this shape
+  genuinely cannot do, which is let an organisation see what its drive
+  produced.
+- The checks and the camera guide run in the browser on a canvas. No model is
+  called and nothing is uploaded, which is also the answer to whether the
+  verification cost scales.
 
 ### How this scores
 
@@ -239,7 +256,7 @@ A native build would spend a day of four on distribution instead of product.
 | Completion | One loop, closed, demoed end to end on a seeded account. |
 | Learning | Weather-adjusted scheduling and automated photo checks were both new. `progress.md` carries what broke. |
 | Design | One dark world, a serif that speaks and a mono for numbers, rows rather than cards, real forest moving behind it. Phone first for the app, full width for the pages anybody lands on. Spec in [`docs/design.md`](docs/design.md). |
-| Technology | A real verification pipeline: registration against the plant's baseline photo, aligned-pixel comparison per task type, and an agent that composes a verdict it knows when not to trust. Plus scheduling that responds to real local weather. |
+| Technology | Checks that run on the device and each report the number they measured: framing as the correlation between two 8 by 8 grids of cell brightness taken above the soil line, watering as the soil band against that plant's own dry baseline, pests as leaf coverage and fine detail. A live guide running the same measurements before the shutter. Scheduling moved by real local weather. Nothing claims more than it checked, and the two things not attempted are named in `docs/verification.md`. |
 
 ### The documents
 

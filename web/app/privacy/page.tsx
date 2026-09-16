@@ -19,6 +19,17 @@ export default function Privacy() {
           done, and building the growth timeline you see on your plant&apos;s
           page. They are not used to train anything, and they are not sold.
         </p>
+        <p>
+          As it stands they never leave your phone at all. Your plants, your
+          photographs and your points are held by the browser on the device,
+          and the checking runs there too, on a small copy of the picture. No
+          photograph is uploaded, no model is called, and there is no server
+          holding a library of where people live.
+        </p>
+        <p>
+          The trade is that an account lives on one device. Clearing the
+          browser&apos;s data for this site clears the plants with it.
+        </p>
       </Section>
 
       <Section heading="Where your plant is">
@@ -31,6 +42,13 @@ export default function Privacy() {
           Anywhere a plant appears publicly, it appears in an area rather than
           at an address. A shared plant page says the neighbourhood, never the
           house.
+        </p>
+        <p>
+          Location is read at two moments and no others: when you register a
+          plant, and when you photograph a task so the two can be compared. It
+          is not tracked in between. The three plants in the demo account are
+          placed near wherever you open it, so the check has something real to
+          measure against.
         </p>
       </Section>
 

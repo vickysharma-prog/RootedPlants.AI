@@ -34,7 +34,7 @@ address. No database or API key is needed to run what exists today.
 | `/how-it-works` | How a task gets proved | Done |
 | `/accessibility` | Accessibility statement | Done |
 | `/privacy` | Privacy | Done |
-| `/do/[task]` | Capture a proof photo and check it | **Working.** Camera, live guide, four checks, points |
+| `/do/[task]` | Capture a proof photo and check it | **Working.** Camera, spoken guide, checks that report what they measured, points |
 | `/plants` | Every plant, with its health | Done |
 | `/plants/[id]` | One plant's whole record | Done, photo history and loss report |
 | `/plants/new` | Register a plant | Done, three steps, camera and device location |
@@ -43,9 +43,24 @@ address. No database or API key is needed to run what exists today.
 | `/api/weather` | Weather over one plant | Done, cached on our side |
 | `/api/now` | The clock a proof is stamped with | Done |
 
-**Working for real, not mocked:** the care schedule. Twelve hand-authored
-species profiles, then open-meteo moves each watering by the weather at that
-plant's own coordinates. The line under each task is that shift made visible.
+**Working for real, not mocked:**
+
+- The care schedule. Twelve hand-authored species profiles, then open-meteo
+  moves each watering by the weather at that plant's own coordinates. The line
+  under each task is that shift made visible. The pest check comes round sooner
+  after warm wet days.
+- The checks. All of them run in the browser on a 256px copy of the photograph
+  and each reports the number it measured. The 5% soil threshold was set
+  against real frames: a watered pot reads 28.4% darker than its dry baseline,
+  the same frame against itself reads 0.0%.
+- The camera guide. Reads the live frame roughly every 700ms and says the one
+  thing that would make the shot pass, out loud through the browser's own
+  speech synthesis, with the shutter ring turning green at the same moment.
+- Storage. Plants, photographs and the points ledger in IndexedDB behind
+  `web/lib/store.ts`. Photographs are resized on the way in, 1280px to keep and
+  a 256px copy for the checks. Nothing is uploaded.
+- Plant health, computed from care against the schedule, never guessed from a
+  photograph.
 
 **The look**, set out in `docs/design.md`: one dark warm world, Instrument
 Serif for anything that speaks, Instrument Sans for body copy, JetBrains Mono
@@ -56,6 +71,8 @@ for numbers. Rows rather than cards. Three text colours, one accent.
   backdrops, one per kind of page; two show people planting and run in the
   page rather than behind it.
 - Eight plant photographs and four forest stills (CC0 / public domain).
+- Nine baseline frames giving each demo plant a photo history, and three
+  photographs of people planting (Pexels licence).
 - Forest ambience audio (CC0), on a tap, never automatic.
 
 ## Decided

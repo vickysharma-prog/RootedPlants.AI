@@ -41,6 +41,25 @@ export default function Accessibility() {
         </p>
       </Section>
 
+      <Section heading="The camera speaks">
+        <p>
+          While the camera is open, the app says the one thing that would make
+          your photograph pass: too dark, hold still, tilt down so the soil is
+          in frame, that is it. It uses the voice your device already has, so
+          there is nothing to download and nothing is sent anywhere.
+        </p>
+        <p>
+          It is there so that doing a task does not require reading a screen
+          while holding a watering can. The same advice is always on screen as
+          well, and the ring around the shutter turns green at the same moment,
+          so nothing is only available as sound.
+        </p>
+        <p>
+          There is a control beside the instruction to switch the voice off,
+          and the choice is remembered.
+        </p>
+      </Section>
+
       <Section heading="Screen readers">
         <p>
           Headings are ordered, every control is labelled, and decorative

@@ -38,21 +38,74 @@ export default function HowItWorks() {
           soil both in frame. There is no hidden test: the instruction is the
           check, so following it passes every time.
         </p>
+        <p>
+          While the camera is open it reads the live frame a few times a second
+          and says the one thing that would make this shot pass. Tilt down so
+          the soil is in frame. Hold still. Too dark. That is it, take it. Out
+          loud, because whoever is holding the phone is also holding a watering
+          can, and the ring around the shutter turns green at the same moment
+          for anybody with the sound off.
+        </p>
       </Section>
 
-      <Section heading="Four things are checked, every time">
+      <Section heading="Three things are checked on every photograph">
         <p>
-          The photograph comes from inside the app, so there is nothing to feed
-          an old picture into. The time is taken on our side, never read off
-          the file. The location has to match the spot where the plant was
-          registered. And the picture is registered against the plant&apos;s
-          first photograph, so the same physical pixels can be compared over
-          time.
+          It came off the camera rather than out of a file picker, so there is
+          nothing to feed an old picture into. The time is taken on our side,
+          never read off the file. And the location has to be within 120 metres
+          of the spot where the plant was registered.
+        </p>
+      </Section>
+
+      <Section heading="Then a check for the task itself">
+        <p>
+          Watering has to show soil at least five percent darker than that
+          plant&apos;s own dry baseline, which is what wet soil does. Feeding
+          has to show the soil surface changed from bare. A check-in has to
+          show the leaves. A pest photograph has to be close enough, and sharp
+          enough, that something the size of an aphid would be visible on a
+          leaf.
         </p>
         <p>
-          On top of those, each kind of task has its own check. For watering,
-          the soil in the aligned photograph has to have darkened against that
-          plant&apos;s own dry baseline.
+          Watering, feeding and check-ins are also compared against the shape of
+          the plant&apos;s first photograph, so the app knows it is looking at
+          the same thing from roughly the same place. Only the part of the frame
+          above the soil is used for that, because the soil is the thing that is
+          supposed to change when somebody waters.
+        </p>
+        <p>
+          Every check reports the number it measured, in a sentence, and claims
+          nothing beyond it. A location match says the photograph came from the
+          right spot. It does not say it is the right plant, because a
+          coordinate cannot know that.
+        </p>
+      </Section>
+
+      <Section heading="Fertiliser and pests, the least that works">
+        <p>
+          Each species carries what to feed it with and what actually goes wrong
+          with it, written as something to look at rather than a number to hit.
+          Both tasks say the same thing about quantity: fertiliser the roots do
+          not take ends up in the groundwater, and a spray kills the ladybirds
+          that were handling the aphids for you. Start with the mildest thing
+          that works.
+        </p>
+        <p>
+          The pest check comes round sooner after warm, wet days, because that
+          is when pests turn up.
+        </p>
+      </Section>
+
+      <Section heading="Health is care, not diagnosis">
+        <p>
+          Every plant carries a score and one sentence saying what moved it. It
+          is built from how the watering has gone against the schedule that
+          species wants, and how long the run is.
+        </p>
+        <p>
+          It deliberately does not read the leaves and tell you the plant is
+          sick. A photograph shows a yellow leaf for a dozen reasons, and a
+          number invented from one is a number that gets trusted.
         </p>
       </Section>
 

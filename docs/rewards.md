@@ -28,6 +28,11 @@ the care happens.
 
 Points attach to **verified tasks**, one at a time.
 
+What runs today is the middle of this table: the base points for a verified
+task and the streak multiplier. Watering pays 30, feeding 50, a pest check 35
+and a check-in 15, before the multiplier. Milestones and the registration bonus
+are designed and not wired.
+
 | Event | Points |
 |---|---|
 | Verified care task | base |

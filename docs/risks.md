@@ -8,19 +8,28 @@ for the first time in the room.
 
 ### "What stops people faking the photos for rewards?"
 
-Four layers, and each answers a specific attack. Full detail in
-[`verification.md`](verification.md).
+Layers, each answering a specific attack. Full detail in
+[`verification.md`](verification.md), including what is deliberately not
+attempted.
 
-| Attack | What stops it |
-|---|---|
-| Old or borrowed photo | in-app camera only, timestamp taken server side |
-| Somebody else's tree | GPS radius fixed at registration |
-| A different plant nearby | scene matched against the plant's baseline photo |
-| Photo without doing the task | per-task check, soil darkening for watering |
-| One tree registered twice | one plant per coordinate cluster |
+| Attack | What stops it | Running |
+|---|---|---|
+| Old or borrowed photo | camera only, and the time is taken on our side rather than read off the file | yes |
+| Somebody else's tree | 120m radius from the spot fixed at registration | yes |
+| Photo without doing the task | per-task check: soil at least 5% darker than that plant's own dry baseline for watering, and its own check for feeding, check-ins and pests | yes |
+| Pointing the camera at something else entirely | the shot has to be framed like that plant's first photograph, measured above the soil line | yes |
+| A different plant, a metre away, photographed from the same spot | nothing here catches this on its own | no |
+| One tree registered twice | one plant per coordinate cluster | not built |
 
-Faking it ends up being more work than doing it, which is the only test a
-system like this has to pass.
+The fifth row is stated plainly because the alternative is to let a framing
+check pretend to be an identity check. An 8 by 8 grid of cell brightnesses
+cannot tell two plants apart, so it is never reported as though it can. What
+narrows that gap in practice is the photo history: a plant with four months of
+frames behind it is hard to substitute for, and the substitution has to hold
+for every task from then on.
+
+Faking it ends up being more work than doing it, which is the test a system
+like this has to pass.
 
 ### "Who pays for the rewards?"
 
@@ -78,9 +87,20 @@ because nobody will assume it.
 
 ### "Does the verification cost scale?"
 
-Cheap checks run on every submission: GPS, server time, scene match, soil
-delta. Model calls run where they add something. Milestone verifications carry
-the most compute because they are what the record is sold on.
+It costs nothing, because it does not run on a server.
+
+Every check runs in the browser on the person's own phone, on a 256 pixel copy
+of the photograph, using arithmetic on pixel regions. No model is called and no
+photograph is uploaded. A million users doing a task a day is a million phones
+doing a few milliseconds of work each, and our bill does not move.
+
+That is also why the photographs never leave the device, which is the better
+answer to the privacy question two sections up.
+
+Where a model would earn its cost later is the milestone record, the thing an
+organisation actually buys: not "was this watered" but "what did this drive
+produce after two years". That runs once per plant per milestone, not once per
+task.
 
 ---
 
