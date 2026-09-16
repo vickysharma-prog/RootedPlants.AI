@@ -150,6 +150,8 @@ export type Evidence = {
   plantAt: { lat: number; lon: number };
   /** Taken on our side, never read off the file. */
   serverTime?: string;
+  /** Keypoint match against the baseline. Null when OpenCV could not run. */
+  identity?: { inliers: number; matched: number; ok: boolean } | null;
 };
 
 const ALLOWED_METRES = 120;
@@ -220,16 +222,35 @@ export async function verify(e: Evidence): Promise<Verdict> {
 
   if (e.baseline) {
     const base = await pixels(e.baseline, 128);
-    const f = framing(now, base);
-    checks.push({
-      key: "framing",
-      label: "Framed like the first photo",
-      reason:
-        f >= 0.45
-          ? `The layout of the shot matches this plant's first photograph closely enough to compare them.`
-          : `The shot is framed differently from this plant's first photograph, so there is nothing to compare against.`,
-      ok: f >= 0.45,
-    });
+
+    if (e.identity) {
+      // The strong version: the same keypoints on the same object, agreeing on
+      // one homography. This is what says "this plant" rather than "this spot".
+      const { inliers, matched, ok } = e.identity;
+      checks.push({
+        key: "identity",
+        label: "It is this plant",
+        reason: ok
+          ? `${inliers} points on the plant and around it line up with its first photograph, under one consistent viewpoint.`
+          : inliers > 0
+            ? `Only ${inliers} of ${matched} candidate points agree with this plant's first photograph, which is what a different plant looks like.`
+            : `Nothing in this photograph lines up with this plant's first one.`,
+        ok,
+      });
+    } else {
+      // OpenCV did not load. Fall back to the weaker comparison and say what
+      // it actually measured, rather than letting it stand in for identity.
+      const f = framing(now, base);
+      checks.push({
+        key: "framing",
+        label: "Framed like the first photo",
+        reason:
+          f >= 0.45
+            ? `The layout of the shot matches this plant's first photograph closely enough to compare them.`
+            : `The shot is framed differently from this plant's first photograph, so there is nothing to compare against.`,
+        ok: f >= 0.45,
+      });
+    }
 
     if (e.kind === "water") {
       const wet = region(now, 0.25, 0.62, 0.75, 0.98);

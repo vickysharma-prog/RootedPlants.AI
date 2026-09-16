@@ -57,6 +57,20 @@ export default function HowItWorks() {
         </p>
       </Section>
 
+      <Section heading="And it has to be that plant">
+        <p>
+          The new photograph and the plant&apos;s first one are both searched for
+          keypoints, the two sets are matched, and the matches are then asked
+          whether they agree on a single viewpoint. The same plant returns
+          several hundred points that agree. A different plant of the same
+          species, in a similar pot, returns about four.
+        </p>
+        <p>
+          It runs on your phone, on a small copy of the picture, and nothing is
+          uploaded to do it.
+        </p>
+      </Section>
+
       <Section heading="Then a check for the task itself">
         <p>
           Watering has to show soil at least five percent darker than that
@@ -65,13 +79,6 @@ export default function HowItWorks() {
           show the leaves. A pest photograph has to be close enough, and sharp
           enough, that something the size of an aphid would be visible on a
           leaf.
-        </p>
-        <p>
-          Watering, feeding and check-ins are also compared against the shape of
-          the plant&apos;s first photograph, so the app knows it is looking at
-          the same thing from roughly the same place. Only the part of the frame
-          above the soil is used for that, because the soil is the thing that is
-          supposed to change when somebody waters.
         </p>
         <p>
           Every check reports the number it measured, in a sentence, and claims

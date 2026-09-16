@@ -243,7 +243,9 @@ A native build would spend a day of four on distribution instead of product.
   signal, and there is no account to lose. Postgres is for the thing this shape
   genuinely cannot do, which is let an organisation see what its drive
   produced.
-- The checks and the camera guide run in the browser on a canvas. No model is
+- The checks and the camera guide run in the browser. OpenCV 5 for the keypoint
+  matching, fetched as a plain script when the camera opens so it is ready by
+  the shutter, and plain canvas arithmetic for everything else. No model is
   called and nothing is uploaded, which is also the answer to whether the
   verification cost scales.
 
@@ -256,7 +258,7 @@ A native build would spend a day of four on distribution instead of product.
 | Completion | One loop, closed, demoed end to end on a seeded account. |
 | Learning | Weather-adjusted scheduling and automated photo checks were both new. `progress.md` carries what broke. |
 | Design | One dark world, a serif that speaks and a mono for numbers, rows rather than cards, real forest moving behind it. Phone first for the app, full width for the pages anybody lands on. Spec in [`docs/design.md`](docs/design.md). |
-| Technology | Checks that run on the device and each report the number they measured: framing as the correlation between two 8 by 8 grids of cell brightness taken above the soil line, watering as the soil band against that plant's own dry baseline, pests as leaf coverage and fine detail. A live guide running the same measurements before the shutter. Scheduling moved by real local weather. Nothing claims more than it checked, and the two things not attempted are named in `docs/verification.md`. |
+| Technology | Checks that run on the device and each report the number they measured. Identity through OpenCV: ORB keypoints, Lowe's ratio test, RANSAC on the homography, 485 inliers against a plant's own baseline and 4 against a different tree of the same species. Watering as the soil band against that plant's own dry baseline, pests as leaf coverage and fine detail. A live guide running the same sort of measurements before the shutter rather than after it. Scheduling moved by real local weather. Nothing claims more than it checked, and what is not attempted is named in `docs/verification.md`. |
 
 ### The documents
 

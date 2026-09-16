@@ -18,15 +18,20 @@ attempted.
 | Somebody else's tree | 120m radius from the spot fixed at registration | yes |
 | Photo without doing the task | per-task check: soil at least 5% darker than that plant's own dry baseline for watering, and its own check for feeding, check-ins and pests | yes |
 | Pointing the camera at something else entirely | the shot has to be framed like that plant's first photograph, measured above the soil line | yes |
-| A different plant, a metre away, photographed from the same spot | nothing here catches this on its own | no |
+| A different plant, a metre away, photographed from the same spot | ORB keypoints matched against the baseline and filtered through RANSAC: the same plant returns hundreds of agreeing points, a different one returns about four | yes |
 | One tree registered twice | one plant per coordinate cluster | not built |
 
-The fifth row is stated plainly because the alternative is to let a framing
-check pretend to be an identity check. An 8 by 8 grid of cell brightnesses
-cannot tell two plants apart, so it is never reported as though it can. What
-narrows that gap in practice is the photo history: a plant with four months of
-frames behind it is hard to substitute for, and the substitution has to hold
-for every task from then on.
+That fifth row used to read "nothing here catches this". The check that was
+standing in for it compared an 8 by 8 grid of cell brightnesses, which says the
+camera is pointed at the same sort of scene and nothing more, and a different
+neem tree passed it. Rather than let a framing check keep the name of an
+identity check, it was replaced with keypoint matching, which answers the
+question properly. The old comparison is still there as the fallback for a
+browser that cannot load OpenCV, under its own honest label.
+
+The one case still open is a close-up pest photograph, which has nothing in it
+to match against a picture of a whole plant. What holds those to a plant is the
+location and the history around them.
 
 Faking it ends up being more work than doing it, which is the test a system
 like this has to pass.

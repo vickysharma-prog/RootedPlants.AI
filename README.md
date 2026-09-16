@@ -37,10 +37,20 @@ around the shutter turns green when there is nothing left to fix.
 
 **Then it is checked.** Every photograph: it came off the camera rather than a
 file picker, the time is taken on our side rather than read off the file, and
-the location is within 120m of where the plant was registered. Then a check for
-the task itself, and each one reports the number it measured. Watering has to
-show soil at least 5% darker than that plant's dry baseline. A pest photo has
-to be close and sharp enough that something the size of an aphid would show.
+the location is within 120m of where the plant was registered.
+
+**And it has to be that plant.** OpenCV finds keypoints in the new photograph
+and in the plant's first one, matches them, and asks RANSAC whether the
+survivors agree on a single viewpoint. The same plant returns several hundred
+agreeing points. A different plant of the same species, in a similar pot,
+returns about four. Measured live in the app: 485 against its own baseline, 4
+against a different neem tree. It runs in the browser, on the phone, on a 256px
+copy, and nothing is uploaded to do it.
+
+Then a check for the task itself, and each one reports the number it measured.
+Watering has to show soil at least 5% darker than that plant's dry baseline. A
+pest photo has to be close and sharp enough that something the size of an aphid
+would show.
 
 **Get paid for keeping it.** Points land when the photo clears, streaks
 multiply, and losing a plant to something outside your control costs nothing.

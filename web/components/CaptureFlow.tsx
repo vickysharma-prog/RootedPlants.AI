@@ -8,6 +8,7 @@ import { Camera, type Shot } from "./Camera";
 import { species, TASK_INSTRUCTION, TASK_LABEL, type TaskKind } from "@/lib/data";
 import { verify, type Check } from "@/lib/verify";
 import { say } from "@/lib/coach";
+import { samePlant, warm } from "@/lib/identity";
 import {
   addLedger,
   getPlant,
@@ -80,6 +81,12 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
       const [here, serverTime] = await Promise.all([whereAmI(), serverNow()]);
       const base = plant.baselinePhotoId ? await readPhoto(plant.baselinePhotoId) : undefined;
 
+      // A pest photograph is a close-up of one leaf, so there is nothing in it
+      // to match against a picture of the whole plant. Everything else gets
+      // asked the real question: is this that plant.
+      const identity =
+        base && kind !== "pest" ? await samePlant(s.thumb, base.full) : undefined;
+
       const verdict = await verify({
         kind,
         thumb: s.thumb,
@@ -88,6 +95,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
         here,
         plantAt: { lat: plant.lat, lon: plant.lon },
         serverTime,
+        identity,
       });
 
       setChecks(verdict.checks);
@@ -213,7 +221,13 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
     return (
       <AppShell>
         <AppHeader back="/today" eyebrow={plant.name} title={TASK_LABEL[kind]} />
-        <Camera ghost={ghost} instruction={TASK_INSTRUCTION[kind]} kind={kind} onShot={shot} />
+        <Camera
+          ghost={ghost}
+          instruction={TASK_INSTRUCTION[kind]}
+          kind={kind}
+          onOpen={warm}
+          onShot={shot}
+        />
       </AppShell>
     );
 

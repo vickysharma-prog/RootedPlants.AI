@@ -53,6 +53,11 @@ address. No database or API key is needed to run what exists today.
   and each reports the number it measured. The 5% soil threshold was set
   against real frames: a watered pot reads 28.4% darker than its dry baseline,
   the same frame against itself reads 0.0%.
+- Plant identity, through OpenCV 5 in the browser: ORB keypoints, Lowe's ratio
+  test, RANSAC on the homography, threshold 25 inliers. Measured live in the
+  app at 485 against a plant's own baseline and 4 against a different neem
+  tree. The old framing comparison is kept as the fallback, under a label that
+  says what it actually measures.
 - The camera guide. Reads the live frame roughly every 700ms and says the one
   thing that would make the shot pass, out loud through the browser's own
   speech synthesis, with the shutter ring turning green at the same moment.

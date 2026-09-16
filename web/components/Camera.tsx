@@ -33,11 +33,14 @@ export function Camera({
   ghost,
   instruction,
   kind,
+  onOpen,
   onShot,
 }: {
   ghost?: string;
   instruction: string;
   kind: TaskKind;
+  /** Called once when the viewfinder appears, to start anything slow. */
+  onOpen?: () => void;
   onShot: (shot: Shot) => void;
 }) {
   const video = useRef<HTMLVideoElement>(null);
@@ -51,6 +54,14 @@ export function Camera({
     try {
       setVoice(localStorage.getItem("rooted_voice") !== "off");
     } catch {}
+  }, []);
+
+  // Whoever opens the camera is about to spend several seconds framing a
+  // shot, which is exactly the window for fetching anything large that the
+  // check will want the moment the shutter goes.
+  useEffect(() => {
+    onOpen?.();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

@@ -4,19 +4,21 @@ Rooted pays people for keeping a plant alive. That only means something if the
 app can tell whether the work happened, so the checking is the product rather
 than a detail of it.
 
-Everything below runs in `web/lib/verify.ts`, on the device, on a 256px copy of
-the photograph. Nothing is uploaded and no model is called.
+Everything below runs on the device, on a 256px copy of the photograph:
+`web/lib/verify.ts` for the measurements and `web/lib/identity.ts` for the
+keypoint matching. Nothing is uploaded and no model is called.
 
 ## The rule the checks are written to
 
 **Every check reports the number it measured, and claims nothing beyond it.**
 
 A location match says the photograph came from the right spot. It does not say
-it is the right plant, because a coordinate cannot know that. A framing match
-says the shot is arranged like the first one closely enough to compare them. It
-does not say the plant is the same plant, because an 8 by 8 grid of
-brightnesses cannot tell two plants apart and a check that claimed it could
-would be the weakest thing in here pretending to be the strongest.
+it is the right plant, because a coordinate cannot know that, and for a while
+the check standing next to it did not either: it compared an 8 by 8 grid of
+cell brightnesses, which a different neem tree passes, while carrying a label
+that implied more. That was the weakest thing in here wearing the name of the
+strongest, so it was replaced with keypoint matching, which answers the
+question, and demoted to a clearly labelled fallback.
 
 The instruction shown before the shutter is the same thing the checks test.
 There is no hidden standard: follow the line, pass every time.
@@ -31,10 +33,37 @@ There is no hidden standard: follow the line, pass every time.
 
 ## Then, per task
 
-**Framed like the first photo.** The frame is cut into an 8 by 8 grid, the mean
-brightness of each cell is taken for both photographs, and the correlation
-between the two sets of 64 numbers is computed. Passes above 0.45. This exists
-to make the soil comparison meaningful, not to identify anything.
+**It is this plant.** ORB finds up to 1200 keypoints in both photographs, the
+binary descriptors are matched, Lowe's ratio test at 0.75 throws out every
+match that is not clearly better than its runner-up, and RANSAC then asks
+whether the survivors agree on one homography: the same points on the same
+object, seen from somewhere slightly different. Passes at 25 inliers.
+
+This runs in the browser through OpenCV 5, on the person's own phone. The
+library is 13MB and is fetched the moment the camera opens, so it is ready by
+the time anybody has finished lining up a shot. If it has not arrived, the
+weaker framing comparison below stands in its place and the card says which one
+ran.
+
+The threshold was set against real photographs before it shipped, and then
+confirmed in the browser:
+
+| | inliers |
+|---|---|
+| Same plant, seen again from a slightly different angle, distance and light | 388 to 700 |
+| A different plant of the same species, in a similar pot | 0 to 4 |
+| Measured live in the app: the plant's own baseline | 485 |
+| Measured live in the app: a different neem tree | 4 |
+
+25 sits six times above the worst wrong answer and an order of magnitude below
+the weakest right one.
+
+**Framed like the first photo**, the fallback. The frame is cut into an 8 by 8
+grid, the mean brightness of each cell is taken for both photographs, and the
+correlation between the two sets of 64 numbers is computed. Passes above 0.45.
+It is only used when OpenCV could not run, and it is reported as framing rather
+than identity, because that is all it measures: a different neem tree passes
+it.
 
 **Watering: soil is darker than dry.** Mean brightness of the soil band, the
 middle half of the frame from 62% to 98% down, against the same band of the
@@ -79,12 +108,16 @@ the photograph was too dark to check.
 
 ## What this does not do
 
-Two things are deliberately not attempted, and both are named rather than
-hidden.
-
-**It does not identify the plant from the photograph.** The location, the
-framing and the photo history together are what tie a proof to a plant.
-
 **It does not diagnose the plant's health from its leaves.** The health tracker
 is care measured against the schedule, not a number invented from a picture. A
 yellow leaf has a dozen causes, and a score built from one would get trusted.
+
+**It does not identify a plant from a close-up.** A pest photograph is one leaf
+filling the frame, and there is nothing in it to match against a picture of the
+whole plant, so pest tasks are checked for closeness and sharpness instead. What
+ties them to the plant is the location and the task history around them.
+
+**It does not know a plant it has never seen.** Everything above is a comparison
+against that plant's own first photograph. A plant with no baseline gets one
+from its first proof, and that photograph is trusted because there is nothing
+yet to check it against.
