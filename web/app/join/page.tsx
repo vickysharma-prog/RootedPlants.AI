@@ -50,14 +50,14 @@ export default async function Join() {
 
         <figure className="mt-14 max-w-[34rem]">
           <Clip
-            src="/video/planting-wide.mp4"
-            poster="/video/planting-wide-poster.jpg"
+            src="/video/watering.mp4"
+            poster="/video/watering-poster.jpg"
             ratio="11 / 6"
           />
           <figcaption className="mt-4 text-[16px] leading-[1.68] text-body">
-            The photograph you take first becomes{" "}
-            <span className="font-semibold text-cream">this plant&apos;s baseline</span>.
-            Every later check is measured against it.
+            This is the whole job.{" "}
+            <span className="font-semibold text-cream">Two minutes, every few days</span>,
+            photographed as you do it. That is what Rooted pays for.
           </figcaption>
         </figure>
 
