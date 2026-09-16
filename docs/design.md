@@ -165,6 +165,12 @@ a line height of about 1.78, which is the single cheapest thing that makes a
 page read as considered rather than cramped. JetBrains Mono for numbers,
 labels and dates, so figures line up and read as data.
 
+**Nothing is set small just because it is secondary.** A caption under a clip
+and a line about privacy are the two places a reader actually stops to think,
+so they run at 16px in the body colour, not at 13 in the dim grey. Emphasis
+inside them is one phrase lifted to cream and semibold, never a whole
+sentence: bolding everything important is the same as bolding nothing.
+
 **Three text colours and no more.** Cream for what matters, a warm grey for
 body copy, a dimmer grey for anything secondary. Body copy is never pure
 white.

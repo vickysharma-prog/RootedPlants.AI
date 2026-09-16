@@ -13,6 +13,7 @@ export default function HowItWorks() {
         poster: "/video/planting-poster.jpg",
         caption:
           "This is the moment everybody records. Everything below is about the two years after it.",
+        ratio: "11 / 6",
       }}
     >
       <Section heading="The schedule follows your weather">

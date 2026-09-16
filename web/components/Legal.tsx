@@ -42,7 +42,7 @@ export function Page({
         {clip && (
           <figure className="mt-12 max-w-[34rem]">
             <Clip src={clip.src} poster={clip.poster} ratio={clip.ratio ?? "11 / 7"} />
-            <figcaption className="mt-3 text-[13.5px] leading-[1.7] text-faint">
+            <figcaption className="mt-4 text-[16px] leading-[1.68] text-body">
               {clip.caption}
             </figcaption>
           </figure>

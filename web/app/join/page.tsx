@@ -82,22 +82,25 @@ export default function Join() {
             poster="/video/planting-tall-poster.jpg"
             ratio="31 / 26"
           />
-          <figcaption className="mt-3 text-[13.5px] leading-[1.7] text-faint">
-            The photograph you take first becomes this plant&apos;s baseline.
+          <figcaption className="mt-4 text-[16px] leading-[1.68] text-body">
+            The photograph you take first becomes{" "}
+            <span className="font-semibold text-cream">this plant&apos;s baseline</span>.
             Every later check is measured against it.
           </figcaption>
         </figure>
 
         <div className="mt-16 max-w-[34rem]">
           <div className="rule" />
-          <p className="mt-6 text-[13.5px] leading-[1.75] text-faint">
-            Your plant photographs stay private. Anywhere a plant appears
-            publicly it appears in an area, never at an address.
+          <p className="mt-6 text-[16px] leading-[1.7] text-body">
+            Your plant photographs{" "}
+            <span className="font-semibold text-cream">stay private</span>.
+            Anywhere a plant appears publicly it appears in an area, never at
+            an address.
           </p>
-          <p className="mt-6 text-[14px] text-body">
+          <p className="mt-7 text-[16.5px] text-body">
             Already growing something?{" "}
             <Link href="/today" className="link-arrow inline-flex text-cream">
-              <span className="link-text">Sign in</span>
+              <span className="link-text font-semibold">Sign in</span>
             </Link>
           </p>
         </div>
