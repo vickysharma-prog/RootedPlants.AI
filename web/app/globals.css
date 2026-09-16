@@ -562,3 +562,25 @@ body {
     transform: none;
   }
 }
+
+/* ---------------------------------------------------------------
+   A clip with no edge at all.
+
+   Fading a clip into a flat colour only works over a flat colour. The
+   page behind this one is moving footage, so a dark gradient at the
+   edges just draws a dark rectangle on top of a bright forest. The fix
+   is a mask: the clip becomes genuinely transparent towards its edges,
+   and whatever is behind shows through. There is no border to see
+   because there is no edge.
+   --------------------------------------------------------------- */
+
+.clip {
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 17%, #000 83%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 11%, #000 89%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 17%, #000 83%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 11%, #000 89%, transparent 100%);
+  mask-composite: intersect;
+}

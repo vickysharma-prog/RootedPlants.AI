@@ -10,6 +10,28 @@ worked.
 
 ---
 
+## 2026-09-17 - The edge that would not go away
+
+Spent a while on one small thing and learned something worth keeping.
+
+The planting clip on the landing read as a card pasted onto the page. First
+fix: drop the hairline, feather all four edges into the page colour, take the
+brightness down. Better, and the edge was still there.
+
+The reason took a minute to see. Fading into a flat colour only works over a
+flat page. Behind this clip is moving forest footage, so a dark gradient
+around the edges is a dark rectangle drawn on top of a bright forest. The
+border anybody could see was the fade itself.
+
+A mask fixes it properly: two linear gradients composited to intersect, so the
+clip becomes genuinely transparent towards its edges and the backdrop shows
+through. No border to notice, because there is no edge.
+
+Worth remembering: fading to a colour is not the same as fading out. Over
+anything that moves, only one of them is invisible.
+
+---
+
 ## 2026-09-17 - The mark, and a rule out of it
 
 The mark beside the wordmark was five bars bouncing, a few centimetres from a

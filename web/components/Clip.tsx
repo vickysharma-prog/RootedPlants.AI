@@ -1,15 +1,19 @@
 /**
- * A clip that sits in the page rather than on it.
+ * A clip with no edge.
  *
- * A bright rectangle with a hairline around it reads as a card pasted onto
- * the page. So there is no hairline, the footage is taken down towards the
- * page's own light, and its four edges are feathered into the background
- * colour. What is left is a window, not a frame.
+ * The first attempt feathered the four sides into the page colour. That only
+ * works over a flat page, and this one has moving footage behind it, so a
+ * dark gradient at the edges was just a dark rectangle drawn over a bright
+ * forest. The border people could see was the fade itself.
+ *
+ * This masks instead. The clip is genuinely transparent towards its edges and
+ * the backdrop shows through, so there is no border to notice because there
+ * is no edge. No frame, no hairline, no corner: a window cut into the page.
  *
  * Muted, looping, no controls: a photograph that moves, not a video somebody
- * has to operate. The poster frame paints first so the block never opens as a
- * hole, and it is inert to a screen reader because the words beside it say
- * what it shows.
+ * has to operate. The poster paints first so the block never opens as a hole,
+ * and it is inert to a screen reader because the words beside it say what it
+ * shows.
  */
 export function Clip({
   src,
@@ -23,7 +27,7 @@ export function Clip({
   className?: string;
 }) {
   return (
-    <div className={`relative overflow-hidden rounded-[22px] ${className}`} style={{ aspectRatio: ratio }}>
+    <div className={`clip relative ${className}`} style={{ aspectRatio: ratio }}>
       <video
         className="h-full w-full object-cover"
         src={src}
@@ -34,25 +38,15 @@ export function Clip({
         playsInline
         preload="none"
         aria-hidden
-        style={{ filter: "saturate(0.72) brightness(0.62) contrast(1.04)" }}
+        style={{ filter: "saturate(0.74) brightness(0.66) contrast(1.04)" }}
       />
 
-      {/* The edges dissolve into the page instead of stopping against it. */}
+      {/* A wash of the page's own green, so the footage belongs to this world
+          rather than being borrowed from another one. Inside the mask, so it
+          fades out with everything else. */}
       <span
         className="pointer-events-none absolute inset-0"
-        style={{
-          background: [
-            "linear-gradient(to bottom, rgba(10,15,11,0.92) 0%, rgba(10,15,11,0) 22%, rgba(10,15,11,0) 74%, rgba(10,15,11,0.96) 100%)",
-            "linear-gradient(to right, rgba(10,15,11,0.9) 0%, rgba(10,15,11,0) 16%, rgba(10,15,11,0) 84%, rgba(10,15,11,0.9) 100%)",
-          ].join(", "),
-        }}
-      />
-
-      {/* A hint of the page's own green over the top, so the footage belongs
-          to this world rather than being borrowed from another one. */}
-      <span
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "rgba(18, 34, 22, 0.28)" }}
+        style={{ background: "rgba(18, 34, 22, 0.26)" }}
       />
     </div>
   );

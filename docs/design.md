@@ -199,12 +199,21 @@ composition can widen; a line of prose cannot.
 no shadows, no gradients on elements. The one exception is the photograph.
 
 **Footage sits in the page, never on it.** A bright rectangle with a hairline
-around it is a card somebody pasted on. So a clip has no border, its four
-edges are feathered into the page colour, its brightness comes down towards
-the light the page is already using, and a wash of the page's own green goes
-over the top. It stops being a frame and becomes a window. The test is simple:
-if you can see where the video ends, it has not been placed, it has been
-stuck on.
+around it is a card somebody pasted on.
+
+Fading its edges into the page colour is the obvious fix and it is wrong here.
+That only works over a flat page, and this page has moving footage behind it,
+so a dark gradient at the edges is just a dark rectangle drawn over a bright
+forest. The border people could see *was* the fade.
+
+Mask instead. The clip goes genuinely transparent towards its edges and the
+backdrop shows through, so there is no border to notice because there is no
+edge. Then bring its brightness down towards the light the page is already
+using, and wash the page's own green over the top so the footage belongs to
+this world rather than being borrowed from another one.
+
+The test is simple: if you can see where the video ends, it was stuck on
+rather than placed.
 
 **Photography is the interface.** The user's own plant photographs identify
 their plants. On a dark page a bright crop shouts, so photographs are sunk
