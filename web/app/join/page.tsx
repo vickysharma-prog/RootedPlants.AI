@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ForestBackdrop } from "@/components/ForestBackdrop";
 import { SoundToggle } from "@/components/SoundToggle";
+import { Clip } from "@/components/Clip";
 
 export default function Join() {
   return (
@@ -74,6 +75,18 @@ export default function Join() {
         </button>
 
         <div className="flex-1" />
+
+        <figure className="mt-14 max-w-[30rem]">
+          <Clip
+            src="/video/planting-tall.mp4"
+            poster="/video/planting-tall-poster.jpg"
+            ratio="31 / 26"
+          />
+          <figcaption className="mt-3 text-[13.5px] leading-[1.7] text-faint">
+            The photograph you take first becomes this plant&apos;s baseline.
+            Every later check is measured against it.
+          </figcaption>
+        </figure>
 
         <div className="mt-16 max-w-[34rem]">
           <div className="rule" />

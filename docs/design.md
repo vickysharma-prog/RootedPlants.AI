@@ -173,15 +173,20 @@ white.
 green for what is alive and what is verified. Amber marks a task that is late,
 and marks it quietly, because guilt is not a retention strategy.
 
-**The landing composes across, the app composes down.** A phone app is a
-column and should stay one. A page somebody lands on from a laptop is not, and
-a column down its left edge with half the screen empty says nobody thought
-about that visit. So the landing pairs the words with the thing itself: the
-headline beside a clip of somebody planting, the problem beside the footage of
-it, four steps two across, and a closing line whose second half steps right so
-the pair reads across the page rather than stacking down one edge. Text inside
-all of that still holds a readable measure. What widens is the composition,
-never the line length.
+**Width is comfort, not a brief.** A phone-width column down the left edge of
+a laptop says nobody thought about that visit. But answering it by splitting
+everything into side-by-side pairs is the opposite mistake: paragraphs beside
+paragraphs read like a newspaper column break, and a reader has to decide
+which one to start.
+
+The landing settles at a 900px column. Wide enough that the page is not a
+strip, narrow enough that everything is one clear order to read in. One clip,
+full column width, with its copy beneath it. Steps as a single run of rows,
+which is the rhythm the rest of the page is built on. Horizontal is kept for
+the two places it genuinely helps: the header, and the footer.
+
+Text inside all of that holds a readable measure whatever the screen does. The
+composition can widen; a line of prose cannot.
 
 **Rows, not cards.** A hairline above, generous air, nothing else. No boxes,
 no shadows, no gradients on elements. The one exception is the photograph.

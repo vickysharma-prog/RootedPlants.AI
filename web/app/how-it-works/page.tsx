@@ -8,6 +8,12 @@ export default function HowItWorks() {
       eyebrow="How it works"
       title="Paid against proof, not against a promise."
       lede="Rooted pays you for keeping a plant alive. That only means anything if the app can tell whether the work was actually done, so the checking is the product rather than a detail of it."
+      clip={{
+        src: "/video/planting.mp4",
+        poster: "/video/planting-poster.jpg",
+        caption:
+          "This is the moment everybody records. Everything below is about the two years after it.",
+      }}
     >
       <Section heading="The schedule follows your weather">
         <p>

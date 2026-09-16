@@ -109,7 +109,7 @@ body {
    measure; what widens is the composition, not the line length. */
 .column-wide {
   width: 100%;
-  max-width: 1180px;
+  max-width: 900px;
   margin: 0 auto;
   padding-inline: clamp(24px, 5vw, 56px);
 }

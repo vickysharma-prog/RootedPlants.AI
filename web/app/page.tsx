@@ -38,8 +38,7 @@ export default function Landing() {
       </header>
 
       <main className="on-forest column-wide flex flex-1 flex-col pt-12 pb-14">
-        {/* Hero. Words on the left, the thing itself on the right. */}
-        <section className="grid items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_380px]">
+        <section>
           <div>
             <h1
               className="display h-hero rise-in max-w-[17ch]"
@@ -93,41 +92,30 @@ export default function Landing() {
               </Link>
             </div>
           </div>
-
-          <Clip
-            src="/video/planting-tall.mp4"
-            poster="/video/planting-tall-poster.jpg"
-            ratio="31 / 40"
-            className="rise-in hidden lg:block"
-          />
         </section>
 
-        {/* The problem, stated wide. */}
-        <section className="mt-24 grid gap-x-16 gap-y-8 lg:grid-cols-[560px_minmax(0,1fr)] lg:items-center">
-          <Clip src="/video/planting.mp4" poster="/video/planting-poster.jpg" ratio="11 / 7" />
-          <div>
-            <p className="label">The part everybody does</p>
-            <p className="mt-4 text-[17px] leading-[1.7] text-body">
-              A drive, a birthday, a festival, a company afternoon. Somewhere in
-              this country a sapling goes into the ground every few seconds.
-            </p>
-            <p className="mt-4 text-[17px] leading-[1.7] text-cream">
-              What happens over the next two years is what decides whether it
-              was worth doing, and nobody is watching that part.
-            </p>
-          </div>
+        <section className="mt-20">
+          <Clip src="/video/planting.mp4" poster="/video/planting-poster.jpg" ratio="11 / 6" />
+          <p className="mt-6 max-w-[34rem] text-[17px] leading-[1.7] text-body">
+            A drive, a birthday, a festival, a company afternoon. Somewhere in
+            this country a sapling goes into the ground every few seconds.
+          </p>
+          <p className="mt-4 max-w-[34rem] text-[17px] leading-[1.7] text-cream">
+            What happens over the next two years is what decides whether it was
+            worth doing, and nobody is watching that part.
+          </p>
         </section>
 
         {/* Four steps, two across. */}
-        <section className="mt-24">
+        <section className="mt-20">
           <p className="label">How it works</p>
-          <div className="mt-8 grid gap-x-16 gap-y-0 md:grid-cols-2">
+          <div className="mt-6">
             {STEPS.map((s) => (
-              <article key={s.n} className="row flex gap-5">
-                <span className="num mt-[7px] shrink-0 text-[13px] text-gold-dim">{s.n}</span>
-                <div>
-                  <h2 className="display text-[25px] leading-snug">{s.title}</h2>
-                  <p className="mt-2 text-[15px] leading-[1.72] text-body">{s.body}</p>
+              <article key={s.n} className="row flex gap-6">
+                <span className="num mt-[8px] shrink-0 text-[13px] text-gold-dim">{s.n}</span>
+                <div className="max-w-[34rem]">
+                  <h2 className="display text-[26px] leading-snug">{s.title}</h2>
+                  <p className="mt-2 text-[15.5px] leading-[1.72] text-body">{s.body}</p>
                 </div>
               </article>
             ))}
@@ -135,14 +123,13 @@ export default function Landing() {
         </section>
 
         {/* The line the whole thing rests on. */}
-        {/* The second line steps to the right, so the pair reads across the
-            page rather than stacking down its left edge. */}
         <section className="mt-24 border-t border-line-soft pt-14">
-          <p className="display h-quote max-w-[30ch] leading-[1.18]">
-            We reward people for spending money.
+          <p className="display h-quote max-w-[24ch] leading-[1.18]">
+            Spend money, earn points. Pay the credit card bill on time, earn
+            more.
           </p>
-          <p className="display h-quote mt-4 max-w-[30ch] leading-[1.18] text-moss italic lg:ml-[18%]">
-            Rooted rewards them for keeping something alive.
+          <p className="display h-quote mt-5 max-w-[24ch] leading-[1.18] text-moss italic">
+            Rooted pays you for keeping something alive.
           </p>
         </section>
 
