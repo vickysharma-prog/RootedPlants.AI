@@ -9,10 +9,18 @@ Submission deadline: Sep 20, 2026, 5:00pm EDT.
 
 ---
 
-## The project
+## Rooted
 
-_Being written. The idea lands here, along with what it does and how to run
-it._
+Everybody plants a tree. Nobody finds out what happened to it. The photo gets
+posted and that is where it ends.
+
+Rooted pays people to keep it alive. Register the plant, get a care schedule
+that adjusts to your actual local weather, and every time the app asks you to
+do something small you do it and photograph it. The photo is verified, the
+points land, and they turn into real rewards.
+
+We reward people for spending money. This rewards them for keeping something
+alive.
 
 ## Build window
 
@@ -28,6 +36,10 @@ carried in".
 | [`project.md`](project.md) | What is being built, and the hackathon rules it has to satisfy |
 | [`progress.md`](progress.md) | Dated log of what got done and what broke |
 | [`state.md`](state.md) | Current state, decisions made, questions still open |
+| [`docs/verification.md`](docs/verification.md) | How a care task is proved |
+| [`docs/rewards.md`](docs/rewards.md) | Points, and where the money comes from |
+| [`docs/design.md`](docs/design.md) | Every screen, and the visual direction |
+| [`docs/risks.md`](docs/risks.md) | Every objection, with its answer |
 
 ## Running it
 

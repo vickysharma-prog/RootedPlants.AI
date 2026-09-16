@@ -154,11 +154,23 @@ holding you to. Rooted holds you to it, and pays you for it.
    the plant's actual local weather: rain in the last two days pushes watering
    out, a heat spell pulls it in. A static timer would not do that.
 3. **Today list.** The app tells you what your plants need today, in one list.
-4. **Do it, prove it.** Mark the task done with a photo. The photo gets a
-   quick automated look to confirm it is a plant and flag obvious distress.
-5. **Earn.** Completed care tasks earn points. Consistency earns more than a
-   single burst.
-6. **Redeem.** Points convert to rewards from a partner catalogue.
+4. **Do it, prove it.** The task card says exactly what the photo has to show
+   before the camera opens. The photo is then verified: it came from our
+   camera, the server timestamped it, the location matches where the plant was
+   registered, and it registers onto the plant's baseline photo so the same
+   pixels can be compared over time. On top of that, a check specific to the
+   task. See [`docs/verification.md`](docs/verification.md).
+5. **Earn.** Verified tasks earn points. Streaks multiply, so consistency is
+   worth far more than a single burst. Losing a plant to something outside your
+   control costs nothing: points stay, the streak carries, replanting earns a
+   bonus. See [`docs/rewards.md`](docs/rewards.md).
+6. **Redeem.** Points convert to partner rewards, certificates and a public
+   profile page for each plant.
+
+**Rewards attach to the verified task, not to the plant's condition.** Paying
+on condition asks somebody to wait weeks for a payoff they cannot feel. Paying
+per task is a small ask, done today, paid today. It costs more to build,
+because it means the verification has to be real, and that is the right trade.
 
 ### Scope for the deadline
 
@@ -172,9 +184,11 @@ the way through beats six features that each stop halfway.
   weather
 - Today list, the main screen, showing what is due
 - Mark a task done with a proof photo
-- Automated check on the proof photo, non-blocking
+- Verification on the proof photo, built as its own screen showing each check
+  and its reason, non-blocking end to end
 - Points ledger, with the balance and the history of how it was earned
 - Rewards catalogue and redemption, seeded with demo partners
+- Plant profile page with the photo timeline, which is the screen people share
 - Seeded demo account with plants already due, so the first screen is full
 - A "jump forward 3 days" control, so the schedule can be shown moving in a
   5 minute video
@@ -215,8 +229,17 @@ A native build would spend a day of four on distribution instead of product.
 | Adherence to Track | A tree that survives is the entire product. Nothing has to be explained to connect it to Earth Forward. |
 | Completion | One loop, closed, demoed end to end on a seeded account. |
 | Learning | Weather-adjusted scheduling and automated photo checks were both new. `progress.md` carries what broke. |
-| Design | Phone first. The Today list is the whole app: one screen, what is due, done. |
-| Technology | Scheduling that responds to real local weather, plus an automated look at each proof photo. |
+| Design | Phone first, one job per visit. The Today list is the whole app: what is due, do it, paid. Spec in [`docs/design.md`](docs/design.md). |
+| Technology | A real verification pipeline: registration against the plant's baseline photo, aligned-pixel comparison per task type, and an agent that composes a verdict it knows when not to trust. Plus scheduling that responds to real local weather. |
+
+### The documents
+
+| File | What is in it |
+|---|---|
+| [`docs/verification.md`](docs/verification.md) | How a task is proved, layer by layer, and the prior work it is built on |
+| [`docs/rewards.md`](docs/rewards.md) | Points, streaks, what they turn into, where the money comes from |
+| [`docs/design.md`](docs/design.md) | Every screen, and the visual direction |
+| [`docs/risks.md`](docs/risks.md) | Every objection, with its answer |
 
 ### Demo script
 
