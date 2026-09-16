@@ -9,7 +9,7 @@ holds you to them, and pays you for it.
 Spend money, earn points. Pay the credit card bill on time, earn more. Rooted
 pays you for keeping something alive.
 
-**Live: [rooted-two-lake.vercel.app](https://rooted-two-lake.vercel.app)**
+**Live: [rootedplants.vercel.app](https://rootedplants.vercel.app)**
 
 Built for [NextStep Hacks 2026](https://nextstep2026.devpost.com/), Earth
 Forward track.
@@ -88,7 +88,7 @@ The Today screen carries a **+3 days** control. A watering due on Saturday
 cannot be shown in a five minute video, so the demo moves the day instead of
 waiting for it.
 
-**Open [the live site](https://rooted-two-lake.vercel.app) on a phone** if you want the camera and the
+**Open [the live site](https://rootedplants.vercel.app) on a phone** if you want the camera and the
 location checks. Both are browser features that only work on a secure origin, so on
 `localhost` over plain HTTP the camera falls back to the file picker and the
 verification card says plainly that the photograph did not come from the

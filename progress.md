@@ -400,7 +400,7 @@ account now, with four months of ledger behind it.
 
 ## Sep 17, 2026, later
 
-Live at https://rooted-two-lake.vercel.app.
+Live at https://rootedplants.vercel.app.
 
 Deployed with the CLI from `web/`, which is the project root on Vercel. The
 GitHub connection failed because the repo is private and the Vercel app has no
@@ -439,10 +439,16 @@ to find.
 
 **Deployment protection.** The project came with SSO protection on every
 `vercel.app` domain, so `rooted-vicky-sharma.vercel.app` answers a stranger
-with a Vercel login page. The alias `rooted-two-lake.vercel.app` is open and
+with a Vercel login page. The alias `rootedplants.vercel.app` is open and
 serves the real site, which is why it worked for me and not from another
 machine. Worth knowing before a judge clicks the wrong one.
 
 The lesson I want to keep: a deploy that works from my own machine has proved
 almost nothing. Both faults were invisible from here and both would have been
 discovered by somebody else, at the worst moment.
+
+Resolved both, and took a readable domain while I was there:
+**rootedplants.vercel.app**, attached to the project rather than pinned to one
+deployment, so it follows production instead of going stale the next time
+something ships. Protection is off, so the link opens for anybody without a
+Vercel account, which is the only thing that matters when a judge clicks it.
