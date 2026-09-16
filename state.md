@@ -4,7 +4,7 @@ Where things stand right now. Read this first after any break. It holds
 decisions that are settled, questions that are still open, and the facts about
 the environment that are easy to forget.
 
-**Last updated:** 2026-09-16
+**Last updated:** 2026-09-17
 
 ---
 
@@ -14,12 +14,43 @@ the environment that are easy to forget.
 |---|---|
 | Deadline | **Sep 20, 2026 @ 5:00pm EDT** |
 | Same in IST | Sep 21, 2026 @ 2:30am |
-| Working days left | 4 |
+| Working days left | 3 |
 
 Plan against Sep 20. See "Open questions" below for why that date is worth a
 second look.
 
 ---
+
+## What is built and running
+
+The app lives in `web/`. `npm run dev` inside it, then open the printed
+address. No database or API key is needed to run what exists today.
+
+| Route | What it is | State |
+|---|---|---|
+| `/` | Landing | Done |
+| `/join` | Sign up | Screen done, not wired |
+| `/today` | The app's home, what is due now | Done, running off real weather |
+| `/how-it-works` | How a task gets proved | Done |
+| `/accessibility` | Accessibility statement | Done |
+| `/privacy` | Privacy | Done |
+| `/do/[task]` | Capture a proof photo | **Not built** |
+| `/plants`, `/rewards`, `/me` | Linked from the nav | **Not built** |
+
+**Working for real, not mocked:** the care schedule. Twelve hand-authored
+species profiles, then open-meteo moves each watering by the weather at that
+plant's own coordinates. The line under each task is that shift made visible.
+
+**The look**, set out in `docs/design.md`: one dark warm world, Instrument
+Serif for anything that speaks, Instrument Sans for body copy, JetBrains Mono
+for numbers. Rows rather than cards. Three text colours, one accent.
+
+**Media**, all licence-clean, provenance in `sources.json` beside each set:
+- Five video clips (CC0 / Pexels licence, no attribution needed). Three are
+  backdrops, one per kind of page; two show people planting and run in the
+  page rather than behind it.
+- Eight plant photographs and four forest stills (CC0 / public domain).
+- Forest ambience audio (CC0), on a tap, never automatic.
 
 ## Decided
 
@@ -29,8 +60,9 @@ second look.
   from a partner catalogue. Full writeup in `project.md` section 2.
 - **Website built as a PWA, not a native app.** Camera and phone layout
   without an app store between the judge and the demo.
-- Stack: Next.js on Vercel, Postgres, object storage for photos, open-meteo
-  for weather, hand-authored care profiles for 10 to 15 species.
+- Stack: Next.js 16 on Vercel, open-meteo for weather, hand-authored care
+  profiles. Postgres and object storage go in when the capture flow needs
+  them; nothing so far has.
 - Scope is one closed loop. Push notifications, social feed, teams and real
   partner integrations are out, and that is settled.
 - **Rewards go against verified tasks, not plant condition.** Condition is
@@ -82,8 +114,13 @@ Each of these blocks something. Answer them before building past them.
    **Do this before building on it.**
 4. **Name.** "Rooted" is a working name. Cheap to change until the video is
    recorded, expensive after.
-5. **Live deployment.** Decided: yes, Vercel, live from day one so the link is
-   never a last-day job.
+5. **Live deployment.** Decided: yes, Vercel. **Not done yet**, and it needs
+   a Vercel login, so it is a ten minute job somebody has to sit through. The
+   longer it waits the more it becomes a last-day job, which is exactly what
+   it was supposed to avoid.
+6. **Data store.** Nothing persists yet. The capture flow is the first thing
+   that needs it. Neon or Vercel Postgres, one free account, `DATABASE_URL`
+   into `web/.env.local`.
 
 ## Prior art carried in
 
@@ -113,8 +150,25 @@ it is just knowing how to do it.
   profile and the contribution graph will not back up the in-period claim.
   Unverified, `gh` lacks the `user` scope to read the account's email list.
   Check it on github.com/settings/emails, it takes ten seconds.
-- Secrets live in `.env`, which is gitignored. Never in a committed file, and
-  never in a screenshot in the demo video.
+- Secrets live in `web/.env.local`, which is gitignored. The Pexels key that
+  fetched the video is there; `tools/fetch_forest_video.py` reads it from that
+  file. Never in a committed file, and never in a screenshot in the video.
+- Tools that fetched the media, all re-runnable: `tools/fetch_plant_photos.py`,
+  `tools/forest_candidates.py` (builds a contact sheet, because search alone
+  returns a foggy city street for "misty forest"), `tools/fetch_forest_video.py`,
+  and `tools/soil_delta.py` for the watering check.
+
+## Next, in order
+
+1. **The capture flow**, `/do/[task]`: camera, the instruction above the
+   viewfinder, one shutter.
+2. **The verification card**: each check with a tick and one line of reason,
+   then the points counting up. This is the screen that earns the Technology
+   mark, so it is a screen and not a toast.
+3. **The points ledger**, so the number on the card is real rather than
+   printed.
+4. Deploy to Vercel.
+5. Record the video.
 
 ## Submission checklist
 
