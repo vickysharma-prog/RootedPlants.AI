@@ -76,8 +76,8 @@ for numbers. Rows rather than cards. Three text colours, one accent.
   backdrops, one per kind of page; two show people planting and run in the
   page rather than behind it.
 - Eight plant photographs and four forest stills (CC0 / public domain).
-- Nine baseline frames giving each demo plant a photo history, and three
-  photographs of people planting (Pexels licence).
+- Seventeen baseline frames giving each of the six demo plants a photo
+  history, and three photographs of people planting (Pexels licence).
 - Forest ambience audio (CC0), on a tap, never automatic.
 
 ## Decided

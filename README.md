@@ -100,7 +100,7 @@ the app works with no signal, and there is no account to lose. Accounts
 themselves are a cookie: a name, an email and the mobile number the reminders
 go to.
 
-The first time the app loads it seeds a demo account with three plants, four
+The first time the app loads it seeds a demo account with six plants, four
 months of ledger and a photo history each, standing a few metres from wherever
 the device is. So the first screen is a working account rather than an empty
 room, and the location check passes on the first task wherever you open it.

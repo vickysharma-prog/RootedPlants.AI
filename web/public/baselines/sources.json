@@ -79,5 +79,77 @@
     "title": "Close-up of vibrant green ivy leaves with water droplets, perfect for nature themes.",
     "licence": "Pexels",
     "source": "https://www.pexels.com/photo/green-ivy-leaves-17495282/"
+  },
+  {
+    "file": "hibiscus-1-0.jpg",
+    "plant": "hibiscus-1",
+    "query": "hibiscus plant flower pot",
+    "url": "https://images.pexels.com/photos/12358961/pexels-photo-12358961.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "A colorful garden scene featuring hibiscus and various potted flowers in full bloom on a patio.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/photo-of-a-red-hibiscus-flower-near-purple-flowers-12358961/"
+  },
+  {
+    "file": "hibiscus-1-1.jpg",
+    "plant": "hibiscus-1",
+    "query": "hibiscus red flower plant",
+    "url": "https://images.pexels.com/photos/27260639/pexels-photo-27260639.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Close-up of a vivid red hibiscus flower with lush green leaves outdoors, depicting summer beauty.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/a-red-flower-with-green-leaves-in-the-background-27260639/"
+  },
+  {
+    "file": "hibiscus-1-2.jpg",
+    "plant": "hibiscus-1",
+    "query": "hibiscus bush garden",
+    "url": "https://images.pexels.com/photos/37194490/pexels-photo-37194490.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "A cluster of pink hibiscus flowers blooming against a cloudy sky, creating a vibrant contrast.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/vibrant-pink-hibiscus-flowers-against-cloudy-sky-37194490/"
+  },
+  {
+    "file": "curry-1-0.jpg",
+    "plant": "curry-1",
+    "query": "curry leaf plant pot",
+    "url": "https://images.pexels.com/photos/37215213/pexels-photo-37215213.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "A vibrant green curry leaf branch displayed against a white backdrop, showcasing its detailed structure.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/fresh-green-curry-leaf-on-white-background-37215213/"
+  },
+  {
+    "file": "curry-1-2.jpg",
+    "plant": "curry-1",
+    "query": "murraya koenigii plant",
+    "url": "https://images.pexels.com/photos/38848053/pexels-photo-38848053.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Close-up of white jasmine flowers surrounded by vibrant green leaves, capturing nature's beauty. Natal, Brazil.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/white-jasmine-flowers-among-lush-greenery-38848053/"
+  },
+  {
+    "file": "aloe-1-0.jpg",
+    "plant": "aloe-1",
+    "query": "aloe vera plant pot",
+    "url": "https://images.pexels.com/photos/9203745/pexels-photo-9203745.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "A close-up image of an aloe vera plant in a stylish, textured ceramic pot indoors.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/close-up-photo-of-a-potted-plant-9203745/"
+  },
+  {
+    "file": "aloe-1-1.jpg",
+    "plant": "aloe-1",
+    "query": "aloe vera potted plant indoor",
+    "url": "https://images.pexels.com/photos/34006509/pexels-photo-34006509.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Vibrant aloe vera plant in a colorful ceramic pot with natural sunlight highlighting its leaves.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/aloe-vera-plant-in-colorful-ceramic-pot-34006509/"
+  },
+  {
+    "file": "aloe-1-2.jpg",
+    "plant": "aloe-1",
+    "query": "aloe vera leaves closeup",
+    "url": "https://images.pexels.com/photos/548395/pexels-photo-548395.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Detailed macro shot highlighting the sharp spikes of a green aloe vera plant.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/closeup-photography-of-aloe-vera-plant-548395/"
   }
 ]

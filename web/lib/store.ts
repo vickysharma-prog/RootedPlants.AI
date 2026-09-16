@@ -20,7 +20,7 @@ const DB = "rooted";
 // missing clock schedules nonsense, and nothing here is precious enough to
 // migrate: the photographs a real user has taken are the only thing that
 // would be, and this is still before anybody has taken any.
-const VERSION = 4;
+const VERSION = 5;
 
 export type StoredPlant = {
   id: string;
@@ -248,6 +248,9 @@ export async function seedIfEmpty() {
     { id: "neem-1", name: "Neem", speciesId: "neem", place: "backyard", plantedOn: "2026-06-14", lat: here.lat + 0.00018, lon: here.lon + 0.00021, streak: 12, points: 820, lastWatered: -5, lastFertilised: -20, lastCheckin: -30, lastPest: -4 },
     { id: "tulsi-1", name: "Tulsi", speciesId: "tulsi", place: "balcony", plantedOn: "2026-08-02", lat: here.lat - 0.00012, lon: here.lon + 0.00009, streak: 6, points: 310, lastWatered: -2, lastFertilised: -12, lastCheckin: -9, lastPest: -2 },
     { id: "money-1", name: "Money plant", speciesId: "money-plant", place: "living room", plantedOn: "2026-05-20", lat: here.lat + 0.00007, lon: here.lon - 0.00014, streak: 21, points: 1010, lastWatered: -3, lastFertilised: -38, lastCheckin: -40, lastPest: -5 },
+    { id: "hibiscus-1", name: "Hibiscus", speciesId: "hibiscus", place: "balcony", plantedOn: "2026-07-09", lat: here.lat - 0.00022, lon: here.lon - 0.00006, streak: 9, points: 430, lastWatered: -1, lastFertilised: -16, lastCheckin: -5, lastPest: -6 },
+    { id: "curry-1", name: "Curry leaf", speciesId: "curry-leaf", place: "kitchen window", plantedOn: "2026-04-28", lat: here.lat + 0.00003, lon: here.lon + 0.00026, streak: 15, points: 690, lastWatered: -2, lastFertilised: -21, lastCheckin: -70, lastPest: -7 },
+    { id: "aloe-1", name: "Aloe", speciesId: "aloe", place: "windowsill", plantedOn: "2026-03-15", lat: here.lat - 0.00009, lon: here.lon + 0.00017, streak: 28, points: 540, lastWatered: -6, lastFertilised: -60, lastCheckin: -90, lastPest: -9 },
   ];
 
   const NOTES = ["The day it went in.", "Growing in.", "Latest look."];
