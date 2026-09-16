@@ -35,10 +35,13 @@ second look.
   partner integrations are out, and that is settled.
 - Demo runs on a seeded account with plants already due, plus a "jump forward
   3 days" control. A schedule cannot be demonstrated by waiting for it.
-- Repo is public from day one. The public commit history dated inside
-  Aug 21 - Sep 20 is what proves the project was built in-period, which the
-  rules require. So: commit early, commit often, do not squash the history
-  into one drop at the end.
+- **Repo is private while building, and goes public before submission.** The
+  rules require a viewable code link, so it has to flip on or before Sep 20.
+  Put it on the submission checklist, not in memory.
+- The commit history dated inside Aug 21 - Sep 20 is what proves the project
+  was built in-period. That holds whether the repo is private or public, the
+  dates travel with the commits. So: commit early, commit often, and do not
+  squash the history into one drop at the end.
 - Tracking lives in three files at the repo root: `project.md` (what and why),
   `progress.md` (dated log) and `state.md` (this file).
 
@@ -90,7 +93,8 @@ Tick these on the day, not on the hour.
 
 - [ ] Demo video recorded, between 3:00 and 5:00, both bounds respected
 - [ ] Video uploaded and the link is public and plays in an incognito window
-- [ ] Repo public, README explains how to run it
+- [ ] **Repo flipped to public** (`gh repo edit --visibility public`), README
+      explains how to run it
 - [ ] Live link works, if there is one
 - [ ] Devpost project page complete
 - [ ] `state.md` "Prior art carried in" is accurate and honest
