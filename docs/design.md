@@ -189,6 +189,14 @@ If it ever competes with the words, it is turned down further.
 the verification checks landing one after another. Everything else is instant,
 which is what makes those two moments feel like moments.
 
+**Two things on one screen never share a gesture.** The mark beside the
+wordmark was five bars that rose and fell, sitting a few centimetres from a
+sound control that is also five bars that rise and fall. Same gesture, two
+meanings, and the eye reads them as the same control. The mark is a seedling
+now: the stem draws itself, the leaves unfurl, then the roots go down below
+the ground line. The roots are the point. The name is Rooted, and the half of
+a plant that decides whether it lives is the half nobody draws.
+
 ## What the judge sees
 
 The demo is shot in a phone frame. The order: Today list full of real plant
