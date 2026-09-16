@@ -24,6 +24,17 @@ second look.
 ## Decided
 
 - Entering NextStep Hacks 2026, Earth Forward track, solo.
+- **The build is Rooted**: register a tree, get a weather-adjusted care
+  schedule, complete care tasks with a proof photo, earn points, redeem them
+  from a partner catalogue. Full writeup in `project.md` section 2.
+- **Website built as a PWA, not a native app.** Camera and phone layout
+  without an app store between the judge and the demo.
+- Stack: Next.js on Vercel, Postgres, object storage for photos, open-meteo
+  for weather, hand-authored care profiles for 10 to 15 species.
+- Scope is one closed loop. Push notifications, social feed, teams and real
+  partner integrations are out, and that is settled.
+- Demo runs on a seeded account with plants already due, plus a "jump forward
+  3 days" control. A schedule cannot be demonstrated by waiting for it.
 - Repo is public from day one. The public commit history dated inside
   Aug 21 - Sep 20 is what proves the project was built in-period, which the
   rules require. So: commit early, commit often, do not squash the history
@@ -35,7 +46,9 @@ second look.
 
 Each of these blocks something. Answer them before building past them.
 
-1. **The idea.** Not recorded yet. Everything downstream waits on it.
+1. **Eligibility, blocking.** Students only, 13 to 24 as of 21 Aug 2026,
+   entering as an individual and not on behalf of a company. This voids the
+   whole week if it is wrong, so it gets answered before anything else.
 2. **Deadline, worth one check.** The Devpost header says
    "Deadline: Sep 20, 2026 @ 5:00pm EDT", and the rules page agrees. But the
    overview prose also describes the period as "Aug 21 to Sep 13, extended one
@@ -43,9 +56,8 @@ Each of these blocks something. Answer them before building past them.
    Planning to Sep 20 because it is the tighter of the two and the one stated
    as the deadline. If it turns out to be the 27th, that is a free week. The
    reverse mistake would be fatal, so it is not worth making.
-3. **Eligibility, to confirm.** The event is students only, ages 13 to 24 as of
-   Aug 21 2026, and professional organisations are excluded. Entry is as an
-   individual. Confirm both before sinking four days in.
+3. **Name.** "Rooted" is a working name. Cheap to change until the video is
+   recorded, expensive after.
 4. **Live deployment.** A hosted link is listed as "if applicable", not
    required. Decide whether to ship one once the scope is set.
 

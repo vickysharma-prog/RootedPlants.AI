@@ -10,7 +10,33 @@ worked.
 
 ---
 
-## 2026-09-16 - Setup
+## 2026-09-16 - Setup and scope
+
+**Done**
+
+- Wrote the idea into `project.md`. Rooted: everybody plants a tree and nobody
+  follows up, so attach the reward system we point at spending to keeping a
+  tree alive instead.
+- Cut the scope to one closed loop for the deadline: register, schedule,
+  Today list, complete with proof photo, points, redeem. Push notifications,
+  social feed and teams are out, written down so they stay out.
+- Two decisions that came out of thinking about the video rather than the
+  product. First, a reminder due in three days cannot be shown in a five
+  minute demo, so the schedule is data plus a Today list, and the demo account
+  is seeded past due. Second, the proof-photo check has to be non-blocking, a
+  demo that hangs on an API call costs more than a feature that is missing.
+- Picked a PWA over a native app. Camera and phone layout without spending a
+  day of four on distribution.
+
+**Next**
+
+- Next.js scaffold on Vercel, link live the same day.
+- Data model: plants, tasks, points ledger, redemptions.
+- Hand-author the first 10 species care profiles.
+
+---
+
+## 2026-09-16 - Repo setup
 
 **Done**
 
@@ -23,12 +49,5 @@ worked.
 
 **Open**
 
-- The idea itself is not recorded yet. `project.md` section 2 is a set of
-  headings waiting for it.
 - Two things to confirm, both in `state.md`: the Sep 20 vs Sep 27 deadline
   discrepancy on the Devpost page, and eligibility (students only, 13 to 24).
-
-**Next**
-
-- Write the idea into `project.md`, then cut the scope to what can be finished
-  and demoed by the 20th.
