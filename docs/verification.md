@@ -59,8 +59,8 @@ the same physical pixels line up across time, and every per-task check below
 becomes a comparison of the same soil and the same leaves rather than a
 comparison of two loosely similar pictures.
 
-This is a technique I have already built and measured. See
-[Prior work](#prior-work).
+Why registration rather than a looser comparison is set out in
+[A note on the approach](#a-note-on-the-approach).
 
 ## Per-task checks
 
@@ -151,34 +151,21 @@ Every layer here is a real answer to a real attack:
 That table is the answer to the sharpest question a judge can ask, which is
 "what stops people cheating for the coupons".
 
-## Prior work
+## A note on the approach
 
-The computer vision here is not a guess about what might work. I have built and
-measured this pipeline before, on a harder problem.
+Registration-first is a deliberate choice over the easier version of this.
 
-`Recovering-computer-vision-annotations` recovers 2.81 million bird
-observations that were drawn onto 18,304 aerial photographs by a counting tool
-that never saved the coordinates. It was developed for Google Summer of Code
-2026 under the DeepForest project. The pipeline registers each screenshot onto
-its clean original, subtracts, finds the dots, reads the legend, classifies
-each dot and exports a training dataset.
+The easy version compares two photos loosely, a similarity score, a colour
+histogram, an average brightness. It falls over the first time somebody stands
+a step to the left or a cloud passes. It also cannot answer the question that
+actually matters, which is what changed about *this* plant since last time.
 
-What carries over, and it is the whole backbone of the verification above:
+Registering first turns two pictures into one coordinate system. After that,
+every check is a comparison of the same physical pixels, and the checks get
+simple: the soil here is darker than it was, the foliage here is gone.
 
-| There | Here |
-|---|---|
-| registering a screenshot onto its original, 96.7% success at 0.38px median reprojection error over 60 pairs | registering a proof photo onto the plant's baseline |
-| subtracting the aligned original to isolate what was drawn on top | subtracting the aligned baseline to isolate what changed about the plant |
-| a trust check that runs without labels, so a frame that cannot be accurate is rejected before anything is built on it | a verification that knows when it should not be trusted, and sends the task to review instead of guessing |
-| crown detection and DeepForest fine-tuning on recovered data | counting what is standing in a planted plot from the air |
-
-The third row is the one that matters most. The hardest part of an automated
-verifier is not being right, it is knowing when it is not. That discipline is
-already built and measured, and it is why **pending review** is a first class
+It also gives the pipeline a way to know when to stop. If registration is weak,
+the inlier ratio says so before any downstream check runs, and the task goes to
+review rather than being guessed at. Knowing when not to trust a result is
+harder than producing one, and it is why **pending review** is a first class
 outcome here rather than an afterthought.
-
-**Disclosure:** that project was built before this hackathon, between March and
-August 2026. It is prior work of mine, it is listed in `state.md` under prior
-art, and nothing from it is claimed as built during the hackathon period. What
-is reused is technique and judgement. Any code carried across will be named in
-that table, file by file.

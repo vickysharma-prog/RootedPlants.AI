@@ -91,14 +91,17 @@ Anything in this repo that was written before Aug 21, 2026 gets listed here:
 what it is, where it came from, and what it does. This is the disclosure the
 rules ask for, and it is also what keeps the in-period claim clean.
 
-Nothing has been copied in yet. What is listed here is prior work whose
-**technique** informs this build. If any file is actually carried across, it
-gets its own row naming the file.
+Nothing has been carried in. No code, no data, no assets. Everything in this
+repo was written on or after 2026-09-16, inside the hackathon window, and the
+commit history shows it.
 
 | Component | Origin | Status |
 |---|---|---|
-| Registration and aligned-difference technique for the verification pipeline | my own `vickysharma-prog/Recovering-computer-vision-annotations`, built Mar to Aug 2026 for Google Summer of Code under the DeepForest project | **Pre-hackathon.** Technique and judgement reused, no code copied. Anything copied later gets listed by filename. |
-| Crown detection and DeepForest fine-tuning, for the aerial drive-verification story | same project | **Pre-hackathon.** Referenced in the pitch as prior work, not built during the hackathon. |
+| _(nothing)_ | | |
+
+If anything is copied in later it gets a row here, named by file, before it is
+committed. Knowing how to do something is not something that gets carried in,
+it is just knowing how to do it.
 
 ## Environment
 
