@@ -56,6 +56,26 @@ function region(img: ImageData, x0: number, y0: number, x1: number, y1: number) 
   return n ? sum / n : 0;
 }
 
+/**
+ * Average step between neighbouring pixels: how much fine detail is present.
+ *
+ * Used for one thing only, to say whether a close-up is sharp enough that
+ * something the size of an aphid would be visible in it. It is not reported as
+ * a focus measurement, because it is not one.
+ */
+function detail(img: ImageData) {
+  const { width: w, height: h, data } = img;
+  let sum = 0;
+  let n = 0;
+  for (let y = 1; y < h; y++)
+    for (let x = 1; x < w; x++) {
+      const i = (y * w + x) * 4;
+      sum += Math.abs(luma(data, i) - luma(data, i - 4));
+      n++;
+    }
+  return sum / n;
+}
+
 /** Fraction of the frame where green leads both other channels clearly. */
 function greenness(img: ImageData) {
   const d = img.data;
@@ -168,6 +188,27 @@ export async function verify(e: Evidence): Promise<Verdict> {
   }
 
   const now = await pixels(e.thumb, 128);
+
+  // A pest photograph is a close-up of one leaf. It is not meant to look like
+  // the plant's wide first photograph and is never compared to it: what it has
+  // to show is leaf, close and sharp enough that something small would be
+  // visible on it.
+  if (e.kind === "pest") {
+    const g = greenness(now);
+    const close = detail(now);
+    const ok = g >= 0.2 && close >= 0.02;
+    checks.push({
+      key: "closeup",
+      label: "Close enough to see trouble",
+      reason: ok
+        ? `${Math.round(g * 100)}% of the frame is leaf, sharp enough that scale or aphids would show.`
+        : g < 0.2
+          ? `Only ${Math.round(g * 100)}% of the frame is leaf, so this is too far back to see anything on them.`
+          : "The leaves are not sharp enough for anything small on them to show.",
+      ok,
+    });
+    return { checks, passed: checks.every((c) => c.ok) };
+  }
 
   if (e.baseline) {
     const base = await pixels(e.baseline, 128);

@@ -79,6 +79,7 @@ export function AddPlant({ offset }: { offset: number }) {
       lastWatered: offset,
       lastFertilised: offset,
       lastCheckin: offset,
+      lastPest: offset,
       baselinePhotoId: photoId,
     });
 

@@ -21,6 +21,7 @@ export type Schedulable = {
   lastWatered: number;
   lastFertilised: number;
   lastCheckin: number;
+  lastPest: number;
   lostOn?: string;
 };
 
@@ -76,6 +77,20 @@ export function tasksFor(p: Schedulable, w: Weather, offset: number): Task[] {
   if (age < 60) {
     out.push(task(p, "checkin", 7 - (offset - p.lastCheckin), "First weeks, worth a look", w));
   }
+
+  // Pests arrive with warm wet weather, so the look comes round sooner after
+  // rain and in the heat. Catching scale early is the difference between
+  // wiping leaves and losing a plant.
+  const pestEvery = w.rainLast3 >= 3 || w.maxTempToday >= 33 ? 10 : 18;
+  out.push(
+    task(
+      p,
+      "pest",
+      pestEvery - (offset - p.lastPest),
+      pestEvery === 10 ? "Warm and wet, when pests turn up" : "Routine look",
+      w,
+    ),
+  );
 
   return out;
 }

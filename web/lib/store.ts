@@ -1,6 +1,6 @@
 "use client";
 
-import { SPECIES, POINTS, multiplier, type TaskKind } from "./data";
+import { SPECIES, POINTS, TASK_LABEL, multiplier, type TaskKind } from "./data";
 
 /**
  * Everything the account owns, on the device.
@@ -15,7 +15,12 @@ import { SPECIES, POINTS, multiplier, type TaskKind } from "./data";
  */
 
 const DB = "rooted";
-const VERSION = 1;
+// Bumped whenever a stored record gains a field. The upgrade drops what is
+// there and lets the seed run again, because a half-migrated plant with a
+// missing clock schedules nonsense, and nothing here is precious enough to
+// migrate: the photographs a real user has taken are the only thing that
+// would be, and this is still before anybody has taken any.
+const VERSION = 2;
 
 export type StoredPlant = {
   id: string;
@@ -31,6 +36,7 @@ export type StoredPlant = {
   lastWatered: number;
   lastFertilised: number;
   lastCheckin: number;
+  lastPest: number;
   /** The photograph every later photograph is measured against. */
   baselinePhotoId: string;
   /** Set when the plant is reported lost. Keeps its record and its points. */
@@ -64,12 +70,10 @@ function open(): Promise<IDBDatabase> {
     const req = indexedDB.open(DB, VERSION);
     req.onupgradeneeded = () => {
       const db = req.result;
-      if (!db.objectStoreNames.contains("plants")) db.createObjectStore("plants", { keyPath: "id" });
-      if (!db.objectStoreNames.contains("photos")) {
-        const s = db.createObjectStore("photos", { keyPath: "id" });
-        s.createIndex("plantId", "plantId");
-      }
-      if (!db.objectStoreNames.contains("ledger")) db.createObjectStore("ledger", { keyPath: "id" });
+      for (const name of Array.from(db.objectStoreNames)) db.deleteObjectStore(name);
+      db.createObjectStore("plants", { keyPath: "id" });
+      db.createObjectStore("photos", { keyPath: "id" }).createIndex("plantId", "plantId");
+      db.createObjectStore("ledger", { keyPath: "id" });
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
@@ -216,9 +220,9 @@ export async function seedIfEmpty() {
   if ((await plants()).length) return;
 
   const demo: Omit<StoredPlant, "baselinePhotoId">[] = [
-    { id: "neem-1", name: "Neem", speciesId: "neem", place: "backyard", plantedOn: "2026-06-14", lat: 26.9124, lon: 75.7873, streak: 12, points: 820, lastWatered: -5, lastFertilised: -20, lastCheckin: -30 },
-    { id: "tulsi-1", name: "Tulsi", speciesId: "tulsi", place: "balcony", plantedOn: "2026-08-02", lat: 26.9126, lon: 75.787, streak: 6, points: 310, lastWatered: -2, lastFertilised: -12, lastCheckin: -9 },
-    { id: "money-1", name: "Money plant", speciesId: "money-plant", place: "living room", plantedOn: "2026-05-20", lat: 26.9125, lon: 75.7871, streak: 21, points: 1010, lastWatered: -3, lastFertilised: -38, lastCheckin: -40 },
+    { id: "neem-1", name: "Neem", speciesId: "neem", place: "backyard", plantedOn: "2026-06-14", lat: 26.9124, lon: 75.7873, streak: 12, points: 820, lastWatered: -5, lastFertilised: -20, lastCheckin: -30, lastPest: -22 },
+    { id: "tulsi-1", name: "Tulsi", speciesId: "tulsi", place: "balcony", plantedOn: "2026-08-02", lat: 26.9126, lon: 75.787, streak: 6, points: 310, lastWatered: -2, lastFertilised: -12, lastCheckin: -9, lastPest: -4 },
+    { id: "money-1", name: "Money plant", speciesId: "money-plant", place: "living room", plantedOn: "2026-05-20", lat: 26.9125, lon: 75.7871, streak: 21, points: 1010, lastWatered: -3, lastFertilised: -38, lastCheckin: -40, lastPest: -16 },
   ];
 
   const NOTES = ["The day it went in.", "Growing in.", "Latest look."];
@@ -252,13 +256,45 @@ export async function seedIfEmpty() {
     await putPlant({ ...p, baselinePhotoId });
   }
 
+  // Four months of an account that has been running. Without this the profile
+  // reads "verified 0" over a plant that is 119 days old, which is the one
+  // thing on the screen that would tell somebody it is a mock-up.
+  const past: Array<[string, string, TaskKind, number, number]> = [
+    ["money-1", "Money plant", "water", 60, 3],
+    ["neem-1", "Neem", "water", 52, 8],
+    ["money-1", "Money plant", "fertilise", 100, 12],
+    ["neem-1", "Neem", "pest", 49, 15],
+    ["money-1", "Money plant", "water", 60, 19],
+    ["tulsi-1", "Tulsi", "water", 36, 22],
+    ["neem-1", "Neem", "water", 52, 26],
+    ["tulsi-1", "Tulsi", "checkin", 18, 30],
+    ["money-1", "Money plant", "water", 60, 34],
+    ["neem-1", "Neem", "fertilise", 70, 41],
+    ["money-1", "Money plant", "pest", 70, 48],
+    ["neem-1", "Neem", "water", 52, 55],
+  ];
+
+  let counted = 0;
+  for (const [plantId, plantName, kind, points, daysAgo] of past) {
+    counted += points;
+    await addLedger({
+      id: id(),
+      at: new Date(Date.now() - daysAgo * 864e5).toISOString(),
+      plantId,
+      plantName,
+      kind,
+      points,
+      label: TASK_LABEL[kind],
+    });
+  }
+
   await addLedger({
     id: id(),
-    at: new Date(Date.now() - 864e5).toISOString(),
+    at: new Date(Date.now() - 118 * 864e5).toISOString(),
     plantId: "money-1",
     plantName: "Money plant",
     kind: "bonus",
-    points: 2140,
+    points: 2140 - counted,
     label: "Carried over from your first weeks",
   });
 }

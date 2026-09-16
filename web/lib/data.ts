@@ -10,7 +10,7 @@
  * because a schedule cannot be demonstrated by waiting for it.
  */
 
-export type TaskKind = "water" | "fertilise" | "checkin";
+export type TaskKind = "water" | "fertilise" | "checkin" | "pest";
 
 export type Species = {
   id: string;
@@ -19,6 +19,10 @@ export type Species = {
   waterEvery: number;
   fertiliseEvery: number;
   advice: string;
+  /** What to feed it with, and how much. Organic first, every time. */
+  feedWith: string;
+  /** What actually goes wrong with this plant, and what to do about it. */
+  pestWatch: string;
   /** Photograph under public/plants. A plant is known by sight, not by name. */
   photo: string;
 };
@@ -45,6 +49,8 @@ export const SPECIES: Species[] = [
     waterEvery: 3,
     fertiliseEvery: 45,
     advice: "Water when the soil is dry two inches down.",
+    feedWith: "A handful of compost worked into the top inch. Neem asks for very little.",
+    pestWatch: "Look under the leaves for scale and mealybug. Wipe them off with soapy water before you reach for anything stronger.",
     photo: "/plants/neem.jpg",
   },
   {
@@ -54,6 +60,8 @@ export const SPECIES: Species[] = [
     waterEvery: 4,
     fertiliseEvery: 60,
     advice: "Keep it damp while it is young, never waterlogged.",
+    feedWith: "Compost twice a year. Young ones take a spoon of vermicompost.",
+    pestWatch: "Leaf-eating caterpillars in the monsoon. Pick them off by hand, they are large and few.",
     photo: "/plants/peepal.jpg",
   },
   {
@@ -63,6 +71,8 @@ export const SPECIES: Species[] = [
     waterEvery: 5,
     fertiliseEvery: 40,
     advice: "Deep soak rather than a daily splash.",
+    feedWith: "Well-rotted manure at the drip line, never against the trunk.",
+    pestWatch: "Hoppers and powdery mildew before flowering. Neem oil spray at dusk, not in the sun.",
     photo: "/plants/mango.jpg",
   },
   {
@@ -72,6 +82,8 @@ export const SPECIES: Species[] = [
     waterEvery: 4,
     fertiliseEvery: 60,
     advice: "Water around the drip line, not against the trunk.",
+    feedWith: "Compost at the drip line once a season.",
+    pestWatch: "Mostly untroubled. Check aerial roots for borer holes.",
     photo: "/plants/peepal.jpg",
   },
   {
@@ -81,6 +93,8 @@ export const SPECIES: Species[] = [
     waterEvery: 4,
     fertiliseEvery: 50,
     advice: "Let the top of the soil dry between waterings.",
+    feedWith: "A light compost dressing before the rains.",
+    pestWatch: "Defoliating caterpillars after the first rain. Hand-pick, they pass in a fortnight.",
     photo: "/plants/hibiscus.jpg",
   },
   {
@@ -90,6 +104,8 @@ export const SPECIES: Species[] = [
     waterEvery: 2,
     fertiliseEvery: 30,
     advice: "Morning water, and pinch the flower spikes off.",
+    feedWith: "A pinch of vermicompost every few weeks. It wants little and often.",
+    pestWatch: "Aphids and whitefly on the new growth. A spray of water with a little soap clears them.",
     photo: "/plants/tulsi.jpg",
   },
   {
@@ -99,6 +115,8 @@ export const SPECIES: Species[] = [
     waterEvery: 6,
     fertiliseEvery: 40,
     advice: "Wait until the top inch is properly dry.",
+    feedWith: "Quarter-strength liquid feed, and skip it in winter.",
+    pestWatch: "Mealybug in the leaf joints. Dab with cotton and diluted alcohol.",
     photo: "/plants/money-plant.jpg",
   },
   {
@@ -108,6 +126,8 @@ export const SPECIES: Species[] = [
     waterEvery: 3,
     fertiliseEvery: 35,
     advice: "It likes sun and dislikes sitting in water.",
+    feedWith: "Compost plus a spoon of curd water once a month, the old way.",
+    pestWatch: "Citrus butterfly caterpillars and psyllids. Pick the caterpillars off, they are easy to see.",
     photo: "/plants/neem.jpg",
   },
   {
@@ -117,6 +137,8 @@ export const SPECIES: Species[] = [
     waterEvery: 2,
     fertiliseEvery: 25,
     advice: "Water daily in summer, half that once it cools.",
+    feedWith: "Potash-rich feed while it is flowering.",
+    pestWatch: "Aphids on buds, and bud drop from mealybug. Soapy water first, neem oil only if it spreads.",
     photo: "/plants/hibiscus.jpg",
   },
   {
@@ -126,6 +148,8 @@ export const SPECIES: Species[] = [
     waterEvery: 10,
     fertiliseEvery: 90,
     advice: "Far less water than feels right. Let it dry out.",
+    feedWith: "Almost nothing. A little compost once a year.",
+    pestWatch: "Root rot from overwatering is the real risk, not pests.",
     photo: "/plants/aloe.jpg",
   },
   {
@@ -135,6 +159,8 @@ export const SPECIES: Species[] = [
     waterEvery: 4,
     fertiliseEvery: 50,
     advice: "Steady moisture through the first two summers.",
+    feedWith: "Manure before the rains, once a year.",
+    pestWatch: "Fruit flies and leaf spot. Clear fallen fruit rather than spraying.",
     photo: "/plants/mango.jpg",
   },
   {
@@ -144,6 +170,8 @@ export const SPECIES: Species[] = [
     waterEvery: 3,
     fertiliseEvery: 45,
     advice: "Shade-tolerant, but thirsty while it establishes.",
+    feedWith: "Compost twice a year while it establishes.",
+    pestWatch: "Leaf webber and scale. Prune the affected shoots out.",
     photo: "/plants/sapling.jpg",
   },
 ];
@@ -204,12 +232,14 @@ export const POINTS: Record<TaskKind, number> = {
   water: 30,
   fertilise: 50,
   checkin: 15,
+  pest: 35,
 };
 
 export const TASK_LABEL: Record<TaskKind, string> = {
   water: "Water it",
   fertilise: "Feed it",
   checkin: "Check the leaves",
+  pest: "Check for pests",
 };
 
 /**
@@ -224,6 +254,8 @@ export const TASK_INSTRUCTION: Record<TaskKind, string> = {
     "Photograph the base of the plant with the feed spread on the soil, before you water it in.",
   checkin:
     "Photograph the whole plant, close enough that the leaves are clear.",
+  pest:
+    "Photograph the underside of a few leaves and the new growth, close. That is where trouble starts and where it is visible first.",
 };
 
 /** The streak multiplier. Consistency is worth more than a single burst. */

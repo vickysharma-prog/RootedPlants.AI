@@ -1,286 +1,116 @@
 # Design
 
-Design is a scored criterion on its own, and it is also the part of this
-product that decides whether anybody comes back. A care app that feels like
-homework loses to forgetting. This file is the spec: what the screens are, what
-each is for, and what the whole thing looks like.
-
 ## The one rule
 
-**The app has one job per visit: show what is due, let them do it, pay them.**
+There is no line where the website stops and the app starts. Same forest
+behind every screen, same column width, same serif for headings and same mono
+for numbers. Signing in should feel like walking further into the same
+building. An app that becomes a grey dashboard the moment somebody has an
+account is an app that was designed twice by two people who never met.
+
+What changes inside is the job, not the furniture. The column tightens from
+660px to 620px because you are working rather than reading, and a bar appears
+along the bottom with four places to be. That is all.
+
+## The tokens
+
+Set in `web/app/globals.css`, used everywhere, never re-declared.
+
+| What | Token | Used for |
+|---|---|---|
+| Page | `--bg` `#0a0f0b` | Behind the forest |
+| Ink | `--cream` `#ede9de` | Headings, the thing you are reading |
+| Body | `--body` `#c2c8bb` | Sentences |
+| Quiet | `--faint` `#838b7e` | Labels, dates, the reason under a line |
+| Earned | `--gold` `#b08c4a` | Points, always |
+| Alive | `--moss` `#9ec9ad` | Passed, on schedule, the active tab |
+| Late | `--overdue` `#cf9a56` | Overdue, failed check |
+
+Type: Instrument Serif for display, Instrument Sans for prose, JetBrains Mono
+for every number and label. A number is never set in the body face, so the
+count of days and the count of points read as measurements.
+
+## The screens
+
+| Screen | Route | What it is for |
+|---|---|---|
+| Landing | `/` | The argument, once |
+| Sign up | `/join` | Name, email, mobile. Eight seconds |
+| Today | `/today` | What is due, in the order it is due |
+| Task brief | `/do/[task]` | What to do and what the photo has to show |
+| Camera | same | The viewfinder, the guide, one shutter |
+| Verification | same | What was checked, what it measured, what it earned |
+| Plants | `/plants` | Everything in your care, by sight |
+| Plant | `/plants/[id]` | One plant's whole record |
+| Add a plant | `/plants/new` | Photograph, species, spot |
+| Rewards | `/rewards` | Balance, catalogue, redemption |
+| You | `/me` | Account, and where reminders reach you |
+
+## How somebody moves through it
+
+### The first five minutes
+
+Landing, and the argument is made once: we reward people for spending money,
+so why not for keeping something alive. Sign up asks for three things and
+explains why it wants the mobile number, because that is the channel the
+reminders go out on and a care app that waits to be opened is a list.
+
+Straight into Today. It is never empty: the account arrives with three plants
+that have photo histories and a live weather-moved schedule, so the first
+screen is a working account rather than an invitation to set one up.
+
+### Doing a task
+
+Tap a row. The brief says the plant, the job, the points, and exactly what the
+photograph has to show. For feeding and pests it also says what to feed it
+with or what to look for, and it says to use the least that works, because
+fertiliser the roots do not take ends up in the groundwater and a spray kills
+the ladybirds that were handling the aphids for you.
+
+Open the camera. The plant's first photograph sits over the live frame at low
+opacity so lining the shot up is something done by eye. The app reads the frame
+a few times a second and says the one thing that would make this shot pass:
+tilt down so the soil is in frame, hold still, too dark, that is it. Out loud,
+because whoever is holding the phone is holding a watering can too. The ring
+around the shutter turns green when there is nothing left to fix, so the same
+answer is there with the sound off.
+
+One shutter. Then the checks arrive one at a time at reading speed, each with
+the number it measured. Passed: the points count up and the streak is named.
+Failed: which check, in plain words, the task stays open, the streak is held,
+and the button says take it again.
+
+### Registering a plant
+
+Three steps, in this order because the photograph is the only one that has to
+happen in front of the plant. Photograph, then species from a grid of twelve,
+then a name, where it stands, and the spot taken off the device rather than
+typed. A registered spot somebody chose by hand proves nothing later.
+
+### Losing one
+
+On the plant's page, under a rule, quietly. Plants die for reasons that have
+nothing to do with the person caring for them, so the points stay, the streak
+carries, and the reasons offered include "I do not know".
+
+## The health tracker
+
+A bar and one sentence, on the plant card and on its page. It is care, not
+diagnosis: how the watering has gone against the schedule this species wants,
+and how long the run is. Four bands, each in its own colour: Thriving, Steady,
+Watch it, At risk.
+
+It deliberately does not read the leaves and tell you the plant is sick. A
+photograph shows a yellow leaf for a dozen reasons, and a number invented from
+one is a number that gets trusted and should not be. The sentence under the bar
+always names what moved it, so nobody is left looking at a score with no idea
+what would change it.
 
-Everything else is a room you can walk into, not something that greets you. If
-a screen is not the Today list, it earns its place by being one tap from it.
+## Motion
 
-## Principles
+Everything is short and once. Rows rise in on load, checks tick in one after
+another, points count up over 900ms, the hairline under a step fills from the
+left on hover. Nothing loops except the forest.
 
-**Phone first, and actually phone first.** This gets opened outdoors, one
-handed, in sunlight, often while holding a watering can. Big targets, high
-contrast, nothing important in the top corners.
-
-**The home screen is a to-do list, not a dashboard.** Numbers, charts and
-totals are a reward for finishing, so they live one level in. Opening the app
-to statistics is opening it to nothing to do.
-
-**Reward has to feel immediate.** The gap between finishing a task and seeing
-points is where the habit forms or does not. Points animate in on the
-verification screen, not in an email an hour later.
-
-**Empty is a state worth designing.** Nothing due today, everything is fine, is
-the most common screen a good user sees. It should feel earned, not broken.
-
-## Screens
-
-### 1. Today, the home screen
-
-The first thing on open. A list of task cards for every plant that needs
-something now.
-
-Each card carries:
-
-- the plant's own photo, latest one, as the identifier, because people know
-  their plants by sight and not by name
-- the plant's name and species
-- the task, in plain words: Water your neem
-- why now, one line: no rain for 4 days, 34 degrees today
-- points on offer
-- a single primary button, Do it
-
-The why-now line is small and does a lot of work. It is the difference between
-an app telling you what to do and an app that has been paying attention. It is
-also where the weather adjustment becomes visible instead of staying buried in
-the backend.
-
-Overdue cards sort to the top and are marked, not shouted at. Guilt is not a
-retention strategy.
-
-**Empty state:** a short line, the next thing coming up and when, and the
-current streak. Quiet and satisfying.
-
-### 2. Do it, the capture flow
-
-Tapping Do it goes straight to the camera. No intermediate screen.
-
-Above the viewfinder, the instruction, visible while framing:
-
-> Photograph the plant while you pour. Base of the plant and the wet soil both
-> in frame.
-
-A faint outline of the baseline photo sits over the viewfinder as a framing
-guide, so getting the same angle is something the user does without being asked
-to think about it. This costs nothing and it lifts the scene-match pass rate,
-which means fewer retakes and fewer honest users being told no.
-
-One shutter. No filters, no gallery, no editing.
-
-### 3. Verification result
-
-The screen that earns the Technology mark, so it is built as a screen and not
-as a toast.
-
-After capture: a short check animation, then a result card listing each check
-with a tick and one line of reason.
-
-    Verified
-
-    Location      matches where you planted it
-    Time          just now
-    Same plant    baseline matched
-    Watering      soil is wet, water visible
-
-    +40 points        streak 12 days, x1.4
-
-Points count up. The streak increments visibly.
-
-On pending review the same card shows which check did not line up, in plain
-language, with a retake button. "The photo was taken 80m away, try again from
-beside the plant." The task stays open and the streak holds.
-
-The card is never a wall of confidence scores. One line per check, readable at
-arm's length.
-
-### 4. My plants
-
-Grid of plant cards, each with its latest photo, name, age and streak. This is
-the collection, and collections are their own motivation.
-
-### 5. Plant profile
-
-One plant's full story, and the most emotionally loaded screen in the app.
-
-- the photo timeline, first photo to latest, which is growth made visible
-- age in days, current streak, points earned from this plant
-- care history
-- next task
-- share, and a public version of this page
-
-The photo timeline is the thing somebody will screenshot and post, which is
-where this whole product started. Build it to be posted.
-
-### 6. Rewards
-
-Points balance at the top, then the catalogue. Partner offers, certificates,
-and locked items showing what they cost, because a visible locked reward is a
-reason to come back.
-
-Redemption is two taps and a confirmation.
-
-### 7. Add a plant
-
-Photo, species picker, where it is. Three steps, one screen each, with a
-progress row so it is obviously short.
-
-The species picker is searchable, with photos, and defaults to the common ones.
-If the photo suggests a species it is pre-selected and still editable.
-
-Location is taken from the device with one confirmation, because it is the
-anchor every later verification is measured against.
-
-### 8. Loss report
-
-Reachable from the plant profile, never pushed. Photo, one tap on a reason,
-done. The confirmation says plainly that points stay, the streak carries, and
-replanting earns a bonus. This screen exists to reassure, and its tone is the
-whole point of it.
-
-## Navigation
-
-Bottom bar, four items, thumb reachable: Today, Plants, Rewards, Me.
-
-Four, not five. Me holds profile, notification channels and settings.
-
-## Visual direction
-
-Dark, warm, editorial. The reference point is a serious editorial page rather
-than an app screen: type and space do the work, and there is almost nothing
-else on the page.
-
-**One dark world.** Near-black, warm rather than blue-black, with a soft glow
-falling from the top of every page. The same background everywhere, so moving
-between screens is moving through one place.
-
-**Type carries it.** Instrument Serif for anything that speaks, at a tight
-line height with slightly negative tracking. Instrument Sans for body copy at
-a line height of about 1.78, which is the single cheapest thing that makes a
-page read as considered rather than cramped. JetBrains Mono for numbers,
-labels and dates, so figures line up and read as data.
-
-**Nothing is set small just because it is secondary.** A caption under a clip
-and a line about privacy are the two places a reader actually stops to think,
-so they run at 16px in the body colour, not at 13 in the dim grey. Emphasis
-inside them is one phrase lifted to cream and semibold, never a whole
-sentence: bolding everything important is the same as bolding nothing.
-
-**Three text colours and no more.** Cream for what matters, a warm grey for
-body copy, a dimmer grey for anything secondary. Body copy is never pure
-white.
-
-That warm grey started darker, and it was wrong. Text on a flat dark panel and
-text over a moving photograph are not the same problem: the photograph brings
-its own light and takes contrast away wherever it brightens. So body copy sits
-lighter here than it would on a plain background, and runs a size larger than
-felt necessary on a mockup. Reading is the one thing a page cannot ask anybody
-to do twice.
-
-**One accent, used sparingly.** A muted gold for numbers and labels, a sage
-green for what is alive and what is verified. Amber marks a task that is late,
-and marks it quietly, because guilt is not a retention strategy.
-
-**Width is comfort, not a brief.** A phone-width column down the left edge of
-a laptop says nobody thought about that visit. But answering it by splitting
-everything into side-by-side pairs is the opposite mistake: paragraphs beside
-paragraphs read like a newspaper column break, and a reader has to decide
-which one to start.
-
-The landing settles at a 900px column. Wide enough that the page is not a
-strip, narrow enough that everything is one clear order to read in. One clip,
-full column width, with its copy beneath it. Steps as a single run of rows,
-which is the rhythm the rest of the page is built on. Horizontal is kept for
-the two places it genuinely helps: the header, and the footer.
-
-Text inside all of that holds a readable measure whatever the screen does. The
-composition can widen; a line of prose cannot.
-
-**Rows, not cards.** A hairline above, generous air, nothing else. No boxes,
-no shadows, no gradients on elements. The one exception is the photograph.
-
-**Footage sits in the page, never on it.** A bright rectangle with a hairline
-around it is a card somebody pasted on.
-
-Fading its edges into the page colour is the obvious fix and it is wrong here.
-That only works over a flat page, and this page has moving footage behind it,
-so a dark gradient at the edges is just a dark rectangle drawn over a bright
-forest. The border people could see *was* the fade.
-
-Mask instead. The clip goes genuinely transparent towards its edges and the
-backdrop shows through, so there is no border to notice because there is no
-edge. Then bring its brightness down towards the light the page is already
-using, and wash the page's own green over the top so the footage belongs to
-this world rather than being borrowed from another one.
-
-The test is simple: if you can see where the video ends, it was stuck on
-rather than placed.
-
-**Photography is the interface.** The user's own plant photographs identify
-their plants. On a dark page a bright crop shouts, so photographs are sunk
-slightly and edged with a hairline: present, not competing with the type.
-
-**The forest is atmosphere, not a slideshow.** Real photographs, each on a
-long slow push, cross-fading into the next, held well back under a heavy veil.
-It is a camera move rather than an effect, which is why it reads as a place.
-If it ever competes with the words, it is turned down further.
-
-**Motion happens twice,** both times at the reward: the points counting up and
-the verification checks landing one after another. Everything else is instant,
-which is what makes those two moments feel like moments.
-
-**Weight comes from size, never from a stroke.** Instrument Serif ships one
-weight, and the obvious trick is to thicken the glyph with
-`-webkit-text-stroke`. It does read as heavier. It also blunts the letterform,
-and the letterform is the entire reason this face is on the page. So a heading
-that needs to carry more gets bigger, and nothing else.
-
-**A field is a line to write on, and the line reacts.** Hovering draws a
-third of it in sage and turns the label gold; focusing draws the rest and
-turns the label sage. The same gesture the steps on the landing use, because
-it is the same idea: the thing you are pointing at should notice. A field that
-is wrong keeps its amber whatever the cursor does, because an error is not a
-state the cursor gets to overrule.
-
-**Rows answer the cursor too, not only buttons.** Each step's hairline fills
-in from the left in sage, its number brightens from dim gold to gold and lifts
-two pixels, and the title and body slide seven pixels right together. Reading
-a list should feel like the list noticed.
-
-**A button answers the cursor, quietly.** On a dark editorial page a control
-that flashes on hover cheapens everything near it. The primary lifts two
-pixels, its label slides left to make room, an arrow arrives from the right,
-one slow band of light crosses it, its cream warms a shade and the ink on it
-turns from near-black to a deep forest green. Nothing reflows, because the
-arrow is positioned rather than inserted.
-
-The quieter link draws its own rule from left to right, walks its arrow five
-pixels, and turns from the body grey to sage.
-
-Colour is the part that says a control is live, and it is the part that
-survives when somebody has motion turned off, so it stays even under
-reduced-motion while the movement goes. Both give a keyboard the same answer
-they give a cursor.
-
-**Two things on one screen never share a gesture.** The mark beside the
-wordmark is five bars, and so is the sound control a few centimetres away. The
-shapes can match; what they do must not. The sound control bounces, because
-that is what a level does. The mark builds: each bar rises in turn, left to
-right, each taller than the last, and then they hold there. That is the
-difference between a level and a record of something kept, and it is enough to
-stop the eye reading one as a copy of the other.
-
-## What the judge sees
-
-The demo is shot in a phone frame. The order: Today list full of real plant
-photos, tap Do it, camera with the framing ghost, shutter, verification card
-ticking through its checks, points counting up, streak incrementing. Then the
-plant profile timeline, then a redemption.
-
-That sequence is the product. If those six screens are beautiful, the app is
-beautiful, and nothing else has to be finished to that standard.
+Every one of these is off under `prefers-reduced-motion`, including the points
+counter, which lands on its number immediately instead.

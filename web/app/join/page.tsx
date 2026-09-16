@@ -5,6 +5,7 @@ import { Clip } from "@/components/Clip";
 import { JoinForm } from "@/components/JoinForm";
 import { readAccount } from "@/lib/account";
 import { redirect } from "next/navigation";
+import { useDemoAccount } from "./actions";
 
 export const metadata = { title: "Start with one plant - Rooted" };
 
@@ -71,9 +72,11 @@ export default async function Join() {
           </p>
           <p className="mt-7 text-[16.5px] text-body">
             Just looking?{" "}
-            <Link href="/today" className="link-arrow inline-flex text-cream">
-              <span className="link-text font-semibold">See the demo account</span>
-            </Link>
+            <form action={useDemoAccount} className="inline">
+              <button type="submit" className="link-arrow inline-flex text-cream">
+                <span className="link-text font-semibold">See the demo account</span>
+              </button>
+            </form>
           </p>
         </div>
       </main>

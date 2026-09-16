@@ -327,3 +327,73 @@ Disclosed as prior work in `state.md`. Technique reused, no code copied.
 
 - Two things to confirm, both in `state.md`: the Sep 20 vs Sep 27 deadline
   discrepancy on the Devpost page, and eligibility (students only, 13 to 24).
+
+## Sep 17, 2026
+
+Built the rest of the app.
+
+The thing I got wrong first was treating the app as a separate product. Today
+was a 440px strip on a flat background with no forest behind it, and the moment
+you signed in the whole editorial world of the landing page just stopped. Fixed
+that before building anything else, so every new screen inherited it instead of
+needing six retrofits later: same forest, same column, same type.
+
+Moved plants, photographs and points into IndexedDB behind one module
+(`lib/store.ts`), and made the schedule pure so it takes the weather as an
+argument instead of fetching it. That is what lets the browser hold the plants
+and the server hold the sky, and it is why a plant added in the app shows up on
+Today. Photographs are resized on the way in, 1280px to keep and a 256px copy
+for the checks to read, because a 4K frame per watering fills a phone inside a
+month.
+
+Then the loop: the task brief, the camera, the verification card, the points.
+Plants, the plant profile with its photo history, add a plant, rewards with a
+working redemption, the account screen.
+
+**The camera talks now.** It reads the live frame a few times a second and says
+the one thing that would make the shot pass. Out loud, through the browser's
+own speech synthesis, because whoever is holding the phone is also holding a
+watering can and is not reading anything. The ring turns green when there is
+nothing left to fix, so the answer is there with the sound off too.
+
+**Fertiliser and pests are their own tasks now**, with their own advice per
+species and their own cadence. The pest look comes round sooner when it has
+been warm and wet, which is when pests actually turn up. Both carry the line
+about using the least that works: fertiliser the roots do not take ends up in
+the groundwater, and a spray kills the ladybirds that were handling the aphids
+for you.
+
+### What broke
+
+**A pest photo failed the framing check every time.** It is a close-up of one
+leaf and the baseline is the whole plant, so of course the two do not
+correlate. I had bolted the pest check onto the end of the block that only runs
+when there is a baseline, without noticing that the same block runs the framing
+check first. Pest photos now skip framing entirely and get their own check,
+which does not need a baseline at all.
+
+**`.btn` is only the motion layer.** Every button I wrote came out as bare text
+on the forest, because the pill itself lives in utilities at the call site and I
+had not looked. One `ACTION` constant now, used everywhere.
+
+**The regex I used to apply it ate `className=`** off eight call sites and the
+build went down. Wrote the replacement back properly.
+
+**Openverse could only find 2 of 9 baseline photos.** Its CC0 pool is thin for
+specific plants. Pexels found the rest, but searching "money plant" returned a
+Bitcoin buried in a pot, which is exactly why I look at a contact sheet instead
+of trusting a search. Replaced it with a photograph of somebody watering a
+pothos.
+
+### What I checked rather than assumed
+
+Set the 5% soil threshold against real frames instead of picking a number. A
+watered pot reads 28.4% darker than its dry baseline; the same frame against
+itself reads 0.0%. Both verified in the browser too: uploading the baseline
+back into the water task correctly failed with "the soil is no darker than this
+plant's dry baseline", while framing passed.
+
+The demo account also needed to stop being obviously a mock-up. It greeted
+everybody as "there", the Me tab bounced to the sign-up form, and the profile
+said verified 0 over a plant 119 days old. The demo link signs you into a real
+account now, with four months of ledger behind it.

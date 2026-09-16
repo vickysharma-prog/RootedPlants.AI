@@ -34,8 +34,14 @@ address. No database or API key is needed to run what exists today.
 | `/how-it-works` | How a task gets proved | Done |
 | `/accessibility` | Accessibility statement | Done |
 | `/privacy` | Privacy | Done |
-| `/do/[task]` | Capture a proof photo | **Not built** |
-| `/plants`, `/rewards`, `/me` | Linked from the nav | **Not built** |
+| `/do/[task]` | Capture a proof photo and check it | **Working.** Camera, live guide, four checks, points |
+| `/plants` | Every plant, with its health | Done |
+| `/plants/[id]` | One plant's whole record | Done, photo history and loss report |
+| `/plants/new` | Register a plant | Done, three steps, camera and device location |
+| `/rewards` | Balance, catalogue, redemption | Done, stand-in partners |
+| `/me` | Account and reminder channels | Done |
+| `/api/weather` | Weather over one plant | Done, cached on our side |
+| `/api/now` | The clock a proof is stamped with | Done |
 
 **Working for real, not mocked:** the care schedule. Twelve hand-authored
 species profiles, then open-meteo moves each watering by the weather at that
@@ -174,15 +180,16 @@ the idea works.
 
 ## Next, in order
 
-1. **The capture flow**, `/do/[task]`: camera, the instruction above the
-   viewfinder, one shutter.
-2. **The verification card**: each check with a tick and one line of reason,
-   then the points counting up. This is the screen that earns the Technology
-   mark, so it is a screen and not a toast.
-3. **The points ledger**, so the number on the card is real rather than
-   printed.
-4. Deploy to Vercel.
-5. Record the video.
+1. **Deploy to Vercel.** Needs my login. Everything else is ready for it.
+2. **Record the video.** The loop is the video: Today, a task, the camera
+   talking you through it, the checks landing one at a time, the points.
+3. **Flip the repo public** before the deadline: `gh repo edit --visibility public`.
+4. Take a real dry-pot and just-watered pair on my own phone and re-check the
+   5% threshold against them. The current number was set against a real photo
+   and a controlled darkening of it, which proved the check separates them by
+   28 points, but a genuine pair is better evidence.
+5. Reminders actually going out. The channels are on the account screen and
+   the copy says what they do. Nothing sends yet.
 
 ## Submission checklist
 

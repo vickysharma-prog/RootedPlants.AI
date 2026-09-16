@@ -109,6 +109,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
           ...(kind === "water" ? { lastWatered: offset } : {}),
           ...(kind === "fertilise" ? { lastFertilised: offset } : {}),
           ...(kind === "checkin" ? { lastCheckin: offset } : {}),
+          ...(kind === "pest" ? { lastPest: offset } : {}),
         };
         await putPlant(updated);
         setPlant(updated);
@@ -173,9 +174,21 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
           <div className="rule" />
           <p className="prose-lg mt-6 text-body">{TASK_INSTRUCTION[kind]}</p>
 
-          <p className="mt-7 text-[15px] leading-relaxed text-faint">
-            {sp.advice} This is the only thing checked, and you are being told it before
-            the camera opens.
+          <p className="mt-7 text-[15px] leading-relaxed text-body">
+            {kind === "fertilise" ? sp.feedWith : kind === "pest" ? sp.pestWatch : sp.advice}
+          </p>
+
+          {(kind === "fertilise" || kind === "pest") && (
+            <p className="mt-5 max-w-[27rem] text-[14px] leading-relaxed text-faint">
+              {kind === "fertilise"
+                ? "Feed the soil rather than the plant, and less than you think. Fertiliser that the roots do not take ends up in the groundwater."
+                : "Start with the mildest thing that works. Most of what lands on a plant can be wiped off, and a spray kills the ladybirds that were handling it for you."}
+            </p>
+          )}
+
+          <p className="mt-5 text-[14px] leading-relaxed text-faint">
+            This is the only thing checked, and you are being told it before the camera
+            opens.
           </p>
 
           <div className="flex-1" />

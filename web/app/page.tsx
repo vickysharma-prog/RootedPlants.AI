@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useDemoAccount } from "./join/actions";
 import { ForestBackdrop } from "@/components/ForestBackdrop";
 import { Wordmark } from "@/components/Wordmark";
 import { SoundToggle } from "@/components/SoundToggle";
@@ -81,15 +82,17 @@ export default function Landing() {
                   </svg>
                 </span>
               </Link>
-              <Link
-                href="/today"
-                className="link-arrow flex h-[56px] items-center gap-2 px-2 text-[15px] font-medium text-body"
-              >
-                <span className="link-text">See it working</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                  <path d="M5 12h13M13 6l6 6-6 6" />
-                </svg>
-              </Link>
+              <form action={useDemoAccount}>
+                <button
+                  type="submit"
+                  className="link-arrow flex h-[56px] items-center gap-2 px-2 text-[15px] font-medium text-body"
+                >
+                  <span className="link-text">See it working</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M5 12h13M13 6l6 6-6 6" />
+                  </svg>
+                </button>
+              </form>
             </div>
           </div>
         </section>

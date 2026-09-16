@@ -114,6 +114,12 @@ export function guide(
   if ((kind === "water" || kind === "fertilise") && base > leaf * 0.85)
     return { line: "Tilt down so the soil is in frame.", ready: false, key: "nosoil" };
 
+  if (kind === "pest" && leaf < 0.22)
+    return { line: "Closer. Get the underside of a leaf.", ready: false, key: "pestclose" };
+
+  if (kind === "pest" && sharp < 0.02)
+    return { line: "Hold it steady, it has to be sharp.", ready: false, key: "pestsharp" };
+
   if (kind === "checkin" && leaf < 0.14)
     return { line: "Closer, until the leaves fill the frame.", ready: false, key: "closer" };
 
