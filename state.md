@@ -33,6 +33,21 @@ second look.
   for weather, hand-authored care profiles for 10 to 15 species.
 - Scope is one closed loop. Push notifications, social feed, teams and real
   partner integrations are out, and that is settled.
+- **Rewards go against verified tasks, not plant condition.** Condition is
+  slow, partly outside the user's control, and stretches the user too far.
+  Task-level is tight: small ask, done today, paid today.
+- **Both audiences are first class**, event planting and household plants.
+- **Money:** CSR, government and NGO programmes first, then partner-funded
+  offers, then advertising. Rewards are the hook, the survival record is the
+  asset.
+- **Loss is reported, never penalised.** Points stay, streak carries, replant
+  earns a bonus.
+- **Reminders go out on every channel** the user has given us, push, email and
+  WhatsApp together. Out of scope for the build, in scope for the pitch. The
+  Today list is the demo surface.
+- **Verification is registration-first**, following my own prior CV pipeline:
+  align the proof photo onto the plant's baseline, then compare the same
+  physical pixels. See `docs/verification.md`.
 - Demo runs on a seeded account with plants already due, plus a "jump forward
   3 days" control. A schedule cannot be demonstrated by waiting for it.
 - **Repo is private while building, and goes public before submission.** The
@@ -59,10 +74,16 @@ Each of these blocks something. Answer them before building past them.
    Planning to Sep 20 because it is the tighter of the two and the one stated
    as the deadline. If it turns out to be the 27th, that is a free week. The
    reverse mistake would be fatal, so it is not worth making.
-3. **Name.** "Rooted" is a working name. Cheap to change until the video is
+3. **The watering check is not validated yet.** Soil darkening on aligned
+   pixels is the one genuine sensor for "did you water". Two photos of one pot,
+   dry and just watered, run through `tools/soil_delta.py`, settles it in
+   fifteen minutes. If the drop is inside the noise, watering falls back to a
+   vision check for visible water and the other layers carry more weight.
+   **Do this before building on it.**
+4. **Name.** "Rooted" is a working name. Cheap to change until the video is
    recorded, expensive after.
-4. **Live deployment.** A hosted link is listed as "if applicable", not
-   required. Decide whether to ship one once the scope is set.
+5. **Live deployment.** Decided: yes, Vercel, live from day one so the link is
+   never a last-day job.
 
 ## Prior art carried in
 
@@ -70,9 +91,14 @@ Anything in this repo that was written before Aug 21, 2026 gets listed here:
 what it is, where it came from, and what it does. This is the disclosure the
 rules ask for, and it is also what keeps the in-period claim clean.
 
-| Component | Origin | Pre-hackathon or in-period |
+Nothing has been copied in yet. What is listed here is prior work whose
+**technique** informs this build. If any file is actually carried across, it
+gets its own row naming the file.
+
+| Component | Origin | Status |
 |---|---|---|
-| _(nothing yet)_ | | |
+| Registration and aligned-difference technique for the verification pipeline | my own `vickysharma-prog/Recovering-computer-vision-annotations`, built Mar to Aug 2026 for Google Summer of Code under the DeepForest project | **Pre-hackathon.** Technique and judgement reused, no code copied. Anything copied later gets listed by filename. |
+| Crown detection and DeepForest fine-tuning, for the aerial drive-verification story | same project | **Pre-hackathon.** Referenced in the pitch as prior work, not built during the hackathon. |
 
 ## Environment
 
