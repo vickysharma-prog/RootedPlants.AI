@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; }
+    a { color: #f0c979; } a:hover { color: #ffdc9a; }
+    .disp { font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; }
+
+    .forest { position: absolute; inset: 0; overflow: hidden; background: #080e0b; }
+    .scene { position: absolute; inset: 0; opacity: 0; animation: cycle 56s ease-in-out infinite; }
+    .scene img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .s1 { animation-delay: 0s; } .s2 { animation-delay: 14s; }
+    .s3 { animation-delay: 28s; } .s4 { animation-delay: 42s; }
+    @keyframes cycle { 0% { opacity: 0; } 4% { opacity: 1; } 25% { opacity: 1; } 32% { opacity: 0; } 100% { opacity: 0; } }
+    .push { animation: push 56s ease-in-out infinite; }
+    .pull { animation: pull 56s ease-in-out infinite; }
+    .drift { animation: drift 56s ease-in-out infinite; }
+    .driftb { animation: driftb 56s ease-in-out infinite; }
+    @keyframes push { 0% { transform: scale(1.04); } 100% { transform: scale(1.22); } }
+    @keyframes pull { 0% { transform: scale(1.22); } 100% { transform: scale(1.04); } }
+    @keyframes drift { 0% { transform: scale(1.14) translateX(-1.6%); } 100% { transform: scale(1.14) translateX(1.6%); } }
+    @keyframes driftb { 0% { transform: scale(1.16) translate(1.4%,1%); } 100% { transform: scale(1.16) translate(-1.4%,-1%); } }
+    .light { position: absolute; inset: -20%; background: radial-gradient(ellipse 40% 55% at 62% 18%, rgba(255,214,140,0.22) 0%, rgba(255,196,110,0.07) 42%, rgba(0,0,0,0) 70%); animation: lshift 34s ease-in-out infinite; }
+    @keyframes lshift { 0%,100% { opacity: 0.55; transform: translate(0,0); } 50% { opacity: 1; transform: translate(-4%,3%); } }
+    .mote { position: absolute; bottom: -4%; width: 3px; height: 3px; border-radius: 999px; background: rgba(255,233,186,0.9); box-shadow: 0 0 8px 2px rgba(255,220,150,0.35); opacity: 0; animation-name: rise; animation-timing-function: linear; animation-iteration-count: infinite; }
+    @keyframes rise { 0% { transform: translate(0,0); opacity: 0; } 10% { opacity: 0.8; } 50% { transform: translate(26px,-440px); opacity: 0.55; } 90% { opacity: 0.25; } 100% { transform: translate(-18px,-880px); opacity: 0; } }
+    .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,12,9,0.78) 0%, rgba(5,12,9,0.44) 34%, rgba(5,12,9,0.62) 68%, rgba(4,9,7,0.9) 100%); }
+    .field { height: 52px; border-radius: 16px; border: 1px solid rgba(242,239,228,0.18); background: rgba(10,26,21,0.6); display: flex; align-items: center; padding: 0 16px; font-size: 15px; color: #7c8175; }
+  </style>
+</helmet>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; color: #f2efe4;">
+
+  <div class="forest">
+    <div class="scene s1"><img class="push" src="hero.jpg" alt=""></div>
+    <div class="scene s2"><img class="drift" src="fog.jpg" alt=""></div>
+    <div class="scene s3"><img class="pull" src="moss.jpg" alt=""></div>
+    <div class="scene s4"><img class="driftb" src="mist.jpg" alt=""></div>
+    <div class="light"></div>
+    <span class="mote" style="left: 14%; animation-delay: 0s; animation-duration: 15s;"></span>
+    <span class="mote" style="left: 29%; animation-delay: 4.1s; animation-duration: 19s;"></span>
+    <span class="mote" style="left: 43%; animation-delay: 8.7s; animation-duration: 16s;"></span>
+    <span class="mote" style="left: 57%; animation-delay: 2.3s; animation-duration: 21s;"></span>
+    <span class="mote" style="left: 71%; animation-delay: 11.4s; animation-duration: 17s;"></span>
+    <span class="mote" style="left: 86%; animation-delay: 6.2s; animation-duration: 20s;"></span>
+    <div class="veil"></div>
+  </div>
+
+  <div style="position: relative; z-index: 1; padding: 58px 24px 34px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
+
+    <div style="width: 40px; height: 40px; border-radius: 12px; border: 1px solid rgba(242,239,228,0.2); display: flex; align-items: center; justify-content: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f2efe4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    </div>
+
+    <h1 class="disp" style="margin: 28px 0 0; font-size: 32px; line-height: 1.1; font-weight: 800; letter-spacing: -0.025em;">Start with one plant</h1>
+    <p style="margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: #cfd3c4;">One is enough. The neem in the backyard, the tulsi on the balcony, the sapling from last month&rsquo;s drive.</p>
+
+    <div style="margin-top: 28px; display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 13px; font-weight: 500; color: #b9beac;">Your name</span>
+        <div class="field">Vicky</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 13px; font-weight: 500; color: #b9beac;">Email</span>
+        <div class="field">you@example.com</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 13px; font-weight: 500; color: #b9beac;">Mobile</span>
+        <div class="field">For reminders on WhatsApp</div>
+      </div>
+      <div style="margin-top: 6px; height: 54px; border-radius: 16px; background: #f2efe4; color: #0b1c17; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; box-shadow: 0 10px 30px -12px rgba(0,0,0,0.8);">Create my account</div>
+    </div>
+
+    <div style="margin-top: 22px; display: flex; align-items: center; gap: 12px;">
+      <span style="height: 1px; flex-grow: 1; background: rgba(242,239,228,0.15);"></span>
+      <span style="font-size: 12px; color: #8d9285;">or</span>
+      <span style="height: 1px; flex-grow: 1; background: rgba(242,239,228,0.15);"></span>
+    </div>
+
+    <div style="margin-top: 22px; height: 52px; border-radius: 16px; border: 1px solid rgba(242,239,228,0.25); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; font-weight: 600;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f2efe4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+      Continue with Google
+    </div>
+
+    <p style="margin: 26px 0 0; font-size: 13px; line-height: 1.55; color: #8d9285;">Your plant photos stay private. Anywhere a plant appears publicly, it appears in an area rather than at an address.</p>
+
+    <div style="flex-grow: 1;"></div>
+
+    <p style="margin: 0; text-align: center; font-size: 14px; color: #b9beac;">Already growing something? <span style="color: #f0c979; font-weight: 600; text-decoration: underline; text-underline-offset: 4px;">Sign in</span></p>
+
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

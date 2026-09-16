@@ -1,0 +1,50 @@
+[
+  {
+    "file": "plants/neem.jpg",
+    "query": "neem tree leaves",
+    "license": "cc0",
+    "source": "https://wordpress.org/photos/photo/73659c3f60/"
+  },
+  {
+    "file": "plants/tulsi.jpg",
+    "query": "holy basil tulsi plant",
+    "license": "cc0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=179987898"
+  },
+  {
+    "file": "plants/money-plant.jpg",
+    "query": "pothos houseplant",
+    "license": "cc0",
+    "source": "https://wordpress.org/photos/photo/58168c4310/"
+  },
+  {
+    "file": "plants/mango.jpg",
+    "query": "mango sapling tree",
+    "license": "cc0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=147778136"
+  },
+  {
+    "file": "plants/peepal.jpg",
+    "query": "ficus religiosa leaves",
+    "license": "cc0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=77317899"
+  },
+  {
+    "file": "plants/sapling.jpg",
+    "query": "tree sapling planted soil",
+    "license": "pdm",
+    "source": "https://www.flickr.com/photos/41284017@N08/51525895288"
+  },
+  {
+    "file": "plants/hibiscus.jpg",
+    "query": "hibiscus plant flower",
+    "license": "cc0",
+    "source": "https://www.flickr.com/photos/88123769@N02/10991511295"
+  },
+  {
+    "file": "plants/aloe.jpg",
+    "query": "aloe vera plant pot",
+    "license": "cc0",
+    "source": "https://www.rawpixel.com/image/5940102/free-public-domain-cc0-photo"
+  }
+]

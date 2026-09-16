@@ -19,6 +19,8 @@ export type Species = {
   waterEvery: number;
   fertiliseEvery: number;
   advice: string;
+  /** Photograph under public/plants. A plant is known by sight, not by name. */
+  photo: string;
 };
 
 export type Plant = {
@@ -43,6 +45,7 @@ export const SPECIES: Species[] = [
     waterEvery: 3,
     fertiliseEvery: 45,
     advice: "Water when the soil is dry two inches down.",
+    photo: "/plants/neem.jpg",
   },
   {
     id: "peepal",
@@ -51,6 +54,7 @@ export const SPECIES: Species[] = [
     waterEvery: 4,
     fertiliseEvery: 60,
     advice: "Keep it damp while it is young, never waterlogged.",
+    photo: "/plants/peepal.jpg",
   },
   {
     id: "mango",
@@ -59,6 +63,7 @@ export const SPECIES: Species[] = [
     waterEvery: 5,
     fertiliseEvery: 40,
     advice: "Deep soak rather than a daily splash.",
+    photo: "/plants/mango.jpg",
   },
   {
     id: "banyan",
@@ -67,6 +72,7 @@ export const SPECIES: Species[] = [
     waterEvery: 4,
     fertiliseEvery: 60,
     advice: "Water around the drip line, not against the trunk.",
+    photo: "/plants/peepal.jpg",
   },
   {
     id: "gulmohar",
@@ -75,6 +81,7 @@ export const SPECIES: Species[] = [
     waterEvery: 4,
     fertiliseEvery: 50,
     advice: "Let the top of the soil dry between waterings.",
+    photo: "/plants/hibiscus.jpg",
   },
   {
     id: "tulsi",
@@ -83,6 +90,7 @@ export const SPECIES: Species[] = [
     waterEvery: 2,
     fertiliseEvery: 30,
     advice: "Morning water, and pinch the flower spikes off.",
+    photo: "/plants/tulsi.jpg",
   },
   {
     id: "money-plant",
@@ -91,6 +99,7 @@ export const SPECIES: Species[] = [
     waterEvery: 6,
     fertiliseEvery: 40,
     advice: "Wait until the top inch is properly dry.",
+    photo: "/plants/money-plant.jpg",
   },
   {
     id: "curry-leaf",
@@ -99,6 +108,7 @@ export const SPECIES: Species[] = [
     waterEvery: 3,
     fertiliseEvery: 35,
     advice: "It likes sun and dislikes sitting in water.",
+    photo: "/plants/neem.jpg",
   },
   {
     id: "hibiscus",
@@ -107,6 +117,7 @@ export const SPECIES: Species[] = [
     waterEvery: 2,
     fertiliseEvery: 25,
     advice: "Water daily in summer, half that once it cools.",
+    photo: "/plants/hibiscus.jpg",
   },
   {
     id: "aloe",
@@ -115,6 +126,7 @@ export const SPECIES: Species[] = [
     waterEvery: 10,
     fertiliseEvery: 90,
     advice: "Far less water than feels right. Let it dry out.",
+    photo: "/plants/aloe.jpg",
   },
   {
     id: "jamun",
@@ -123,6 +135,7 @@ export const SPECIES: Species[] = [
     waterEvery: 4,
     fertiliseEvery: 50,
     advice: "Steady moisture through the first two summers.",
+    photo: "/plants/mango.jpg",
   },
   {
     id: "ashoka",
@@ -131,6 +144,7 @@ export const SPECIES: Species[] = [
     waterEvery: 3,
     fertiliseEvery: 45,
     advice: "Shade-tolerant, but thirsty while it establishes.",
+    photo: "/plants/sapling.jpg",
   },
 ];
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const ITEMS = [
-  { href: "/", label: "Today", icon: <path d="M4 6h16M4 12h16M4 18h10" /> },
+  { href: "/today", label: "Today", icon: <path d="M4 6h16M4 12h16M4 18h10" /> },
   {
     href: "/plants",
     label: "Plants",

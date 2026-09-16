@@ -10,6 +10,48 @@ worked.
 
 ---
 
+## 2026-09-16 - Real forest, real plants
+
+**Changed my mind about the backdrop, and I was wrong the first time**
+
+I built the landing background as drawn silhouettes: layered vector conifers,
+vector birds, vector fireflies. Technically neat, cheap to load, and it looked
+like a cartoon. A product about real trees cannot have a cartoon forest behind
+it, and it took somebody saying so for me to see it.
+
+Rebuilt it on real photographs. Four of them, each on a long slow push,
+cross-fading into the next on a 56 second cycle. It is a camera move rather
+than an effect, which is why it reads as a place instead of as wallpaper. Warm
+light drifting across, dust rising through it, a gradient over the top so the
+text stays readable whatever the picture is doing.
+
+**Finding the photographs was the actual work**
+
+Openverse, filtered to CC0 and Public Domain Mark, so nothing carries an
+attribution condition. The search is not enough on its own: a query for "misty
+forest" returned a foggy city street with Christmas lights, and "forest
+silhouette sunset" returned a house. One of the first four was usable.
+
+So `tools/forest_candidates.py` now pulls twenty candidates, numbers them and
+lays them out as one contact sheet to look at before anything ships. Four good
+ones out of twenty. That ratio is the reason the tool exists.
+
+Plant photographs the same way, eight of them, cropped square and small enough
+that a card costs under a hundred kilobytes.
+
+**Also**
+
+- Landing page and sign up, both over the forest.
+- Today screen now carries real plant photographs rather than drawings, which
+  is what the design spec asked for in the first place: the photography does
+  the work, the chrome stays out of the way.
+
+**Next**
+
+- The capture flow, the verification card, the points ledger.
+
+---
+
 ## 2026-09-16 - The app stands up
 
 **Done**

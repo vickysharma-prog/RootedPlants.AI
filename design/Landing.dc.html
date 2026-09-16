@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; }
+    a { color: #f0c979; } a:hover { color: #ffdc9a; }
+    .disp { font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; }
+
+    .forest { position: absolute; inset: 0; overflow: hidden; background: #080e0b; }
+    .scene { position: absolute; inset: 0; opacity: 0; animation: cycle 56s ease-in-out infinite; }
+    .scene img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .s1 { animation-delay: 0s; } .s2 { animation-delay: 14s; }
+    .s3 { animation-delay: 28s; } .s4 { animation-delay: 42s; }
+    @keyframes cycle { 0% { opacity: 0; } 4% { opacity: 1; } 25% { opacity: 1; } 32% { opacity: 0; } 100% { opacity: 0; } }
+    .push { animation: push 56s ease-in-out infinite; }
+    .pull { animation: pull 56s ease-in-out infinite; }
+    .drift { animation: drift 56s ease-in-out infinite; }
+    .driftb { animation: driftb 56s ease-in-out infinite; }
+    @keyframes push { 0% { transform: scale(1.04); } 100% { transform: scale(1.22); } }
+    @keyframes pull { 0% { transform: scale(1.22); } 100% { transform: scale(1.04); } }
+    @keyframes drift { 0% { transform: scale(1.14) translateX(-1.6%); } 100% { transform: scale(1.14) translateX(1.6%); } }
+    @keyframes driftb { 0% { transform: scale(1.16) translate(1.4%,1%); } 100% { transform: scale(1.16) translate(-1.4%,-1%); } }
+    .light { position: absolute; inset: -20%; background: radial-gradient(ellipse 40% 55% at 62% 18%, rgba(255,214,140,0.22) 0%, rgba(255,196,110,0.07) 42%, rgba(0,0,0,0) 70%); animation: lshift 34s ease-in-out infinite; }
+    @keyframes lshift { 0%,100% { opacity: 0.55; transform: translate(0,0); } 50% { opacity: 1; transform: translate(-4%,3%); } }
+    .mote { position: absolute; bottom: -4%; width: 3px; height: 3px; border-radius: 999px; background: rgba(255,233,186,0.9); box-shadow: 0 0 8px 2px rgba(255,220,150,0.35); opacity: 0; animation-name: rise; animation-timing-function: linear; animation-iteration-count: infinite; }
+    @keyframes rise { 0% { transform: translate(0,0); opacity: 0; } 10% { opacity: 0.8; } 50% { transform: translate(26px,-440px); opacity: 0.55; } 90% { opacity: 0.25; } 100% { transform: translate(-18px,-880px); opacity: 0; } }
+    .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,12,9,0.78) 0%, rgba(5,12,9,0.44) 34%, rgba(5,12,9,0.62) 68%, rgba(4,9,7,0.9) 100%); }
+  </style>
+</helmet>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; color: #f2efe4;">
+
+  <div class="forest">
+    <div class="scene s1"><img class="push" src="hero.jpg" alt=""></div>
+    <div class="scene s2"><img class="drift" src="fog.jpg" alt=""></div>
+    <div class="scene s3"><img class="pull" src="moss.jpg" alt=""></div>
+    <div class="scene s4"><img class="driftb" src="mist.jpg" alt=""></div>
+    <div class="light"></div>
+    <span class="mote" style="left: 14%; animation-delay: 0s; animation-duration: 15s;"></span>
+    <span class="mote" style="left: 29%; animation-delay: 4.1s; animation-duration: 19s;"></span>
+    <span class="mote" style="left: 43%; animation-delay: 8.7s; animation-duration: 16s;"></span>
+    <span class="mote" style="left: 57%; animation-delay: 2.3s; animation-duration: 21s;"></span>
+    <span class="mote" style="left: 71%; animation-delay: 11.4s; animation-duration: 17s;"></span>
+    <span class="mote" style="left: 86%; animation-delay: 6.2s; animation-duration: 20s;"></span>
+    <div class="veil"></div>
+  </div>
+
+  <div style="position: relative; z-index: 1; padding: 62px 24px 0; display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
+    <div class="disp" style="font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #9ec9ad;">Rooted</div>
+
+    <h1 class="disp" style="margin: 22px 0 0; font-size: 39px; line-height: 1.06; font-weight: 800; letter-spacing: -0.03em;">Everybody plants a tree.<br><span style="color: #f0c979;">Nobody finds out</span> what happened to it.</h1>
+
+    <p style="margin: 18px 0 0; font-size: 15px; line-height: 1.6; color: #cfd3c4;">You plant it, you take the photo, you post it. Then a year of small boring jobs decides whether it lives, and nothing is holding you to them.</p>
+
+    <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: #cfd3c4;">Rooted holds you to them, and pays you for it.</p>
+
+    <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="height: 54px; border-radius: 16px; background: #f2efe4; color: #0b1c17; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; box-shadow: 0 10px 30px -12px rgba(0,0,0,0.8);">Plant something</div>
+      <div style="height: 54px; border-radius: 16px; border: 1px solid rgba(242,239,228,0.25); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600;">
+        See it working
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f2efe4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </div>
+    </div>
+
+    <div style="margin-top: 34px; display: flex; flex-direction: column; gap: 18px;">
+      <div style="display: flex; gap: 14px;">
+        <span class="disp" style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: #f0c979; margin-top: 3px;">01</span>
+        <div>
+          <div class="disp" style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">Register it once</div>
+          <div style="font-size: 14px; line-height: 1.55; color: #b9beac; margin-top: 3px;">A photo, the species, and the spot. That spot is what every later check is measured against.</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 14px;">
+        <span class="disp" style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: #f0c979; margin-top: 3px;">02</span>
+        <div>
+          <div class="disp" style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">It watches the weather</div>
+          <div style="font-size: 14px; line-height: 1.55; color: #b9beac; margin-top: 3px;">Rain where your plant is pushes the next watering out. A heat spell pulls it in.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
