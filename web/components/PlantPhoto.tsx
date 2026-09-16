@@ -4,21 +4,24 @@ import Image from "next/image";
  * A plant, as a photograph.
  *
  * People know their plants by sight and not by name, so the picture is the
- * identifier and the name is the caption. The hairline inset keeps the edge
- * crisp against a light card, which a plain rounded crop does not do.
+ * identifier and the name is the caption. On a dark page a bright crop shouts,
+ * so the photograph is sunk slightly and edged with a hairline: present, not
+ * competing with the type.
  */
 export function PlantPhoto({
   src,
   alt,
-  size = 64,
-  radius = 16,
+  size = 62,
+  radius = 14,
   priority = false,
+  dim = false,
 }: {
   src: string;
   alt: string;
   size?: number;
   radius?: number;
   priority?: boolean;
+  dim?: boolean;
 }) {
   return (
     <div
@@ -32,12 +35,13 @@ export function PlantPhoto({
         height={size * 2}
         priority={priority}
         className="h-full w-full object-cover"
+        style={{ filter: dim ? "saturate(0.7) brightness(0.72)" : "saturate(0.92) brightness(0.9)" }}
       />
       <span
         className="pointer-events-none absolute inset-0"
         style={{
           borderRadius: radius,
-          boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.09)",
+          boxShadow: "inset 0 0 0 1px rgba(237,233,222,0.13)",
         }}
       />
     </div>
@@ -62,6 +66,7 @@ export function PlantCover({
       sizes="430px"
       priority={priority}
       className="object-cover"
+      style={{ filter: "saturate(0.9) brightness(0.82)" }}
     />
   );
 }

@@ -1,64 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --bg: #f6f3ec;
-  --surface: #fffdf8;
-  --sand: #efeadf;
-  --line: #e6e0d3;
-  --ink: #1a1c19;
-  --muted: #6b6f68;
-  --faint: #8c9088;
-  --brand: #14543a;
-  --brand-deep: #0d3927;
-  --brand-tint: #edf3e9;
-  --brand-ink: #2f6b45;
-  --verified: #2f7d4f;
-  --overdue: #c77a21;
-  --overdue-tint: #faeedc;
-  --soil: #7a5c3e;
-  --on-brand: #fffdf8;
-}
+/* ---------------------------------------------------------------
+   One dark world, warm rather than blue-black, with a soft glow
+   falling from the top of every page. Type and space do the work:
+   no cards, almost no borders, one accent.
+   --------------------------------------------------------------- */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #14150f;
-    --surface: #1d1f18;
-    --sand: #262820;
-    --line: #33362c;
-    --ink: #f0efe6;
-    --muted: #a8aa9e;
-    --faint: #8a8c81;
-    --brand: #8fcba6;
-    --brand-deep: #b4dec3;
-    --brand-tint: #22301f;
-    --brand-ink: #8fcba6;
-    --verified: #8fcba6;
-    --overdue: #d79a4e;
-    --overdue-tint: #322718;
-    --soil: #a98a68;
-    --on-brand: #10180f;
-  }
+:root {
+  --bg: #0a0f0b;
+  --bg-lift: #121a13;
+  --surface: rgba(237, 233, 222, 0.035);
+  --surface-strong: rgba(237, 233, 222, 0.062);
+  --line: rgba(237, 233, 222, 0.1);
+  --line-soft: rgba(237, 233, 222, 0.055);
+
+  --cream: #ede9de;
+  --body: #a8afa2;
+  --faint: #6f776c;
+
+  --gold: #b08c4a;
+  --gold-dim: #8a6f2e;
+  --moss: #9ec9ad;
+  --moss-deep: #6f9e7e;
+
+  --overdue: #cf9a56;
+  --verified: #9ec9ad;
 }
 
 @theme inline {
   --color-bg: var(--bg);
+  --color-lift: var(--bg-lift);
   --color-surface: var(--surface);
-  --color-sand: var(--sand);
+  --color-surface-strong: var(--surface-strong);
   --color-line: var(--line);
-  --color-ink: var(--ink);
-  --color-muted: var(--muted);
+  --color-line-soft: var(--line-soft);
+  --color-cream: var(--cream);
+  --color-body: var(--body);
   --color-faint: var(--faint);
-  --color-brand: var(--brand);
-  --color-brand-deep: var(--brand-deep);
-  --color-brand-tint: var(--brand-tint);
-  --color-brand-ink: var(--brand-ink);
+  --color-gold: var(--gold);
+  --color-gold-dim: var(--gold-dim);
+  --color-moss: var(--moss);
+  --color-moss-deep: var(--moss-deep);
   --color-verified: var(--verified);
   --color-overdue: var(--overdue);
-  --color-overdue-tint: var(--overdue-tint);
-  --color-soil: var(--soil);
-  --color-on-brand: var(--on-brand);
-  --font-sans: var(--font-body);
-  --font-display: var(--font-display);
+  --font-sans: var(--font-sans-body);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
 }
 
 html,
@@ -67,15 +54,18 @@ body {
 }
 
 body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body), system-ui, sans-serif;
+  background:
+    radial-gradient(78% 52% at 50% -6%, rgba(96, 108, 62, 0.16) 0%, rgba(0, 0, 0, 0) 62%),
+    radial-gradient(130% 90% at 50% 0%, #121a13 0%, #0a0f0b 58%);
+  background-attachment: fixed;
+  color: var(--cream);
+  font-family: var(--font-sans-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior-y: none;
 }
 
-/* The app is a phone app. On a wide screen it sits in the middle at phone
-   width so the layout is never something other than what was designed. */
+/* A phone product. On a wide screen it holds phone width, so what is on
+   screen is never something other than what was designed. */
 .shell {
   width: 100%;
   max-width: 430px;
@@ -83,57 +73,60 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  position: relative;
 }
 
 @media (min-width: 640px) {
   .shell {
-    border-left: 1px solid var(--line);
-    border-right: 1px solid var(--line);
+    border-left: 1px solid var(--line-soft);
+    border-right: 1px solid var(--line-soft);
   }
 }
 
-.count-up {
-  animation: count-up 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+/* Body copy sits at a generous line height. It is the cheapest thing that
+   makes a page read as considered rather than cramped. */
+/* Size and rhythm only. Colour stays a utility at the call site, so a
+   paragraph can be lifted to cream without fighting this rule. */
+.prose {
+  font-size: 16px;
+  line-height: 1.78;
 }
 
-@keyframes count-up {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.94);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
 }
 
-.tick-in {
-  animation: tick-in 0.36s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+.num {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
 }
 
-@keyframes tick-in {
-  from {
-    opacity: 0;
-    transform: translateX(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.display {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .count-up,
-  .tick-in {
-    animation: none;
-  }
+/* A row, not a card. Hairline above, generous air, nothing else. */
+.row {
+  border-top: 1px solid var(--line-soft);
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.rule {
+  height: 1px;
+  background: var(--line-soft);
 }
 
 /* ---------------------------------------------------------------
-   Real forest behind everything. Four photographs, each on a long
-   slow push, cross-fading into the next. A camera move rather than
-   an effect, which is why it reads as a place.
+   Real forest, held well back. Atmosphere, not a slideshow: the
+   photographs sit under a heavy veil so the type owns the page.
    --------------------------------------------------------------- */
 
 .forest {
@@ -142,27 +135,26 @@ body {
   overflow: hidden;
   z-index: 0;
   pointer-events: none;
-  background: #080e0b;
+  background: var(--bg);
 }
 
 .scene {
   position: absolute;
   inset: 0;
   opacity: 0;
-  animation: scene-cycle 56s ease-in-out infinite;
+  animation: scene-cycle 64s ease-in-out infinite;
 }
 
 .scene-1 { animation-delay: 0s; }
-.scene-2 { animation-delay: 14s; }
-.scene-3 { animation-delay: 28s; }
-.scene-4 { animation-delay: 42s; }
+.scene-2 { animation-delay: 16s; }
+.scene-3 { animation-delay: 32s; }
+.scene-4 { animation-delay: 48s; }
 
-/* Each scene holds for about ten seconds and takes four to hand over. */
 @keyframes scene-cycle {
   0% { opacity: 0; }
-  4% { opacity: 1; }
-  25% { opacity: 1; }
-  32% { opacity: 0; }
+  5% { opacity: 0.44; }
+  22% { opacity: 0.44; }
+  30% { opacity: 0; }
   100% { opacity: 0; }
 }
 
@@ -171,50 +163,47 @@ body {
   will-change: transform;
 }
 
-.move-push { animation: push 56s ease-in-out infinite; }
-.move-pull { animation: pull 56s ease-in-out infinite; }
-.move-drift { animation: drift 56s ease-in-out infinite; }
-.move-drift-back { animation: drift-back 56s ease-in-out infinite; }
+.move-push { animation: push 64s ease-in-out infinite; }
+.move-pull { animation: pull 64s ease-in-out infinite; }
+.move-drift { animation: drift 64s ease-in-out infinite; }
+.move-drift-back { animation: drift-back 64s ease-in-out infinite; }
 
 @keyframes push {
-  0% { transform: scale(1.04); }
-  100% { transform: scale(1.22); }
+  from { transform: scale(1.05); }
+  to { transform: scale(1.2); }
 }
 
 @keyframes pull {
-  0% { transform: scale(1.22); }
-  100% { transform: scale(1.04); }
+  from { transform: scale(1.2); }
+  to { transform: scale(1.05); }
 }
 
 @keyframes drift {
-  0% { transform: scale(1.14) translateX(-1.6%); }
-  100% { transform: scale(1.14) translateX(1.6%); }
+  from { transform: scale(1.13) translateX(-1.5%); }
+  to { transform: scale(1.13) translateX(1.5%); }
 }
 
 @keyframes drift-back {
-  0% { transform: scale(1.16) translate(1.4%, 1%); }
-  100% { transform: scale(1.16) translate(-1.4%, -1%); }
+  from { transform: scale(1.15) translate(1.3%, 0.8%); }
+  to { transform: scale(1.15) translate(-1.3%, -0.8%); }
 }
 
-/* A slow warm shaft, so the light in the frame feels like it is moving. */
 .forest-light {
   position: absolute;
   inset: -20%;
   background: radial-gradient(
-    ellipse 40% 55% at 62% 18%,
-    rgba(255, 214, 140, 0.22) 0%,
-    rgba(255, 196, 110, 0.07) 42%,
-    rgba(0, 0, 0, 0) 70%
+    ellipse 44% 52% at 56% 10%,
+    rgba(214, 186, 126, 0.13) 0%,
+    rgba(0, 0, 0, 0) 66%
   );
-  animation: light-shift 34s ease-in-out infinite;
+  animation: light-shift 38s ease-in-out infinite;
 }
 
 @keyframes light-shift {
-  0%, 100% { opacity: 0.55; transform: translate(0, 0); }
-  50% { opacity: 1; transform: translate(-4%, 3%); }
+  0%, 100% { opacity: 0.6; transform: translate(0, 0); }
+  50% { opacity: 1; transform: translate(-3%, 2%); }
 }
 
-/* Dust in the light. Slow enough to be noticed rather than watched. */
 .forest-motes {
   position: absolute;
   inset: 0;
@@ -223,11 +212,11 @@ body {
 .mote {
   position: absolute;
   bottom: -4%;
-  width: 3px;
-  height: 3px;
+  width: 2px;
+  height: 2px;
   border-radius: 999px;
-  background: rgba(255, 233, 186, 0.9);
-  box-shadow: 0 0 8px 2px rgba(255, 220, 150, 0.35);
+  background: rgba(228, 214, 172, 0.75);
+  box-shadow: 0 0 7px 2px rgba(210, 186, 132, 0.22);
   opacity: 0;
   animation-name: mote-rise;
   animation-timing-function: linear;
@@ -236,38 +225,72 @@ body {
 
 @keyframes mote-rise {
   0% { transform: translate(0, 0); opacity: 0; }
-  10% { opacity: 0.8; }
-  50% { transform: translate(26px, -52vh); opacity: 0.55; }
-  90% { opacity: 0.25; }
-  100% { transform: translate(-18px, -104vh); opacity: 0; }
+  12% { opacity: 0.6; }
+  50% { transform: translate(24px, -54vh); opacity: 0.4; }
+  100% { transform: translate(-16px, -106vh); opacity: 0; }
 }
 
-/* Keeps text readable over whatever the photograph is doing. */
 .forest-veil {
   position: absolute;
   inset: 0;
   background:
+    radial-gradient(78% 52% at 50% -6%, rgba(96, 108, 62, 0.14) 0%, rgba(0, 0, 0, 0) 62%),
     linear-gradient(
       180deg,
-      rgba(5, 12, 9, 0.78) 0%,
-      rgba(5, 12, 9, 0.44) 34%,
-      rgba(5, 12, 9, 0.62) 68%,
-      rgba(4, 9, 7, 0.9) 100%
+      rgba(10, 15, 11, 0.84) 0%,
+      rgba(10, 15, 11, 0.66) 36%,
+      rgba(10, 15, 11, 0.8) 70%,
+      rgba(8, 12, 9, 0.96) 100%
     );
 }
 
 .on-forest {
   position: relative;
   z-index: 1;
-  color: #f2efe4;
+}
+
+/* Motion happens twice, both times at the reward. Everything else is
+   instant, which is what makes those two moments feel like moments. */
+.count-up {
+  animation: count-up 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(12px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+.tick-in {
+  animation: tick-in 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+@keyframes tick-in {
+  from { opacity: 0; transform: translateX(-7px); }
+  to { opacity: 1; transform: none; }
+}
+
+.rise-in {
+  animation: rise-in 0.8s cubic-bezier(0.2, 0.85, 0.3, 1) both;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .scene-img,
   .forest-light,
-  .mote {
+  .mote,
+  .count-up,
+  .tick-in,
+  .rise-in {
     animation: none;
   }
-  .scene { animation-duration: 56s; }
-  .mote { opacity: 0.5; }
+  .count-up,
+  .tick-in,
+  .rise-in {
+    opacity: 1;
+    transform: none;
+  }
 }

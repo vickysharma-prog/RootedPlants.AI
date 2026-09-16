@@ -36,9 +36,14 @@ const ITEMS = [
   },
 ] as const;
 
+/**
+ * Four destinations, thumb reachable, and no chrome beyond a hairline. The
+ * active one is named in the accent and carries a small marker, so which room
+ * you are in is readable without reading.
+ */
 export function BottomNav({ active }: { active: string }) {
   return (
-    <nav className="sticky bottom-0 flex items-center justify-around border-t border-line bg-surface px-2 pt-2.5 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+    <nav className="sticky bottom-0 z-10 flex items-center justify-around border-t border-line-soft bg-bg/85 px-2 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
       {ITEMS.map((item) => {
         const on = item.href === active;
         return (
@@ -46,23 +51,23 @@ export function BottomNav({ active }: { active: string }) {
             key={item.href}
             href={item.href}
             aria-current={on ? "page" : undefined}
-            className="flex w-16 flex-col items-center gap-1 py-1"
-            style={{ color: on ? "var(--brand)" : "var(--faint)" }}
+            className="flex w-16 flex-col items-center gap-1.5 py-1"
+            style={{ color: on ? "var(--moss)" : "var(--faint)" }}
           >
             <svg
-              width="22"
-              height="22"
+              width="21"
+              height="21"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="1.7"
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden
             >
               {item.icon}
             </svg>
-            <span className={`text-[11px] ${on ? "font-semibold" : ""}`}>{item.label}</span>
+            <span className="text-[10.5px] tracking-[0.02em]">{item.label}</span>
           </Link>
         );
       })}

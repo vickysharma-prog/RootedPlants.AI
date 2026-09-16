@@ -10,6 +10,40 @@ worked.
 
 ---
 
+## 2026-09-17 - Rebuilt the whole look
+
+Spent time in the browser pulling apart a page whose design I wanted to match,
+reading its computed styles rather than guessing from a screenshot. What was
+worth taking was not its colours, it was its restraint:
+
+- one dark warm world with a glow from the top, no flat black
+- a serif carrying every line that speaks, against a clean sans for body copy
+- body copy at a line height near 1.8, which does more for how considered a
+  page feels than any other single number
+- mono, small, in a dimmed accent, for numbers and labels
+- rows with hairlines instead of cards, and real air between them
+- three text colours, one accent, and nothing else
+
+Rebuilt Rooted on that: Instrument Serif, Instrument Sans, JetBrains Mono, one
+dark green-black world across every screen including the app itself. Cards
+became rows. The filled buttons became a single cream pill and a hairline
+link. The sign up fields became labels and rules rather than boxes, because a
+stack of boxes reads as paperwork.
+
+The forest went the other way on purpose: down to under half opacity behind a
+heavy veil. It was competing with the words before. Atmosphere, not a
+slideshow.
+
+**One thing that bit**
+
+`.display` and `.prose` set their own colour, so `text-moss` and `text-cream`
+on the same element silently lost to them. Same specificity, and my rules came
+later in the file. Fixed by taking colour out of both and leaving it a utility
+at the call site. Worth remembering: a base class that sets colour will quietly
+beat the utility you reach for later.
+
+---
+
 ## 2026-09-16 - Real forest, real plants
 
 **Changed my mind about the backdrop, and I was wrong the first time**

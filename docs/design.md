@@ -151,30 +151,43 @@ Four, not five. Me holds profile, notification channels and settings.
 
 ## Visual direction
 
-**Not a sustainability cliche.** No leaf-in-a-circle logo, no recycled paper
-texture, no earnest stock photography. It should look like a product somebody
-chose to use, closer to a good fitness or finance app than to an NGO brochure.
+Dark, warm, editorial. The reference point is a serious editorial page rather
+than an app screen: type and space do the work, and there is almost nothing
+else on the page.
 
-**Colour.** One deep green as the brand, used for primary actions and almost
-nothing else. Warm neutral background, not grey and not white. Soil brown as a
-secondary accent. Amber for overdue, and a distinct positive tone for verified
-so the two are never confused at a glance. Dark mode from the start, because
-this gets opened in the evening.
+**One dark world.** Near-black, warm rather than blue-black, with a soft glow
+falling from the top of every page. The same background everywhere, so moving
+between screens is moving through one place.
 
-**Photography is the interface.** The user's own plant photos carry the visual
-weight. Cards are generous with photo space and mean with chrome. The app then
-looks better the longer somebody uses it, which is the right direction for it
-to age in.
+**Type carries it.** Instrument Serif for anything that speaks, at a tight
+line height with slightly negative tracking. Instrument Sans for body copy at
+a line height of about 1.78, which is the single cheapest thing that makes a
+page read as considered rather than cramped. JetBrains Mono for numbers,
+labels and dates, so figures line up and read as data.
 
-**Type.** One family, two or three weights. Large friendly numbers for points
-and streaks, because those are the payoff and should feel like it.
+**Three text colours and no more.** Cream for what matters, a warm grey for
+body copy, a dimmer grey for anything secondary. Body copy is never pure
+white.
 
-**Motion, used twice.** The points count-up, and the verification ticks landing
-one after another. Everything else is instant. Motion that appears only at the
-reward moment is what makes the reward moment feel like one.
+**One accent, used sparingly.** A muted gold for numbers and labels, a sage
+green for what is alive and what is verified. Amber marks a task that is late,
+and marks it quietly, because guilt is not a retention strategy.
 
-**Corners and depth.** Soft rounded cards, one shadow level, no glass, no
-gradients except a single subtle one behind the points balance.
+**Rows, not cards.** A hairline above, generous air, nothing else. No boxes,
+no shadows, no gradients on elements. The one exception is the photograph.
+
+**Photography is the interface.** The user's own plant photographs identify
+their plants. On a dark page a bright crop shouts, so photographs are sunk
+slightly and edged with a hairline: present, not competing with the type.
+
+**The forest is atmosphere, not a slideshow.** Real photographs, each on a
+long slow push, cross-fading into the next, held well back under a heavy veil.
+It is a camera move rather than an effect, which is why it reads as a place.
+If it ever competes with the words, it is turned down further.
+
+**Motion happens twice,** both times at the reward: the points counting up and
+the verification checks landing one after another. Everything else is instant,
+which is what makes those two moments feel like moments.
 
 ## What the judge sees
 
