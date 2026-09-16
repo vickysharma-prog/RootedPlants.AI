@@ -105,6 +105,15 @@ body {
   padding-inline: clamp(24px, 6vw, 44px);
 }
 
+/* The landing gets the whole screen. Text inside it still holds a readable
+   measure; what widens is the composition, not the line length. */
+.column-wide {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-inline: clamp(24px, 5vw, 56px);
+}
+
 /* Type that grows with the page instead of staying at phone size on a
    thirteen inch screen. */
 .h-hero {
@@ -120,7 +129,7 @@ body {
 }
 
 .h-quote {
-  font-size: clamp(26px, 3.4vw, 42px);
+  font-size: clamp(26px, 3.1vw, 46px);
 }
 
 .prose-lg {

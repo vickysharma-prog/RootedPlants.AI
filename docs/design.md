@@ -173,6 +173,16 @@ white.
 green for what is alive and what is verified. Amber marks a task that is late,
 and marks it quietly, because guilt is not a retention strategy.
 
+**The landing composes across, the app composes down.** A phone app is a
+column and should stay one. A page somebody lands on from a laptop is not, and
+a column down its left edge with half the screen empty says nobody thought
+about that visit. So the landing pairs the words with the thing itself: the
+headline beside a clip of somebody planting, the problem beside the footage of
+it, four steps two across, and a closing line whose second half steps right so
+the pair reads across the page rather than stacking down one edge. Text inside
+all of that still holds a readable measure. What widens is the composition,
+never the line length.
+
 **Rows, not cards.** A hairline above, generous air, nothing else. No boxes,
 no shadows, no gradients on elements. The one exception is the photograph.
 

@@ -32,98 +32,116 @@ export default function Landing() {
     <div className="page">
       <ForestBackdrop scene="jungle" />
 
-      <header className="on-forest column flex items-center justify-between gap-6 pt-10 pb-2">
+      <header className="on-forest column-wide flex items-center justify-between gap-6 pt-10 pb-2">
         <Wordmark />
         <SoundToggle />
       </header>
 
-      <main className="on-forest column flex flex-1 flex-col pt-14 pb-14">
-        <h1
-          className="display h-hero rise-in max-w-[19ch]"
-          style={{ textWrap: "balance" }}
-        >
-          Everybody plants a tree.
-          <span className="mt-1 block text-body italic">
-            Nobody finds out what happened to it.
-          </span>
-        </h1>
+      <main className="on-forest column-wide flex flex-1 flex-col pt-12 pb-14">
+        {/* Hero. Words on the left, the thing itself on the right. */}
+        <section className="grid items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_380px]">
+          <div>
+            <h1
+              className="display h-hero rise-in max-w-[17ch]"
+              style={{ textWrap: "balance" }}
+            >
+              Everybody plants a tree.
+              <span className="mt-1 block text-body italic">
+                Nobody finds out what happened to it.
+              </span>
+            </h1>
 
-        <p
-          className="prose-lg rise-in mt-9 max-w-[34rem] text-body"
-          style={{ animationDelay: "0.1s" }}
-        >
-          You plant it, you take the photo, you post it. Then a year of small
-          boring jobs decides whether it lives, and nothing is holding you to
-          them.
-        </p>
+            <p
+              className="prose-lg rise-in mt-8 max-w-[34rem] text-body"
+              style={{ animationDelay: "0.1s" }}
+            >
+              You plant it, you take the photo, you post it. Then a year of
+              small boring jobs decides whether it lives, and nothing is holding
+              you to them.
+            </p>
 
-        <p
-          className="prose-lg rise-in mt-4 max-w-[34rem] text-cream"
-          style={{ animationDelay: "0.16s" }}
-        >
-          Rooted holds you to them, and pays you for it.
-        </p>
+            <p
+              className="prose-lg rise-in mt-4 max-w-[34rem] text-cream"
+              style={{ animationDelay: "0.16s" }}
+            >
+              Rooted holds you to them, and pays you for it.
+            </p>
 
-        <div
-          className="rise-in mt-12 flex flex-wrap items-center gap-4"
-          style={{ animationDelay: "0.22s" }}
-        >
-          <Link
-            href="/join"
-            className="btn flex h-[56px] min-w-[15rem] flex-1 items-center justify-center rounded-full bg-cream px-8 text-[15.5px] font-semibold tracking-[0.01em] text-bg sm:flex-none"
-          >
-            <span className="btn-label">Start with one plant</span>
-            <span className="btn-arrow">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <path d="M5 12h13M13 6l6 6-6 6" />
-              </svg>
-            </span>
-          </Link>
-          <Link
-            href="/today"
-            className="link-arrow flex h-[56px] items-center gap-2 px-2 text-[15px] font-medium text-body"
-          >
-            <span className="link-text">See it working</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <path d="M5 12h13M13 6l6 6-6 6" />
-            </svg>
-          </Link>
-        </div>
+            <div
+              className="rise-in mt-10 flex flex-wrap items-center gap-4"
+              style={{ animationDelay: "0.22s" }}
+            >
+              <Link
+                href="/join"
+                className="btn flex h-[56px] min-w-[15rem] items-center justify-center rounded-full bg-cream px-8 text-[15.5px] font-semibold tracking-[0.01em] text-bg"
+              >
+                <span className="btn-label">Start with one plant</span>
+                <span className="btn-arrow">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M5 12h13M13 6l6 6-6 6" />
+                  </svg>
+                </span>
+              </Link>
+              <Link
+                href="/today"
+                className="link-arrow flex h-[56px] items-center gap-2 px-2 text-[15px] font-medium text-body"
+              >
+                <span className="link-text">See it working</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M5 12h13M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+          </div>
 
-        <section className="mt-20">
           <Clip
-            src="/video/planting.mp4"
-            poster="/video/planting-poster.jpg"
-            ratio="11 / 6"
+            src="/video/planting-tall.mp4"
+            poster="/video/planting-tall-poster.jpg"
+            ratio="31 / 40"
+            className="rise-in hidden lg:block"
           />
-          <p className="mt-5 max-w-[34rem] text-[15px] leading-[1.72] text-body">
-            This part everybody does. A drive, a birthday, a festival, a
-            company afternoon. Somewhere in this country a sapling goes into
-            the ground every few seconds.
-          </p>
-          <p className="mt-3 max-w-[34rem] text-[15px] leading-[1.72] text-cream">
-            What happens over the next two years is what decides whether it was
-            worth doing, and nobody is watching that part.
-          </p>
         </section>
 
-        <section className="mt-20">
-          {STEPS.map((s) => (
-            <article key={s.n} className="row flex gap-6">
-              <span className="num mt-[9px] shrink-0 text-[13px] text-gold-dim">{s.n}</span>
-              <div className="max-w-[34rem]">
-                <h2 className="display h-row leading-snug">{s.title}</h2>
-                <p className="mt-2 text-[15px] leading-[1.72] text-body">{s.body}</p>
-              </div>
-            </article>
-          ))}
+        {/* The problem, stated wide. */}
+        <section className="mt-24 grid gap-x-16 gap-y-8 lg:grid-cols-[560px_minmax(0,1fr)] lg:items-center">
+          <Clip src="/video/planting.mp4" poster="/video/planting-poster.jpg" ratio="11 / 7" />
+          <div>
+            <p className="label">The part everybody does</p>
+            <p className="mt-4 text-[17px] leading-[1.7] text-body">
+              A drive, a birthday, a festival, a company afternoon. Somewhere in
+              this country a sapling goes into the ground every few seconds.
+            </p>
+            <p className="mt-4 text-[17px] leading-[1.7] text-cream">
+              What happens over the next two years is what decides whether it
+              was worth doing, and nobody is watching that part.
+            </p>
+          </div>
         </section>
 
-        <section className="mt-16 max-w-[34rem]">
-          <p className="display h-quote leading-[1.2]">
+        {/* Four steps, two across. */}
+        <section className="mt-24">
+          <p className="label">How it works</p>
+          <div className="mt-8 grid gap-x-16 gap-y-0 md:grid-cols-2">
+            {STEPS.map((s) => (
+              <article key={s.n} className="row flex gap-5">
+                <span className="num mt-[7px] shrink-0 text-[13px] text-gold-dim">{s.n}</span>
+                <div>
+                  <h2 className="display text-[25px] leading-snug">{s.title}</h2>
+                  <p className="mt-2 text-[15px] leading-[1.72] text-body">{s.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* The line the whole thing rests on. */}
+        {/* The second line steps to the right, so the pair reads across the
+            page rather than stacking down its left edge. */}
+        <section className="mt-24 border-t border-line-soft pt-14">
+          <p className="display h-quote max-w-[30ch] leading-[1.18]">
             We reward people for spending money.
           </p>
-          <p className="display h-quote mt-3 leading-[1.2] text-moss italic">
+          <p className="display h-quote mt-4 max-w-[30ch] leading-[1.18] text-moss italic lg:ml-[18%]">
             Rooted rewards them for keeping something alive.
           </p>
         </section>
@@ -132,18 +150,20 @@ export default function Landing() {
 
         <footer className="mt-24">
           <div className="rule" />
-          <nav className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <Link href="/how-it-works" className="border-b border-line pb-0.5 text-[14.5px] text-cream">
-              How it works
-            </Link>
-            <Link href="/accessibility" className="border-b border-line pb-0.5 text-[14.5px] text-body">
-              Accessibility
-            </Link>
-            <Link href="/privacy" className="border-b border-line pb-0.5 text-[14.5px] text-body">
-              Privacy
-            </Link>
-          </nav>
-          <p className="label mt-7">NextStep Hacks 2026 &middot; Earth Forward</p>
+          <div className="mt-7 flex flex-wrap items-center justify-between gap-x-10 gap-y-5">
+            <nav className="flex flex-wrap items-center gap-x-8 gap-y-4">
+              <Link href="/how-it-works" className="link-arrow inline-flex text-cream">
+                <span className="link-text text-[14.5px]">How it works</span>
+              </Link>
+              <Link href="/accessibility" className="link-arrow inline-flex text-body">
+                <span className="link-text text-[14.5px]">Accessibility</span>
+              </Link>
+              <Link href="/privacy" className="link-arrow inline-flex text-body">
+                <span className="link-text text-[14.5px]">Privacy</span>
+              </Link>
+            </nav>
+            <p className="label">NextStep Hacks 2026 &middot; Earth Forward</p>
+          </div>
         </footer>
       </main>
     </div>
