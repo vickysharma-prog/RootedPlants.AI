@@ -484,3 +484,80 @@ body {
      it costs nothing in motion. */
   .btn:hover::before { transform: translateX(-120%); }
 }
+
+/* ---------------------------------------------------------------
+   The four steps. Instrument Serif ships one weight, so weight comes
+   from size and a hair of stroke rather than from a bolder cut.
+   --------------------------------------------------------------- */
+
+.step-title {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(25px, 2.6vw, 31px);
+  letter-spacing: -0.018em;
+  line-height: 1.16;
+  color: var(--cream);
+  -webkit-text-stroke: 0.5px currentColor;
+  transition:
+    transform 0.32s cubic-bezier(0.2, 0.8, 0.3, 1),
+    color 0.3s ease;
+}
+
+.step {
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+/* A rule that fills in from the left as the cursor arrives. */
+.step::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  height: 1px;
+  width: 100%;
+  background: var(--moss);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.step-num {
+  transition:
+    color 0.3s ease,
+    transform 0.32s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.step-body {
+  transition: color 0.3s ease;
+}
+
+.step:hover::after {
+  transform: scaleX(1);
+}
+
+.step:hover .step-num {
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.step:hover .step-title {
+  transform: translateX(7px);
+}
+
+.step:hover .step-body {
+  color: var(--cream);
+  transform: translateX(7px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step::after,
+  .step-title,
+  .step-num,
+  .step-body {
+    transition: none;
+  }
+  .step:hover .step-title,
+  .step:hover .step-body {
+    transform: none;
+  }
+}

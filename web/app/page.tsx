@@ -95,7 +95,12 @@ export default function Landing() {
         </section>
 
         <section className="mt-20">
-          <Clip src="/video/planting.mp4" poster="/video/planting-poster.jpg" ratio="11 / 6" />
+          <Clip
+            src="/video/planting.mp4"
+            poster="/video/planting-poster.jpg"
+            ratio="11 / 6"
+            className="max-w-[620px]"
+          />
           <p className="mt-6 max-w-[34rem] text-[17px] leading-[1.7] text-body">
             A drive, a birthday, a festival, a company afternoon. Somewhere in
             this country a sapling goes into the ground every few seconds.
@@ -111,11 +116,15 @@ export default function Landing() {
           <p className="label">How it works</p>
           <div className="mt-6">
             {STEPS.map((s) => (
-              <article key={s.n} className="row flex gap-6">
-                <span className="num mt-[8px] shrink-0 text-[13px] text-gold-dim">{s.n}</span>
+              <article key={s.n} className="step row flex gap-6">
+                <span className="num step-num mt-[10px] shrink-0 text-[13px] text-gold-dim">
+                  {s.n}
+                </span>
                 <div className="max-w-[34rem]">
-                  <h2 className="display text-[26px] leading-snug">{s.title}</h2>
-                  <p className="mt-2 text-[15.5px] leading-[1.72] text-body">{s.body}</p>
+                  <h2 className="step-title">{s.title}</h2>
+                  <p className="step-body mt-2.5 text-[15.5px] leading-[1.72] text-body">
+                    {s.body}
+                  </p>
                 </div>
               </article>
             ))}
