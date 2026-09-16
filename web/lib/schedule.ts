@@ -1,16 +1,32 @@
-import {
-  PLANTS,
-  species,
-  pointsFor,
-  TASK_LABEL,
-  type Plant,
-  type TaskKind,
-} from "./data";
-import { shift, weatherAt, why, type Weather } from "./weather";
+import { species, pointsFor, TASK_LABEL, type TaskKind } from "./data";
+import { shift, why, type Weather } from "./weather";
+
+/**
+ * What a plant wants, and when.
+ *
+ * Nothing here fetches anything. It takes the plants the account owns and the
+ * weather over each of them, and returns the work. That keeps it usable on
+ * either side of the wire: the browser holds the plants, the server holds the
+ * weather, and this decides between them.
+ */
+
+export type Schedulable = {
+  id: string;
+  name: string;
+  speciesId: string;
+  plantedOn: string;
+  lat: number;
+  lon: number;
+  streak: number;
+  lastWatered: number;
+  lastFertilised: number;
+  lastCheckin: number;
+  lostOn?: string;
+};
 
 export type Task = {
   id: string;
-  plant: Plant;
+  plant: Schedulable;
   kind: TaskKind;
   /** Negative when it is overdue. */
   dueIn: number;
@@ -21,15 +37,21 @@ export type Task = {
 };
 
 /**
- * Everything due now, and what is coming next.
- *
  * `offset` is the demo's day counter. A watering due in three days cannot be
  * shown in a five minute video, so the demo moves the day rather than waiting
  * for it.
  */
-export async function schedule(offset: number): Promise<{ due: Task[]; next: Task[] }> {
-  const tasks = await Promise.all(PLANTS.map((p) => tasksFor(p, offset)));
-  const all = tasks.flat().sort((a, b) => a.dueIn - b.dueIn);
+export function buildSchedule(
+  plants: Schedulable[],
+  weather: (p: Schedulable) => Weather,
+  offset: number,
+  done: Set<string> = new Set(),
+): { due: Task[]; next: Task[] } {
+  const all = plants
+    .filter((p) => !p.lostOn)
+    .flatMap((p) => tasksFor(p, weather(p), offset))
+    .filter((t) => !done.has(t.id))
+    .sort((a, b) => a.dueIn - b.dueIn);
 
   return {
     due: all.filter((t) => t.dueIn <= 0),
@@ -37,33 +59,29 @@ export async function schedule(offset: number): Promise<{ due: Task[]; next: Tas
   };
 }
 
-async function tasksFor(p: Plant, offset: number): Promise<Task[]> {
+export function tasksFor(p: Schedulable, w: Weather, offset: number): Task[] {
   const sp = species(p.speciesId);
-  const w = await weatherAt(p.lat, p.lon);
 
-  const sinceWater = -Number(p.lastWatered) + offset;
-  const sinceFeed = -Number(p.lastFertilised) + offset;
-
-  const waterDueIn = sp.waterEvery + shift(w) - sinceWater;
-  const feedDueIn = sp.fertiliseEvery - sinceFeed;
+  const sinceWater = -p.lastWatered + offset;
+  const sinceFeed = -p.lastFertilised + offset;
 
   const out: Task[] = [
-    task(p, "water", waterDueIn, why(w, sinceWater), w),
-    task(p, "fertilise", feedDueIn, "Last fed " + sinceFeed + " days ago", w),
+    task(p, "water", sp.waterEvery + shift(w) - sinceWater, why(w, sinceWater), w),
+    task(p, "fertilise", sp.fertiliseEvery - sinceFeed, "Last fed " + sinceFeed + " days ago", w),
   ];
 
-  // A young plant gets a check-in in its first month, which is when losing it
-  // is most likely and least visible.
+  // A young plant gets a weekly look in its first two months, which is when
+  // losing it is most likely and least visible.
   const age = ageInDays(p.plantedOn) + offset;
-  if (age < 60 && sinceWater >= 1) {
-    out.push(task(p, "checkin", 0, "First month, worth a look", w));
+  if (age < 60) {
+    out.push(task(p, "checkin", 7 - (offset - p.lastCheckin), "First weeks, worth a look", w));
   }
 
   return out;
 }
 
 function task(
-  p: Plant,
+  p: Schedulable,
   kind: TaskKind,
   dueIn: number,
   reason: string,

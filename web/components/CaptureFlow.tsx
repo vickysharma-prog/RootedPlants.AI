@@ -1,0 +1,335 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { AppShell, AppHeader } from "./AppShell";
+import { Camera, type Shot } from "./Camera";
+import { species, TASK_INSTRUCTION, TASK_LABEL, type TaskKind } from "@/lib/data";
+import { verify, type Check } from "@/lib/verify";
+import {
+  addLedger,
+  getPlant,
+  id,
+  photo as readPhoto,
+  photosFor,
+  pointsFor,
+  putPhoto,
+  putPlant,
+  type StoredPlant,
+} from "@/lib/store";
+
+type Stage = "brief" | "camera" | "checking" | "done";
+
+/**
+ * Doing the task.
+ *
+ * Four steps, and each one is a whole screen rather than a panel on a busy
+ * one: here is the job, here is the camera, here is what was checked, here is
+ * what it earned. A person doing this is standing in a garden holding a
+ * watering can, so at every point there is exactly one thing to look at and
+ * one thing to press.
+ *
+ * The instruction is shown before the shutter and is the same sentence the
+ * checks below test. There is no hidden standard to fail: follow the line,
+ * pass every time.
+ */
+export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number }) {
+  const router = useRouter();
+  const [stage, setStage] = useState<Stage>("brief");
+  const [plant, setPlant] = useState<StoredPlant | null>(null);
+  const [ghost, setGhost] = useState<string>();
+  const [checks, setChecks] = useState<Check[]>([]);
+  const [shown, setShown] = useState(0);
+  const [earned, setEarned] = useState(0);
+  const [missing, setMissing] = useState(false);
+
+  // "neem-1-water" is a plant id with the task on the end.
+  const cut = taskId.lastIndexOf("-");
+  const plantId = taskId.slice(0, cut);
+  const kind = taskId.slice(cut + 1) as TaskKind;
+
+  useEffect(() => {
+    let url: string | undefined;
+    getPlant(plantId).then(async (p) => {
+      if (!p) return setMissing(true);
+      setPlant(p);
+      const base = p.baselinePhotoId ? await readPhoto(p.baselinePhotoId) : undefined;
+      if (base) {
+        url = URL.createObjectURL(base.full);
+        setGhost(url);
+      }
+    });
+    return () => {
+      if (url) URL.revokeObjectURL(url);
+    };
+  }, [plantId]);
+
+  const shot = useCallback(
+    async (s: Shot) => {
+      if (!plant) return;
+      setStage("checking");
+
+      const [here, serverTime] = await Promise.all([whereAmI(), serverNow()]);
+      const base = plant.baselinePhotoId ? await readPhoto(plant.baselinePhotoId) : undefined;
+
+      const verdict = await verify({
+        kind,
+        thumb: s.thumb,
+        baseline: base?.thumb,
+        fromCamera: s.fromCamera,
+        here,
+        plantAt: { lat: plant.lat, lon: plant.lon },
+        serverTime,
+      });
+
+      setChecks(verdict.checks);
+
+      const photoId = id();
+      await putPhoto({
+        id: photoId,
+        plantId: plant.id,
+        at: serverTime ?? new Date().toISOString(),
+        kind,
+        full: s.full,
+        thumb: s.thumb,
+        note: verdict.passed ? TASK_LABEL[kind] : "Not verified",
+      });
+
+      if (verdict.passed) {
+        const points = pointsFor(kind, plant.streak);
+        setEarned(points);
+
+        const updated: StoredPlant = {
+          ...plant,
+          streak: plant.streak + 1,
+          points: plant.points + points,
+          baselinePhotoId: plant.baselinePhotoId || photoId,
+          ...(kind === "water" ? { lastWatered: offset } : {}),
+          ...(kind === "fertilise" ? { lastFertilised: offset } : {}),
+          ...(kind === "checkin" ? { lastCheckin: offset } : {}),
+        };
+        await putPlant(updated);
+        setPlant(updated);
+
+        await addLedger({
+          id: id(),
+          at: serverTime ?? new Date().toISOString(),
+          plantId: plant.id,
+          plantName: plant.name,
+          kind,
+          points,
+          label: TASK_LABEL[kind],
+        });
+      }
+
+      setStage("done");
+    },
+    [plant, kind, offset],
+  );
+
+  // The checks arrive at reading speed rather than all at once. A wall of
+  // ticks is a logo; one line landing after another is somebody showing their
+  // working.
+  useEffect(() => {
+    if (stage !== "done" && stage !== "checking") return;
+    if (shown >= checks.length) return;
+    const t = setTimeout(() => setShown((n) => n + 1), shown === 0 ? 420 : 620);
+    return () => clearTimeout(t);
+  }, [stage, shown, checks.length]);
+
+  if (missing)
+    return (
+      <AppShell active="/today">
+        <AppHeader back="/today" title="That plant is not here." />
+        <p className="app-column prose text-body">It may have been removed from this device.</p>
+      </AppShell>
+    );
+
+  if (!plant)
+    return (
+      <AppShell active="/today">
+        <AppHeader back="/today" title="One moment" />
+      </AppShell>
+    );
+
+  const sp = species(plant.speciesId);
+  const passed = checks.length > 0 && checks.every((c) => c.ok);
+
+  if (stage === "brief")
+    return (
+      <AppShell>
+        <AppHeader
+          back="/today"
+          eyebrow={`${plant.name}, ${plant.place}`}
+          title={TASK_LABEL[kind]}
+          right={<span className="num text-[15px] text-gold">+{pointsFor(kind, plant.streak)}</span>}
+        />
+        <main className="app-column flex flex-1 flex-col pb-12">
+          <div className="rule" />
+          <p className="prose-lg mt-6 text-body">{TASK_INSTRUCTION[kind]}</p>
+
+          <p className="mt-7 text-[15px] leading-relaxed text-faint">
+            {sp.advice} This is the only thing checked, and you are being told it before
+            the camera opens.
+          </p>
+
+          <div className="flex-1" />
+
+          <button className="btn mt-12 w-full" type="button" onClick={() => setStage("camera")}>
+            <span className="btn-label">Open the camera</span>
+            <span className="btn-arrow" aria-hidden>
+              →
+            </span>
+          </button>
+        </main>
+      </AppShell>
+    );
+
+  if (stage === "camera")
+    return (
+      <AppShell>
+        <AppHeader back="/today" eyebrow={plant.name} title={TASK_LABEL[kind]} />
+        <Camera ghost={ghost} instruction={TASK_INSTRUCTION[kind]} onShot={shot} />
+      </AppShell>
+    );
+
+  return (
+    <AppShell>
+      <AppHeader
+        back="/today"
+        eyebrow={plant.name}
+        title={stage === "checking" ? "Checking the photo" : passed ? "Verified." : "Not yet."}
+      />
+
+      <main className="app-column flex flex-1 flex-col pb-12">
+        <ul className="mt-2">
+          {checks.slice(0, shown).map((c) => (
+            <li key={c.key} className="row tick-in flex items-start gap-3.5">
+              <Mark ok={c.ok} />
+              <div className="min-w-0">
+                <p className="text-[15px] font-medium text-cream">{c.label}</p>
+                <p className="mt-1 text-[13.5px] leading-relaxed text-faint">{c.reason}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        {shown >= checks.length && stage === "done" && (
+          <div className="rise-in mt-9">
+            {passed ? (
+              <>
+                <div className="rule" />
+                <p className="label mt-6">Earned</p>
+                <p className="num mt-1 text-[46px] text-gold">
+                  +<Counter to={earned} />
+                </p>
+                <p className="mt-2 text-[14.5px] text-faint">
+                  {plant.streak} in a row on {plant.name}.
+                </p>
+                <button
+                  className="btn mt-10 w-full"
+                  type="button"
+                  onClick={() => router.push("/today")}
+                >
+                  <span className="btn-label">Back to today</span>
+                  <span className="btn-arrow" aria-hidden>
+                    →
+                  </span>
+                </button>
+              </>
+            ) : (
+              <>
+                <div className="rule" />
+                <p className="prose mt-6 text-body">
+                  The task stays open and your streak is held. Take it again with the line
+                  above in mind.
+                </p>
+                <button
+                  className="btn mt-9 w-full"
+                  type="button"
+                  onClick={() => {
+                    setChecks([]);
+                    setShown(0);
+                    setStage("camera");
+                  }}
+                >
+                  <span className="btn-label">Take it again</span>
+                  <span className="btn-arrow" aria-hidden>
+                    →
+                  </span>
+                </button>
+                <Link href="/today" className="link-arrow mt-6 inline-flex text-faint">
+                  <span className="link-text">Leave it for now</span>
+                </Link>
+              </>
+            )}
+          </div>
+        )}
+      </main>
+    </AppShell>
+  );
+}
+
+function Mark({ ok }: { ok: boolean }) {
+  return (
+    <svg
+      width="19"
+      height="19"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={ok ? "var(--verified)" : "var(--overdue)"}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="mt-0.5 shrink-0"
+      aria-hidden
+    >
+      {ok ? <path d="M4 12.5l5.2 5.2L20 7" /> : <path d="M6 6l12 12M18 6L6 18" />}
+    </svg>
+  );
+}
+
+/** Points that land rather than appear. */
+function Counter({ to }: { to: number }) {
+  const [n, setN] = useState(0);
+  const started = useRef(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return setN(to);
+    let frame = 0;
+    const step = (t: number) => {
+      if (!started.current) started.current = t;
+      const k = Math.min(1, (t - started.current) / 900);
+      setN(Math.round(to * (1 - Math.pow(1 - k, 3))));
+      if (k < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [to]);
+
+  return <>{n}</>;
+}
+
+/* ------------------------------------------------------------- evidence */
+
+function whereAmI(): Promise<{ lat: number; lon: number; accuracy: number } | undefined> {
+  return new Promise((resolve) => {
+    if (!navigator.geolocation) return resolve(undefined);
+    navigator.geolocation.getCurrentPosition(
+      (p) =>
+        resolve({ lat: p.coords.latitude, lon: p.coords.longitude, accuracy: p.coords.accuracy }),
+      () => resolve(undefined),
+      { enableHighAccuracy: true, timeout: 8000, maximumAge: 60_000 },
+    );
+  });
+}
+
+async function serverNow(): Promise<string | undefined> {
+  try {
+    const r = await fetch("/api/now");
+    return r.ok ? (await r.json()).now : undefined;
+  } catch {
+    return undefined;
+  }
+}

@@ -15,7 +15,7 @@ export type Weather = {
   live: boolean;
 };
 
-const FALLBACK: Weather = {
+export const FALLBACK: Weather = {
   rainLast3: 0,
   maxTempToday: 31,
   rainNext2: 0,

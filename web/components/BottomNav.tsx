@@ -43,7 +43,8 @@ const ITEMS = [
  */
 export function BottomNav({ active }: { active: string }) {
   return (
-    <nav className="sticky bottom-0 z-10 flex items-center justify-around border-t border-line-soft bg-bg/85 px-2 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
+    <nav className="sticky bottom-0 z-10 border-t border-line-soft bg-bg/70 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
+      <div className="app-column flex items-center justify-around">
       {ITEMS.map((item) => {
         const on = item.href === active;
         return (
@@ -71,6 +72,7 @@ export function BottomNav({ active }: { active: string }) {
           </Link>
         );
       })}
+      </div>
     </nav>
   );
 }

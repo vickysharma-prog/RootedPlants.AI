@@ -1,0 +1,83 @@
+[
+  {
+    "file": "neem-1-0.jpg",
+    "plant": "neem-1",
+    "query": "neem tree sapling",
+    "url": "https://images.pexels.com/photos/36537544/pexels-photo-36537544.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "A lush neem tree with vibrant green leaves under a clear blue sky.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/vibrant-neem-tree-leaves-against-clear-sky-36537544/"
+  },
+  {
+    "file": "neem-1-1.jpg",
+    "plant": "neem-1",
+    "query": "neem tree leaves green",
+    "url": "https://images.pexels.com/photos/13666672/pexels-photo-13666672.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Close-up of neem leaves held by hand showcases lush greenery and freshness.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/neem-leaves-13666672/"
+  },
+  {
+    "file": "neem-1-2.jpg",
+    "plant": "neem-1",
+    "query": "neem tree branch",
+    "url": "https://images.pexels.com/photos/5060587/pexels-photo-5060587.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Detailed close-up of vibrant green neem leaves on a textured tree trunk for natural themes.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/green-leaves-on-brown-tree-trunk-5060587/"
+  },
+  {
+    "file": "tulsi-1-0.jpg",
+    "plant": "tulsi-1",
+    "query": "holy basil plant pot",
+    "url": "https://images.pexels.com/photos/13995284/pexels-photo-13995284.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Close-up of a lush green basil plant in a brown pot, perfect for culinary and herbal uses.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/green-plant-on-a-brown-pot-13995284/"
+  },
+  {
+    "file": "tulsi-1-1.jpg",
+    "plant": "tulsi-1",
+    "query": "basil plant terracotta pot",
+    "url": "https://images.pexels.com/photos/37616094/pexels-photo-37616094.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Lush green basil plant in a terracotta pot on a cozy gray sofa in indoor lighting.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/potted-basil-plant-in-natural-light-37616094/"
+  },
+  {
+    "file": "tulsi-1-2.jpg",
+    "plant": "tulsi-1",
+    "query": "basil leaves plant closeup",
+    "url": "https://images.pexels.com/photos/27127220/pexels-photo-27127220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "A detailed view of basil plants with white flowers, showcasing vibrant green leaves.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/developing-white-flowers-on-bush-27127220/"
+  },
+  {
+    "file": "money-1-0.jpg",
+    "plant": "money-1",
+    "query": "pothos plant pot",
+    "url": "https://images.pexels.com/photos/20498720/pexels-photo-20498720.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Close-up of a variegated Pothos plant in a stylish pot with a delicate floral background.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/green-houseplant-in-pot-20498720/"
+  },
+  {
+    "file": "money-1-1.jpg",
+    "plant": "money-1",
+    "query": "pothos plant hanging pot",
+    "url": "https://images.pexels.com/photos/6913818/pexels-photo-6913818.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Crop anonymous person with watering can pouring water into flowerpot with green plants hanging on rack in light room with window",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/unrecognizable-person-watering-potted-plant-in-room-6913818/"
+  },
+  {
+    "file": "money-1-2.jpg",
+    "plant": "money-1",
+    "query": "pothos leaves green",
+    "url": "https://images.pexels.com/photos/17495282/pexels-photo-17495282.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "title": "Close-up of vibrant green ivy leaves with water droplets, perfect for nature themes.",
+    "licence": "Pexels",
+    "source": "https://www.pexels.com/photo/green-ivy-leaves-17495282/"
+  }
+]

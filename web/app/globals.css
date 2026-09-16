@@ -73,21 +73,25 @@ body {
    one column, centred, growing with the viewport rather than pinned to a
    phone's measurements. A narrow strip down the middle of a laptop is what a
    phone app looks like when nobody thought about the laptop. */
+/* The app is the same world as the rest of the site, not a separate one.
+   Same forest behind it, same type, same air. What changes is that it is a
+   tool rather than an argument, so the column is tighter and there is a bar
+   along the bottom. A 440px strip down the middle of a laptop was the tell
+   that somebody had stopped caring after sign in. */
 .shell {
   width: 100%;
-  max-width: 440px;
-  margin: 0 auto;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   position: relative;
+  z-index: 1;
 }
 
-@media (min-width: 720px) {
-  .shell {
-    border-left: 1px solid var(--line-soft);
-    border-right: 1px solid var(--line-soft);
-  }
+.app-column {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 5vw, 36px);
 }
 
 .page {
