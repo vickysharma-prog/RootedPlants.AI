@@ -240,6 +240,13 @@ weight, and the obvious trick is to thicken the glyph with
 and the letterform is the entire reason this face is on the page. So a heading
 that needs to carry more gets bigger, and nothing else.
 
+**A field is a line to write on, and the line reacts.** Hovering draws a
+third of it in sage and turns the label gold; focusing draws the rest and
+turns the label sage. The same gesture the steps on the landing use, because
+it is the same idea: the thing you are pointing at should notice. A field that
+is wrong keeps its amber whatever the cursor does, because an error is not a
+state the cursor gets to overrule.
+
 **Rows answer the cursor too, not only buttons.** Each step's hairline fills
 in from the left in sage, its number brightens from dim gold to gold and lifts
 two pixels, and the title and body slide seven pixels right together. Reading

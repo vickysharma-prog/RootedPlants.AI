@@ -89,13 +89,8 @@ function Field({
   note?: string;
 }) {
   return (
-    <label
-      className="group flex flex-col gap-1 border-b py-4 focus-within:border-moss"
-      style={{ borderColor: error ? "var(--overdue)" : "var(--line)" }}
-    >
-      <span className="label" style={error ? { color: "var(--overdue)" } : undefined}>
-        {label}
-      </span>
+    <label className={`field flex flex-col gap-1 py-4 ${error ? "field-error" : ""}`}>
+      <span className="label">{label}</span>
       <input
         name={name}
         type={type}

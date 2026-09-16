@@ -584,3 +584,84 @@ body {
     linear-gradient(to right, transparent 0%, #000 11%, #000 89%, transparent 100%);
   mask-composite: intersect;
 }
+
+/* ---------------------------------------------------------------
+   Fields that answer the cursor.
+
+   A line to write on, and the line reacts. Hovering draws a little of
+   it in sage; focusing draws the rest. The label follows. Same gesture
+   as the steps on the landing, because they are the same idea: the
+   thing you are pointing at should notice.
+   --------------------------------------------------------------- */
+
+.field {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.3s ease;
+}
+
+.field::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 100%;
+  background: var(--moss);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.field:hover::after {
+  transform: scaleX(0.3);
+}
+
+.field:focus-within::after {
+  transform: scaleX(1);
+}
+
+.field .label,
+.field input {
+  transition: color 0.28s ease;
+}
+
+.field:hover .label {
+  color: var(--gold);
+}
+
+.field:focus-within .label {
+  color: var(--moss);
+}
+
+.field:hover input::placeholder {
+  color: var(--body);
+}
+
+.field input::placeholder {
+  transition: color 0.28s ease;
+}
+
+/* A field that is wrong keeps saying so, whatever the cursor does. */
+.field-error {
+  border-bottom-color: var(--overdue);
+}
+
+.field-error::after {
+  background: var(--overdue);
+}
+
+.field-error .label,
+.field-error:hover .label,
+.field-error:focus-within .label {
+  color: var(--overdue);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field,
+  .field::after,
+  .field .label,
+  .field input::placeholder {
+    transition: none;
+  }
+}
