@@ -177,21 +177,26 @@ because it means the verification has to be real, and that is the right trade.
 Four days, solo. "Completion" is a scored criterion, so one loop that runs all
 the way through beats six features that each stop halfway.
 
-**In scope, has to work on camera:**
+**In scope, has to work on camera.** Ticked is running today; `state.md` has
+the same list against routes.
 
-- Register a plant: photo upload, species picker, location
-- Care schedule generated from the species profile and adjusted by local
-  weather
-- Today list, the main screen, showing what is due
-- Mark a task done with a proof photo
-- Verification on the proof photo, built as its own screen showing each check
-  and its reason, non-blocking end to end
-- Points ledger, with the balance and the history of how it was earned
-- Rewards catalogue and redemption, seeded with demo partners
-- Plant profile page with the photo timeline, which is the screen people share
-- Seeded demo account with plants already due, so the first screen is full
-- A "jump forward 3 days" control, so the schedule can be shown moving in a
-  5 minute video
+- [x] Landing that makes the argument in thirty seconds
+- [x] Making an account: name, email, and the mobile number the reminders go to
+- [x] Care schedule from the species profile, moved by that plant's own local
+      weather. Running on live data, not mocked.
+- [x] Today list, the main screen, showing what is due and why now
+- [x] Seeded demo account with plants already due, so the first screen is full
+- [x] A "jump forward 3 days" control, so the schedule can be shown moving in
+      a 5 minute video
+- [x] Written pages a judge can read: how it is verified, accessibility,
+      privacy
+- [ ] Register a plant: photo, species picker, location
+- [ ] Mark a task done with a proof photo
+- [ ] Verification on the proof photo, built as its own screen showing each
+      check and its reason, non-blocking end to end
+- [ ] Points ledger, with the balance and the history of how it was earned
+- [ ] Rewards catalogue and redemption, seeded with demo partners
+- [ ] Plant profile page with the photo timeline, the screen people share
 
 **Out of scope, decided and not revisited:**
 
@@ -213,13 +218,17 @@ A native build would spend a day of four on distribution instead of product.
 
 ### Stack
 
-- Next.js, one codebase for pages and API routes, deploys to Vercel in minutes
-- Postgres for plants, tasks, the points ledger and redemptions
-- Photo upload to object storage, the photo is evidence and has to persist
+- Next.js 16, one codebase for pages and API routes, deploys to Vercel in
+  minutes
 - open-meteo for weather, free and needs no key, which matters when the demo
   runs on somebody else's machine
-- Care profiles: 10 to 15 species, hand-authored, watering interval and
+- Care profiles: twelve species, hand-authored, watering interval and
   fertiliser cadence. Curated, and honest about being curated.
+- Accounts in a signed cookie rather than a provider and a user table. Eight
+  seconds from the landing page to inside the app, with nothing to go and
+  fetch first. The trade, one device per account, is in the README.
+- Postgres and object storage go in when the points ledger needs them. Nothing
+  before it has.
 
 ### How this scores
 
@@ -229,7 +238,7 @@ A native build would spend a day of four on distribution instead of product.
 | Adherence to Track | A tree that survives is the entire product. Nothing has to be explained to connect it to Earth Forward. |
 | Completion | One loop, closed, demoed end to end on a seeded account. |
 | Learning | Weather-adjusted scheduling and automated photo checks were both new. `progress.md` carries what broke. |
-| Design | Phone first, one job per visit. The Today list is the whole app: what is due, do it, paid. Spec in [`docs/design.md`](docs/design.md). |
+| Design | One dark world, a serif that speaks and a mono for numbers, rows rather than cards, real forest moving behind it. Phone first for the app, full width for the pages anybody lands on. Spec in [`docs/design.md`](docs/design.md). |
 | Technology | A real verification pipeline: registration against the plant's baseline photo, aligned-pixel comparison per task type, and an agent that composes a verdict it knows when not to trust. Plus scheduling that responds to real local weather. |
 
 ### The documents
