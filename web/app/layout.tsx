@@ -42,9 +42,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
-      <body>
-        <div className="shell">{children}</div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

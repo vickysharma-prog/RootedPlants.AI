@@ -4,9 +4,9 @@ import Image from "next/image";
  * Real forest, moving slowly behind everything.
  *
  * Four photographs, each on a long slow push, cross-fading into the next. The
- * motion is a camera move rather than an effect, which is why it reads as a
- * place and not as a background. Five real photographs at about a megabyte
- * all in, and the first one is priority so the page is never a blank frame.
+ * push is the camera moving. On top of it the canopy sways, a fraction of a
+ * degree, out of phase per scene, while soft leaf shadow drifts across. With
+ * the forest sound on, that is what makes the trees read as moving.
  *
  * Every photograph here is CC0 or public domain. Provenance is recorded in
  * public/forest/sources.json.
@@ -44,6 +44,7 @@ export function ForestBackdrop() {
         </div>
       ))}
 
+      <div className="forest-dapple" />
       <div className="forest-light" />
 
       <div className="forest-motes">

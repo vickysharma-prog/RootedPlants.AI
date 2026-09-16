@@ -11,7 +11,7 @@ export default async function Today() {
   const { due, next } = await schedule(offset);
 
   return (
-    <>
+    <div className="shell">
       <header className="flex items-start justify-between gap-4 px-6 pt-16 pb-8">
         <div>
           <p className="label">{longDate(offset)}</p>
@@ -48,7 +48,7 @@ export default async function Today() {
       </main>
 
       <BottomNav active="/today" />
-    </>
+    </div>
   );
 }
 

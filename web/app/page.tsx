@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ForestBackdrop } from "@/components/ForestBackdrop";
 import { Wordmark } from "@/components/Wordmark";
+import { SoundToggle } from "@/components/SoundToggle";
 
 const STEPS = [
   {
@@ -27,46 +28,54 @@ const STEPS = [
 
 export default function Landing() {
   return (
-    <>
+    <div className="page">
       <ForestBackdrop />
 
-      <main className="on-forest flex flex-1 flex-col px-6 pt-16 pb-12">
+      <header className="on-forest column flex items-center justify-between gap-6 pt-10 pb-2">
         <Wordmark />
+        <SoundToggle />
+      </header>
 
-        <h1 className="display rise-in mt-14 text-[46px]">
-          Everybody plants
-          <br />
-          a tree.
-          <span className="block text-body italic">
-            Nobody finds out
-            <br />
-            what happened to it.
+      <main className="on-forest column flex flex-1 flex-col pt-14 pb-14">
+        <h1
+          className="display h-hero rise-in max-w-[19ch]"
+          style={{ textWrap: "balance" }}
+        >
+          Everybody plants a tree.
+          <span className="mt-1 block text-body italic">
+            Nobody finds out what happened to it.
           </span>
         </h1>
 
-        <p className="prose rise-in mt-8 max-w-[24rem] text-body" style={{ animationDelay: "0.1s" }}>
+        <p
+          className="prose-lg rise-in mt-9 max-w-[34rem] text-body"
+          style={{ animationDelay: "0.1s" }}
+        >
           You plant it, you take the photo, you post it. Then a year of small
           boring jobs decides whether it lives, and nothing is holding you to
           them.
         </p>
 
         <p
-          className="prose rise-in mt-4 max-w-[24rem] text-cream"
+          className="prose-lg rise-in mt-4 max-w-[34rem] text-cream"
           style={{ animationDelay: "0.16s" }}
         >
           Rooted holds you to them, and pays you for it.
         </p>
 
-        <div className="rise-in mt-11 flex flex-col gap-3" style={{ animationDelay: "0.22s" }}>
+        <div
+          className="rise-in mt-12 flex flex-wrap items-center gap-4"
+          style={{ animationDelay: "0.22s" }}
+        >
           <Link
             href="/join"
-            className="flex h-[56px] items-center justify-center rounded-full bg-cream text-[15.5px] font-semibold tracking-[0.01em] text-bg"
+            className="flex h-[56px] min-w-[15rem] flex-1 items-center justify-center rounded-full bg-cream px-8 text-[15.5px] font-semibold tracking-[0.01em] text-bg sm:flex-none"
           >
             Start with one plant
           </Link>
           <Link
             href="/today"
-            className="group flex h-[52px] items-center justify-center gap-2 text-[15px] font-medium text-body"
+            className="flex h-[56px] items-center gap-2 px-2 text-[15px] font-medium text-body"
           >
             <span className="border-b border-line pb-0.5">See it working</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -75,39 +84,45 @@ export default function Landing() {
           </Link>
         </div>
 
-        <section className="mt-16">
+        <section className="mt-20">
           {STEPS.map((s) => (
-            <article key={s.n} className="row flex gap-5">
-              <span className="num mt-[7px] shrink-0 text-[13px] text-gold-dim">{s.n}</span>
-              <div>
-                <h2 className="display text-[23px] leading-snug">{s.title}</h2>
-                <p className="mt-1.5 text-[14.5px] leading-[1.7] text-body">{s.body}</p>
+            <article key={s.n} className="row flex gap-6">
+              <span className="num mt-[9px] shrink-0 text-[13px] text-gold-dim">{s.n}</span>
+              <div className="max-w-[34rem]">
+                <h2 className="display h-row leading-snug">{s.title}</h2>
+                <p className="mt-2 text-[15px] leading-[1.72] text-body">{s.body}</p>
               </div>
             </article>
           ))}
         </section>
 
-        <section className="row mt-4 border-t-0">
-          <p className="display text-[27px] leading-[1.22]">
+        <section className="mt-16 max-w-[34rem]">
+          <p className="display h-quote leading-[1.2]">
             We reward people for spending money.
           </p>
-          <p className="display mt-2 text-[27px] leading-[1.22] text-moss italic">
+          <p className="display h-quote mt-3 leading-[1.2] text-moss italic">
             Rooted rewards them for keeping something alive.
           </p>
         </section>
 
         <div className="flex-1" />
 
-        <footer className="mt-16">
+        <footer className="mt-24">
           <div className="rule" />
-          <p className="mt-6 text-[13.5px] leading-[1.75] text-faint">
-            Care schedules follow live local weather. Every completed job is
-            verified against where the plant was registered, when the photo was
-            taken, and the plant&apos;s own first photograph.
-          </p>
-          <p className="label mt-6">NextStep Hacks 2026 &middot; Earth Forward</p>
+          <nav className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <Link href="/how-it-works" className="border-b border-line pb-0.5 text-[14.5px] text-cream">
+              How it works
+            </Link>
+            <Link href="/accessibility" className="border-b border-line pb-0.5 text-[14.5px] text-body">
+              Accessibility
+            </Link>
+            <Link href="/privacy" className="border-b border-line pb-0.5 text-[14.5px] text-body">
+              Privacy
+            </Link>
+          </nav>
+          <p className="label mt-7">NextStep Hacks 2026 &middot; Earth Forward</p>
         </footer>
       </main>
-    </>
+    </div>
   );
 }

@@ -1,36 +1,39 @@
 import Link from "next/link";
 import { ForestBackdrop } from "@/components/ForestBackdrop";
+import { SoundToggle } from "@/components/SoundToggle";
 
 export default function Join() {
   return (
-    <>
+    <div className="page">
       <ForestBackdrop />
 
-      <main className="on-forest flex flex-1 flex-col px-6 pt-16 pb-12">
-        <Link
-          href="/"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-body"
-          aria-label="Back"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-            <path d="M15 6l-6 6 6 6" />
-          </svg>
-        </Link>
+      <main className="on-forest column flex flex-1 flex-col pt-14 pb-12">
+        <div className="flex items-center justify-between gap-6">
+          <Link
+            href="/"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-body"
+            aria-label="Back"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M15 6l-6 6 6 6" />
+            </svg>
+          </Link>
+          <SoundToggle />
+        </div>
 
         <p className="label rise-in mt-10">Step one of one</p>
 
-        <h1 className="display rise-in mt-3 text-[38px]" style={{ animationDelay: "0.06s" }}>
-          Start with
-          <br />
+        <h1 className="display h-sub rise-in mt-3" style={{ animationDelay: "0.06s" }}>
+          Start with{" "}
           <span className="italic text-body">one plant.</span>
         </h1>
 
-        <p className="prose rise-in mt-5 max-w-[22rem] text-body" style={{ animationDelay: "0.12s" }}>
+        <p className="prose-lg rise-in mt-5 max-w-[30rem] text-body" style={{ animationDelay: "0.12s" }}>
           One is enough. The neem in the backyard, the tulsi on the balcony, the
           sapling from last month&apos;s drive.
         </p>
 
-        <form className="rise-in mt-10 flex flex-col" style={{ animationDelay: "0.18s" }}>
+        <form className="rise-in mt-10 flex max-w-[30rem] flex-col" style={{ animationDelay: "0.18s" }}>
           <Field label="Your name" type="text" placeholder="Vicky" autoComplete="name" />
           <Field label="Email" type="email" placeholder="you@example.com" autoComplete="email" />
           <Field
@@ -48,7 +51,7 @@ export default function Join() {
           </button>
         </form>
 
-        <div className="mt-7 flex items-center gap-4">
+        <div className="mt-7 flex max-w-[30rem] items-center gap-4">
           <span className="rule flex-1" />
           <span className="label">or</span>
           <span className="rule flex-1" />
@@ -56,7 +59,7 @@ export default function Join() {
 
         <button
           type="button"
-          className="mt-7 flex h-[54px] items-center justify-center gap-2.5 rounded-full border border-line text-[15px] font-medium text-cream"
+          className="mt-7 flex h-[54px] max-w-[30rem] items-center justify-center gap-2.5 rounded-full border border-line text-[15px] font-medium text-cream"
         >
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M12 3v12M8 11l4 4 4-4" />
@@ -67,7 +70,7 @@ export default function Join() {
 
         <div className="flex-1" />
 
-        <div className="mt-14">
+        <div className="mt-16 max-w-[34rem]">
           <div className="rule" />
           <p className="mt-6 text-[13.5px] leading-[1.75] text-faint">
             Your plant photographs stay private. Anywhere a plant appears
@@ -81,7 +84,7 @@ export default function Join() {
           </p>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 
