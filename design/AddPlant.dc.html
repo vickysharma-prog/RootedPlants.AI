@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; }
+    a { color: #14543A; } a:hover { color: #0D3927; }
+    .disp { font-family: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif; }
+  </style>
+</helmet>
+
+<div style="width: 390px; height: 844px; background: #F6F3EC; color: #1A1C19; display: flex; flex-direction: column; overflow: hidden;">
+
+  <div style="padding: 52px 20px 0; display: flex; align-items: center; gap: 14px;">
+    <div style="width: 40px; height: 40px; border-radius: 12px; background: #EFEADF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1C19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    </div>
+    <div style="display: flex; gap: 6px; flex-grow: 1;">
+      <div style="height: 4px; border-radius: 999px; background: #14543A; flex-grow: 1;"></div>
+      <div style="height: 4px; border-radius: 999px; background: #14543A; flex-grow: 1;"></div>
+      <div style="height: 4px; border-radius: 999px; background: #DFD9CB; flex-grow: 1;"></div>
+    </div>
+  </div>
+
+  <div style="padding: 24px 20px 0;">
+    <div class="disp" style="font-size: 29px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;">What did you plant?</div>
+    <div style="font-size: 13.5px; color: #6B6F68; margin-top: 6px; line-height: 1.45;">We picked one from your photo. Change it if we got it wrong.</div>
+  </div>
+
+  <div style="margin: 20px 16px 0; background: #FFFDF8; border: 1px solid #E6E0D3; border-radius: 16px; height: 48px; display: flex; align-items: center; gap: 10px; padding: 0 14px;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8C9088" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <span style="font-size: 14.5px; color: #9A9487;">Search species</span>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px 16px 0;">
+
+    <div style="background: #FFFDF8; border: 2px solid #14543A; border-radius: 18px; padding: 13px; display: flex; gap: 13px; align-items: center;">
+      <div style="width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(160deg, #DCE9D8, #B8CFB0); flex-shrink: 0; display: flex; align-items: flex-end; justify-content: center; overflow: hidden;">
+        <svg width="46" height="46" viewBox="0 0 64 64" fill="none"><path d="M32 48V26" stroke="#4E7A46" stroke-width="3" stroke-linecap="round"/><path d="M32 30c-7-2-11-7-11-13 6 0 11 4 11 13z" fill="#5F9455"/><path d="M32 36c7-3 10-8 10-14-6 0-10 5-10 14z" fill="#4E7A46"/><path d="M22 48h20l-2.5 12h-15z" fill="#8A6A48"/></svg>
+      </div>
+      <div style="flex-grow: 1; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 16px; font-weight: 600;">Neem</span>
+          <span style="font-size: 10.5px; font-weight: 600; color: #2F6B45; background: #EDF3E9; padding: 3px 7px; border-radius: 999px;">From your photo</span>
+        </div>
+        <div style="font-size: 12px; color: #6B6F68; margin-top: 2px;">Azadirachta indica</div>
+        <div style="font-size: 12px; color: #6B6F68; margin-top: 4px;">Water every 3 days, less when it rains</div>
+      </div>
+      <div style="width: 24px; height: 24px; border-radius: 999px; background: #14543A; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFDF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.6 4.6L19 7.5"/></svg>
+      </div>
+    </div>
+
+    <div style="background: #FFFDF8; border: 1px solid #E6E0D3; border-radius: 18px; padding: 13px; display: flex; gap: 13px; align-items: center;">
+      <div style="width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(160deg, #E4EFDD, #C3DAB9); flex-shrink: 0; display: flex; align-items: flex-end; justify-content: center; overflow: hidden;">
+        <svg width="46" height="46" viewBox="0 0 64 64" fill="none"><path d="M32 48V30" stroke="#4E7A46" stroke-width="3" stroke-linecap="round"/><circle cx="25" cy="28" r="6.5" fill="#6BA05C"/><circle cx="39" cy="27" r="5.5" fill="#57894B"/><path d="M22 48h20l-2.5 12h-15z" fill="#A67C52"/></svg>
+      </div>
+      <div style="flex-grow: 1; min-width: 0;">
+        <div style="font-size: 16px; font-weight: 600;">Peepal</div>
+        <div style="font-size: 12px; color: #6B6F68; margin-top: 2px;">Ficus religiosa</div>
+        <div style="font-size: 12px; color: #6B6F68; margin-top: 4px;">Water every 4 days while young</div>
+      </div>
+    </div>
+
+    <div style="background: #FFFDF8; border: 1px solid #E6E0D3; border-radius: 18px; padding: 13px; display: flex; gap: 13px; align-items: center;">
+      <div style="width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(160deg, #E8EFDE, #CBDBB8); flex-shrink: 0; display: flex; align-items: flex-end; justify-content: center; overflow: hidden;">
+        <svg width="46" height="46" viewBox="0 0 64 64" fill="none"><path d="M32 48V32" stroke="#4E7A46" stroke-width="3" stroke-linecap="round"/><path d="M32 34c-9 0-14-5-14-12 8 0 14 4 14 12z" fill="#6BA05C"/><path d="M22 48h20l-2.5 12h-15z" fill="#8A6A48"/></svg>
+      </div>
+      <div style="flex-grow: 1; min-width: 0;">
+        <div style="font-size: 16px; font-weight: 600;">Mango</div>
+        <div style="font-size: 12px; color: #6B6F68; margin-top: 2px;">Mangifera indica</div>
+        <div style="font-size: 12px; color: #6B6F68; margin-top: 4px;">Water every 5 days, deep soak</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="flex-grow: 1;"></div>
+
+  <div style="margin: 0 16px 16px; background: #EFEADF; border-radius: 16px; padding: 13px 15px; display: flex; gap: 11px; align-items: flex-start;">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7A5C3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+    <div style="font-size: 12.5px; color: #5C5F58; line-height: 1.45;">We will remember this spot. Every later photo is checked against it, so nobody can claim your tree.</div>
+  </div>
+
+  <div style="padding: 0 16px 34px;">
+    <div style="background: #14543A; color: #FFFDF8; border-radius: 15px; height: 52px; display: flex; align-items: center; justify-content: center; font-size: 15.5px; font-weight: 600;">Next</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

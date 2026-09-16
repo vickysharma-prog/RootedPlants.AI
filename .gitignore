@@ -27,3 +27,6 @@ Thumbs.db
 # demo assets, too big for git
 *.mp4
 *.mov
+
+# seeded design canvas, rebuilt from design/*.dc.html
+design/rooted-app-screens.html

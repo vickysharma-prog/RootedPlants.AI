@@ -1,0 +1,15 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "Today", "x": 0, "y": 0, "w": 390, "h": 844 },
+    { "file": "Capture.dc.html", "title": "Do it, capture", "x": 470, "y": 0, "w": 390, "h": 844 },
+    { "file": "Verified.dc.html", "title": "Verified", "x": 940, "y": 0, "w": 390, "h": 844 },
+    { "file": "Plant.dc.html", "title": "Plant profile", "x": 0, "y": 964, "w": 390, "h": 844 },
+    { "file": "Rewards.dc.html", "title": "Rewards", "x": 470, "y": 964, "w": 390, "h": 844 },
+    { "file": "AddPlant.dc.html", "title": "Add a plant", "x": 940, "y": 964, "w": 390, "h": 844 }
+  ],
+  "annotations": [
+    { "id": "loop", "x": 0, "y": -150, "w": 1330, "text": "The loop the demo video follows: Today list, tap Do it, capture with the framing ghost, verification card, points. Then the profile timeline and a redemption." },
+    { "id": "note-photos", "x": 0, "y": 1880, "w": 620, "text": "Plant artwork is drawn as placeholder illustration. In the real app these are the user's own photos, and the photography carries the visual weight." }
+  ],
+  "launch": { "view": "canvas" }
+}
