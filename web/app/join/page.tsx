@@ -46,9 +46,14 @@ export default function Join() {
 
           <button
             type="submit"
-            className="mt-9 flex h-[56px] items-center justify-center rounded-full bg-cream text-[15.5px] font-semibold tracking-[0.01em] text-bg"
+            className="btn mt-9 flex h-[56px] items-center justify-center rounded-full bg-cream text-[15.5px] font-semibold tracking-[0.01em] text-bg"
           >
-            Create my account
+            <span className="btn-label">Create my account</span>
+            <span className="btn-arrow">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M5 12h13M13 6l6 6-6 6" />
+              </svg>
+            </span>
           </button>
         </form>
 
@@ -90,8 +95,8 @@ export default function Join() {
           </p>
           <p className="mt-6 text-[14px] text-body">
             Already growing something?{" "}
-            <Link href="/today" className="border-b border-line pb-px text-cream">
-              Sign in
+            <Link href="/today" className="link-arrow inline-flex text-cream">
+              <span className="link-text">Sign in</span>
             </Link>
           </p>
         </div>

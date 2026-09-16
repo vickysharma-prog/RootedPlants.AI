@@ -321,3 +321,144 @@ body {
     transform: none;
   }
 }
+
+/* ---------------------------------------------------------------
+   Buttons that answer the cursor.
+
+   On a dark editorial page a button that flashes on hover cheapens
+   everything around it. These lift slightly, warm slightly, and let an
+   arrow arrive from the right. The label slides left to make room, so
+   nothing reflows and nothing jumps.
+   --------------------------------------------------------------- */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.28s cubic-bezier(0.2, 0.8, 0.3, 1),
+    box-shadow 0.28s ease,
+    background-color 0.28s ease;
+}
+
+.btn-label {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.btn-arrow {
+  position: absolute;
+  right: 22px;
+  display: inline-flex;
+  opacity: 0;
+  transform: translateX(-9px);
+  transition:
+    opacity 0.26s ease,
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+/* A slow band of light crossing once, only while the cursor is on it. */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.34) 48%,
+    transparent 76%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.75s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.95);
+}
+
+.btn:hover .btn-label {
+  transform: translateX(-11px);
+}
+
+.btn:hover .btn-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.btn:hover::before {
+  transform: translateX(120%);
+}
+
+.btn:active {
+  transform: translateY(0);
+  transition-duration: 0.08s;
+}
+
+/* The quieter one: a rule that draws itself, and an arrow that walks. */
+.link-arrow {
+  position: relative;
+  transition: color 0.24s ease;
+}
+
+.link-arrow .link-text {
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.link-arrow .link-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0.28);
+  transform-origin: left;
+  opacity: 0.45;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1),
+    opacity 0.3s ease;
+}
+
+.link-arrow svg {
+  transition: transform 0.34s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.link-arrow:hover {
+  color: var(--cream);
+}
+
+.link-arrow:hover .link-text::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.link-arrow:hover svg {
+  transform: translateX(5px);
+}
+
+/* Keyboard users get the same answer as the cursor. */
+.btn:focus-visible,
+.link-arrow:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn-label,
+  .btn-arrow,
+  .btn::before,
+  .link-arrow,
+  .link-arrow .link-text::after,
+  .link-arrow svg {
+    transition: none;
+  }
+  .btn:hover { transform: none; }
+  .btn:hover .btn-label { transform: none; }
+  .btn:hover::before { transform: translateX(-120%); }
+}

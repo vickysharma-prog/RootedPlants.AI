@@ -70,15 +70,20 @@ export default function Landing() {
         >
           <Link
             href="/join"
-            className="flex h-[56px] min-w-[15rem] flex-1 items-center justify-center rounded-full bg-cream px-8 text-[15.5px] font-semibold tracking-[0.01em] text-bg sm:flex-none"
+            className="btn flex h-[56px] min-w-[15rem] flex-1 items-center justify-center rounded-full bg-cream px-8 text-[15.5px] font-semibold tracking-[0.01em] text-bg sm:flex-none"
           >
-            Start with one plant
+            <span className="btn-label">Start with one plant</span>
+            <span className="btn-arrow">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M5 12h13M13 6l6 6-6 6" />
+              </svg>
+            </span>
           </Link>
           <Link
             href="/today"
-            className="flex h-[56px] items-center gap-2 px-2 text-[15px] font-medium text-body"
+            className="link-arrow flex h-[56px] items-center gap-2 px-2 text-[15px] font-medium text-body"
           >
-            <span className="border-b border-line pb-0.5">See it working</span>
+            <span className="link-text">See it working</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <path d="M5 12h13M13 6l6 6-6 6" />
             </svg>

@@ -189,6 +189,14 @@ If it ever competes with the words, it is turned down further.
 the verification checks landing one after another. Everything else is instant,
 which is what makes those two moments feel like moments.
 
+**A button answers the cursor, quietly.** On a dark editorial page a control
+that flashes on hover cheapens everything near it. The primary lifts two
+pixels, its label slides left to make room, an arrow arrives from the right,
+and one slow band of light crosses it. Nothing reflows, because the arrow is
+positioned rather than inserted. The quieter link draws its own rule from left
+to right and walks its arrow five pixels. Both give keyboard users the same
+answer they give the cursor.
+
 **Two things on one screen never share a gesture.** The mark beside the
 wordmark is five bars, and so is the sound control a few centimetres away. The
 shapes can match; what they do must not. The sound control bounces, because
