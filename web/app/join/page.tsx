@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { ForestBackdrop } from "@/components/ForestBackdrop";
 import { SoundToggle } from "@/components/SoundToggle";
+import { Clip } from "@/components/Clip";
 
 export default function Join() {
   return (
     <div className="page">
-      <ForestBackdrop />
+      <ForestBackdrop scene="trunks" />
 
       <main className="on-forest column flex flex-1 flex-col pt-14 pb-12">
         <div className="flex items-center justify-between gap-6">
@@ -69,6 +70,17 @@ export default function Join() {
         </button>
 
         <div className="flex-1" />
+
+        <Clip
+          src="/video/planting-tall.mp4"
+          poster="/video/planting-tall-poster.jpg"
+          ratio="31 / 22"
+          className="mt-14 max-w-[30rem]"
+        />
+        <p className="mt-4 max-w-[30rem] text-[14px] leading-[1.7] text-faint">
+          The photograph you take now becomes this plant&apos;s baseline. Every
+          later check is measured against it.
+        </p>
 
         <div className="mt-16 max-w-[34rem]">
           <div className="rule" />

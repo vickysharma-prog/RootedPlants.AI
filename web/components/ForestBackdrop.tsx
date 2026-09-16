@@ -1,23 +1,28 @@
-import Image from "next/image";
-
 /**
- * Real forest, moving slowly behind everything.
+ * Real forest, moving, behind everything.
  *
- * Four photographs, each on a long slow push, cross-fading into the next. The
- * push is the camera moving. On top of it the canopy sways, a fraction of a
- * degree, out of phase per scene, while soft leaf shadow drifts across. With
- * the forest sound on, that is what makes the trees read as moving.
+ * Three shots, one per kind of page, so moving through the site is moving
+ * through a place rather than past the same picture again. Each is a short
+ * loop, muted, held well back under a heavy veil: atmosphere, not a video
+ * playing at you. Leaf shadow drifts across on top and dust rises through it.
  *
- * Every photograph here is CC0 or public domain. Provenance is recorded in
- * public/forest/sources.json.
+ * A poster frame paints immediately, so the page is never a black rectangle
+ * while the video loads, and the poster alone is a perfectly good background
+ * if the video never arrives.
+ *
+ * Pexels licence, no attribution required. Recorded in public/video/sources.json.
  */
 
-const SCENES = [
-  { src: "/forest/hero.jpg", alt: "Sunlight through tall forest trunks", move: "push" },
-  { src: "/forest/fog.jpg", alt: "Bare trees in heavy fog", move: "drift" },
-  { src: "/forest/moss.jpg", alt: "Mossy forest floor under old trees", move: "pull" },
-  { src: "/forest/mist.jpg", alt: "Mist hanging in a treeline", move: "drift-back" },
-];
+const SCENES = {
+  /** Dense green, camera moving through it. The landing. */
+  jungle: { src: "/video/jungle.mp4", poster: "/video/jungle-poster.jpg" },
+  /** Looking up through tall trunks. Sign up. */
+  trunks: { src: "/video/trunks.mp4", poster: "/video/trunks-poster.jpg" },
+  /** Drifting above the canopy. The written pages. */
+  canopy: { src: "/video/canopy.mp4", poster: "/video/canopy-poster.jpg" },
+} as const;
+
+export type Scene = keyof typeof SCENES;
 
 const MOTES = [
   { x: 14, d: 0, s: 15 },
@@ -28,21 +33,21 @@ const MOTES = [
   { x: 86, d: 6.2, s: 20 },
 ];
 
-export function ForestBackdrop() {
+export function ForestBackdrop({ scene = "jungle" }: { scene?: Scene }) {
+  const { src, poster } = SCENES[scene];
+
   return (
     <div className="forest" aria-hidden>
-      {SCENES.map((s, i) => (
-        <div key={s.src} className={`scene scene-${i + 1}`}>
-          <Image
-            src={s.src}
-            alt=""
-            fill
-            sizes="100vw"
-            priority={i === 0}
-            className={`scene-img move-${s.move}`}
-          />
-        </div>
-      ))}
+      <video
+        className="forest-video"
+        src={src}
+        poster={poster}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+      />
 
       <div className="forest-dapple" />
       <div className="forest-light" />

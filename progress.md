@@ -10,6 +10,53 @@ worked.
 
 ---
 
+## 2026-09-17 - Real moving forest, and sound
+
+**Video, after a long detour**
+
+I wanted real trees moving rather than a drawn animation or a still with a
+slow zoom on it. That took three dead ends first. Wikimedia has public domain
+forest video but the usable files are 780MB; the small ones turned out to be a
+garden with a swing and a NASA LIDAR visualisation once I pulled frames out of
+them. The good forest footage there is CC BY-SA, which carries an attribution
+condition.
+
+Pexels solved it. Five clips now, each doing a different job:
+
+- **jungle**, camera moving through dense green, behind the landing
+- **trunks**, looking straight up through tall trees, behind sign up
+- **canopy**, drifting above a green canopy, behind the written pages
+- **planting** and **planting-tall**, people actually putting saplings in the
+  ground, in the page rather than behind it
+
+The last two are the ones that change the page. The hero says nobody finds out
+what happened to the tree; the clip underneath is somebody planting one on a
+street. That is the whole argument in two seconds without a word of copy.
+
+All five are 1152 wide at crf 32 or 33, 10 to 14 seconds, muted, with a poster
+frame so a block never opens as a hole. Nine and a half megabytes for the lot.
+Backdrops sit at 55% opacity under the veil, because a video playing at full
+strength behind text is a video with text on it rather than a page.
+
+**Sound**
+
+Wind through trees, CC0, trimmed to 52 seconds with fades so the loop does not
+click. It plays only on a tap, because browsers block audio until somebody
+asks and that is the right rule. The control is five bars that move while it
+plays, so it shows its own state without a label.
+
+**Also**
+
+Footer was a paragraph nobody would read. It is three real pages now: how the
+verification works, accessibility, privacy. Written properly rather than as
+placeholders, because they are the pages that say whether a product has been
+thought about.
+
+**Note for later:** the Pexels key lives in `web/.env.local` and is gitignored.
+`tools/fetch_forest_video.py` reads it from there.
+
+---
+
 ## 2026-09-17 - Rebuilt the whole look
 
 Spent time in the browser pulling apart a page whose design I wanted to match,

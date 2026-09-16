@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ForestBackdrop } from "@/components/ForestBackdrop";
 import { Wordmark } from "@/components/Wordmark";
 import { SoundToggle } from "@/components/SoundToggle";
+import { Clip } from "@/components/Clip";
 
 const STEPS = [
   {
@@ -29,7 +30,7 @@ const STEPS = [
 export default function Landing() {
   return (
     <div className="page">
-      <ForestBackdrop />
+      <ForestBackdrop scene="jungle" />
 
       <header className="on-forest column flex items-center justify-between gap-6 pt-10 pb-2">
         <Wordmark />
@@ -83,6 +84,23 @@ export default function Landing() {
             </svg>
           </Link>
         </div>
+
+        <section className="mt-20">
+          <Clip
+            src="/video/planting.mp4"
+            poster="/video/planting-poster.jpg"
+            ratio="11 / 6"
+          />
+          <p className="mt-5 max-w-[34rem] text-[15px] leading-[1.72] text-body">
+            This part everybody does. A drive, a birthday, a festival, a
+            company afternoon. Somewhere in this country a sapling goes into
+            the ground every few seconds.
+          </p>
+          <p className="mt-3 max-w-[34rem] text-[15px] leading-[1.72] text-cream">
+            What happens over the next two years is what decides whether it was
+            worth doing, and nobody is watching that part.
+          </p>
+        </section>
 
         <section className="mt-20">
           {STEPS.map((s) => (

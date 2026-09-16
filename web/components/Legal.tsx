@@ -19,7 +19,7 @@ export function Page({
 }) {
   return (
     <div className="page">
-      <ForestBackdrop />
+      <ForestBackdrop scene="canopy" />
 
       <header className="on-forest column flex items-center justify-between gap-6 pt-10 pb-2">
         <Link href="/" className="display text-[19px] tracking-[-0.01em]">
