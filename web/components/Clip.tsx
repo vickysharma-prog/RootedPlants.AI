@@ -38,16 +38,15 @@ export function Clip({
         playsInline
         preload="none"
         aria-hidden
-        style={{ filter: "saturate(0.88) brightness(0.84) contrast(1.03)" }}
+        style={{ filter: "saturate(0.74) brightness(0.66) contrast(1.04)" }}
       />
 
       {/* A wash of the page's own green, so the footage belongs to this world
-          rather than being borrowed from another one. Light: enough to tie it
-          to the page, not enough to take the picture away. Inside the mask, so
-          it fades out with everything else. */}
+          rather than being borrowed from another one. Inside the mask, so it
+          fades out with everything else. */}
       <span
         className="pointer-events-none absolute inset-0"
-        style={{ background: "rgba(18, 34, 22, 0.14)" }}
+        style={{ background: "rgba(18, 34, 22, 0.26)" }}
       />
     </div>
   );
