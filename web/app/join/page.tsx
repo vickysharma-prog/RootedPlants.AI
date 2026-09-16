@@ -48,7 +48,7 @@ export default async function Join() {
 
         <div className="flex-1" />
 
-        <figure className="mt-14 max-w-[34rem]">
+        <figure className="mt-14 max-w-[40rem]">
           <Clip
             src="/video/watering.mp4"
             poster="/video/watering-poster.jpg"
