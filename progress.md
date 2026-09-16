@@ -425,3 +425,24 @@ on `localhost` over plain HTTP they were never going to run, and every
 verification I did here fell back to the file picker and reported honestly that
 it had. The first real end-to-end pass has to happen on a phone against this
 URL.
+
+### The deploy that opened for me and not for anybody else
+
+Two things were wrong at once and they looked like one thing.
+
+**The project root.** Vercel created the project with the root directory set to
+`.`, but the app lives in `web/`. Deploying from the CLI hid this completely,
+because the CLI uploads whatever directory you run it in, so my deploys worked
+while the first git-triggered build died in six seconds with "Couldn't find any
+`pages` or `app` directory". Set the root to `web` and that build has something
+to find.
+
+**Deployment protection.** The project came with SSO protection on every
+`vercel.app` domain, so `rooted-vicky-sharma.vercel.app` answers a stranger
+with a Vercel login page. The alias `rooted-two-lake.vercel.app` is open and
+serves the real site, which is why it worked for me and not from another
+machine. Worth knowing before a judge clicks the wrong one.
+
+The lesson I want to keep: a deploy that works from my own machine has proved
+almost nothing. Both faults were invisible from here and both would have been
+discovered by somebody else, at the worst moment.
