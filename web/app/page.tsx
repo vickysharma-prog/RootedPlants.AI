@@ -95,12 +95,7 @@ export default function Landing() {
         </section>
 
         <section className="mt-20">
-          <Clip
-            src="/video/planting.mp4"
-            poster="/video/planting-poster.jpg"
-            ratio="11 / 6"
-            className="max-w-[620px]"
-          />
+          <Clip src="/video/planting.mp4" poster="/video/planting-poster.jpg" ratio="11 / 6" />
           <p className="mt-6 max-w-[34rem] text-[17px] leading-[1.7] text-body">
             A drive, a birthday, a festival, a company afternoon. Somewhere in
             this country a sapling goes into the ground every few seconds.
@@ -137,7 +132,10 @@ export default function Landing() {
             Spend money, earn points. Pay the credit card bill on time, earn
             more.
           </p>
-          <p className="display h-quote mt-5 max-w-[24ch] leading-[1.18] text-moss italic">
+          <p className="display h-quote mt-6 leading-[1.18] text-gold italic">
+            Really?
+          </p>
+          <p className="display h-quote mt-6 max-w-[24ch] leading-[1.18] text-moss italic">
             Rooted pays you for keeping something alive.
           </p>
         </section>

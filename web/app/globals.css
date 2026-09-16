@@ -487,7 +487,9 @@ body {
 
 /* ---------------------------------------------------------------
    The four steps. Instrument Serif ships one weight, so weight comes
-   from size and a hair of stroke rather than from a bolder cut.
+   from size alone. Thickening the glyph with a stroke does make it
+   heavier, but it also changes the letterform, and the letterform is
+   the reason this face is here.
    --------------------------------------------------------------- */
 
 .step-title {
@@ -496,7 +498,6 @@ body {
   letter-spacing: -0.018em;
   line-height: 1.16;
   color: var(--cream);
-  -webkit-text-stroke: 0.5px currentColor;
   transition:
     transform 0.32s cubic-bezier(0.2, 0.8, 0.3, 1),
     color 0.3s ease;

@@ -204,10 +204,11 @@ If it ever competes with the words, it is turned down further.
 the verification checks landing one after another. Everything else is instant,
 which is what makes those two moments feel like moments.
 
-**Weight without a bolder cut.** Instrument Serif ships one weight, so a
-heading that needs to carry more gets it from size and half a pixel of stroke
-on the glyph rather than from a font that does not exist. It reads as weight;
-it is not faked with a shadow.
+**Weight comes from size, never from a stroke.** Instrument Serif ships one
+weight, and the obvious trick is to thicken the glyph with
+`-webkit-text-stroke`. It does read as heavier. It also blunts the letterform,
+and the letterform is the entire reason this face is on the page. So a heading
+that needs to carry more gets bigger, and nothing else.
 
 **Rows answer the cursor too, not only buttons.** Each step's hairline fills
 in from the left in sage, its number brightens from dim gold to gold and lifts
