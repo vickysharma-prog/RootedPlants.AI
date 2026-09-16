@@ -198,6 +198,14 @@ composition can widen; a line of prose cannot.
 **Rows, not cards.** A hairline above, generous air, nothing else. No boxes,
 no shadows, no gradients on elements. The one exception is the photograph.
 
+**Footage sits in the page, never on it.** A bright rectangle with a hairline
+around it is a card somebody pasted on. So a clip has no border, its four
+edges are feathered into the page colour, its brightness comes down towards
+the light the page is already using, and a wash of the page's own green goes
+over the top. It stops being a frame and becomes a window. The test is simple:
+if you can see where the video ends, it has not been placed, it has been
+stuck on.
+
 **Photography is the interface.** The user's own plant photographs identify
 their plants. On a dark page a bright crop shouts, so photographs are sunk
 slightly and edged with a hairline: present, not competing with the type.
