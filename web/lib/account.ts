@@ -17,7 +17,7 @@ import { cookies } from "next/headers";
 export type Account = {
   name: string;
   email: string;
-  mobile?: string;
+  mobile: string;
   joined: string;
 };
 
@@ -52,15 +52,29 @@ export function firstName(account: Account): string {
   return account.name.trim().split(/\s+/)[0];
 }
 
-/** Deliberately forgiving. This is a front door, not a border. */
+/**
+ * Forgiving about form, firm about what is needed.
+ *
+ * The mobile number is not a detail we collect because a form usually has
+ * one. It is the channel. A care app whose whole premise is that people
+ * forget cannot rely on them remembering to open it, so the reminder has to
+ * reach them where they already are. Without a number there is nothing to
+ * remind, and the product is a list somebody has to think of on their own.
+ *
+ * So: asked for, explained, and required.
+ */
 export function validate(name: string, email: string, mobile: string) {
   const errors: Record<string, string> = {};
+  const digits = mobile.replace(/\D/g, "");
 
   if (name.trim().length < 2) errors.name = "Tell us what to call you.";
+
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email.trim()))
     errors.email = "That email does not look finished.";
-  if (mobile.trim() && mobile.replace(/\D/g, "").length < 7)
-    errors.mobile = "That number looks short. Leave it blank if you would rather not.";
+
+  if (!digits) errors.mobile = "We need this. It is where the reminders go.";
+  else if (digits.length < 10) errors.mobile = "That number is missing some digits.";
+  else if (digits.length > 15) errors.mobile = "That is longer than any number we can reach.";
 
   return errors;
 }

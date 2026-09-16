@@ -1,5 +1,19 @@
 # Rewards and the money
 
+## The number is not a form field
+
+Sign up asks for a mobile number and will not continue without one. That is
+not a habit picked up from other forms. It is the channel.
+
+The whole premise is that people forget. A product built on that cannot then
+depend on them remembering to open it. The reminder has to arrive where they
+already are, and in this country that is a message on a phone. Without a
+number there is nothing to remind, and what is left is a list somebody has to
+think of on their own, which is the problem we started with.
+
+So it is asked for, the reason is written next to the field, and it is
+required.
+
 ## Why rewards at all
 
 People act on rewards. Every loyalty scheme, every credit card points

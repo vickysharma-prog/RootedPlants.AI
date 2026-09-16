@@ -38,12 +38,13 @@ export function JoinForm() {
       />
       <Field
         name="mobile"
-        label="Mobile, if you want reminders there"
+        label="Mobile"
         type="tel"
-        placeholder="Optional"
+        placeholder="Where the reminders reach you"
         autoComplete="tel"
         defaultValue={state.values.mobile}
         error={state.errors.mobile}
+        note="This is the one we actually need. A plant you forget is a plant that dies, so the reminder has to come to you rather than wait in an app you did not open."
       />
 
       <button
@@ -76,6 +77,7 @@ function Field({
   autoComplete,
   defaultValue,
   error,
+  note,
 }: {
   name: string;
   label: string;
@@ -84,6 +86,7 @@ function Field({
   autoComplete: string;
   defaultValue?: string;
   error?: string;
+  note?: string;
 }) {
   return (
     <label
@@ -102,11 +105,13 @@ function Field({
         aria-invalid={Boolean(error)}
         className="h-8 bg-transparent text-[16.5px] text-cream outline-none placeholder:text-faint"
       />
-      {error && (
+      {error ? (
         <span className="mt-1 text-[14px]" style={{ color: "var(--overdue)" }}>
           {error}
         </span>
-      )}
+      ) : note ? (
+        <span className="mt-1.5 text-[14px] leading-[1.6] text-faint">{note}</span>
+      ) : null}
     </label>
   );
 }

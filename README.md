@@ -60,7 +60,9 @@ whether the idea works and whether it matters. These are designed and
 deliberately not wired:
 
 **Sign in with Google, and passwords.** Making an account works: give a name,
-an email, and a mobile if you want reminders there, and you are through. The
+an email and a mobile number, and you are through. The number is required,
+because it is the channel the reminders arrive on rather than a field a form
+usually has. The
 account lives in a cookie on that device, so it survives reloads and restarts
 and can be signed out, and there is no password to lose and no store of other
 people's credentials to protect.

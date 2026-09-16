@@ -21,7 +21,7 @@ export async function createAccount(
   await writeAccount({
     name: name.trim(),
     email: email.trim().toLowerCase(),
-    mobile: mobile.trim() || undefined,
+    mobile: mobile.trim(),
     joined: new Date().toISOString(),
   });
 
