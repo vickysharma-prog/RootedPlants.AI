@@ -67,7 +67,7 @@ what it is and where it came from. The git log is the evidence.
 
 - [ ] Demo video, **3 to 5 minutes** (hard bounds, both ends)
 - [ ] Link to the repository or code, viewable
-- [ ] Link to the live site or app, if there is one
+- [x] Link to the live site or app, if there is one: https://rooted-two-lake.vercel.app
 - [ ] Completed Devpost project page
 
 ### Judging criteria

@@ -397,3 +397,31 @@ The demo account also needed to stop being obviously a mock-up. It greeted
 everybody as "there", the Me tab bounced to the sign-up form, and the profile
 said verified 0 over a plant 119 days old. The demo link signs you into a real
 account now, with four months of ledger behind it.
+
+## Sep 17, 2026, later
+
+Live at https://rooted-two-lake.vercel.app.
+
+Deployed with the CLI from `web/`, which is the project root on Vercel. The
+GitHub connection failed because the repo is private and the Vercel app has no
+access to it, so pushes do not deploy themselves yet. `npx vercel --prod` from
+`web/` is the command until that is connected.
+
+Vercel appended `.env*` to `web/.gitignore` during linking, after the
+`!.env.example` line that exists to keep that one file committed. A negation
+only holds until something re-ignores the pattern below it, so that would have
+quietly dropped the example env file out of the repo on the next clone. Removed
+it, and the duplicate `.vercel` entry it added alongside.
+
+Checked every route against the live deployment rather than assuming the local
+build was representative: all of them answer, the weather API returns
+`live: true` with real readings, the server clock answers, and the 13MB OpenCV
+file serves. That last one matters, because it is the only asset the identity
+check cannot do without.
+
+Also worth writing down: the site being on HTTPS is what makes the camera and
+the location checks work at all. Both are only available on a secure origin, so
+on `localhost` over plain HTTP they were never going to run, and every
+verification I did here fell back to the file picker and reported honestly that
+it had. The first real end-to-end pass has to happen on a phone against this
+URL.

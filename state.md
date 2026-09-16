@@ -23,6 +23,8 @@ second look.
 
 ## What is built and running
 
+Live at **https://rooted-two-lake.vercel.app**.
+
 The app lives in `web/`. `npm run dev` inside it, then open the printed
 address. No database or API key is needed to run what exists today.
 
@@ -202,7 +204,12 @@ the idea works.
 
 ## Next, in order
 
-1. **Deploy to Vercel.** Needs my login. Everything else is ready for it.
+1. ~~Deploy to Vercel.~~ **Done, live at https://rooted-two-lake.vercel.app.** Deployed with the CLI from
+   `web/`, which is the project root on Vercel. The GitHub connection did not
+   go through, because the repo is private and the Vercel app does not have
+   access to it yet, so pushes do not deploy themselves: run `npx vercel --prod`
+   from `web/` after a change. Connecting it is one click in the dashboard if
+   that gets annoying.
 2. **Record the video.** The loop is the video: Today, a task, the camera
    talking you through it, the checks landing one at a time, the points.
 3. **Flip the repo public** before the deadline: `gh repo edit --visibility public`.
