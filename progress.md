@@ -10,6 +10,23 @@ worked.
 
 ---
 
+## 2026-09-17 - The mark, and a rule out of it
+
+The mark beside the wordmark was five bars bouncing, a few centimetres from a
+sound control that is also five bars bouncing. Same gesture, two meanings.
+
+I over-corrected first and replaced the whole mark with a seedling drawing
+itself. Wrong fix: the bars were fine, it was the motion that collided. So the
+bars are back and the motion changed. They now build rather than bounce, each
+rising in turn to a taller height than the last and holding there while you
+read the name. A level bounces; a record of something kept builds.
+
+The rule that came out of it is worth more than the mark: **two things on one
+screen never share a gesture.** Matching shapes are fine. Matching behaviour
+is what makes the eye read one control as a copy of another.
+
+---
+
 ## 2026-09-17 - Real moving forest, and sound
 
 **Video, after a long detour**

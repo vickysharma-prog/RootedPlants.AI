@@ -190,12 +190,12 @@ the verification checks landing one after another. Everything else is instant,
 which is what makes those two moments feel like moments.
 
 **Two things on one screen never share a gesture.** The mark beside the
-wordmark was five bars that rose and fell, sitting a few centimetres from a
-sound control that is also five bars that rise and fall. Same gesture, two
-meanings, and the eye reads them as the same control. The mark is a seedling
-now: the stem draws itself, the leaves unfurl, then the roots go down below
-the ground line. The roots are the point. The name is Rooted, and the half of
-a plant that decides whether it lives is the half nobody draws.
+wordmark is five bars, and so is the sound control a few centimetres away. The
+shapes can match; what they do must not. The sound control bounces, because
+that is what a level does. The mark builds: each bar rises in turn, left to
+right, each taller than the last, and then they hold there. That is the
+difference between a level and a record of something kept, and it is enough to
+stop the eye reading one as a copy of the other.
 
 ## What the judge sees
 
