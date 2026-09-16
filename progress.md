@@ -10,6 +10,47 @@ worked.
 
 ---
 
+## 2026-09-16 - The app stands up
+
+**Done**
+
+- Six screens drawn and saved as a design canvas: Today, capture, verification
+  card, plant profile, rewards, add a plant. Deep green on warm neutral,
+  Bricolage Grotesque for the numbers. Plant artwork is placeholder until
+  there are real photos, which is the honest way round: the app is supposed to
+  be carried by the user's own pictures.
+- Next.js app in `web/`, Tailwind, the design tokens from the spec wired into
+  CSS variables so light and dark come from one place.
+- Today screen running off a real schedule. Twelve hand-authored species care
+  profiles, then open-meteo moves each watering by what the weather actually
+  did at that plant's coordinates.
+- The demo day control, so the schedule can be shown moving inside five
+  minutes rather than waited on.
+
+**It works, and the weather part is real**
+
+Built it, served it, and the first card came back reading
+`5mm of rain recently, 34 degrees today`. That is live data for the seeded
+plant's location, and the next watering had already moved because of it. That
+one line under each task is the whole weather feature made visible, and it
+cost one fetch with no API key.
+
+**Decided along the way**
+
+- Website as a PWA, not a native app. Camera and location are both available
+  in the browser, and a judge opens a link in one tap. Spending a day of four
+  on distribution would be spending it badly.
+- Every external call in the loop fails soft. The weather call falls back to a
+  plain schedule rather than blocking the page, because a care reminder that
+  waits on an API is worse than one that is a day out.
+
+**Next**
+
+- The capture flow, the verification card, and the points ledger. That closes
+  the loop end to end, which is the one thing the demo has to show.
+
+---
+
 ## 2026-09-16 - Brainstorm, and the decisions out of it
 
 **Decided**
