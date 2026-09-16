@@ -53,6 +53,28 @@ The Today screen carries a **+3 days** control. A watering due on Saturday
 cannot be shown in a five minute video, so the demo moves the day instead of
 waiting for it.
 
+## Not built yet, on purpose
+
+This is a hackathon build with a deadline, so the time went where it changes
+whether the idea works and whether it matters. These are designed and
+deliberately not wired:
+
+**Accounts.** The sign up screen is real design over nothing. Google sign in,
+sessions and a user store are a day of work that would not make the idea
+better, safer to judge, or easier to demonstrate. The app runs on a seeded
+account instead, which is also what a judge wants: a link that opens, not a
+form that asks them to register.
+
+**A database.** Nothing persists between restarts yet. The first thing that
+genuinely needs one is the points ledger, and that is next.
+
+**Reminders on push, email and WhatsApp.** The scheduling data is already
+channel agnostic, so adding a channel is a sender rather than a rewrite. The
+Today list is the surface that matters for now.
+
+**The rewards catalogue is seeded with demo partners.** Generic names, no real
+brands. That is what a catalogue looks like before partners sign.
+
 ## Repository
 
 | | |

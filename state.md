@@ -29,7 +29,7 @@ address. No database or API key is needed to run what exists today.
 | Route | What it is | State |
 |---|---|---|
 | `/` | Landing | Done |
-| `/join` | Sign up | Screen done, not wired |
+| `/join` | Sign up | Screen done. **Deliberately not wired**, see below |
 | `/today` | The app's home, what is due now | Done, running off real weather |
 | `/how-it-works` | How a task gets proved | Done |
 | `/accessibility` | Accessibility statement | Done |
@@ -118,9 +118,9 @@ Each of these blocks something. Answer them before building past them.
    a Vercel login, so it is a ten minute job somebody has to sit through. The
    longer it waits the more it becomes a last-day job, which is exactly what
    it was supposed to avoid.
-6. **Data store.** Nothing persists yet. The capture flow is the first thing
-   that needs it. Neon or Vercel Postgres, one free account, `DATABASE_URL`
-   into `web/.env.local`.
+6. **Data store.** Nothing persists yet. The points ledger is the first thing
+   that genuinely needs it. Neon or Vercel Postgres, one free account,
+   `DATABASE_URL` into `web/.env.local`.
 
 ## Prior art carried in
 
@@ -157,6 +157,18 @@ it is just knowing how to do it.
   `tools/forest_candidates.py` (builds a contact sheet, because search alone
   returns a foggy city street for "misty forest"), `tools/fetch_forest_video.py`,
   and `tools/soil_delta.py` for the watering check.
+
+## Deliberately not built
+
+Accounts were started and then rolled back the same day. Auth.js was in,
+Google was configured, the middleware was written. It came out because none of
+the six judging criteria asks whether sign in works, and a judge opening a
+link wants the app, not a registration form. The sign up screen stays as
+design; the app runs on a seeded account. Recorded in the README as a future
+feature rather than hidden.
+
+The cost of that decision: no per-user data, so the points ledger needs either
+a database or a session before it can be real.
 
 ## Next, in order
 

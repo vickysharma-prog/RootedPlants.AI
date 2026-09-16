@@ -76,11 +76,11 @@ export default function Join() {
 
         <div className="flex-1" />
 
-        <figure className="mt-14 max-w-[30rem]">
+        <figure className="mt-14 max-w-[34rem]">
           <Clip
-            src="/video/planting-tall.mp4"
-            poster="/video/planting-tall-poster.jpg"
-            ratio="31 / 26"
+            src="/video/planting-wide.mp4"
+            poster="/video/planting-wide-poster.jpg"
+            ratio="11 / 6"
           />
           <figcaption className="mt-4 text-[16px] leading-[1.68] text-body">
             The photograph you take first becomes{" "}
