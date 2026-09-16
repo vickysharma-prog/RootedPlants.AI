@@ -59,11 +59,16 @@ This is a hackathon build with a deadline, so the time went where it changes
 whether the idea works and whether it matters. These are designed and
 deliberately not wired:
 
-**Accounts.** The sign up screen is real design over nothing. Google sign in,
-sessions and a user store are a day of work that would not make the idea
-better, safer to judge, or easier to demonstrate. The app runs on a seeded
-account instead, which is also what a judge wants: a link that opens, not a
-form that asks them to register.
+**Sign in with Google, and passwords.** Making an account works: give a name,
+an email, and a mobile if you want reminders there, and you are through. The
+account lives in a cookie on that device, so it survives reloads and restarts
+and can be signed out, and there is no password to lose and no store of other
+people's credentials to protect.
+
+What that costs is that an account lives on one device. Moving to another
+means filling the form again. An identity provider and a user table fix that
+and change nothing else about whether the idea works, so they are a later
+problem.
 
 **A database.** Nothing persists between restarts yet. The first thing that
 genuinely needs one is the points ledger, and that is next.

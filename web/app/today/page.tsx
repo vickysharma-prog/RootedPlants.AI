@@ -5,22 +5,29 @@ import { dayOffset, longDate } from "@/lib/day";
 import { schedule, dueLabel, type Task } from "@/lib/schedule";
 import { species } from "@/lib/data";
 import { jumpDays, resetDay } from "../actions";
+import { AccountBar } from "@/components/AccountBar";
+import { readAccount, firstName } from "@/lib/account";
 
 export default async function Today() {
   const offset = await dayOffset();
   const { due, next } = await schedule(offset);
+  const account = await readAccount();
 
   return (
     <div className="shell">
-      <header className="flex items-start justify-between gap-4 px-6 pt-16 pb-8">
-        <div>
-          <p className="label">{longDate(offset)}</p>
-          <h1 className="display mt-2 text-[40px]">Today</h1>
+      <div className="flex items-center justify-between gap-4 px-6 pt-10">
+        <AccountBar />
+        <div className="text-right whitespace-nowrap">
+          <span className="num text-[18px] text-moss">12</span>{" "}
+          <span className="label text-faint">day streak</span>
         </div>
-        <div className="mt-1 text-right">
-          <p className="num text-[22px] text-moss">12</p>
-          <p className="label mt-0.5 text-faint">day streak</p>
-        </div>
+      </div>
+
+      <header className="px-6 pt-8 pb-8">
+        <p className="label">{longDate(offset)}</p>
+        <h1 className="display mt-2 text-[40px]">
+          {account ? `Morning, ${firstName(account)}` : "Today"}
+        </h1>
       </header>
 
       <main className="flex flex-1 flex-col px-6 pb-6">

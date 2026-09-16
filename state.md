@@ -29,7 +29,7 @@ address. No database or API key is needed to run what exists today.
 | Route | What it is | State |
 |---|---|---|
 | `/` | Landing | Done |
-| `/join` | Sign up | Screen done. **Deliberately not wired**, see below |
+| `/join` | Sign up | **Working.** Makes a real account, cookie held, no password |
 | `/today` | The app's home, what is due now | Done, running off real weather |
 | `/how-it-works` | How a task gets proved | Done |
 | `/accessibility` | Accessibility statement | Done |
@@ -158,17 +158,19 @@ it is just knowing how to do it.
   returns a foggy city street for "misty forest"), `tools/fetch_forest_video.py`,
   and `tools/soil_delta.py` for the watering check.
 
-## Deliberately not built
+## Accounts, and what was tried first
 
-Accounts were started and then rolled back the same day. Auth.js was in,
-Google was configured, the middleware was written. It came out because none of
-the six judging criteria asks whether sign in works, and a judge opening a
-link wants the app, not a registration form. The sign up screen stays as
-design; the app runs on a seeded account. Recorded in the README as a future
-feature rather than hidden.
+Auth.js with Google went in and came straight back out. Google sign in needs
+OAuth credentials from a console, which is a manual step standing between
+anybody and the app, including somebody recording a demo of it.
 
-The cost of that decision: no per-user data, so the points ledger needs either
-a database or a session before it can be real.
+What replaced it: the form makes a real account. Name, email, optional mobile,
+held in a cookie on that device. It survives reloads and restarts, it signs
+out, and Today greets you by name. Nobody has to go anywhere else first.
+
+The trade is that an account lives on one device, which is in the README. An
+identity provider and a user table fix that and change nothing about whether
+the idea works.
 
 ## Next, in order
 

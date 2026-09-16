@@ -10,6 +10,29 @@ worked.
 
 ---
 
+## 2026-09-17 - Accounts, the second attempt
+
+Put Auth.js in with Google, wrote the middleware, wired the sign in page, then
+stopped. Google needs OAuth credentials out of a console, which means anybody
+who wants to use this, including me recording the demo, has to go somewhere
+else first and come back with two strings. That is a wall in front of the
+thing rather than a door into it.
+
+Took it out. The form makes a real account now: name, email, optional mobile,
+held in a cookie on the device. It survives reloads and restarts, it signs
+out, and Today greets you by name. Eight seconds from landing on the page to
+being inside the app, with nothing to install and nothing to go and fetch.
+
+It is honest about what it is not. There is no password, and an account lives
+on one device, and both of those are written in the README rather than left
+for somebody to find out.
+
+The general version of the lesson: before building the version everybody
+builds, ask what it costs the person on the other side. Sometimes the standard
+answer is the wrong one for what you are actually making.
+
+---
+
 ## 2026-09-17 - The edge that would not go away
 
 Spent a while on one small thing and learned something worth keeping.
