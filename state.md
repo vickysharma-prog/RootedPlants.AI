@@ -206,6 +206,11 @@ the idea works.
 2. **Record the video.** The loop is the video: Today, a task, the camera
    talking you through it, the checks landing one at a time, the points.
 3. **Flip the repo public** before the deadline: `gh repo edit --visibility public`.
+   Not needed for the deploy, since Vercel builds from a private repo on the
+   free plan, but the submission asks for a viewable code link and the commit
+   history dated inside Aug 21 to Sep 20 is the evidence that this was built in
+   period. So it stays private while building and goes public before the form
+   is submitted.
 4. Take a real dry-pot and just-watered pair on my own phone and re-check the
    5% threshold against them. The current number was set against a real photo
    and a controlled darkening of it, which proved the check separates them by
