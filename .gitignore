@@ -1,0 +1,29 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+
+# node
+node_modules/
+dist/
+build/
+.next/
+*.log
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# demo assets, too big for git
+*.mp4
+*.mov
