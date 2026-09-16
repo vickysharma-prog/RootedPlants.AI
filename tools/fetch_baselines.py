@@ -141,8 +141,23 @@ def main() -> None:
             else:
                 print(f"{name:16} nothing usable for {query!r}")
 
-    (OUT / "sources.json").write_text(json.dumps(record, indent=2), encoding="utf-8")
-    print(f"\n{len(record)} frames into {OUT}")
+    # Merge rather than overwrite. Running this for one more plant used to
+    # wipe the provenance of every frame already on disk, which is the one
+    # thing in here that has to survive.
+    path = OUT / "sources.json"
+    kept = {}
+    if path.exists():
+        try:
+            kept = {r["file"]: r for r in json.loads(path.read_text(encoding="utf-8"))}
+        except Exception as exc:
+            print(f"  could not read the existing record, starting fresh: {exc}")
+    kept.update({r["file"]: r for r in record})
+
+    # Anything whose file is gone should not be claimed in the record either.
+    kept = {name: r for name, r in kept.items() if (OUT / name).exists()}
+
+    path.write_text(json.dumps(list(kept.values()), indent=2), encoding="utf-8")
+    print(f"\n{len(record)} new frames, {len(kept)} recorded in {OUT}")
 
 
 if __name__ == "__main__":
