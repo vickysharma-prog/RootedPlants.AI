@@ -344,7 +344,9 @@ body {
 .btn-label {
   display: inline-flex;
   align-items: center;
-  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.3, 1);
+  transition:
+    transform 0.28s cubic-bezier(0.2, 0.8, 0.3, 1),
+    color 0.28s ease;
 }
 
 .btn-arrow {
@@ -355,7 +357,8 @@ body {
   transform: translateX(-9px);
   transition:
     opacity 0.26s ease,
-    transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1),
+    color 0.28s ease;
 }
 
 /* A slow band of light crossing once, only while the cursor is on it. */
@@ -377,6 +380,14 @@ body {
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.95);
+  /* The cream warms a shade, and the ink on it turns from near-black to a
+     deep forest green. Small enough that you feel it rather than see it. */
+  background-color: #f7f4ea;
+}
+
+.btn:hover .btn-label,
+.btn:hover .btn-arrow {
+  color: #12351f;
 }
 
 .btn:hover .btn-label {
@@ -429,7 +440,7 @@ body {
 }
 
 .link-arrow:hover {
-  color: var(--cream);
+  color: var(--moss);
 }
 
 .link-arrow:hover .link-text::after {
@@ -460,5 +471,7 @@ body {
   }
   .btn:hover { transform: none; }
   .btn:hover .btn-label { transform: none; }
+  /* Colour still changes: it is the part that says the control is live, and
+     it costs nothing in motion. */
   .btn:hover::before { transform: translateX(-120%); }
 }

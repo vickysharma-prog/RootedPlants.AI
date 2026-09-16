@@ -192,10 +192,17 @@ which is what makes those two moments feel like moments.
 **A button answers the cursor, quietly.** On a dark editorial page a control
 that flashes on hover cheapens everything near it. The primary lifts two
 pixels, its label slides left to make room, an arrow arrives from the right,
-and one slow band of light crosses it. Nothing reflows, because the arrow is
-positioned rather than inserted. The quieter link draws its own rule from left
-to right and walks its arrow five pixels. Both give keyboard users the same
-answer they give the cursor.
+one slow band of light crosses it, its cream warms a shade and the ink on it
+turns from near-black to a deep forest green. Nothing reflows, because the
+arrow is positioned rather than inserted.
+
+The quieter link draws its own rule from left to right, walks its arrow five
+pixels, and turns from the body grey to sage.
+
+Colour is the part that says a control is live, and it is the part that
+survives when somebody has motion turned off, so it stays even under
+reduced-motion while the movement goes. Both give a keyboard the same answer
+they give a cursor.
 
 **Two things on one screen never share a gesture.** The mark beside the
 wordmark is five bars, and so is the sound control a few centimetres away. The
