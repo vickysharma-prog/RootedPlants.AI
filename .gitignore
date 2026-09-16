@@ -24,9 +24,15 @@ Thumbs.db
 .vscode/
 .idea/
 
-# demo assets, too big for git
+# Stray clips stay out, but the five the site is built on do not. They are
+# 9MB between them, which is not too big for git, and without them a clone has
+# no backdrop and a build from this repo serves 404s where the forest should
+# be. That is exactly what happened on the first deploy: it worked from my
+# machine, because the CLI uploads local files, and broke the moment a build
+# had only what was committed.
 *.mp4
 *.mov
+!web/public/video/*.mp4
 
 # seeded design canvas, rebuilt from design/*.dc.html
 design/rooted-app-screens.html
