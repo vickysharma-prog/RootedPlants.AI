@@ -1,0 +1,10 @@
+{
+  "name": "Rooted",
+  "short_name": "Rooted",
+  "description": "Keep a tree alive, get paid for it.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f3ec",
+  "theme_color": "#14543a",
+  "icons": []
+}

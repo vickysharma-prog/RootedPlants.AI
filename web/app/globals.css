@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f6f3ec;
+  --surface: #fffdf8;
+  --sand: #efeadf;
+  --line: #e6e0d3;
+  --ink: #1a1c19;
+  --muted: #6b6f68;
+  --faint: #8c9088;
+  --brand: #14543a;
+  --brand-deep: #0d3927;
+  --brand-tint: #edf3e9;
+  --brand-ink: #2f6b45;
+  --verified: #2f7d4f;
+  --overdue: #c77a21;
+  --overdue-tint: #faeedc;
+  --soil: #7a5c3e;
+  --on-brand: #fffdf8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14150f;
+    --surface: #1d1f18;
+    --sand: #262820;
+    --line: #33362c;
+    --ink: #f0efe6;
+    --muted: #a8aa9e;
+    --faint: #8a8c81;
+    --brand: #8fcba6;
+    --brand-deep: #b4dec3;
+    --brand-tint: #22301f;
+    --brand-ink: #8fcba6;
+    --verified: #8fcba6;
+    --overdue: #d79a4e;
+    --overdue-tint: #322718;
+    --soil: #a98a68;
+    --on-brand: #10180f;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sand: var(--sand);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-ink: var(--brand-ink);
+  --color-verified: var(--verified);
+  --color-overdue: var(--overdue);
+  --color-overdue-tint: var(--overdue-tint);
+  --color-soil: var(--soil);
+  --color-on-brand: var(--on-brand);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* The app is a phone app. On a wide screen it sits in the middle at phone
+   width so the layout is never something other than what was designed. */
+.shell {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+@media (min-width: 640px) {
+  .shell {
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+}
+
+.count-up {
+  animation: count-up 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.tick-in {
+  animation: tick-in 0.36s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+@keyframes tick-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .count-up,
+  .tick-in {
+    animation: none;
+  }
+}
