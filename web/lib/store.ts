@@ -101,6 +101,14 @@ export const photosFor = (plantId: string) =>
     rows.sort((a, b) => a.at.localeCompare(b.at)),
   );
 
+/** The most recent frame of each plant, for anywhere that shows a row of them. */
+export async function latestPhotos(): Promise<Map<string, StoredPhoto>> {
+  const all = await run<StoredPhoto[]>("photos", "readonly", (s) => s.getAll());
+  const out = new Map<string, StoredPhoto>();
+  for (const p of all.sort((a, b) => a.at.localeCompare(b.at))) out.set(p.plantId, p);
+  return out;
+}
+
 export const ledger = () =>
   run<LedgerEntry[]>("ledger", "readonly", (s) => s.getAll()).then((rows) =>
     rows.sort((a, b) => b.at.localeCompare(a.at)),

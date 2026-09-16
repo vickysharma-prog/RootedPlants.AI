@@ -3,6 +3,13 @@ import { BottomNav } from "./BottomNav";
 import { ForestBackdrop } from "./ForestBackdrop";
 
 /**
+ * The primary action, as a class rather than a component, because half of
+ * these are buttons and half are links and both want the same pill.
+ */
+export const ACTION =
+  "btn flex h-[56px] items-center justify-center rounded-full bg-cream px-8 text-[15.5px] font-semibold tracking-[0.01em] text-bg disabled:opacity-60";
+
+/**
  * The room every screen inside the app sits in.
  *
  * Same forest, same column, same hairlines as the pages outside it. Signing in

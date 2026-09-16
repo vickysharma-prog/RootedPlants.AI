@@ -3,10 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { AppShell, AppHeader } from "./AppShell";
+import { AppShell, AppHeader, ACTION } from "./AppShell";
 import { Camera, type Shot } from "./Camera";
 import { species, TASK_INSTRUCTION, TASK_LABEL, type TaskKind } from "@/lib/data";
 import { verify, type Check } from "@/lib/verify";
+import { say } from "@/lib/coach";
 import {
   addLedger,
   getPlant,
@@ -123,6 +124,9 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
         });
       }
 
+      if (verdict.passed) say(`Verified. ${pointsFor(kind, plant.streak)} points.`);
+      else say(`Not yet. ${verdict.checks.find((c) => !c.ok)?.reason ?? ""}`);
+
       setStage("done");
     },
     [plant, kind, offset],
@@ -176,7 +180,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
 
           <div className="flex-1" />
 
-          <button className="btn mt-12 w-full" type="button" onClick={() => setStage("camera")}>
+          <button className={`${ACTION} mt-12 w-full`} type="button" onClick={() => setStage("camera")}>
             <span className="btn-label">Open the camera</span>
             <span className="btn-arrow" aria-hidden>
               →
@@ -190,7 +194,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
     return (
       <AppShell>
         <AppHeader back="/today" eyebrow={plant.name} title={TASK_LABEL[kind]} />
-        <Camera ghost={ghost} instruction={TASK_INSTRUCTION[kind]} onShot={shot} />
+        <Camera ghost={ghost} instruction={TASK_INSTRUCTION[kind]} kind={kind} onShot={shot} />
       </AppShell>
     );
 
@@ -228,7 +232,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
                   {plant.streak} in a row on {plant.name}.
                 </p>
                 <button
-                  className="btn mt-10 w-full"
+                  className={`${ACTION} mt-10 w-full`}
                   type="button"
                   onClick={() => router.push("/today")}
                 >
@@ -246,7 +250,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
                   above in mind.
                 </p>
                 <button
-                  className="btn mt-9 w-full"
+                  className={`${ACTION} mt-9 w-full`}
                   type="button"
                   onClick={() => {
                     setChecks([]);
