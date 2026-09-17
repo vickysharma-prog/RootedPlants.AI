@@ -3,255 +3,276 @@
 <head>
 <meta charset="utf-8">
 <title>The reminder arriving</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /*
  * What a reminder looks like when it arrives.
  *
- * A rendered illustration, not a screen recording of a delivery. The words in
- * it are not invented: they are exactly what `web/lib/notify.ts` composes and
- * sends, for a neem that is a day late in the weather the app actually read
- * this morning. Nothing here carries anybody else's logo or copies their
- * interface; the channel is named in words, because the channel is the fact.
+ * Drawn rather than filmed, but the words are not invented: they are exactly
+ * what `web/lib/notify.ts` composes for a neem that is a day late, in the
+ * weather the app actually read. It carries nobody else's logo and copies
+ * nobody's interface. The channel is named in words, because the channel is
+ * the fact.
  *
- * Recorded at 390 by 844 by record.py, and it plays inside the phone in the
- * frame about reminders.
+ * Everything here is deliberately large. It plays inside a 410px phone in a
+ * 1920px frame, so anything sized for a real phone is unreadable by the time
+ * it reaches a viewer, and a layout that leaves the lower half empty reads as
+ * a black screen.
+ *
+ * Recorded at 390 by 844 by record.py.
  */
-:root {
-  --bg: #0a0f0b;
-  --cream: #ede9de;
-  --body: #c2c8bb;
-  --faint: #838b7e;
-  --gold: #b08c4a;
-  --moss: #9ec9ad;
-}
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
   width: 390px;
   height: 844px;
   overflow: hidden;
-  background: #000;
-  font-family: "Instrument Sans", system-ui, sans-serif;
+  background: #05070a;
   color: #fff;
+  font-family: -apple-system, "SF Pro Text", "Instrument Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .scene {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.4s ease;
 }
 .scene.on { opacity: 1; }
 
 /* ---------------------------------------------------------- lock screen */
 
+/*
+ * An abstract wallpaper rather than a photograph of a forest. Almost nobody
+ * sets a landscape as their lock screen, and one here would have quietly made
+ * the whole thing look staged. Drawn in CSS, so there is also nothing to
+ * license.
+ */
 #lock {
   background:
-    linear-gradient(180deg, rgba(4,8,5,0.55), rgba(4,8,5,0.25) 38%, rgba(4,8,5,0.8)),
-    url("/wallpaper.jpg") center/cover no-repeat;
+    radial-gradient(120% 80% at 18% 8%, #3b2a63 0%, transparent 58%),
+    radial-gradient(110% 70% at 88% 22%, #1d4a63 0%, transparent 55%),
+    radial-gradient(130% 90% at 50% 105%, #10233a 0%, transparent 60%),
+    linear-gradient(170deg, #161a2e 0%, #0a0d18 55%, #06080f 100%);
+  animation: drift 24s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; }
+  to   { background-position: 8% 6%, 92% 10%, 46% 96%, 0 0; }
 }
 
 .status {
   display: flex;
   justify-content: space-between;
-  padding: 16px 26px 0;
-  font-size: 13px;
+  align-items: center;
+  padding: 18px 30px 0;
+  font-size: 17px;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  opacity: 0.9;
+  letter-spacing: 0.01em;
+}
+.status .right { display: flex; align-items: center; gap: 7px; opacity: 0.95; }
+
+.lockicon {
+  text-align: center;
+  margin-top: 46px;
+  opacity: 0.85;
 }
 
 .clock {
   text-align: center;
-  margin-top: 54px;
-}
-.clock .t {
-  font-size: 84px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  margin-top: 6px;
 }
 .clock .d {
-  margin-top: 8px;
-  font-size: 17px;
-  opacity: 0.88;
+  font-size: 22px;
+  font-weight: 500;
+  opacity: 0.92;
+  letter-spacing: 0.01em;
+}
+.clock .t {
+  font-size: 108px;
+  font-weight: 250;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  margin-top: 2px;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.35);
 }
 
-/* The banner, sliding down the way one does. */
+/*
+ * The notification lands in the middle of the screen and is big enough to
+ * read. At the top, at real notification size, it was four percent of the
+ * frame and nobody could tell what had arrived.
+ */
 .banner {
   position: absolute;
-  left: 14px;
-  right: 14px;
-  top: 58px;
-  border-radius: 22px;
-  padding: 14px 16px;
-  background: rgba(22, 26, 22, 0.62);
-  backdrop-filter: blur(26px);
-  border: 1px solid rgba(255,255,255,0.1);
-  transform: translateY(-120px) scale(0.96);
+  left: 18px;
+  right: 18px;
+  top: 340px;
+  border-radius: 30px;
+  padding: 22px 22px 24px;
+  background: rgba(38, 42, 52, 0.66);
+  backdrop-filter: blur(34px);
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 26px 60px rgba(0,0,0,0.5);
+  transform: translateY(-40px) scale(0.9);
   opacity: 0;
-  transition: transform 0.55s cubic-bezier(0.2,0.9,0.25,1), opacity 0.45s ease;
+  transition:
+    transform 0.62s cubic-bezier(0.18, 1.1, 0.3, 1),
+    opacity 0.4s ease;
 }
 .banner.in { transform: none; opacity: 1; }
-
-/* Something has to keep moving or Chrome stops handing the recorder frames,
-   and the clip ends wherever the last transition did. A wallpaper that drifts
-   is both the fix and the right look. */
-#lock { animation: drift 26s ease-in-out infinite alternate; }
-@keyframes drift {
-  from { background-size: auto, 108% auto; background-position: center, 48% 46%; }
-  to   { background-size: auto, 118% auto; background-position: center, 52% 54%; }
-}
 
 .banner .head {
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-size: 12.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  opacity: 0.75;
+  gap: 11px;
+  font-size: 17px;
+  font-weight: 500;
+  opacity: 0.86;
 }
 .banner .mark {
-  width: 20px; height: 20px;
-  border-radius: 6px;
-  background: var(--moss);
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(160deg, #9ec9ad, #6f9e7e);
   display: grid; place-items: center;
+  flex: none;
 }
-.banner .mark svg { display: block; }
-.banner .when { margin-left: auto; letter-spacing: 0; text-transform: none; }
-.banner h3 { margin-top: 9px; font-size: 16px; font-weight: 600; }
-.banner p { margin-top: 3px; font-size: 14.5px; line-height: 1.4; opacity: 0.88; }
+.banner .when { margin-left: auto; font-size: 16px; opacity: 0.7; }
+.banner h3 { margin-top: 16px; font-size: 27px; font-weight: 600; line-height: 1.22; }
+.banner p { margin-top: 9px; font-size: 21px; line-height: 1.42; opacity: 0.9; }
 
 .swipe {
   position: absolute;
-  left: 0; right: 0; bottom: 26px;
+  left: 0; right: 0; bottom: 30px;
   text-align: center;
-  font-size: 13px;
-  opacity: 0.6;
 }
 .bar {
-  width: 134px; height: 5px;
+  width: 140px; height: 5px;
   border-radius: 99px;
-  background: rgba(255,255,255,0.75);
-  margin: 12px auto 0;
+  background: rgba(255,255,255,0.8);
+  margin: 0 auto;
 }
 
-/* ------------------------------------------------------- a message thread */
+/* -------------------------------------------------------------- a thread */
 
-#chat, #mail { background: var(--bg); display: flex; flex-direction: column; }
+#chat, #mail {
+  background: linear-gradient(180deg, #10141a 0%, #0a0d12 100%);
+  display: flex;
+  flex-direction: column;
+}
 
 .appbar {
-  padding: 46px 20px 14px;
-  border-bottom: 1px solid rgba(237,233,222,0.08);
+  padding: 26px 22px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 13px;
+  background: rgba(20, 24, 30, 0.9);
 }
 .appbar .mark {
-  width: 30px; height: 30px;
-  border-radius: 9px;
-  background: var(--moss);
+  width: 44px; height: 44px;
+  border-radius: 13px;
+  background: linear-gradient(160deg, #9ec9ad, #6f9e7e);
   display: grid; place-items: center;
+  flex: none;
 }
-.appbar .who { font-size: 15.5px; font-weight: 600; color: var(--cream); }
-.appbar .sub {
-  font-size: 11.5px;
-  font-family: "JetBrains Mono", monospace;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--faint);
-  margin-top: 1px;
-}
+.appbar .who { font-size: 20px; font-weight: 600; }
+.appbar .sub { font-size: 14.5px; opacity: 0.55; margin-top: 2px; }
 
-.thread { flex: 1; padding: 22px 18px; }
+.thread { flex: 1; padding: 26px 20px; }
 .bubble {
-  max-width: 88%;
-  background: rgba(158,201,173,0.1);
-  border: 1px solid rgba(158,201,173,0.2);
-  border-radius: 18px 18px 18px 5px;
-  padding: 14px 16px;
-  font-size: 15px;
+  background: rgba(158, 201, 173, 0.13);
+  border: 1px solid rgba(158, 201, 173, 0.22);
+  border-radius: 24px 24px 24px 7px;
+  padding: 20px 21px;
+  font-size: 20px;
   line-height: 1.52;
-  color: var(--cream);
   white-space: pre-line;
   opacity: 0;
-  transform: translateY(12px);
-  transition: all 0.45s cubic-bezier(0.2,0.9,0.25,1);
+  transform: translateY(16px);
+  transition: all 0.45s cubic-bezier(0.2, 0.9, 0.25, 1);
 }
 .bubble.in { opacity: 1; transform: none; }
-.bubble a { color: var(--moss); }
-.stamp {
-  margin-top: 7px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  color: var(--faint);
+.bubble a { color: #9ec9ad; text-decoration: none; }
+.stamp { margin-top: 10px; font-size: 14px; opacity: 0.45; }
+
+.typed {
+  margin-top: auto;
+  padding: 16px 20px 26px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.typed .box {
+  flex: 1;
+  height: 46px;
+  border-radius: 99px;
+  border: 1px solid rgba(255,255,255,0.13);
+  background: rgba(255,255,255,0.04);
+}
+.typed .send {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: rgba(158, 201, 173, 0.22);
 }
 
-/* ------------------------------------------------------------------ mail */
+/* ---------------------------------------------------------------- inbox */
 
-.mailhead { padding: 46px 22px 0; }
-.mailhead .from {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
+.mailhead { padding: 26px 24px 0; }
+.mailhead .from { font-size: 15px; opacity: 0.55; }
 .mailhead h2 {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-weight: 400;
   font-size: 30px;
-  line-height: 1.18;
-  color: var(--cream);
-  margin-top: 10px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 12px;
 }
 .mailhead .meta {
-  margin-top: 12px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(237,233,222,0.08);
-  font-size: 13px;
-  color: var(--faint);
+  margin-top: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 15px;
+  opacity: 0.5;
 }
 .mailbody {
-  padding: 20px 22px;
-  font-size: 15.5px;
-  line-height: 1.62;
-  color: var(--body);
+  padding: 24px 24px;
+  font-size: 20px;
+  line-height: 1.6;
+  opacity: 0.94;
   white-space: pre-line;
 }
-.mailbody a { color: var(--moss); }
+.mailbody a { color: #9ec9ad; text-decoration: none; }
 
-.tag {
-  position: absolute;
-  left: 18px; bottom: 22px;
+.foot {
+  margin-top: auto;
+  padding: 0 24px 30px;
   font-family: "JetBrains Mono", monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
+  font-size: 13px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(131,139,126,0.75);
+  opacity: 0.4;
 }
 </style>
 </head>
 <body>
 
-<!-- 1 · locked, then the banner arrives -->
+<!-- 1 · locked, and then it arrives -->
 <section class="scene on" id="lock">
-  <div class="status"><span>8:31</span><span>5G &nbsp;&#9646;&#9646;&#9646;</span></div>
+  <p class="lockicon">
+    <svg width="17" height="22" viewBox="0 0 17 22" fill="none" stroke="#fff" stroke-width="1.8">
+      <rect x="1.4" y="9" width="14.2" height="11.6" rx="3.4" fill="#fff" stroke="none"/>
+      <path d="M4.6 9V5.6a3.9 3.9 0 0 1 7.8 0V9"/>
+    </svg>
+  </p>
+
   <div class="clock">
-    <p class="t">8:31</p>
     <p class="d">Friday, 18 September</p>
+    <p class="t">8:31</p>
   </div>
 
   <div class="banner" id="banner">
     <div class="head">
       <span class="mark">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0a0f0b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0a0f0b" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 20V9"/><path d="M12 12C7 12 5 9 5 5c4 0 7 3 7 7z"/><path d="M12 14c5-1 7-4 7-8-4 0-7 3-7 8z"/>
         </svg>
       </span>
@@ -262,25 +283,22 @@ html, body {
     <p>Vicky, your neem is asking for water. It has been waiting 1 day.</p>
   </div>
 
-  <div class="swipe">
-    <span>swipe up to open</span>
-    <div class="bar"></div>
-  </div>
 </section>
 
-<!-- 2 · the same message, on the phone's messaging app -->
+<!-- 2 · the same message, in a thread -->
 <section class="scene" id="chat">
   <div class="appbar">
     <span class="mark">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0a0f0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#0a0f0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 20V9"/><path d="M12 12C7 12 5 9 5 5c4 0 7 3 7 7z"/><path d="M12 14c5-1 7-4 7-8-4 0-7 3-7 8z"/>
       </svg>
     </span>
     <span>
       <span class="who">Rooted</span>
-      <span class="sub">on WhatsApp</span>
+      <div class="sub">on WhatsApp</div>
     </span>
   </div>
+
   <div class="thread">
     <div class="bubble" id="bubble">Vicky, your neem is asking for water.
 
@@ -290,55 +308,58 @@ It has been waiting 1 day.
 Two minutes, photographed as you do it. <a href="#">rootedplants.vercel.app/today</a></div>
     <p class="stamp">8:31</p>
   </div>
-  <p class="tag">the same message, every channel</p>
+
+  <div class="typed"><div class="box"></div><div class="send"></div></div>
 </section>
 
 <!-- 3 · and in the inbox -->
 <section class="scene" id="mail">
   <div class="mailhead">
-    <p class="from">Rooted &middot; by email</p>
+    <p class="from">Rooted &nbsp;&middot;&nbsp; by email</p>
     <h2>&#128167; Neem is thirsty</h2>
     <p class="meta">to vicky@rooted.demo &nbsp;&middot;&nbsp; 8:31</p>
   </div>
+
   <div class="mailbody">Vicky, your neem is asking for water.
 
 Water it. 5mm of rain recently, 34&deg; today
 It has been waiting 1 day.
 
 Two minutes, photographed as you do it. <a href="#">rootedplants.vercel.app/today</a></div>
-  <p class="tag">composed once, sent everywhere</p>
+
+  <p class="foot">composed once &middot; sent on every channel</p>
 </section>
 
 <script>
-const show = (id) => {
+const show = (id) =>
   document.querySelectorAll(".scene").forEach((s) => s.classList.toggle("on", s.id === id));
-};
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// Waits to be told. The recorder needs several seconds to attach before it
-// sees anything, and a sequence that starts on load has already walked past
-// the lock screen by then.
+// Waits to be told. The recorder needs several seconds to attach, and a
+// sequence that starts on load has already walked past the lock screen by
+// the time it is watching.
 window.play = async () => {
-  await wait(2000);
-  banner.classList.add("in");
-  await wait(4200);
-
-  show("chat");
-  await wait(500);
-  bubble.classList.add("in");
-  await wait(4200);
-
-  show("mail");
-  await wait(4400);
-
-  // Back to the top, so a second pass has somewhere to go.
+  show("lock");
   banner.classList.remove("in");
   bubble.classList.remove("in");
+
+  await wait(2100);
+  banner.classList.add("in");
+  await wait(4600);
+
+  show("chat");
+  await wait(600);
+  bubble.classList.add("in");
+  await wait(4400);
+
+  show("mail");
+  await wait(4600);
+
   show("lock");
+  banner.classList.remove("in");
 };
 
-// Opened by hand rather than by the recorder: just run it.
-if (!location.search.includes("wait")) setTimeout(() => window.play(), 600);
+if (!location.search.includes("wait")) setTimeout(() => window.play(), 500);
 </script>
 </body>
 </html>

@@ -139,6 +139,10 @@ CHIME_AT = 2.35
 # be measured.
 SLOT = (1385, 112, 410, 820)
 
+# The card draws a status bar across the top of the phone, and the recording
+# starts below it.
+BEZEL_TOP = 44
+
 
 def clip_for(card: int):
     p = HERE / "footage" / f"{FOOTAGE[card]}.mp4" if card in FOOTAGE else None
@@ -450,7 +454,13 @@ async def main():
     # Inset a little, so the card's own rounded border still draws around the
     # recording instead of being covered by its square corners.
     inset = 5
-    vw, vh = pw - inset * 2, ph - inset * 2
+    vw = pw - inset * 2
+    vh = ph - BEZEL_TOP
+    # Scaled to the width and then cropped, never squashed. A 390 by 844
+    # recording forced into this box would be visibly the wrong shape, and the
+    # app has enough room at the top of every screen to give up sixty pixels
+    # to the status bar that now sits there.
+    tall = round(vw * 844 / 390)
 
     chain = "[0:v]fps=30,scale=1920:1080:flags=lanczos[base]"
     last = "base"
@@ -464,9 +474,12 @@ async def main():
         # Two inputs are already taken: the cards and the audio.
         idx = 2 + len(overlays)
         inputs += ["-stream_loop", "-1", "-i", str(clip)]
-        chain += f";[{idx}:v]scale={vw}:{vh},setpts=PTS-STARTPTS+{start_t:.3f}/TB[p{card}]"
         chain += (
-            f";[{last}][p{card}]overlay={x + inset}:{y + inset}:"
+            f";[{idx}:v]scale={vw}:{tall},crop={vw}:{vh}:0:{max(0, (tall - vh) // 2 - 22)},"
+            f"setpts=PTS-STARTPTS+{start_t:.3f}/TB[p{card}]"
+        )
+        chain += (
+            f";[{last}][p{card}]overlay={x + inset}:{y + BEZEL_TOP}:"
             f"enable='between(t,{start_t:.3f},{end_t:.3f})'[v{card}]"
         )
         last = f"v{card}"

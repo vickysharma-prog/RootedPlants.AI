@@ -234,14 +234,35 @@ pre .c { color: var(--faint); }
   padding: 0 30px;
   text-align: center;
 }
-.phone span {
+.phone span.slot {
   font-family: "JetBrains Mono", monospace;
   font-size: 13px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   line-height: 1.9;
   color: rgba(131, 139, 126, 0.55);
+  padding: 0 24px;
 }
+
+/* Time, signal, battery. The recording is laid in underneath this, which is
+   why the encoder insets it: without the chrome the footage read as a slab of
+   website pasted into the frame rather than as a phone. */
+.bezel {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 26px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(237, 233, 222, 0.9);
+  letter-spacing: 0.01em;
+  z-index: 2;
+}
+.bezel .right { display: flex; align-items: center; gap: 6px; }
+
 
 .card.end.on { display: grid; place-items: center; text-align: center; }
 .end h1 { font-size: 100px; }
@@ -316,7 +337,7 @@ pre .c { color: var(--faint); }
       <p class="sub" data-step="2">They plant it, they take the photo, they post it, and that is where it ends.</p>
       <p class="sub" data-step="3"><b>The planting is an event. The keeping alive is a year.</b></p>
     </div>
-    <div class="phone"><span>record: hands planting a sapling</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">record: hands planting a sapling</span></div>
   </section>
 
   <!-- 3 -->
@@ -394,7 +415,7 @@ pre .c { color: var(--faint); }
         <span class="tag">A WEBSITE, NOTHING TO INSTALL</span>
       </div>
     </div>
-    <div class="phone"><span>record: today, the list of what is due</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">record: today, the list of what is due</span></div>
   </section>
 
   <!-- 7 -->
@@ -412,7 +433,7 @@ pre .c { color: var(--faint); }
         <p>Read at this plant's own coordinates, this morning. Rain pushes the next watering out. Heat pulls it in.</p>
       </div>
     </div>
-    <div class="phone"><span>record: today, with the weather line</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">record: today, with the weather line</span></div>
   </section>
 
   <!-- 8 -->
@@ -459,7 +480,7 @@ pre .c { color: var(--faint); }
       </div>
       <p class="sub" data-step="4" style="font-size:22px">It does not read the leaves and tell you the plant is sick. A yellow leaf has a dozen causes, and a number invented from one is a number that gets trusted.</p>
     </div>
-    <div class="phone"><span>record: a plant page, health and photo history</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">record: a plant page, health and photo history</span></div>
   </section>
 
   <!-- 10 -->
@@ -478,7 +499,7 @@ pre .c { color: var(--faint); }
         <p>Then the ring around the shutter turns green, so the same answer is there with the sound off.</p>
       </div>
     </div>
-    <div class="phone"><span>record: the camera guiding you, sound on</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">record: the camera guiding you, sound on</span></div>
   </section>
 
   <!-- 11 -->
@@ -496,7 +517,7 @@ pre .c { color: var(--faint); }
         <p>A watered pot against its own dry baseline, and the same frame against itself. The five percent threshold sits clear of both.</p>
       </div>
     </div>
-    <div class="phone"><span>record: the checks landing one by one</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">record: the checks landing one by one</span></div>
   </section>
 
   <!-- 12 -->
@@ -521,7 +542,7 @@ pre .c { color: var(--faint); }
         </div>
       </div>
     </div>
-    <div class="phone"><span>record: it refuses a different plant</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">record: it refuses a different plant</span></div>
   </section>
 
   <!-- 13 -->
@@ -540,7 +561,7 @@ pre .c { color: var(--faint); }
       </div>
       <p class="sub" data-step="4" style="font-size:22px">And five profiles for anything not on the list, because knowing a plant's name and knowing how to keep it alive are different jobs.</p>
     </div>
-    <div class="phone"><span>record: a notebook, then a real plant</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">record: a notebook, then a real plant</span></div>
   </section>
 
   <!-- 14 -->
@@ -556,7 +577,7 @@ pre .c { color: var(--faint); }
       </div>
       <p class="sub" data-step="3">A name, a plant and a date go to the server. <b>No photographs. No coordinates. No points.</b> Those never leave the phone.</p>
     </div>
-    <div class="phone"><span>record: locked phone, then the message arriving</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">record: locked phone, then the message arriving</span></div>
   </section>
 
   <!-- 15 -->
@@ -572,7 +593,7 @@ pre .c { color: var(--faint); }
 <span class="c">streak  7d x1.2    14d x1.4    30d x2</span></pre>
       <p class="sub" data-step="3">That record is what funds the rewards. The offers in the app are stand-ins, because naming a real company in a demo would put words in their mouth.</p>
     </div>
-    <div class="phone"><span>rewards</span></div>
+    <div class="phone"><span class="bezel"><span>8:31</span><span class="right"><svg width="17" height="12" viewBox="0 0 19 13" fill="rgba(237,233,222,0.9)"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1" opacity="0.45"/></svg><svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="rgba(237,233,222,0.9)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.6a10 10 0 0 1 14 0"/><path d="M3.6 7.4a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10.6" r="1.1" fill="rgba(237,233,222,0.9)" stroke="none"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="rgba(237,233,222,0.55)"/><rect x="2" y="2" width="15" height="9" rx="2" fill="rgba(237,233,222,0.9)"/><path d="M23 4.5v4a2.6 2.6 0 0 0 0-4z" fill="rgba(237,233,222,0.55)"/></svg></span></span><span class="slot">rewards</span></div>
   </section>
 
   <!-- 16 -->
