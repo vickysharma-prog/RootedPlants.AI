@@ -113,7 +113,7 @@ export function AddPlant({ offset }: { offset: number }) {
         label: "It is a plant",
         reason: data.plant
           ? `Read as a plant, ${conf}% on the closest species. This becomes the baseline every later photograph of it is measured against.`
-          : "Nothing in this photograph reads as a plant. Point the camera at the plant itself, close enough to fill the frame.",
+          : "There is no plant in this photograph. Point the camera at the plant itself, close enough to fill the frame.",
         ok: Boolean(data.plant),
       });
       // Only pre-select when it is actually sure. A studio cutout of a curry
@@ -140,6 +140,13 @@ export function AddPlant({ offset }: { offset: number }) {
 
     setChecks(built);
     setAsking("done");
+
+    if (voiceOn()) {
+      const plant = built.find((c) => c.key === "plant");
+      if (plant && !plant.ok) {
+        say("There is no plant in that photograph. Point the camera at the plant itself and take it again.");
+      }
+    }
   }
 
   function locate() {
@@ -248,7 +255,24 @@ export function AddPlant({ offset }: { offset: number }) {
               identify(taken, taken.fromCamera);
             } else {
               setAsking("off");
-              setStep("what");
+              setChecks([
+                {
+                  key: "source",
+                  label: "Photographed in the app",
+                  reason: taken.fromCamera
+                    ? "The frame came straight off the camera."
+                    : "This came from a file rather than the camera.",
+                  ok: taken.fromCamera,
+                },
+                {
+                  key: "plant",
+                  label: "It is a plant",
+                  reason:
+                    "Not checked. You chose not to send the photograph, so nothing looked at what is in it.",
+                  ok: true,
+                },
+              ]);
+              setStep("checking");
             }
           }}
         />
@@ -262,7 +286,15 @@ export function AddPlant({ offset }: { offset: number }) {
         <AppHeader
           back="/plants"
           eyebrow="Step one of three"
-          title={asking === "working" ? "Checking the photo" : passed ? "Good photo." : "Not this one."}
+          title={
+            asking === "working"
+              ? "Checking the photo"
+              : passed
+                ? "Good photo."
+                : checks.some((c) => c.key === "plant" && !c.ok)
+                  ? "That is not a plant."
+                  : "Not this one."
+          }
           right={<VoiceToggle />}
         />
         <main className="app-column flex flex-1 flex-col pb-12">
@@ -496,10 +528,16 @@ function Identify({
 
   if (!top)
     return (
-      <p className="text-[14.5px] leading-relaxed text-faint">
-        That one could not be identified. Find it by name below, or use
-        Anything else at the bottom.
-      </p>
+      <div className="rounded-[16px] border border-line-soft bg-surface p-5">
+        <p className="label" style={{ color: "var(--overdue)" }}>
+          No plant found in that photograph
+        </p>
+        <p className="mt-3 max-w-[27rem] text-[13.5px] leading-relaxed text-body">
+          Nothing in it reads as a plant, so there is nothing to name. Go back
+          and photograph the plant itself, or find it by name below if you want
+          to carry on with this picture.
+        </p>
+      </div>
     );
 
   const sure = top.score >= SURE;
