@@ -39,49 +39,86 @@ CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 # is silence after the line, in seconds, and it is where the film does its
 # thinking.
 BEATS = [
-    (1, "Everybody plants a tree.", 0.9),
-    (1, "Nobody finds out what happened to it.", 1.4),
+    # card, step, line, silence after it
+    (1, 1, "Everybody plants a tree.", 0.9),
+    (1, 2, "Nobody finds out what happened to it.", 1.5),
 
-    (2, "A birthday, a school drive, a company afternoon. They plant it, they take the photo, they post it, and that is where it ends.", 0.4),
-    (2, "The planting is an event. The keeping alive is a year of small boring jobs, and nothing is attached to doing them.", 0.8),
+    (2, 1, "A birthday. A school drive. A company afternoon.", 0.3),
+    (2, 2, "They plant it, they take the photo, they post it, and that is where it ends.", 0.4),
+    (2, 3, "The planting is an event. The keeping alive is a year.", 0.9),
 
-    (3, "We already pay people to do boring things. Pay a credit card bill on time and you earn points.", 0.5),
-    (3, "So why is nothing pointed at the thing our lives actually depend on?", 1.2),
+    (3, 1, "So how much of it lives? India's national auditor spent ten years going and looking.", 0.5),
+    (3, 2, "Of a two point eight million hectare afforestation target, about five percent was actually achieved.", 0.5),
+    (3, 3, "At seventy percent of the sites they assessed, there was little or no improvement in tree cover at all.", 0.5),
+    (3, 4, "One site reported two thousand plantings. Thirty saplings were found on the ground. None of them had survived.", 1.4),
 
-    (4, "This is not a timer. Every plant carries its own coordinates, and the schedule moves with the weather actually over it.", 0.4),
-    (4, "Rain pushes the next watering out. Heat pulls it in. A pest check comes round sooner after warm wet days, because that is when pests turn up.", 0.7),
+    (4, 1, "And here is the part that explains the rest.", 0.5),
+    (4, 2, "Of five hundred and fifty six plantation records, four hundred and thirty one did not say what was planted, where it stood, or whether it lived.", 0.8),
+    (4, 3, "There is no record of what survived, because nobody was ever asked to keep one. Planting is not the solution. Keeping it alive is.", 1.3),
 
-    (5, "Before the camera opens, it tells you exactly what the photograph has to show. The instruction is the check, so following it passes every time.", 0.4),
-    (5, "And while the camera is open it reads the frame a few times a second and says the one thing that would make the shot pass. Out loud, because whoever is doing this is holding a watering can.", 1.0),
+    (5, 1, "And we already pay people to do boring things.", 0.4),
+    (5, 2, "Pay a credit card bill on time, and you earn points.", 0.4),
+    (5, 3, "Order dinner, take a taxi, board a flight. Points.", 0.4),
+    (5, 4, "Water the tree you planted last year, and nothing happens at all.", 1.2),
 
-    (6, "Then it is checked. Each one says the number it measured.", 0.35),
-    (6, "Where the photograph came from. The time, taken on our side, never read off the file. The location, against where this plant was registered.", 0.4),
-    (6, "And for watering, soil at least five percent darker than that plant's own dry baseline. That number was measured, not guessed.", 0.9),
+    (6, 1, "Rooted pays you for keeping it alive.", 0.5),
+    (6, 2, "Register a plant once, then do the small jobs it needs, photographed as you do them. Every one that checks out earns points.", 0.4),
+    (6, 3, "It is a website. There is nothing to install, and it works with no signal.", 0.8),
 
-    (7, "This is the one that matters. If photographing any plant earned points, the points would be worth nothing.", 0.5),
-    (7, "So OpenCV finds keypoints in this photograph and in the plant's first one, matches them, and asks whether they agree on a single viewpoint.", 0.4),
-    (7, "The same plant returns four hundred and eighty five.", 0.6),
-    (7, "A different plant of the same species, in a similar pot, returns four.", 1.5),
-    (7, "It runs on the phone. No photograph is uploaded to do it.", 0.9),
+    (7, 1, "You do not have to know anything about the plant.", 0.4),
+    (7, 2, "Every plant carries its own coordinates, and the schedule moves with the weather actually over it.", 0.4),
+    (7, 3, "Rain pushes the next watering out. Heat pulls it in.", 0.9),
 
-    (8, "Registering a plant checks the photograph before it accepts it. Point it at a notebook and it says so.", 0.4),
-    (8, "Point it at a plant and it works out what that plant is, and says how confident it is. Below thirty percent it will not fill the answer in for you.", 0.4),
-    (8, "Seventy-eight species, searched by the names people actually use. And five profiles for anything not on the list, because knowing a plant's name and knowing how to keep it alive are different jobs.", 0.9),
+    (8, 1, "So nobody has to babysit it. It tells you the job, on the day the job is due.", 0.5),
+    (8, 2, "Water, on this species own interval, moved by the rain and the heat.", 0.4),
+    (8, 3, "Feeding, with what this plant actually wants, and a reminder to use less than you think, because fertiliser the roots do not take ends up in the groundwater.", 0.4),
+    (8, 4, "Pests, with what actually goes wrong with this species and the mildest thing that works, because a spray kills the ladybirds that were handling it for you.", 0.4),
+    (8, 5, "And a weekly look while it is establishing, which is when losing it is most likely and least visible.", 1.0),
 
-    (9, "The whole premise is that people forget. So this cannot wait to be opened.", 0.5),
-    (9, "The next few tasks are registered with a clock on our side, and when one comes due the same message goes out on WhatsApp, on email and as a text.", 0.4),
-    (9, "A name, a plant and a date. No photographs. No coordinates. Those never leave the phone.", 1.0),
+    (9, 1, "Every plant also carries a health score.", 0.4),
+    (9, 2, "It is built from how the watering has gone against the schedule this species wants, and how long the run is.", 0.4),
+    (9, 3, "Thriving, steady, watch it, at risk. And one sentence saying what moved it.", 0.5),
+    (9, 4, "What it does not do is read the leaves and tell you the plant is sick. A yellow leaf has a dozen causes, and a number invented from one is a number that gets trusted.", 1.0),
 
-    (10, "Organisations spend heavily on planting drives every year and get back a photograph from planting day.", 0.4),
-    (10, "Rooted produces the record of what actually survived, and that record is what funds the rewards. The offers in here are stand-ins, because naming a real company in a demo would put words in their mouth.", 1.0),
+    (10, 1, "When it is time, the camera tells you what would make the shot pass.", 0.4),
+    (10, 2, "Out loud, because whoever is doing this is holding a watering can.", 0.4),
+    (10, 3, "It reads the frame twice a second, on the phone, and nothing is uploaded to do it.", 0.4),
+    (10, 4, "Tilt down so the soil is in frame. Then the ring around the shutter turns green.", 1.0),
 
-    (11, "Two things did not survive contact with a measurement.", 0.6),
-    (11, "I tried to work out the species on the device, from colour and texture. It got the right answer first zero times out of seventeen, against eight percent for guessing at random. Neem and curry leaf are both green pinnate leaves, and no histogram separates them.", 0.5),
-    (11, "And the check that says this is the same plant used to compare brightness grids. A photograph of a different neem tree walked straight through it.", 0.5),
-    (11, "It was the weakest thing in the app wearing the name of the strongest. So it was measured, thrown away, and replaced.", 1.2),
+    (11, 1, "Then the photograph is checked, and every check says the number it measured.", 0.4),
+    (11, 2, "That it came off the camera and not a file picker. The time, taken on our side. The location, against where this plant was registered.", 0.4),
+    (11, 3, "And for watering, soil at least five percent darker than that plant's own dry baseline. That threshold was measured, not guessed.", 1.0),
 
-    (12, "Nothing in here reports a number it did not measure.", 2.2),
+    (12, 1, "This is the one that matters. If photographing any plant earned points, the points would be worth nothing.", 0.5),
+    (12, 2, "So OpenCV finds keypoints in this photograph and in the plant's first one, matches them, and asks whether they agree on a single viewpoint.", 0.4),
+    (12, 3, "The same plant returns four hundred and eighty five.", 0.6),
+    (12, 4, "A different plant of the same species, in a similar pot, returns four.", 1.6),
+
+    (13, 1, "Registering a plant checks the photograph before it accepts it.", 0.4),
+    (13, 2, "Point it at a notebook and it says so. A plain object scores nought point two percent as a plant. The least convincing real plant still scored nine.", 0.5),
+    (13, 3, "Point it at a plant and it works out what that plant is. Seventy-eight species, searched by the names people actually use.", 0.4),
+    (13, 4, "And five profiles for anything not on the list, because knowing a plant's name and knowing how to keep it alive are different jobs.", 1.0),
+
+    (14, 1, "The whole premise is that people forget. So this cannot wait to be opened.", 0.5),
+    (14, 2, "When a task comes due, the same message goes out on WhatsApp, on email, and as a text.", 0.4),
+    (14, 3, "A name, a plant and a date go to the server. No photographs. No coordinates. Those never leave the phone.", 1.1),
+
+    (15, 1, "Organisations spend heavily on planting drives every year, and get back a photograph from planting day.", 0.5),
+    (15, 2, "Rooted produces the record of what actually survived, and every point in it traces to one verified task.", 0.5),
+    (15, 3, "That record is what funds the rewards. The offers in the app are stand-ins, because naming a real company in a demo would put words in their mouth.", 1.1),
+
+    (16, 1, "Two things did not survive contact with a measurement.", 0.5),
+    (16, 2, "I tried to work out the species on the device, from colour and texture. It got the right answer first zero times out of seventeen.", 0.5),
+    (16, 3, "And the check that says this is the same plant used to compare brightness grids. A photograph of a different neem tree walked straight through it.", 0.5),
+    (16, 4, "Against eight percent for guessing at random. It was the weakest thing in the app wearing the name of the strongest. So it was measured, thrown away, and replaced.", 1.4),
+
+    (17, 1, "We reward people for spending money.", 1.1),
+    (17, 3, "Rooted rewards them for keeping something alive.", 1.6),
+
+    (18, 1, "Plant it. Keep it. Get paid for it.", 1.0),
+    (18, 3, "Nothing in here reports a number it did not measure.", 2.4),
 ]
+
 
 
 def run(*args, **kw):
@@ -109,13 +146,13 @@ def duration(path: pathlib.Path) -> float:
     return float(out)
 
 
-def render_card(n: int, out: pathlib.Path):
+def render_card(n: int, step: int, out: pathlib.Path):
     """One frame, at exactly 1920x1080, straight out of the browser."""
     run(
         CHROME, "--headless", "--disable-gpu", "--hide-scrollbars",
         "--force-device-scale-factor=1",
         f"--screenshot={out}", "--window-size=1920,1080",
-        "--virtual-time-budget=8000", f"{CARDS}#{n}",
+        "--virtual-time-budget=7000", f"{CARDS}#{n}.{step}",
     )
 
 
@@ -185,7 +222,7 @@ async def main():
     clock = 0.0
     subs = []
 
-    for i, (card, text, hold) in enumerate(BEATS):
+    for i, (card, step, text, hold) in enumerate(BEATS):
         mp3 = WORK / f"say{i:02d}.mp3"
         await speak(text, mp3)
         spoken = duration(mp3)
@@ -204,28 +241,30 @@ async def main():
             subs.append((at, at + length - 0.04, piece))
             at += length
 
-        lines.append({"card": card, "mp3": mp3, "spoken": spoken, "hold": hold})
+        lines.append({"card": card, "step": step, "mp3": mp3, "spoken": spoken, "hold": hold})
         clock += spoken + hold
-        print(f"  {i + 1:>2}. card {card}  {spoken:5.2f}s + {hold:.1f}s   {text[:56]}")
+        print(f"  {i + 1:>2}. {card:>2}.{step}  {spoken:5.2f}s + {hold:.1f}s   {text[:54]}")
 
     total = clock
     print(f"\ntotal {int(total) // 60}:{int(total) % 60:02d}")
 
-    # 2. Render each card once, however many lines sit on it.
-    cards = sorted({l["card"] for l in lines})
-    print(f"\nrendering {len(cards)} cards")
-    for n in cards:
-        render_card(n, WORK / f"card{n:02d}.png")
-        print(f"  card {n}")
+    # 2. One frame per step, so an element arrives on the sentence that
+    #    introduces it rather than with everything else at the top.
+    frames = sorted({(l["card"], l["step"]) for l in lines})
+    print(f"\nrendering {len(frames)} frames")
+    for c, st in frames:
+        render_card(c, st, WORK / f"f{c:02d}_{st}.png")
+    print(f"  {len(frames)} done")
 
-    # 3. How long each card is on screen: every line that sits on it.
+    # 3. How long each frame is on screen.
     shots = []
     for l in lines:
+        key = (l["card"], l["step"])
         span = l["spoken"] + l["hold"]
-        if shots and shots[-1][0] == l["card"]:
+        if shots and shots[-1][0] == key:
             shots[-1][1] += span
         else:
-            shots.append([l["card"], span])
+            shots.append([key, span])
 
     # 4. One audio track, in order, with the silences in between.
     concat = WORK / "audio.txt"
@@ -263,12 +302,12 @@ async def main():
     #    because a still frame under a voice reads as a slide and this is not
     #    a slide deck.
     shot_list = WORK / "shots.txt"
+    def frame(key):
+        return (WORK / f"f{key[0]:02d}_{key[1]}.png").as_posix()
+
     shot_list.write_text(
-        "\n".join(
-            f"file '{(WORK / f'card{c:02d}.png').as_posix()}'\nduration {d:.3f}"
-            for c, d in shots
-        )
-        + f"\nfile '{(WORK / f'card{shots[-1][0]:02d}.png').as_posix()}'",
+        "\n".join(f"file '{frame(k)}'\nduration {d:.3f}" for k, d in shots)
+        + f"\nfile '{frame(shots[-1][0])}'",
         encoding="utf-8",
     )
 
@@ -282,10 +321,13 @@ async def main():
         encoding="utf-8",
     )
 
+    # Bottom left, in its own box, inside the card's own left margin.
+    # Centred at the bottom it crossed under both the words and the phone,
+    # which is the one strip of the frame that belongs to neither.
     style = (
-        "FontName=Instrument Sans,FontSize=21,PrimaryColour=&H00BBC8C2,"
-        "OutlineColour=&H90000000,BorderStyle=3,Outline=0,Shadow=0,"
-        "MarginV=42,Alignment=2"
+        "FontName=Instrument Sans,FontSize=20,PrimaryColour=&H00BBC8C2,"
+        "BackColour=&HC8080D06,BorderStyle=3,Outline=7,Shadow=0,"
+        "Alignment=1,MarginL=110,MarginR=780,MarginV=56"
     )
 
     out = HERE / "rooted-demo.mp4"
