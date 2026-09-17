@@ -1,3 +1,5 @@
+import type { TaskKind } from "./data";
+
 /**
  * Getting a reminder to somebody who has stopped thinking about the plant.
  *
@@ -22,6 +24,8 @@ export type Sent = {
 };
 
 export type Reminder = {
+  /** Which job, so the plant can ask in its own words. */
+  kind: TaskKind;
   name: string;
   email: string;
   /** Digits with a country code, as E.164 without the plus. */
@@ -34,6 +38,40 @@ export type Reminder = {
 };
 
 /* ------------------------------------------------------------------ words */
+
+/**
+ * The plant speaks first.
+ *
+ * A reminder that opens with a task reads like a chore, and a chore is the
+ * thing people already ignore. This whole product rests on somebody caring
+ * whether one particular plant lives, so the message leads with the plant
+ * wanting something and the instruction follows it.
+ *
+ * One emoji, at the front, because that is what makes a notification legible
+ * at a glance on a lock screen. Not a sprinkle of them through the sentence.
+ */
+const PLEA: Record<TaskKind, { icon: string; asks: string; line: string }> = {
+  water: {
+    icon: "\u{1F4A7}",
+    asks: "is thirsty",
+    line: "is asking for water",
+  },
+  fertilise: {
+    icon: "\u{1F331}",
+    asks: "is hungry",
+    line: "could do with a feed",
+  },
+  pest: {
+    icon: "\u{1F50D}",
+    asks: "needs a look",
+    line: "wants its leaves checked",
+  },
+  checkin: {
+    icon: "\u{1F33F}",
+    asks: "misses you",
+    line: "has not been seen in a while",
+  },
+};
 
 /**
  * One message, written once, sent everywhere.
@@ -49,13 +87,15 @@ export function compose(r: Reminder, url: string) {
       ? "due today"
       : `due in ${r.dueIn} days`;
 
-  const subject = late
-    ? `${r.plant} needs water, ${when}`
-    : `${r.plant}: ${r.task.toLowerCase()}, ${when}`;
+  const plea = PLEA[r.kind] ?? PLEA.water;
+  const first = r.name.trim().split(/\s+/)[0] || "there";
+
+  const subject = `${plea.icon} ${r.plant} ${plea.asks}`;
 
   const body =
-    `${r.name.split(" ")[0]}, ${r.plant} is ${when}.\n\n` +
-    `${r.task}. ${r.why}\n\n` +
+    `${first}, your ${r.plant.toLowerCase()} ${plea.line}.\n\n` +
+    `${r.task}. ${r.why}\n` +
+    `${late ? `It has been waiting ${-r.dueIn} ${-r.dueIn === 1 ? "day" : "days"}.` : `It is ${when}.`}\n\n` +
     `Two minutes, photographed as you do it. ${url}`;
 
   return { subject, body, when };

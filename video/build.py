@@ -126,8 +126,14 @@ FOOTAGE = {
     7: "today",
     9: "plants",
     11: "howitworks",
+    14: "reminder",
     15: "rewards",
 }
+
+# A notification lands about two and a third seconds into the reminder clip.
+# Two soft notes at that moment, so the arrival is heard as well as seen.
+CHIME_AT = 2.35
+
 
 # Where the phone sits in a frame, pinned in the stylesheet so nothing has to
 # be measured.
@@ -338,6 +344,15 @@ async def main():
         else:
             shots.append([key, span])
 
+    # When each card is on screen. The overlays need it, and so does the
+    # chime, which has to land inside the reminder clip.
+    windows = {}
+    at = 0.0
+    for (c, _st), d in shots:
+        a, b = windows.get(c, (at, at))
+        windows[c] = (min(a, at), max(b, at + d))
+        at += d
+
     # 4. One audio track, in order, with the silences in between.
     concat = WORK / "audio.txt"
     parts = []
@@ -363,18 +378,43 @@ async def main():
     else:
         print(f"  audio and picture agree to {abs(joined - total) * 1000:.0f}ms")
 
+    # Two soft notes where the notification lands, made rather than sampled so
+    # there is nothing to license and nothing to attribute.
+    chime = WORK / "chime.wav"
+    run("ffmpeg", "-loglevel", "error", "-y", "-f", "lavfi",
+        "-i", "sine=frequency=880:duration=0.5",
+        "-f", "lavfi", "-i", "sine=frequency=1318:duration=0.5",
+        "-filter_complex",
+        "[0:a]adelay=0|0,volume=0.30,afade=t=out:st=0.06:d=0.42[a];"
+        "[1:a]adelay=110|110,volume=0.26,afade=t=out:st=0.10:d=0.40[b];"
+        "[a][b]amix=inputs=2:duration=longest,aformat=sample_rates=44100:channel_layouts=mono",
+        str(chime))
+
     # A forest under the whole thing, quiet enough that nobody notices it and
     # loud enough that its absence would be felt. The same CC0 recording the
     # app itself plays, so the film sounds like the product.
     ambience = HERE.parent / "web" / "public" / "audio" / "forest.mp3"
     mixed = WORK / "track.m4a"
     if ambience.exists():
+        ping = ""
+        extra = []
+        if 14 in windows and clip_for(14):
+            at_ms = int((windows[14][0] + CHIME_AT) * 1000)
+            extra = ["-i", str(chime)]
+            ping = f"[2:a]adelay={at_ms}|{at_ms},volume=0.85[ping];"
+            mix_in = "[0:a][bed][ping]amix=inputs=3"
+        else:
+            mix_in = "[0:a][bed]amix=inputs=2"
+
         run("ffmpeg", "-loglevel", "error", "-y",
             "-i", str(voice_track),
             "-stream_loop", "-1", "-i", str(ambience),
+            *extra,
             "-filter_complex",
             "[1:a]volume=0.10,afade=t=in:st=0:d=2[bed];"
-            "[0:a][bed]amix=inputs=2:duration=first:dropout_transition=0,"
+            + ping
+            + mix_in
+            + ":duration=first:dropout_transition=0,"
             "afade=t=out:st=" + f"{total - 2.0:.2f}" + ":d=2[a]",
             "-map", "[a]", "-c:a", "aac", "-b:a", "192k", str(mixed))
         voice_track = mixed
@@ -404,15 +444,6 @@ async def main():
 
     ass = HERE / "rooted-demo.ass"
     write_ass(subs, ass)
-
-    # 7. Work out when each card is on screen, so its recording can be laid
-    #    into the phone for exactly that stretch and no longer.
-    windows = {}
-    at = 0.0
-    for (c, _st), d in shots:
-        a, b = windows.get(c, (at, at))
-        windows[c] = (min(a, at), max(b, at + d))
-        at += d
 
     inputs = []
     x, y, pw, ph = SLOT

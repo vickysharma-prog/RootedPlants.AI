@@ -93,6 +93,7 @@ export async function pushSchedule(due: Task[], next: Task[]) {
   const rows = [...due, ...next].slice(0, 12).map((t) => ({
     plant: t.plant.name,
     task: t.label,
+    kind: t.kind,
     dueAt: new Date(Date.now() + t.dueIn * 86_400_000).toISOString(),
     why: t.why,
   }));

@@ -51,6 +51,7 @@ export async function GET(request: Request) {
     for (const d of due) {
       const sent = await notify(
         {
+          kind: (d.kind ?? "water") as never,
           name: sub.name,
           email: sub.email,
           mobile: sub.mobile,

@@ -65,6 +65,7 @@ export function MeBoard({
           channels: Object.entries(on).filter(([, v]) => v).map(([k]) => k),
           plant: task?.plant.name,
           task: task?.label,
+          kind: task?.kind,
           why: task?.why,
           dueIn: task?.dueIn,
         }),

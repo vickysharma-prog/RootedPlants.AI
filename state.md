@@ -241,7 +241,7 @@ the idea works.
    email, `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` and `TWILIO_WHATSAPP_FROM`
    for WhatsApp, and `KV_REST_API_URL` with `KV_REST_API_TOKEN` for the clock
    to have somewhere to look. Names are in `web/.env.example`.
-6. **The seven shots the film still wants.** Each empty frame in the video says
+6. **The three shots the film still wants.** Each empty frame in the video says
    on screen what belongs in it. Three of them need a real plant in a real
    hand and cannot be generated: the camera guiding you, it refusing a
    different plant of the same species, and a notebook being refused.

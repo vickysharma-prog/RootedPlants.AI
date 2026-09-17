@@ -20,12 +20,14 @@ export async function POST(request: Request) {
   const body = (await request.json().catch(() => ({}))) as {
     channels?: Channel[];
     plant?: string;
+    kind?: string;
     task?: string;
     why?: string;
     dueIn?: number;
   };
 
   const reminder: Reminder = {
+    kind: (body.kind ?? "water") as Reminder["kind"],
     name: account.name,
     email: account.email,
     mobile: account.mobile,

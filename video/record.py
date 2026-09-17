@@ -214,11 +214,14 @@ CLIPS = {
     "rewards": (f"{SITE}/rewards", 12, SMOOTH_SCROLL % 8000),
     # How a task is checked.
     "howitworks": (f"{SITE}/how-it-works", 14, SMOOTH_SCROLL % 10000),
+    # The reminder arriving. Rendered here rather than filmed off a phone,
+    # from the words notify.ts actually composes.
+    "reminder": ("http://localhost:3333/reminder.html?wait", 17, "window.play()"),
 }
 
 
 # These only exist before there is an account, so they are filmed first.
-SIGNED_OUT = {"landing", "join", "howitworks"}
+SIGNED_OUT = {"landing", "join", "howitworks", "reminder"}
 
 
 def record(tab: Tab, name: str, url: str, seconds: float, script):

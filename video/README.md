@@ -30,7 +30,15 @@ frame, lays each recording into its phone for exactly the stretch its card is
 on screen, and encodes the lot with a forest bed underneath. It prints how far
 the audio and the picture disagree, which should be zero.
 
-**Four frames still have a phone-shaped hole**, each labelled on screen with
+`reminder.html` is the one piece of footage that is drawn rather than filmed: a
+lock screen, the notification dropping in, then the same message in a thread
+and in an inbox. **The words in it are not invented.** They are exactly what
+`web/lib/notify.ts` composes for a neem that is a day late, in the weather the
+app actually read. It carries nobody else's logo and copies nobody's interface;
+the channel is named in words, because the channel is the fact. When the
+reminder keys are set, replace it with a real delivery.
+
+**Three frames still have a phone-shaped hole**, each labelled on screen with
 what belongs there:
 
 | Frame | Record | Why it cannot be generated |
@@ -38,7 +46,7 @@ what belongs there:
 | 10 | The camera guiding you, sound on | Needs a real camera pointed at a real plant |
 | 12 | It refusing a different plant | Needs two plants of the same species |
 | 13 | A notebook, then a real plant | Needs both in front of a camera |
-| 14 | A locked phone, then the message | Needs the reminder keys set and a real delivery |
+
 
 Drop each recording into its hole in an editor and the film is finished.
 

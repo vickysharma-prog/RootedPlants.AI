@@ -20,6 +20,8 @@ import type { Channel } from "./notify";
 export type Due = {
   plant: string;
   task: string;
+  /** Which job, so the message can let the plant ask in its own words. */
+  kind?: string;
   /** ISO. When this one wants doing. */
   dueAt: string;
   why: string;
