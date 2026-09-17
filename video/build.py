@@ -61,13 +61,13 @@ BEATS = [
     (5, 4, "Water the tree you planted last year, and nothing happens at all.", 0.84),
 
     (6, 1, "Rooted pays you for keeping it alive.", 0.35),
-    (6, 2, "Register a plant once. Do the small jobs it needs, photographed as you do them.", 0.28),
+    (6, 2, "The tulsi on the balcony. The money plant in the living room. The lemon by the kitchen window. The sapling from last month's drive. Same app, same schedule.", 0.28),
 
     (7, 1, "You do not have to know anything about the plant.", 0.28),
     (7, 2, "Every plant carries its own coordinates, and the schedule moves with the weather over it.", 0.28),
     (7, 3, "Rain pushes the next watering out. Heat pulls it in.", 0.63),
 
-    (8, 1, "So nobody has to babysit it. It tells you the job on the day it is due.", 0.35),
+    (8, 1, "And you are not expected to know any of it. When to feed it, what to spray, how often to water. It tells you, on the day.", 0.35),
     (8, 2, "Water, on this species own interval, moved by the rain and the heat.", 0.28),
     (8, 3, "Feeding, with what this plant wants, and less than you think, because what the roots do not take ends up in the groundwater.", 0.28),
     (8, 4, "Pests, with what goes wrong with this species, and the mildest thing that works.", 0.28),
@@ -111,7 +111,7 @@ BEATS = [
     (17, 1, "We reward people for spending money.", 0.77),
     (17, 3, "Rooted rewards them for keeping something alive.", 1.12),
 
-    (18, 1, "Plant it. Keep it. Get paid for it.", 0.70),
+    (18, 1, "Plant it. Keep it. Get paid for it. Open it on your phone, and keep something alive.", 0.70),
     (18, 3, "Nothing in here reports a number it did not measure.", 1.68),
 ]
 
@@ -144,7 +144,13 @@ def run(*args, **kw):
 
 
 async def speak(text: str, out: pathlib.Path):
-    """One line, spoken, with the word timings that make the subtitles."""
+    """One line, spoken.
+
+    Written out as WAV rather than kept as MP3. Every MP3 carries a little
+    encoder padding at each end, and joining fifty-six of them by copy added
+    three and a quarter seconds that the picture knew nothing about, so the
+    voice drifted further behind the frames the longer it ran.
+    """
     tts = edge_tts.Communicate(text, VOICE, rate=RATE)
     cues = []
     with open(out, "wb") as f:
@@ -287,8 +293,11 @@ async def main():
 
     for i, (card, step, text, hold) in enumerate(BEATS):
         mp3 = WORK / f"say{i:02d}.mp3"
+        wav = WORK / f"say{i:02d}.wav"
         await speak(text, mp3)
-        spoken = duration(mp3)
+        run("ffmpeg", "-loglevel", "error", "-y", "-i", str(mp3),
+            "-ar", "44100", "-ac", "1", "-c:a", "pcm_s16le", str(wav))
+        spoken = duration(wav)
 
         # Subtitles follow the words, not the beat, so they never sit ahead of
         # the voice or lag behind it.
@@ -304,7 +313,7 @@ async def main():
             subs.append((at, at + length - 0.04, piece))
             at += length
 
-        lines.append({"card": card, "step": step, "mp3": mp3, "spoken": spoken, "hold": hold})
+        lines.append({"card": card, "step": step, "mp3": wav, "spoken": spoken, "hold": hold})
         clock += spoken + hold
         print(f"  {i + 1:>2}. {card:>2}.{step}  {spoken:5.2f}s + {hold:.1f}s   {text[:54]}")
 
@@ -335,15 +344,24 @@ async def main():
     for i, l in enumerate(lines):
         parts.append(f"file '{l['mp3'].as_posix()}'")
         if l["hold"] > 0:
-            gap = WORK / f"gap{i:02d}.mp3"
+            gap = WORK / f"gap{i:02d}.wav"
             run("ffmpeg", "-loglevel", "error", "-y", "-f", "lavfi",
-                "-i", f"anullsrc=r=24000:cl=mono:d={l['hold']}", str(gap))
+                "-i", f"anullsrc=r=44100:cl=mono:d={l['hold']}",
+                "-c:a", "pcm_s16le", str(gap))
             parts.append(f"file '{gap.as_posix()}'")
     concat.write_text("\n".join(parts), encoding="utf-8")
 
-    voice_track = WORK / "voice.mp3"
+    voice_track = WORK / "voice.wav"
     run("ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0",
         "-i", str(concat), "-c", "copy", str(voice_track))
+
+    # The joined track has to be the length the picture was cut to. Anything
+    # else is drift, and drift is what put the voice behind the frames.
+    joined = duration(voice_track)
+    if abs(joined - total) > 0.15:
+        print(f"  warning: audio {joined:.2f}s against a {total:.2f}s picture")
+    else:
+        print(f"  audio and picture agree to {abs(joined - total) * 1000:.0f}ms")
 
     # A forest under the whole thing, quiet enough that nobody notices it and
     # loud enough that its absence would be felt. The same CC0 recording the

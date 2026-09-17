@@ -247,11 +247,17 @@ pre .c { color: var(--faint); }
 .end h1 { font-size: 100px; }
 .qr { display: flex; gap: 44px; margin-top: 44px; justify-content: center; }
 .qr .box {
-  width: 150px; height: 150px;
-  background: var(--cream);
-  display: grid; place-items: center;
-  color: #444; font-size: 11px;
+  width: 168px; height: 168px;
+  display: block;
+  border-radius: 6px;
+}
+.qr .link {
+  margin-top: 7px;
   font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--gold);
 }
 .qr p {
   margin-top: 13px;
@@ -381,11 +387,11 @@ pre .c { color: var(--faint); }
     <div class="left">
       <p class="eyebrow">Rooted</p>
       <h1>Get paid for <em>keeping it alive.</em></h1>
-      <p class="sub" data-step="2">Register a plant once. Do the small jobs it needs, photographed as you do them. Every one that checks out earns points.</p>
+      <p class="sub" data-step="2">The tulsi on the balcony. The money plant in the living room. The lemon in a pot by the kitchen window. The sapling from last month's drive. Same app, same schedule.</p>
       <div class="tags" data-step="3">
-        <span class="tag">A WEBSITE, ON A PHONE</span>
-        <span class="tag">NOTHING TO INSTALL</span>
-        <span class="tag">WORKS WITH NO SIGNAL</span>
+        <span class="tag">HOUSEHOLD PLANTS</span>
+        <span class="tag">DRIVE SAPLINGS</span>
+        <span class="tag">A WEBSITE, NOTHING TO INSTALL</span>
       </div>
     </div>
     <div class="phone"><span>record: today, the list of what is due</span></div>
@@ -412,8 +418,8 @@ pre .c { color: var(--faint); }
   <!-- 8 -->
   <section class="card wide">
     <div class="left">
-      <p class="eyebrow">Nobody has to babysit it</p>
-      <h1 class="small">It tells you the job, on the day the job is due.</h1>
+      <p class="eyebrow">You are not expected to know any of this</p>
+      <h1 class="small">When to feed it. What to spray.<br><em>It tells you, on the day.</em></h1>
       <div class="jobs">
         <div class="job" data-step="2">
           <span class="what">Water</span>
@@ -607,10 +613,17 @@ pre .c { color: var(--faint); }
       <h1 style="font-size:116px">Rooted</h1>
       <p class="sub" style="text-align:center;margin:18px auto 0;font-size:28px">Plant it. Keep it. Get paid for it.</p>
       <div class="qr" data-step="2">
-        <div><div class="box" id="qr1">QR</div><p>Live app</p></div>
-        <div><div class="box" id="qr2">QR</div><p>Code</p></div>
+        <div>
+          <img class="box" src="assets/qr-app.png" alt="">
+          <p>Use it</p>
+          <p class="link">rootedplants.vercel.app</p>
+        </div>
+        <div>
+          <img class="box" src="assets/qr-code.png" alt="">
+          <p>Read it</p>
+          <p class="link">github.com/vickysharma-prog/nextstep-2026</p>
+        </div>
       </div>
-      <p class="url" data-step="2">rootedplants.vercel.app</p>
       <p data-step="3" style="margin-top:34px;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)">Nothing in here reports a number it did not measure</p>
     </div>
   </section>

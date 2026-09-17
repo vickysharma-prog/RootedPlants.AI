@@ -40,78 +40,83 @@ Dialogue: 0,0:00:55.33,0:00:58.29,Say,,0,0,0,,Pay a credit card bill on time, an
 Dialogue: 0,0:00:58.61,0:01:00.51,Say,,0,0,0,,Water the tree you planted last year,
 Dialogue: 0,0:01:00.55,0:01:01.93,Say,,0,0,0,,and nothing happens at all.
 Dialogue: 0,0:01:02.81,0:01:04.86,Say,,0,0,0,,Rooted pays you for keeping it alive.
-Dialogue: 0,0:01:05.25,0:01:06.51,Say,,0,0,0,,Register a plant once.
-Dialogue: 0,0:01:06.55,0:01:09.84,Say,,0,0,0,,Do the small jobs it needs, photographed as you do them.
-Dialogue: 0,0:01:10.16,0:01:12.40,Say,,0,0,0,,You do not have to know anything about the plant.
-Dialogue: 0,0:01:12.72,0:01:14.87,Say,,0,0,0,,Every plant carries its own coordinates,
-Dialogue: 0,0:01:14.91,0:01:17.50,Say,,0,0,0,,and the schedule moves with the weather over it.
-Dialogue: 0,0:01:17.82,0:01:19.91,Say,,0,0,0,,Rain pushes the next watering out.
-Dialogue: 0,0:01:19.95,0:01:20.98,Say,,0,0,0,,Heat pulls it in.
-Dialogue: 0,0:01:21.65,0:01:23.18,Say,,0,0,0,,So nobody has to babysit it.
-Dialogue: 0,0:01:23.22,0:01:25.54,Say,,0,0,0,,It tells you the job on the day it is due.
-Dialogue: 0,0:01:25.93,0:01:28.33,Say,,0,0,0,,Water, on this species own interval,
-Dialogue: 0,0:01:28.37,0:01:30.43,Say,,0,0,0,,moved by the rain and the heat.
-Dialogue: 0,0:01:30.75,0:01:34.11,Say,,0,0,0,,Feeding, with what this plant wants, and less than you think,
-Dialogue: 0,0:01:34.15,0:01:37.57,Say,,0,0,0,,because what the roots do not take ends up in the groundwater.
-Dialogue: 0,0:01:37.89,0:01:40.58,Say,,0,0,0,,Pests, with what goes wrong with this species,
-Dialogue: 0,0:01:40.62,0:01:42.53,Say,,0,0,0,,and the mildest thing that works.
-Dialogue: 0,0:01:42.85,0:01:45.02,Say,,0,0,0,,And a weekly look while it establishes,
-Dialogue: 0,0:01:45.06,0:01:47.35,Say,,0,0,0,,which is when losing it is least visible.
-Dialogue: 0,0:01:48.09,0:01:50.33,Say,,0,0,0,,Every plant also carries a health score.
-Dialogue: 0,0:01:50.65,0:01:53.09,Say,,0,0,0,,Thriving, steady, watch it, at risk,
-Dialogue: 0,0:01:53.13,0:01:55.72,Say,,0,0,0,,and one sentence saying what moved it.
-Dialogue: 0,0:01:56.11,0:01:59.01,Say,,0,0,0,,It does not read the leaves and call the plant sick.
-Dialogue: 0,0:01:59.05,0:02:00.87,Say,,0,0,0,,A yellow leaf has a dozen causes.
-Dialogue: 0,0:02:01.61,0:02:04.43,Say,,0,0,0,,The camera then tells you what would make the shot pass.
-Dialogue: 0,0:02:04.75,0:02:05.27,Say,,0,0,0,,Out loud,
-Dialogue: 0,0:02:05.31,0:02:08.76,Say,,0,0,0,,because whoever is doing this is holding a watering can.
-Dialogue: 0,0:02:09.08,0:02:12.10,Say,,0,0,0,,It reads the frame twice a second, on the phone,
-Dialogue: 0,0:02:12.14,0:02:13.24,Say,,0,0,0,,uploading nothing.
-Dialogue: 0,0:02:13.56,0:02:16.01,Say,,0,0,0,,Tilt down so the soil is in frame.
-Dialogue: 0,0:02:16.05,0:02:17.91,Say,,0,0,0,,Then the ring turns green.
-Dialogue: 0,0:02:18.65,0:02:21.90,Say,,0,0,0,,Then it is checked, and every check says the number it measured.
-Dialogue: 0,0:02:22.22,0:02:23.51,Say,,0,0,0,,It came off the camera.
-Dialogue: 0,0:02:23.55,0:02:24.49,Say,,0,0,0,,The time is ours.
-Dialogue: 0,0:02:24.53,0:02:27.56,Say,,0,0,0,,The location matches where this plant was registered.
-Dialogue: 0,0:02:27.88,0:02:31.84,Say,,0,0,0,,And soil five percent darker than that plant's own dry baseline.
-Dialogue: 0,0:02:31.88,0:02:33.21,Say,,0,0,0,,Measured, not guessed.
-Dialogue: 0,0:02:33.95,0:02:35.45,Say,,0,0,0,,This is the one that matters.
-Dialogue: 0,0:02:35.49,0:02:38.74,Say,,0,0,0,,If any plant earned points, the points would be worth nothing.
-Dialogue: 0,0:02:39.13,0:02:42.23,Say,,0,0,0,,So OpenCV matches keypoints against the plant's first
-Dialogue: 0,0:02:42.27,0:02:45.62,Say,,0,0,0,,photograph, and asks whether they agree on one viewpoint.
-Dialogue: 0,0:02:45.94,0:02:48.61,Say,,0,0,0,,The same plant returns four hundred and eighty five.
-Dialogue: 0,0:02:49.07,0:02:52.67,Say,,0,0,0,,A different plant of the same species, in a similar pot,
-Dialogue: 0,0:02:52.71,0:02:53.52,Say,,0,0,0,,returns four.
-Dialogue: 0,0:02:54.68,0:02:58.14,Say,,0,0,0,,Registering a plant checks the photograph before it accepts it.
-Dialogue: 0,0:02:58.46,0:03:00.62,Say,,0,0,0,,Point it at a notebook and it says so.
-Dialogue: 0,0:03:00.66,0:03:03.04,Say,,0,0,0,,An object scores nought point two percent.
-Dialogue: 0,0:03:03.08,0:03:05.07,Say,,0,0,0,,The weakest real plant scored nine.
-Dialogue: 0,0:03:05.46,0:03:08.26,Say,,0,0,0,,Point it at a plant and it works out what it is.
-Dialogue: 0,0:03:08.30,0:03:10.99,Say,,0,0,0,,Seventy-eight species, searched by local name.
-Dialogue: 0,0:03:11.31,0:03:13.53,Say,,0,0,0,,The whole premise is that people forget.
-Dialogue: 0,0:03:13.57,0:03:15.39,Say,,0,0,0,,So this cannot wait to be opened.
-Dialogue: 0,0:03:15.78,0:03:19.65,Say,,0,0,0,,When a task comes due, the same message goes out on WhatsApp,
-Dialogue: 0,0:03:19.69,0:03:20.62,Say,,0,0,0,,email and text.
-Dialogue: 0,0:03:20.94,0:03:24.01,Say,,0,0,0,,A name, a plant and a date go to the server.
-Dialogue: 0,0:03:24.05,0:03:26.20,Say,,0,0,0,,No photographs, no coordinates.
-Dialogue: 0,0:03:27.01,0:03:29.61,Say,,0,0,0,,Organisations spend heavily on planting drives,
-Dialogue: 0,0:03:29.65,0:03:31.79,Say,,0,0,0,,and get back a photograph from day one.
-Dialogue: 0,0:03:32.18,0:03:34.92,Say,,0,0,0,,Rooted produces the record of what survived,
-Dialogue: 0,0:03:34.96,0:03:37.64,Say,,0,0,0,,every point traceable to one verified task.
-Dialogue: 0,0:03:38.03,0:03:39.72,Say,,0,0,0,,That record funds the rewards.
-Dialogue: 0,0:03:39.76,0:03:41.15,Say,,0,0,0,,The offers are stand-ins,
-Dialogue: 0,0:03:41.19,0:03:44.66,Say,,0,0,0,,because naming a real company would put words in their mouth.
-Dialogue: 0,0:03:45.47,0:03:48.31,Say,,0,0,0,,Two things did not survive contact with a measurement.
-Dialogue: 0,0:03:48.70,0:03:51.22,Say,,0,0,0,,I tried to work out the species on the device.
-Dialogue: 0,0:03:51.26,0:03:54.11,Say,,0,0,0,,It got the right answer zero times out of seventeen.
-Dialogue: 0,0:03:54.50,0:03:57.44,Say,,0,0,0,,And the identity check used to compare brightness grids.
-Dialogue: 0,0:03:57.48,0:03:59.88,Say,,0,0,0,,A different neem tree walked straight through.
-Dialogue: 0,0:04:00.27,0:04:02.06,Say,,0,0,0,,Against eight percent for guessing.
-Dialogue: 0,0:04:02.10,0:04:05.13,Say,,0,0,0,,It was the weakest thing in the app wearing the name of the
-Dialogue: 0,0:04:05.17,0:04:06.69,Say,,0,0,0,,strongest, so it was replaced.
-Dialogue: 0,0:04:07.71,0:04:09.69,Say,,0,0,0,,We reward people for spending money.
-Dialogue: 0,0:04:10.50,0:04:13.02,Say,,0,0,0,,Rooted rewards them for keeping something alive.
-Dialogue: 0,0:04:14.18,0:04:14.84,Say,,0,0,0,,Plant it.
-Dialogue: 0,0:04:14.88,0:04:15.47,Say,,0,0,0,,Keep it.
-Dialogue: 0,0:04:15.51,0:04:16.71,Say,,0,0,0,,Get paid for it.
-Dialogue: 0,0:04:17.45,0:04:20.15,Say,,0,0,0,,Nothing in here reports a number it did not measure.
+Dialogue: 0,0:01:05.25,0:01:06.64,Say,,0,0,0,,The tulsi on the balcony.
+Dialogue: 0,0:01:06.68,0:01:08.66,Say,,0,0,0,,The money plant in the living room.
+Dialogue: 0,0:01:08.70,0:01:10.50,Say,,0,0,0,,The lemon by the kitchen window.
+Dialogue: 0,0:01:10.54,0:01:12.56,Say,,0,0,0,,The sapling from last month's drive.
+Dialogue: 0,0:01:12.60,0:01:13.94,Say,,0,0,0,,Same app, same schedule.
+Dialogue: 0,0:01:14.26,0:01:16.50,Say,,0,0,0,,You do not have to know anything about the plant.
+Dialogue: 0,0:01:16.82,0:01:18.98,Say,,0,0,0,,Every plant carries its own coordinates,
+Dialogue: 0,0:01:19.02,0:01:21.61,Say,,0,0,0,,and the schedule moves with the weather over it.
+Dialogue: 0,0:01:21.93,0:01:24.02,Say,,0,0,0,,Rain pushes the next watering out.
+Dialogue: 0,0:01:24.06,0:01:25.08,Say,,0,0,0,,Heat pulls it in.
+Dialogue: 0,0:01:25.75,0:01:28.17,Say,,0,0,0,,And you are not expected to know any of it.
+Dialogue: 0,0:01:28.21,0:01:31.09,Say,,0,0,0,,When to feed it, what to spray, how often to water.
+Dialogue: 0,0:01:31.13,0:01:32.53,Say,,0,0,0,,It tells you, on the day.
+Dialogue: 0,0:01:32.92,0:01:35.31,Say,,0,0,0,,Water, on this species own interval,
+Dialogue: 0,0:01:35.35,0:01:37.41,Say,,0,0,0,,moved by the rain and the heat.
+Dialogue: 0,0:01:37.73,0:01:41.10,Say,,0,0,0,,Feeding, with what this plant wants, and less than you think,
+Dialogue: 0,0:01:41.14,0:01:44.56,Say,,0,0,0,,because what the roots do not take ends up in the groundwater.
+Dialogue: 0,0:01:44.88,0:01:47.56,Say,,0,0,0,,Pests, with what goes wrong with this species,
+Dialogue: 0,0:01:47.60,0:01:49.52,Say,,0,0,0,,and the mildest thing that works.
+Dialogue: 0,0:01:49.84,0:01:52.01,Say,,0,0,0,,And a weekly look while it establishes,
+Dialogue: 0,0:01:52.05,0:01:54.33,Say,,0,0,0,,which is when losing it is least visible.
+Dialogue: 0,0:01:55.07,0:01:57.31,Say,,0,0,0,,Every plant also carries a health score.
+Dialogue: 0,0:01:57.63,0:02:00.08,Say,,0,0,0,,Thriving, steady, watch it, at risk,
+Dialogue: 0,0:02:00.12,0:02:02.70,Say,,0,0,0,,and one sentence saying what moved it.
+Dialogue: 0,0:02:03.09,0:02:05.99,Say,,0,0,0,,It does not read the leaves and call the plant sick.
+Dialogue: 0,0:02:06.03,0:02:07.85,Say,,0,0,0,,A yellow leaf has a dozen causes.
+Dialogue: 0,0:02:08.59,0:02:11.41,Say,,0,0,0,,The camera then tells you what would make the shot pass.
+Dialogue: 0,0:02:11.73,0:02:12.25,Say,,0,0,0,,Out loud,
+Dialogue: 0,0:02:12.29,0:02:15.75,Say,,0,0,0,,because whoever is doing this is holding a watering can.
+Dialogue: 0,0:02:16.07,0:02:19.08,Say,,0,0,0,,It reads the frame twice a second, on the phone,
+Dialogue: 0,0:02:19.12,0:02:20.23,Say,,0,0,0,,uploading nothing.
+Dialogue: 0,0:02:20.55,0:02:23.00,Say,,0,0,0,,Tilt down so the soil is in frame.
+Dialogue: 0,0:02:23.04,0:02:24.90,Say,,0,0,0,,Then the ring turns green.
+Dialogue: 0,0:02:25.64,0:02:28.89,Say,,0,0,0,,Then it is checked, and every check says the number it measured.
+Dialogue: 0,0:02:29.21,0:02:30.50,Say,,0,0,0,,It came off the camera.
+Dialogue: 0,0:02:30.54,0:02:31.48,Say,,0,0,0,,The time is ours.
+Dialogue: 0,0:02:31.52,0:02:34.54,Say,,0,0,0,,The location matches where this plant was registered.
+Dialogue: 0,0:02:34.86,0:02:38.82,Say,,0,0,0,,And soil five percent darker than that plant's own dry baseline.
+Dialogue: 0,0:02:38.86,0:02:40.20,Say,,0,0,0,,Measured, not guessed.
+Dialogue: 0,0:02:40.94,0:02:42.44,Say,,0,0,0,,This is the one that matters.
+Dialogue: 0,0:02:42.48,0:02:45.72,Say,,0,0,0,,If any plant earned points, the points would be worth nothing.
+Dialogue: 0,0:02:46.11,0:02:49.22,Say,,0,0,0,,So OpenCV matches keypoints against the plant's first
+Dialogue: 0,0:02:49.26,0:02:52.60,Say,,0,0,0,,photograph, and asks whether they agree on one viewpoint.
+Dialogue: 0,0:02:52.92,0:02:55.59,Say,,0,0,0,,The same plant returns four hundred and eighty five.
+Dialogue: 0,0:02:56.05,0:02:59.65,Say,,0,0,0,,A different plant of the same species, in a similar pot,
+Dialogue: 0,0:02:59.69,0:03:00.50,Say,,0,0,0,,returns four.
+Dialogue: 0,0:03:01.66,0:03:05.12,Say,,0,0,0,,Registering a plant checks the photograph before it accepts it.
+Dialogue: 0,0:03:05.44,0:03:07.60,Say,,0,0,0,,Point it at a notebook and it says so.
+Dialogue: 0,0:03:07.64,0:03:10.03,Say,,0,0,0,,An object scores nought point two percent.
+Dialogue: 0,0:03:10.07,0:03:12.05,Say,,0,0,0,,The weakest real plant scored nine.
+Dialogue: 0,0:03:12.44,0:03:15.25,Say,,0,0,0,,Point it at a plant and it works out what it is.
+Dialogue: 0,0:03:15.29,0:03:17.97,Say,,0,0,0,,Seventy-eight species, searched by local name.
+Dialogue: 0,0:03:18.29,0:03:20.51,Say,,0,0,0,,The whole premise is that people forget.
+Dialogue: 0,0:03:20.55,0:03:22.38,Say,,0,0,0,,So this cannot wait to be opened.
+Dialogue: 0,0:03:22.77,0:03:26.64,Say,,0,0,0,,When a task comes due, the same message goes out on WhatsApp,
+Dialogue: 0,0:03:26.68,0:03:27.60,Say,,0,0,0,,email and text.
+Dialogue: 0,0:03:27.92,0:03:30.99,Say,,0,0,0,,A name, a plant and a date go to the server.
+Dialogue: 0,0:03:31.03,0:03:33.18,Say,,0,0,0,,No photographs, no coordinates.
+Dialogue: 0,0:03:33.99,0:03:36.59,Say,,0,0,0,,Organisations spend heavily on planting drives,
+Dialogue: 0,0:03:36.63,0:03:38.78,Say,,0,0,0,,and get back a photograph from day one.
+Dialogue: 0,0:03:39.17,0:03:41.91,Say,,0,0,0,,Rooted produces the record of what survived,
+Dialogue: 0,0:03:41.95,0:03:44.62,Say,,0,0,0,,every point traceable to one verified task.
+Dialogue: 0,0:03:45.01,0:03:46.70,Say,,0,0,0,,That record funds the rewards.
+Dialogue: 0,0:03:46.74,0:03:48.14,Say,,0,0,0,,The offers are stand-ins,
+Dialogue: 0,0:03:48.18,0:03:51.65,Say,,0,0,0,,because naming a real company would put words in their mouth.
+Dialogue: 0,0:03:52.46,0:03:55.30,Say,,0,0,0,,Two things did not survive contact with a measurement.
+Dialogue: 0,0:03:55.69,0:03:58.20,Say,,0,0,0,,I tried to work out the species on the device.
+Dialogue: 0,0:03:58.24,0:04:01.09,Say,,0,0,0,,It got the right answer zero times out of seventeen.
+Dialogue: 0,0:04:01.48,0:04:04.42,Say,,0,0,0,,And the identity check used to compare brightness grids.
+Dialogue: 0,0:04:04.46,0:04:06.87,Say,,0,0,0,,A different neem tree walked straight through.
+Dialogue: 0,0:04:07.26,0:04:09.04,Say,,0,0,0,,Against eight percent for guessing.
+Dialogue: 0,0:04:09.08,0:04:12.11,Say,,0,0,0,,It was the weakest thing in the app wearing the name of the
+Dialogue: 0,0:04:12.15,0:04:13.67,Say,,0,0,0,,strongest, so it was replaced.
+Dialogue: 0,0:04:14.69,0:04:16.67,Say,,0,0,0,,We reward people for spending money.
+Dialogue: 0,0:04:17.48,0:04:20.01,Say,,0,0,0,,Rooted rewards them for keeping something alive.
+Dialogue: 0,0:04:21.17,0:04:21.70,Say,,0,0,0,,Plant it.
+Dialogue: 0,0:04:21.74,0:04:22.22,Say,,0,0,0,,Keep it.
+Dialogue: 0,0:04:22.26,0:04:23.24,Say,,0,0,0,,Get paid for it.
+Dialogue: 0,0:04:23.28,0:04:26.31,Say,,0,0,0,,Open it on your phone, and keep something alive.
+Dialogue: 0,0:04:27.05,0:04:29.75,Say,,0,0,0,,Nothing in here reports a number it did not measure.
