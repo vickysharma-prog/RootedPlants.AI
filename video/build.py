@@ -453,7 +453,12 @@ async def main():
         "-filter_complex", chain,
         "-map", "[v]", "-map", "1:a",
         "-c:v", "libx264", "-preset", "medium", "-crf", "19",
-        "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
+        "-pix_fmt", "yuv420p",
+        # Straight out of the mix this landed at -26 LUFS, which is a demo a
+        # judge has to reach for the volume to hear. Platforms normalise to
+        # about -14, so this lands near it with headroom left.
+        "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
+        "-c:a", "aac", "-b:a", "192k",
         "-movflags", "+faststart", "-shortest",
         str(out),
         cwd=HERE,

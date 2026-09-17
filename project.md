@@ -65,8 +65,12 @@ what it is and where it came from. The git log is the evidence.
 
 ### What has to be submitted
 
-- [ ] Demo video, **3 to 5 minutes** (hard bounds, both ends)
-- [ ] Link to the repository or code, viewable
+- [ ] Demo video, **3 to 5 minutes** (hard bounds, both ends). Built and inside
+      the bounds at 4:31, `video/rooted-demo.mp4`. Four frames still hold a
+      labelled gap for shots that need a real plant in a real hand.
+- [ ] Link to the repository or code, viewable. **The repo is private, so this
+      is a 404 to a judge until `gh repo edit --visibility public` is run.**
+      Do it before the form, not after.
 - [x] Link to the live site or app, if there is one: https://rootedplants.vercel.app
 - [ ] Completed Devpost project page
 
