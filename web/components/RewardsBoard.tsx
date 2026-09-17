@@ -56,6 +56,20 @@ const CATALOGUE = [
     by: "Civic partner",
     note: "The shape a municipal partner's offer takes: money off the bill for the household doing the watering.",
   },
+  {
+    id: "grove",
+    cost: 4000,
+    title: "Ten saplings, planted and tracked",
+    by: "Partner nursery",
+    note: "A row of ten, planted in a drive and registered here so somebody is answerable for each of them two years on.",
+  },
+  {
+    id: "orchard",
+    cost: 9000,
+    title: "A fruit tree for a school",
+    by: "Civic partner",
+    note: "Planted in a school ground with the class registered as its keepers. The one thing on this list that outlives the phone it was earned on.",
+  },
 ];
 
 export function RewardsBoard({ offset }: { offset: number }) {

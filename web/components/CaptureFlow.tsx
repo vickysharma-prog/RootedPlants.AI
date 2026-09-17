@@ -8,7 +8,7 @@ import { Camera, type Shot } from "./Camera";
 import { Celebration } from "./Celebration";
 import { species, TASK_INSTRUCTION, TASK_LABEL, type TaskKind } from "@/lib/data";
 import { verify, type Check } from "@/lib/verify";
-import { say, useSpoken } from "@/lib/coach";
+import { say, useSpoken, voiceOn } from "@/lib/coach";
 import { VoiceToggle } from "./VoiceToggle";
 import { samePlant, warm } from "@/lib/identity";
 import {
@@ -148,8 +148,14 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
         });
       }
 
-      if (verdict.passed) say(`Verified. ${pointsFor(kind, plant.streak)} points.`);
-      else say(`Not yet. ${verdict.checks.find((c) => !c.ok)?.reason ?? ""}`);
+      if (voiceOn()) {
+        const failed = verdict.checks.find((c) => !c.ok);
+        say(
+          verdict.passed
+            ? `Verified. Well done. ${pointsFor(kind, plant.streak)} points.`
+            : `That one did not pass. ${failed?.label ?? ""}. ${failed?.reason ?? ""} Take it again.`,
+        );
+      }
 
       setStage("done");
     },

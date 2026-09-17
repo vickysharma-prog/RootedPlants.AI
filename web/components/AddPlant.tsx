@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { AppShell, AppHeader, ACTION } from "./AppShell";
 import { BlobImage } from "./BlobImage";
 import { Camera, type Shot } from "./Camera";
-import { SPECIES } from "@/lib/data";
+import { SPECIES, REGISTER_POINTS } from "@/lib/data";
 import { SpeciesPicker } from "./SpeciesPicker";
 import { VoiceToggle } from "./VoiceToggle";
 import { useSpoken } from "@/lib/coach";
@@ -14,9 +14,11 @@ type Match = { speciesId: string | null; latin: string; common: string | null; s
 
 /** Below this it offers a guess. At or above it, it fills the answer in. */
 const SURE = 0.3;
-import { id, putPhoto, putPlant } from "@/lib/store";
+import { addLedger, id, putPhoto, putPlant } from "@/lib/store";
+import { Celebration } from "./Celebration";
+import { say, voiceOn } from "@/lib/coach";
 
-type Step = "photo" | "what" | "where";
+type Step = "photo" | "what" | "where" | "done";
 
 /**
  * Registering a plant.
@@ -40,7 +42,9 @@ export function AddPlant({ offset }: { offset: number }) {
   const [at, setAt] = useState<{ lat: number; lon: number }>();
   const [locating, setLocating] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [asking, setAsking] = useState<"offer" | "working" | "done" | "off">("offer");
+  const [asking, setAsking] = useState<"working" | "done" | "off">("working");
+  const [consent, setConsent] = useState(true);
+  const [plantId, setPlantId] = useState("");
   const [matches, setMatches] = useState<Match[]>([]);
 
   useSpoken(
@@ -48,23 +52,25 @@ export function AddPlant({ offset }: { offset: number }) {
     step === "photo"
       ? "Photograph the whole plant, with the soil around its base in frame. This one becomes its baseline."
       : step === "what"
-        ? "Search for it by name, or have the photograph identified for you."
-        : "Give it a name you would actually use, and tap to use where you are now.",
+        ? "Checking what it is. Search by name if you already know."
+        : step === "where"
+          ? "Give it a name you would actually use, and tap to use where you are now."
+          : "",
   );
 
   /**
-   * Identification is offered, never assumed.
+   * Identification runs on the shutter, because being asked twice for the same
+   * photograph is not consent, it is friction.
    *
-   * This is the only moment in the app when a photograph leaves the phone, so
-   * it happens on a tap, after a sentence that says exactly that. Saying no
-   * leaves the picker exactly as it was.
+   * The asking happens once, before the camera opens, where it belongs: this
+   * is the only moment in the app when a photograph leaves the phone, and the
+   * line on that screen says so. Turn it off there and nothing is ever sent.
    */
-  async function identify() {
-    if (!shot) return;
+  async function identify(taken: Shot) {
     setAsking("working");
     try {
       const body = new FormData();
-      body.append("image", shot.full, "plant.jpg");
+      body.append("image", taken.full, "plant.jpg");
       const res = await fetch("/api/identify", { method: "POST", body });
       const data = await res.json();
       const found: Match[] = Array.isArray(data.matches) ? data.matches : [];
@@ -74,7 +80,13 @@ export function AddPlant({ offset }: { offset: number }) {
       // answer in at nine percent is an app that teaches people to stop
       // reading it.
       const best = found.find((m) => m.speciesId && m.score >= SURE);
-      if (best?.speciesId) setSpeciesId(best.speciesId);
+      if (best?.speciesId) {
+        setSpeciesId(best.speciesId);
+        const named = SPECIES.find((x) => x.id === best.speciesId);
+        if (named && voiceOn()) say(`That looks like ${named.name}. Change it below if it is not.`);
+      } else if (voiceOn()) {
+        say("Not sure what that one is. Search for it by name below.");
+      }
     } catch {
       setMatches([]);
     }
@@ -97,12 +109,12 @@ export function AddPlant({ offset }: { offset: number }) {
     if (!shot || !speciesId || saving) return;
     setSaving(true);
 
-    const plantId = id();
+    const newId = id();
     const photoId = id();
 
     await putPhoto({
       id: photoId,
-      plantId,
+      plantId: newId,
       at: new Date().toISOString(),
       kind: "baseline",
       full: shot.full,
@@ -112,7 +124,7 @@ export function AddPlant({ offset }: { offset: number }) {
 
     const sp = SPECIES.find((s) => s.id === speciesId)!;
     await putPlant({
-      id: plantId,
+      id: newId,
       name: name.trim() || sp.name,
       speciesId,
       place: place.trim() || "home",
@@ -130,7 +142,19 @@ export function AddPlant({ offset }: { offset: number }) {
       baselinePhotoId: photoId,
     });
 
-    router.push(`/plants/${plantId}`);
+    await addLedger({
+      id: id(),
+      at: new Date().toISOString(),
+      plantId: newId,
+      plantName: name.trim() || sp.name,
+      kind: "bonus",
+      points: REGISTER_POINTS,
+      label: "Registered a plant",
+    });
+
+    setPlantId(newId);
+    if (voiceOn()) say(`Registered. ${REGISTER_POINTS} points. Its first task is on your list.`);
+    setStep("done");
   }
 
   if (step === "photo")
@@ -143,12 +167,35 @@ export function AddPlant({ offset }: { offset: number }) {
           right={<VoiceToggle />}
           lede="This one becomes the baseline. Every later photograph of this plant is measured against it, so take it where the plant actually stands."
         />
+        <div className="app-column">
+          <label className="row flex items-start gap-4 border-t-0 py-4">
+            <input
+              type="checkbox"
+              checked={consent}
+              onChange={(e) => setConsent(e.target.checked)}
+              className="mt-1 h-[18px] w-[18px] shrink-0 accent-[var(--moss)]"
+            />
+            <span>
+              <span className="block text-[15px] text-cream">
+                Work out what it is from the photograph
+              </span>
+              <span className="mt-1 block text-[13.5px] leading-relaxed text-faint">
+                This is the only time a photograph leaves your phone. It goes to a
+                plant identification service and nowhere else. Untick it and
+                nothing is ever sent.
+              </span>
+            </span>
+          </label>
+        </div>
+
         <Camera
           instruction="Get the whole plant and the soil around its base in frame."
           kind="water"
-          onShot={(s) => {
-            setShot(s);
+          onShot={(taken) => {
+            setShot(taken);
             setStep("what");
+            if (consent) identify(taken);
+            else setAsking("off");
           }}
         />
       </AppShell>
@@ -164,12 +211,7 @@ export function AddPlant({ offset }: { offset: number }) {
           right={<VoiceToggle />}
         />
         <main className="app-column pb-12">
-          <Identify
-            state={asking}
-            matches={matches}
-            onAsk={identify}
-            onSkip={() => setAsking("off")}
-          />
+          <Identify state={asking} matches={matches} />
 
           <p className="mt-7 max-w-[28rem] text-[14px] leading-relaxed text-faint">
             The species is what sets the schedule: how often it wants water,
@@ -197,6 +239,38 @@ export function AddPlant({ offset }: { offset: number }) {
               →
             </span>
           </button>
+        </main>
+      </AppShell>
+    );
+
+  if (step === "done")
+    return (
+      <AppShell>
+        <AppHeader eyebrow={name.trim() || "Registered"} title="It is on the list." />
+        <main className="app-column pb-14">
+          <Celebration
+            points={REGISTER_POINTS}
+            title="Registered"
+            line="Its first task is on your Today list, on this species' own schedule and your weather."
+          >
+            <button
+              className={`${ACTION} mt-10 w-full`}
+              type="button"
+              onClick={() => router.push(`/plants/${plantId}`)}
+            >
+              <span className="btn-label">See it</span>
+              <span className="btn-arrow" aria-hidden>
+                →
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => router.push("/today")}
+              className="link-arrow mt-6 inline-flex text-faint"
+            >
+              <span className="link-text">Back to today</span>
+            </button>
+          </Celebration>
         </main>
       </AppShell>
     );
@@ -279,46 +353,22 @@ export function AddPlant({ offset }: { offset: number }) {
 function Identify({
   state,
   matches,
-  onAsk,
-  onSkip,
 }: {
-  state: "offer" | "working" | "done" | "off";
+  state: "working" | "done" | "off";
   matches: Match[];
-  onAsk: () => void;
-  onSkip: () => void;
 }) {
   if (state === "off") return null;
 
-  if (state === "offer")
-    return (
-      <div className="rounded-[16px] border border-line-soft bg-surface p-5">
-        <p className="text-[15px] leading-relaxed text-cream">
-          Not sure what it is? The photograph can be identified for you.
-        </p>
-        <p className="mt-2.5 text-[13.5px] leading-relaxed text-faint">
-          This is the only time a photograph leaves your phone. It goes to a
-          plant identification service and nowhere else, and only this one.
-        </p>
-        <div className="mt-5 flex items-center gap-5">
-          <button type="button" onClick={onAsk} className="link-arrow inline-flex text-cream">
-            <span className="link-text font-semibold">Identify it</span>
-          </button>
-          <button type="button" onClick={onSkip} className="text-[14px] text-faint">
-            I know what it is
-          </button>
-        </div>
-      </div>
-    );
-
   if (state === "working")
-    return <p className="label py-2 text-faint">Looking at your photograph</p>;
+    return <p className="label py-2 text-faint">Working out what it is</p>;
 
   const top = matches[0];
 
   if (!top)
     return (
       <p className="text-[14.5px] leading-relaxed text-faint">
-        That one could not be identified. Pick it below.
+        That one could not be identified. Find it by name below, or use
+        Anything else at the bottom.
       </p>
     );
 
@@ -327,10 +377,7 @@ function Identify({
 
   return (
     <div className="rise-in rounded-[16px] border border-line-soft bg-surface p-5">
-      <p
-        className="label"
-        style={{ color: sure && ours ? "var(--verified)" : "var(--gold)" }}
-      >
+      <p className="label" style={{ color: sure && ours ? "var(--verified)" : "var(--gold)" }}>
         {sure ? (ours ? "Looks like" : "Closest match") : "Not sure from this one"}
       </p>
       <p className="display mt-1.5 text-[24px] text-cream">{top.common ?? top.latin}</p>
@@ -342,7 +389,7 @@ function Identify({
           ? "Too unsure to fill in for you. Its guesses are at the front of the list below, but look before you tap."
           : ours
             ? "Selected below. Change it if that is not right."
-            : "Not one of the twelve this app carries a care profile for, so pick the closest below."}
+            : "Not one this app carries a care profile for. Pick the closest below, or use Anything else at the bottom."}
       </p>
     </div>
   );

@@ -192,7 +192,13 @@ export function useSpoken(key: string, line: string) {
   const said = useRef("");
 
   useEffect(() => {
-    if (!key || key === said.current) return;
+    // An empty line means this screen has nothing to say, which is not the
+    // same as wanting silence. Speaking it would cancel whatever was already
+    // being said, and that is exactly what swallowed the verdict on the
+    // results screen: the stage changed, this fired with nothing, and the
+    // "verified, thirty six points" that had just been queued was killed
+    // mid-sentence.
+    if (!key || !line.trim() || key === said.current) return;
     said.current = key;
     if (voiceOn()) say(line);
   }, [key, line]);

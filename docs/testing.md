@@ -56,7 +56,8 @@ The demo account seeds itself again on the next load.
 | Tap the speaker icon | Voice stops everywhere, not just here, and stays off next time |
 | Press the shutter | Checks arrive one at a time, each saying the number it measured |
 | Watch the identity check | "It is this plant" with how many points lined up with its first photograph. Several hundred means yes |
-| If everything passes | Card lifts, points count up, leaves drift past |
+| If everything passes | Leaves cross the whole screen, the points count up, and it says "Verified, well done" out loud |
+| If something fails | It says which check failed and why, out loud, and the button says take it again |
 | Photograph a different plant | "It is this plant" fails, with the count. Task stays open, streak held |
 | Tap **Take it again** | Straight back to the camera |
 
@@ -93,15 +94,16 @@ in the corner of those screens is the same switch as the one in the camera.
 | Scroll to **Anything else** | Five profiles for plants not on the list. Pick how it grows and it schedules from that |
 | Pick one | Step three: name, where it stands, and its spot |
 | Tap **Use where I am now** | Coordinates appear, taken from the device rather than typed |
-| Register it | Straight to its page, with your photo as its baseline |
+| Register it | Points land with leaves across the screen, and it says how many |
+| **See it** | Its page, with your photo as its baseline |
 | Go to Today | The new plant's tasks are in the list, on its species' own schedule |
 
 ## 7. Rewards
 
 | What to do | What should happen |
 |---|---|
-| Tap **Rewards** | Balance at the top, five offers below |
-| An offer you cannot afford | Says how many more points to go, not just greyed out |
+| Tap **Rewards** | Balance at the top, seven offers below |
+| The bottom two offers | You cannot afford these yet. Each says how many more points to go, rather than being greyed out with no explanation |
 | An offer you can afford | **Redeem it**, then a confirm step |
 | Redeem | Code appears with the same lift and leaves, balance drops |
 | Scroll down | Every point accounted for, by plant and task |

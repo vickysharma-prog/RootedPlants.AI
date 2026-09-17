@@ -1078,6 +1078,15 @@ export const TASK_INSTRUCTION: Record<TaskKind, string> = {
     "Photograph the underside of a few leaves and the new growth, close. That is where trouble starts and where it is visible first.",
 };
 
+/**
+ * What registering a plant pays.
+ *
+ * Small, and once. The work this app is built to reward is the two years
+ * afterwards, not the afternoon somebody plants something, so this is enough
+ * to feel like a beginning and not enough to be worth farming.
+ */
+export const REGISTER_POINTS = 40;
+
 /** The streak multiplier. Consistency is worth more than a single burst. */
 export function multiplier(streak: number): number {
   if (streak >= 30) return 2;

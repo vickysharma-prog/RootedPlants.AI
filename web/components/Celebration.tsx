@@ -13,6 +13,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
  * this one has spent every other screen being a forest at dusk. The celebration
  * should feel like the same place, just briefly pleased with you.
  *
+ * They cross the whole screen rather than the card. Inside the card they were
+ * tasteful and easy to miss, and the one thing this moment has to do is leave
+ * nobody wondering whether the points arrived.
+ *
  * Under prefers-reduced-motion nothing moves: the card is simply there, the
  * number is simply its final value, and nothing drifts.
  */
@@ -52,13 +56,13 @@ export function Celebration({
 
   const leaves = useMemo<Leaf[]>(
     () =>
-      Array.from({ length: 18 }, (_, i) => ({
-        left: 4 + (i * 92) / 18 + Math.random() * 5,
-        delay: Math.random() * 1.1,
-        duration: 3.4 + Math.random() * 2.2,
-        drift: (Math.random() - 0.5) * 90,
-        size: 7 + Math.random() * 8,
-        spin: (Math.random() - 0.5) * 520,
+      Array.from({ length: 34 }, (_, i) => ({
+        left: 2 + (i * 96) / 34 + Math.random() * 4,
+        delay: Math.random() * 1.3,
+        duration: 4 + Math.random() * 2.6,
+        drift: (Math.random() - 0.5) * 140,
+        size: 8 + Math.random() * 10,
+        spin: (Math.random() - 0.5) * 620,
         tone: TONES[i % TONES.length],
       })),
     [],
@@ -67,7 +71,10 @@ export function Celebration({
   return (
     <div className="relative">
       {!still && (
-        <div className="pointer-events-none absolute inset-x-0 -top-10 bottom-0 overflow-hidden" aria-hidden>
+        <div
+          className="pointer-events-none fixed inset-0 z-20 overflow-hidden"
+          aria-hidden
+        >
           {leaves.map((l, i) => (
             <span
               key={i}
@@ -94,6 +101,7 @@ export function Celebration({
         <p className="label mt-6" style={{ color: "var(--verified)" }}>
           {title}
         </p>
+        {!code && <p className="mt-2 text-[15px] text-body">Points received</p>}
         {code ? (
           <p className="num mt-3 text-[34px] leading-none text-cream">{code}</p>
         ) : (
@@ -108,7 +116,7 @@ export function Celebration({
       <style>{`
         .leaf {
           position: absolute;
-          bottom: -24px;
+          bottom: -30px;
           border-radius: 60% 8% 60% 8%;
           opacity: 0;
           animation-name: leaf-rise;
@@ -119,7 +127,7 @@ export function Celebration({
           0%   { opacity: 0; transform: translate3d(0, 0, 0) rotate(0deg); }
           12%  { opacity: 0.85; }
           78%  { opacity: 0.6; }
-          100% { opacity: 0; transform: translate3d(var(--drift), -330px, 0) rotate(var(--spin)); }
+          100% { opacity: 0; transform: translate3d(var(--drift), -105vh, 0) rotate(var(--spin)); }
         }
         .lift {
           animation: lift-in 0.72s cubic-bezier(0.2, 0.8, 0.25, 1) both;
