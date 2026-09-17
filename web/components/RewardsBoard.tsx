@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AppShell, ACTION } from "./AppShell";
+import { Celebration } from "./Celebration";
 import { useRooted } from "@/lib/live";
 import { addLedger, id, type LedgerEntry } from "@/lib/store";
 import { TASK_LABEL } from "@/lib/data";
@@ -90,14 +91,12 @@ export function RewardsBoard({ offset }: { offset: number }) {
 
       <main className="app-column flex flex-1 flex-col pb-6">
         {code && (
-          <div className="rise-in mb-9 rounded-[16px] border border-line bg-surface p-6">
-            <p className="label" style={{ color: "var(--verified)" }}>
-              Redeemed
-            </p>
-            <p className="num mt-3 text-[26px] text-cream">{code}</p>
-            <p className="mt-3 text-[14px] leading-relaxed text-faint">
-              Show this at the partner. It is also in your history below.
-            </p>
+          <div className="mb-10">
+            <Celebration
+              code={code}
+              title="Redeemed"
+              line="Show this at the partner. It is also in your history below."
+            />
           </div>
         )}
 

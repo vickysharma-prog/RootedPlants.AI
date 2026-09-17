@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AppShell, AppHeader, ACTION } from "./AppShell";
 import { Camera, type Shot } from "./Camera";
+import { Celebration } from "./Celebration";
 import { species, TASK_INSTRUCTION, TASK_LABEL, type TaskKind } from "@/lib/data";
 import { verify, type Check } from "@/lib/verify";
 import { say } from "@/lib/coach";
@@ -255,15 +256,11 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
         {shown >= checks.length && stage === "done" && (
           <div className="rise-in mt-9">
             {passed ? (
-              <>
-                <div className="rule" />
-                <p className="label mt-6">Earned</p>
-                <p className="num mt-1 text-[46px] text-gold">
-                  +<Counter to={earned} />
-                </p>
-                <p className="mt-2 text-[14.5px] text-faint">
-                  {plant.streak} in a row on {plant.name}.
-                </p>
+              <Celebration
+                points={earned}
+                title="Earned"
+                line={`${plant.streak} in a row on ${plant.name}.`}
+              >
                 <button
                   className={`${ACTION} mt-10 w-full`}
                   type="button"
@@ -274,7 +271,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
                     →
                   </span>
                 </button>
-              </>
+              </Celebration>
             ) : (
               <>
                 <div className="rule" />
@@ -325,27 +322,6 @@ function Mark({ ok }: { ok: boolean }) {
       {ok ? <path d="M4 12.5l5.2 5.2L20 7" /> : <path d="M6 6l12 12M18 6L6 18" />}
     </svg>
   );
-}
-
-/** Points that land rather than appear. */
-function Counter({ to }: { to: number }) {
-  const [n, setN] = useState(0);
-  const started = useRef(0);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return setN(to);
-    let frame = 0;
-    const step = (t: number) => {
-      if (!started.current) started.current = t;
-      const k = Math.min(1, (t - started.current) / 900);
-      setN(Math.round(to * (1 - Math.pow(1 - k, 3))));
-      if (k < 1) frame = requestAnimationFrame(step);
-    };
-    frame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frame);
-  }, [to]);
-
-  return <>{n}</>;
 }
 
 /* ------------------------------------------------------------- evidence */
