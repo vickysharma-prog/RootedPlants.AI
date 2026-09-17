@@ -452,3 +452,101 @@ Resolved both, and took a readable domain while I was there:
 deployment, so it follows production instead of going stale the next time
 something ships. Protection is off, so the link opens for anybody without a
 Vercel account, which is the only thing that matters when a judge clicks it.
+
+## Sep 18, 2026
+
+The day the app stopped being a loop and became a product, and the day I built
+the film.
+
+### Species identification, and what measuring saved me from
+
+The add-plant flow asked people to pick from twelve tiles. Somebody with a
+lemon tree had nothing to choose, so I set out to identify the plant from its
+photograph on the device, from colour and texture.
+
+**I measured it before shipping it.** Against seventeen labelled photographs it
+put the right species first **zero times**, against eight percent for guessing
+at random. Neem and curry leaf are both green pinnate leaves and no histogram
+separates them. So it went in the bin, and PlantNet does that job: neem comes
+back at 93%, and the genus fallback catches Epipremnum pinnatum against our
+aureum.
+
+That call costs something honest. It is the only moment in the app when a
+photograph leaves the phone, so it is asked for once, before the camera opens,
+in a sentence that says exactly that, and the privacy page names the exception
+rather than keeping a claim that had stopped being true.
+
+PlantNet also reads back whether there is a plant in the photograph at all.
+Noise returns 404, a wall 0.5%, a plain object 0.2%, while the weakest real
+plant photograph in testing still scored 9%. Three percent sits in that gap,
+which is how registering a notebook now fails on "It is a plant" rather than
+sailing through to the species picker.
+
+### Seventy-eight species, and a search box
+
+Twelve became seventy-eight, with the names people actually use attached, so
+"mogra" finds jasmine and "kadi patta" finds curry leaf. A grid of
+seventy-eight would have been worse than twelve, so the picker leads with
+search.
+
+And five profiles for anything not on the list. Naming a plant and knowing how
+to keep it alive are separate jobs: somebody who cannot name what is in front
+of them still knows whether it is a tree in the ground or a succulent on a
+windowsill, and those want opposite treatment.
+
+### Reminders, and the one thing that had to go on a server
+
+The channels on the account screen were switches that did nothing.
+
+The awkward part is that plants live on the phone, so no server knows whose
+plant is overdue and there is nothing for a clock to run against. The smallest
+thing that solves it: the browser registers who to reach, what the plant is
+called, and when the next few tasks are due. No photographs, no coordinates, no
+points. An hourly cron reads that and sends on whichever channels are on.
+
+### What broke
+
+**The guide swallowed the verdict.** The results screen said nothing out loud.
+The verdict was spoken and then killed mid-sentence, because the stage changed,
+the screen guide fired with an empty line, and an empty line still calls
+cancel.
+
+**A pest photo could never pass.** It is a close-up of one leaf and the baseline
+is the whole plant, so the framing check refused it every time. Pest photos
+skip framing entirely now.
+
+**The demo plants were pinned to one city.** Anybody opening the demo anywhere
+else was 234km from a plant the app had just handed them. The check was working
+perfectly and looked broken.
+
+**The videos were never in git.** A rule called them too big; they are 9MB.
+Deploying with the CLI uploads whatever is in the folder, so the backdrop
+played every time I looked, and the first build from the repo alone served 404
+for every one of them.
+
+### The film
+
+Not a screen recording with somebody talking over it. Eighteen designed frames
+in the app's own tokens, rendered headless out of the browser, with recordings
+of the real site playing inside the phone in six of them.
+
+Those recordings come straight off Chrome's compositor at 390 by 844, so the
+forest behind the landing page is actually moving rather than frozen. Three
+things fought that: Chrome answers 404 on its debug endpoints unless the Host
+header says localhost, it rejects a websocket carrying an Origin it was not
+told to expect, and it emits a frame when something changes rather than on a
+clock, so writing them at a fixed rate turned twenty seconds of scrolling into
+six.
+
+**And the voice drifted behind the picture.** Every MP3 carries encoder padding
+at each end, and joining fifty-six of them by copy added three and a quarter
+seconds the frames knew nothing about. The narration goes through WAV now and
+the build prints the disagreement: zero milliseconds.
+
+The problem section is no longer an assertion. India's national auditor spent
+ten years looking: about five percent of the target achieved, no improvement in
+tree cover at seventy percent of sites, and one site that reported two thousand
+plantings where thirty were found and none had survived. The figure that is
+actually our product is that four out of five plantation records did not say
+what was planted, where it stood, or whether it lived. Every number is in
+`docs/evidence.md` with its source.

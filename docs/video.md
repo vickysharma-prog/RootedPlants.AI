@@ -1,33 +1,66 @@
 # The video
 
-**4:00.** Floor is 3:00, ceiling is 5:00, both hard.
+**Built, at 4:31.** `video/rooted-demo.mp4`. Floor is 3:00, ceiling is 5:00,
+both hard.
 
-Recorded on a phone against **https://rootedplants.vercel.app**, because the
-camera, the location check and the voice only work on a real device over
-HTTPS, and those are the parts worth showing.
+It is not a screen recording with somebody talking over it. It is eighteen
+designed frames in the app's own tokens, with recordings of the live site
+playing inside the phone in six of them. `video/README.md` says how to rebuild
+it; this file is why it is cut the way it is.
 
 ---
 
 ## The rule this is cut to
 
-**Fifteen beats. None longer than thirty seconds. Most between ten and
-twenty.**
+**Nothing on screen longer than about thirty seconds, and every element
+arrives on the sentence that introduces it.**
 
-A demo loses people in the gaps, not in the content. Every beat below either
-shows something working or says something true, and the moment it has done
-that, it cuts. No transitions, no wipes, no music swelling under a point that
-has not been made yet. Hard cuts only.
+A demo loses people in the gaps, not in the content. Each frame holds only
+what has been said so far, so a tag lighting up or a number appearing reads as
+an appearance rather than as a cut. Hard cuts between frames, no transitions.
 
-Three things carry the whole film, so they get the space and everything else
-gets out of their way:
+Three things carry the film, so they get the room and everything else gets out
+of their way:
 
-1. **The voice guiding the camera** (beat 7)
-2. **The check refusing a different plant** (beat 10)
-3. **The reminder arriving on a phone that is not open** (beat 12)
+1. **The audit figures**, because they turn an opinion into a problem
+2. **The check refusing a different plant**, 485 against 4
+3. **What I threw away**, because Learning is scored on what I can say about
+   the build
+
+## What is still to shoot
+
+Four frames carry a phone-shaped hole with what belongs in it written on
+screen. Three of them need a real plant in a real hand and cannot be
+generated.
+
+| Frame | Record |
+|---|---|
+| 10 | The camera guiding you, sound on |
+| 12 | It refusing a different plant of the same species |
+| 13 | A notebook, then a real plant |
+| 14 | A locked phone, then the reminder arriving |
+
+The rest is already in the film: the whole landing page scrolling with the
+forest moving behind it, signing up, today, your plants, how the checking
+works, and the rewards.
+
+## Before shooting those four
+
+- Phone, on the live URL over HTTPS. The camera, the location check and the
+  voice only work on a secure origin.
+- **Two plants of the same species**, side by side. Frame 12 is the film.
+- Something that is plainly not a plant, for frame 13.
+- The reminder keys set, for frame 14, with a message already proven to
+  arrive.
+- Clear site data so the demo account seeds fresh and the numbers match.
+- Check the account screen for a real number before it is on camera.
 
 ---
 
-## The shot list
+## The old shot list
+
+Kept because the reasoning behind each beat is still the reasoning, even
+though the film is now cut from frames rather than from takes.
 
 ### 1 · 0:00 – 0:10 · Cold open, no logo
 

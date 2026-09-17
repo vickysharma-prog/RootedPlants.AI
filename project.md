@@ -205,6 +205,14 @@ the same list against routes.
 - [x] Plant health, measured from care against the schedule rather than
       guessed from a photograph
 - [x] Loss report, keeping the points and carrying the streak
+- [x] Seventy-eight species with their local names, searched rather than
+      scrolled, plus five profiles for anything not on the list
+- [x] The species read off the photograph, and a photograph with no plant in
+      it refused before the plant is registered
+- [x] Identity: the same plant, proved with keypoints rather than asserted
+- [x] Reminders on WhatsApp, email and text, on an hourly clock, sending only
+      a name, a plant and a date
+- [x] The demo film, built from the repo rather than edited by hand
 - [x] Points ledger, with the balance and the history of how it was earned
 - [x] Rewards catalogue and redemption, seeded with demo partners
 - [x] Plant profile page with the photo timeline, the screen people share

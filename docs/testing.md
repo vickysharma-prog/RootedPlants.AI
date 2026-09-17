@@ -120,7 +120,21 @@ in the corner of those screens is the same switch as the one in the camera.
 | Switch one off and reload | It stays off |
 | **Sign out** | Back to the landing. Signing in again keeps your plants, because they are on the device |
 
-## 9. The written pages
+## 9. Reminders
+
+| What to do | What should happen |
+|---|---|
+| Me, then scroll to the channels | Any channel with no keys on this deployment says **not connected** beside its name, rather than looking switched on and going nowhere |
+| The line under the rule | Says whether your next few tasks are registered with the reminder service |
+| **Send me one now** | Sends the same message the hourly clock would, through the same code, to the address and number this account was made with |
+| The result | One line per channel, each saying whether it went and why not if it did not |
+| Switch a channel off, then send again | It is left out |
+
+Nothing sends until the keys are set. Names are in `web/.env.example`: Resend
+for email, Twilio for WhatsApp and text, and an Upstash-shaped store for the
+clock to look at.
+
+## 10. The written pages
 
 How it works, Privacy and Accessibility should each describe what the app
 actually does. If anything on those pages is no longer true of the app, that is

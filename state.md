@@ -44,7 +44,10 @@ address. No database or API key is needed to run what exists today.
 | `/me` | Account and reminder channels | Done |
 | `/api/weather` | Weather over one plant | Done, cached on our side |
 | `/api/now` | The clock a proof is stamped with | Done |
-| `/api/identify` | Names the species in a photograph | Built, **needs `PLANTNET_API_KEY` and one real call to confirm the response shape** |
+| `/api/identify` | Names the species in a photograph, and says whether there is a plant in it at all | **Working.** Confirmed live: neem 93%, a wall 0.5%, a notebook refused |
+| `/api/reminders` | The browser registers what is due, so a clock can run | Built. Sends nothing until the keys below are set |
+| `/api/reminders/send` | Sends one now, for the demo | Built |
+| `/api/cron/remind` | The hourly clock | Built, scheduled in `vercel.json` |
 
 **Working for real, not mocked:**
 
@@ -61,6 +64,15 @@ address. No database or API key is needed to run what exists today.
   app at 485 against a plant's own baseline and 4 against a different neem
   tree. The old framing comparison is kept as the fallback, under a label that
   says what it actually measures.
+- Species identification, through PlantNet on the server so the key never
+  reaches a browser. Confirmed live: neem at 93%, hibiscus and aloe at the
+  right genus. It also answers whether there is a plant in the photograph at
+  all, which is what refuses a notebook.
+- Seventy-eight species with their everyday names, searched rather than
+  scrolled, plus five profiles for anything not on the list. Built from one
+  table by `tools/build_species.py`.
+- The demo film, `video/rooted-demo.mp4`, four thirty-one at 1920x1080, built
+  by `video/build.py` from eighteen cards and six recordings of the live site.
 - The camera guide. Reads the live frame roughly every 700ms and says the one
   thing that would make the shot pass, out loud through the browser's own
   speech synthesis, with the shutter ring turning green at the same moment.
@@ -224,8 +236,15 @@ the idea works.
    5% threshold against them. The current number was set against a real photo
    and a controlled darkening of it, which proved the check separates them by
    28 points, but a genuine pair is better evidence.
-5. Reminders actually going out. The channels are on the account screen and
-   the copy says what they do. Nothing sends yet.
+5. **Reminder keys.** The whole pipeline is built and the account screen says
+   plainly which channels are not connected. It needs `RESEND_API_KEY` for
+   email, `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` and `TWILIO_WHATSAPP_FROM`
+   for WhatsApp, and `KV_REST_API_URL` with `KV_REST_API_TOKEN` for the clock
+   to have somewhere to look. Names are in `web/.env.example`.
+6. **The seven shots the film still wants.** Each empty frame in the video says
+   on screen what belongs in it. Three of them need a real plant in a real
+   hand and cannot be generated: the camera guiding you, it refusing a
+   different plant of the same species, and a notebook being refused.
 
 ## Submission checklist
 

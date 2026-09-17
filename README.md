@@ -9,7 +9,11 @@ holds you to them, and pays you for it.
 Spend money, earn points. Pay the credit card bill on time, earn more. Rooted
 pays you for keeping something alive.
 
-**Live: [rootedplants.vercel.app](https://rootedplants.vercel.app)**
+**Live: [rootedplants.vercel.app](https://rootedplants.vercel.app)** ·
+**[Demo video](video/rooted-demo.mp4)**
+
+It is for the tulsi on the balcony and the money plant in the living room as
+much as for the sapling from last month's drive. Same app, same schedule.
 
 Built for [NextStep Hacks 2026](https://nextstep2026.devpost.com/), Earth
 Forward track.
@@ -19,9 +23,15 @@ Forward track.
 ## How it works
 
 **Register a plant once.** A photograph, the species, and the spot taken off
-the device rather than typed. That first photograph becomes the baseline every
-later one is measured against, and that spot is what every later check is
-measured against.
+the device rather than typed. The photograph is checked before it is accepted:
+point it at a notebook and it says there is no plant in it. Point it at a plant
+and it works out what that plant is, from **seventy-eight species** searched by
+the names people actually use, so "mogra" finds jasmine and "kadi patta" finds
+curry leaf. Five profiles cover anything not on the list, because naming a
+plant and knowing how to keep it alive are different jobs.
+
+That first photograph becomes the baseline every later one is measured against,
+and that spot is what every later check is measured against.
 
 **The schedule follows your weather.** Each species carries a hand-written
 care profile, and open-meteo then moves each watering by what the weather
@@ -53,6 +63,11 @@ Then a check for the task itself, and each one reports the number it measured.
 Watering has to show soil at least 5% darker than that plant's dry baseline. A
 pest photo has to be close and sharp enough that something the size of an aphid
 would show.
+
+**It reaches you, rather than waiting to be opened.** The whole premise is that
+people forget, so when a task comes due the same message goes out on WhatsApp,
+on email and as a text. A name, a plant and a date go to the server for that.
+No photographs and no coordinates: those never leave the phone.
 
 **Get paid for keeping it.** Points land when the photo clears, streaks
 multiply, and losing a plant to something outside your control costs nothing.
@@ -152,7 +167,9 @@ brands. That is what a catalogue looks like before partners sign.
 | [`docs/rewards.md`](docs/rewards.md) | Points, streaks, and where the money comes from |
 | [`docs/risks.md`](docs/risks.md) | Every objection, with its answer |
 | [`web/`](web) | The app |
-| [`tools/`](tools) | Scripts that fetched and vetted the media |
+| [`tools/`](tools) | Scripts that fetched and vetted the media, and that build the species table |
+| [`video/`](video) | The demo film, and everything that builds it |
+| [`docs/evidence.md`](docs/evidence.md) | Every number the pitch uses, and where it came from |
 
 ## Media
 
