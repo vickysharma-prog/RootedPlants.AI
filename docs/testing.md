@@ -49,8 +49,8 @@ The demo account seeds itself again on the next load.
 |---|---|
 | Tap any task row | The brief: what to photograph, what it pays, and this species' own advice |
 | A feeding or pest task | Also says what to feed it with, or what goes wrong with that plant, and to use the least that works |
-| Tap **Open the camera** | Viewfinder, with the plant's first photograph faint over the live frame so you can line it up |
-| Point it at the floor | It says "Point it at the plant", out loud |
+| Tap **Open the camera** | Viewfinder, with the plant's first photograph faint over the live frame so you can line it up. It reads the frame and speaks straight away, not after a pause |
+| Point it at the floor | It says "Point it at the plant", out loud, and the words on screen are the words being spoken |
 | Cover the lens | "Too dark to check" |
 | Frame the plant properly | "That is it. Take it." and the ring around the shutter turns green |
 | Tap the speaker icon | Voice stops everywhere, not just here, and stays off next time |
@@ -85,9 +85,10 @@ in the corner of those screens is the same switch as the one in the camera.
 | What to do | What should happen |
 |---|---|
 | Plants, then **Add a plant** | Step one of three: photograph it |
-| Take the photo | Step two, with an offer to identify it from the photograph |
-| **Identify it** | Names the plant with how confident it is. Above 30% it selects it for you and puts it under "From your photograph". Below that it says it is not sure and only offers |
-| **I know what it is** | The offer goes away and the search stays |
+| Before the camera | A tick offers to work out what it is from the photograph, with the line about that being the only time a photo leaves your phone. Untick it and nothing is sent |
+| Take the photo | It is checked first, the same way a task is: came off the camera, timed on our side, and **is it a plant** |
+| **Photograph something that is not a plant** | It fails on "It is a plant" and offers to take it again. A wall reads at 0.5%, a real plant at 9% or more |
+| After the checks pass | Step two, with the plant already named if it was sure. Above 30% it selects it for you and puts it under "From your photograph". Below that it says it is not sure and only offers |
 | Type "mogra" in the search | Jasmine. It searches the names people use, not only the ones on the label |
 | Type "kadi patta" | Curry leaf |
 | Clear the search | Seventy-eight plants in groups: Trees, Flowering, Herbs, Vegetables, Indoors, then Anything else |

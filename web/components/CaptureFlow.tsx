@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { AppShell, AppHeader, ACTION } from "./AppShell";
 import { Camera, type Shot } from "./Camera";
 import { Celebration } from "./Celebration";
+import { CheckList } from "./CheckList";
 import { species, TASK_INSTRUCTION, TASK_LABEL, type TaskKind } from "@/lib/data";
 import { verify, type Check } from "@/lib/verify";
 import { say, useSpoken, voiceOn } from "@/lib/coach";
@@ -45,7 +46,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
   const [plant, setPlant] = useState<StoredPlant | null>(null);
   const [ghost, setGhost] = useState<string>();
   const [checks, setChecks] = useState<Check[]>([]);
-  const [shown, setShown] = useState(0);
+  const [settled, setSettled] = useState(false);
   const [earned, setEarned] = useState(0);
   const [missing, setMissing] = useState(false);
 
@@ -107,6 +108,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
         identity,
       });
 
+      setSettled(false);
       setChecks(verdict.checks);
 
       const photoId = id();
@@ -161,16 +163,6 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
     },
     [plant, kind, offset],
   );
-
-  // The checks arrive at reading speed rather than all at once. A wall of
-  // ticks is a logo; one line landing after another is somebody showing their
-  // working.
-  useEffect(() => {
-    if (stage !== "done" && stage !== "checking") return;
-    if (shown >= checks.length) return;
-    const t = setTimeout(() => setShown((n) => n + 1), shown === 0 ? 420 : 620);
-    return () => clearTimeout(t);
-  }, [stage, shown, checks.length]);
 
   if (missing)
     return (
@@ -260,19 +252,9 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
       />
 
       <main className="app-column flex flex-1 flex-col pb-12">
-        <ul className="mt-2">
-          {checks.slice(0, shown).map((c) => (
-            <li key={c.key} className="row tick-in flex items-start gap-3.5">
-              <Mark ok={c.ok} />
-              <div className="min-w-0">
-                <p className="text-[15px] font-medium text-cream">{c.label}</p>
-                <p className="mt-1 text-[13.5px] leading-relaxed text-faint">{c.reason}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <CheckList checks={checks} onDone={() => setSettled(true)} />
 
-        {shown >= checks.length && stage === "done" && (
+        {settled && stage === "done" && (
           <div className="rise-in mt-9">
             {passed ? (
               <Celebration
@@ -303,7 +285,7 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
                   type="button"
                   onClick={() => {
                     setChecks([]);
-                    setShown(0);
+                    setSettled(false);
                     setStage("camera");
                   }}
                 >
@@ -321,25 +303,6 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
         )}
       </main>
     </AppShell>
-  );
-}
-
-function Mark({ ok }: { ok: boolean }) {
-  return (
-    <svg
-      width="19"
-      height="19"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={ok ? "var(--verified)" : "var(--overdue)"}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="mt-0.5 shrink-0"
-      aria-hidden
-    >
-      {ok ? <path d="M4 12.5l5.2 5.2L20 7" /> : <path d="M6 6l12 12M18 6L6 18" />}
-    </svg>
   );
 }
 

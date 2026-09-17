@@ -86,23 +86,38 @@ export function Camera({
     };
   }, []);
 
-  // Read the frame a few times a second. Often enough that turning the phone
-  // gets an answer, slow enough that the voice is not babbling.
+  // Read the frame often enough that turning the phone gets an answer while
+  // you are still turning it. The first read happens the moment there is a
+  // frame to read rather than a beat later, because the wait before the guide
+  // said anything was the part that felt broken.
   useEffect(() => {
     if (state !== "live") return;
-    const tick = setInterval(() => {
+
+    const read = () => {
       const v = video.current;
       if (!v || v.readyState < 2) return;
       setTip(guide(v, v.videoWidth, v.videoHeight, kind));
-    }, 700);
+    };
+
+    read();
+    const tick = setInterval(read, 450);
     return () => clearInterval(tick);
   }, [state, kind]);
 
+  // The line on screen and the line being spoken are the same line, set in the
+  // same render. Anything already being said is dropped rather than queued, so
+  // the voice is never a sentence behind what the camera is looking at.
+  //
+  // This is also what speaks the moment the viewfinder opens, because the
+  // first reading now happens as soon as there is a frame. A separate greeting
+  // was worse: it was still talking when the first real reading arrived and
+  // got cut off by it.
   useEffect(() => {
     if (!voice || !tip.key || tip.key === spoken.current) return;
     spoken.current = tip.key;
     say(tip.line);
   }, [tip, voice]);
+
 
   function toggleVoice() {
     setOn((on) => {

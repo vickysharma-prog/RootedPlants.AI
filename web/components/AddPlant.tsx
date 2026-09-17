@@ -16,9 +16,11 @@ type Match = { speciesId: string | null; latin: string; common: string | null; s
 const SURE = 0.3;
 import { addLedger, id, putPhoto, putPlant } from "@/lib/store";
 import { Celebration } from "./Celebration";
+import { CheckList } from "./CheckList";
+import type { Check } from "@/lib/verify";
 import { say, voiceOn } from "@/lib/coach";
 
-type Step = "photo" | "what" | "where" | "done";
+type Step = "photo" | "checking" | "what" | "where" | "done";
 
 /**
  * Registering a plant.
@@ -45,17 +47,21 @@ export function AddPlant({ offset }: { offset: number }) {
   const [asking, setAsking] = useState<"working" | "done" | "off">("working");
   const [consent, setConsent] = useState(true);
   const [plantId, setPlantId] = useState("");
+  const [checks, setChecks] = useState<Check[]>([]);
+  const [settled, setSettled] = useState(false);
   const [matches, setMatches] = useState<Match[]>([]);
 
   useSpoken(
     step,
     step === "photo"
       ? "Photograph the whole plant, with the soil around its base in frame. This one becomes its baseline."
-      : step === "what"
-        ? "Checking what it is. Search by name if you already know."
-        : step === "where"
-          ? "Give it a name you would actually use, and tap to use where you are now."
-          : "",
+      : step === "checking"
+        ? "Checking the photograph."
+        : step === "what"
+          ? "Search by name if you already know what it is."
+          : step === "where"
+            ? "Give it a name you would actually use, and tap to use where you are now."
+            : "",
   );
 
   /**
@@ -66,8 +72,33 @@ export function AddPlant({ offset }: { offset: number }) {
    * is the only moment in the app when a photograph leaves the phone, and the
    * line on that screen says so. Turn it off there and nothing is ever sent.
    */
-  async function identify(taken: Shot) {
+  async function identify(taken: Shot, fromCamera: boolean) {
     setAsking("working");
+
+    const now = await fetch("/api/now")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => d?.now as string | undefined)
+      .catch(() => undefined);
+
+    const built: Check[] = [
+      {
+        key: "source",
+        label: "Photographed in the app",
+        reason: fromCamera
+          ? "The frame came straight off the camera, so this plant starts with a picture nobody could have had beforehand."
+          : "This came from a file rather than the camera.",
+        ok: fromCamera,
+      },
+      {
+        key: "time",
+        label: "Timed on our side",
+        reason: now
+          ? `Stamped ${new Date(now).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })} by the server, not by the file.`
+          : "The server clock could not be reached, so the time is unproven.",
+        ok: Boolean(now),
+      },
+    ];
+
     try {
       const body = new FormData();
       body.append("image", taken.full, "plant.jpg");
@@ -75,6 +106,16 @@ export function AddPlant({ offset }: { offset: number }) {
       const data = await res.json();
       const found: Match[] = Array.isArray(data.matches) ? data.matches : [];
       setMatches(found);
+
+      const conf = Math.round((data.confidence ?? 0) * 100);
+      built.push({
+        key: "plant",
+        label: "It is a plant",
+        reason: data.plant
+          ? `Read as a plant, ${conf}% on the closest species. This becomes the baseline every later photograph of it is measured against.`
+          : "Nothing in this photograph reads as a plant. Point the camera at the plant itself, close enough to fill the frame.",
+        ok: Boolean(data.plant),
+      });
       // Only pre-select when it is actually sure. A studio cutout of a curry
       // branch came back as jasmine at nine percent, and an app that fills the
       // answer in at nine percent is an app that teaches people to stop
@@ -89,7 +130,15 @@ export function AddPlant({ offset }: { offset: number }) {
       }
     } catch {
       setMatches([]);
+      built.push({
+        key: "plant",
+        label: "It is a plant",
+        reason: "The identification service could not be reached, so this one is unchecked.",
+        ok: false,
+      });
     }
+
+    setChecks(built);
     setAsking("done");
   }
 
@@ -193,13 +242,94 @@ export function AddPlant({ offset }: { offset: number }) {
           kind="water"
           onShot={(taken) => {
             setShot(taken);
-            setStep("what");
-            if (consent) identify(taken);
-            else setAsking("off");
+            setSettled(false);
+            if (consent) {
+              setStep("checking");
+              identify(taken, taken.fromCamera);
+            } else {
+              setAsking("off");
+              setStep("what");
+            }
           }}
         />
       </AppShell>
     );
+
+  if (step === "checking") {
+    const passed = checks.length > 0 && checks.every((c) => c.ok);
+    return (
+      <AppShell>
+        <AppHeader
+          back="/plants"
+          eyebrow="Step one of three"
+          title={asking === "working" ? "Checking the photo" : passed ? "Good photo." : "Not this one."}
+          right={<VoiceToggle />}
+        />
+        <main className="app-column flex flex-1 flex-col pb-12">
+          {shot && (
+            <BlobImage
+              blob={shot.thumb}
+              alt=""
+              className="mb-7 h-[150px] w-[112px] rounded-[12px] object-cover"
+            />
+          )}
+
+          <CheckList checks={checks} onDone={() => setSettled(true)} />
+
+          {settled && (
+            <div className="rise-in mt-9">
+              <div className="rule" />
+              {passed ? (
+                <>
+                  <p className="prose mt-6 text-body">
+                    Everything a first photograph has to be. Now say what it is.
+                  </p>
+                  <button
+                    className={`${ACTION} mt-8 w-full`}
+                    type="button"
+                    onClick={() => setStep("what")}
+                  >
+                    <span className="btn-label">Next</span>
+                    <span className="btn-arrow" aria-hidden>
+                      →
+                    </span>
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p className="prose mt-6 text-body">
+                    A plant is registered by its first photograph, and every later
+                    one is measured against it, so this one has to be right.
+                  </p>
+                  <button
+                    className={`${ACTION} mt-8 w-full`}
+                    type="button"
+                    onClick={() => {
+                      setChecks([]);
+                      setSettled(false);
+                      setStep("photo");
+                    }}
+                  >
+                    <span className="btn-label">Take it again</span>
+                    <span className="btn-arrow" aria-hidden>
+                      →
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setStep("what")}
+                    className="link-arrow mt-6 inline-flex text-faint"
+                  >
+                    <span className="link-text">Use it anyway</span>
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+        </main>
+      </AppShell>
+    );
+  }
 
   if (step === "what")
     return (

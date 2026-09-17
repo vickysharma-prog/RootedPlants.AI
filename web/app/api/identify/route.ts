@@ -16,6 +16,16 @@ import { SPECIES } from "@/lib/data";
 
 const PLANTNET = "https://my-api.plantnet.org/v2/identify/all";
 
+/**
+ * Below this, it is not a plant.
+ *
+ * Measured rather than picked. Random noise comes back as a 404, a flat wall
+ * scored 0.5% and a plain object 0.2%, while the least convincing real plant
+ * photograph in testing, a curry branch on a white studio background, still
+ * scored 9%. Three percent sits in the gap with nothing near it.
+ */
+const PLANT_MIN = 0.03;
+
 type Match = {
   /** One of our twelve, when the answer is one of them. */
   speciesId: string | null;
@@ -48,18 +58,21 @@ export async function POST(request: Request) {
       method: "POST",
       body,
     });
-    if (!res.ok) {
-      return Response.json(
-        { error: "upstream", status: res.status },
-        { status: res.status === 404 ? 200 : 502 },
-      );
-    }
+    // A 404 here is not a failure, it is an answer: PlantNet says it cannot
+    // find a species, which for a photograph of a wall or a mug is exactly
+    // right. Noise came back 404, a wall scored 0.5% and a mug 0.2%, while the
+    // weakest real plant in testing scored 9%, so "not a plant" is a real
+    // reading rather than an error to swallow.
+    if (res.status === 404) return Response.json({ matches: [], plant: false });
+    if (!res.ok) return Response.json({ error: "upstream", status: res.status }, { status: 502 });
     data = await res.json();
   } catch {
     return Response.json({ error: "unreachable" }, { status: 502 });
   }
 
-  return Response.json({ matches: rank(data) });
+  const matches = rank(data);
+  const best = matches[0]?.score ?? 0;
+  return Response.json({ matches, plant: best >= PLANT_MIN, confidence: best });
 }
 
 /**
