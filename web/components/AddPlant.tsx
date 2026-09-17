@@ -381,7 +381,7 @@ export function AddPlant({ offset }: { offset: number }) {
             that day by day.
           </p>
 
-          <div className="mt-2">
+          <div className="mt-2 pb-4">
             <SpeciesPicker
               value={speciesId}
               onPick={setSpeciesId}
@@ -389,19 +389,35 @@ export function AddPlant({ offset }: { offset: number }) {
             />
           </div>
 
-          <button
-            className={`${ACTION} mt-9 w-full`}
-            type="button"
-            disabled={!speciesId}
-            onClick={() => setStep("where")}
-            style={{ opacity: speciesId ? 1 : 0.4 }}
-          >
-            <span className="btn-label">Next</span>
-            <span className="btn-arrow" aria-hidden>
-              →
-            </span>
-          </button>
         </main>
+
+        {/* The list is seventy-eight long, and when the photograph has already
+            named the plant there is nothing down there worth scrolling past.
+            So the way forward stays within reach of a thumb wherever you are
+            in the list. */}
+        <div className="sticky bottom-0 z-10 border-t border-line-soft bg-bg/80 pt-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
+          <div className="app-column">
+            {speciesId ? (
+              <p className="label mb-3 truncate" style={{ color: "var(--moss)" }}>
+                {SPECIES.find((x) => x.id === speciesId)?.name}
+              </p>
+            ) : (
+              <p className="label mb-3 text-faint">Pick one to carry on</p>
+            )}
+            <button
+              className={`${ACTION} w-full`}
+              type="button"
+              disabled={!speciesId}
+              onClick={() => setStep("where")}
+              style={{ opacity: speciesId ? 1 : 0.4 }}
+            >
+              <span className="btn-label">Next</span>
+              <span className="btn-arrow" aria-hidden>
+                →
+              </span>
+            </button>
+          </div>
+        </div>
       </AppShell>
     );
 

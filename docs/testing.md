@@ -88,7 +88,9 @@ in the corner of those screens is the same switch as the one in the camera.
 | Before the camera | A tick offers to work out what it is from the photograph, with the line about that being the only time a photo leaves your phone. Untick it and nothing is sent |
 | Take the photo | It is checked first, the same way a task is: came off the camera, timed on our side, and **is it a plant** |
 | **Photograph something that is not a plant** | It fails on "It is a plant" and offers to take it again. A wall reads at 0.5%, a real plant at 9% or more |
-| After the checks pass | Step two, with the plant already named if it was sure. Above 30% it selects it for you and puts it under "From your photograph". Below that it says it is not sure and only offers |
+| After the checks pass | Step two, with the plant already named if it was sure. **Next** sits at the bottom of the screen and stays there, so an answer the photograph already gave does not cost you a scroll past seventy-eight plants |
+| The bar above **Next** | Names what is currently selected, so you can carry on without scrolling back up to check |
+| The identification card | Says what it found. Above 30% it selects it for you and puts it under "From your photograph". Below that it says it is not sure and only offers |
 | Type "mogra" in the search | Jasmine. It searches the names people use, not only the ones on the label |
 | Type "kadi patta" | Curry leaf |
 | Clear the search | Seventy-eight plants in groups: Trees, Flowering, Herbs, Vegetables, Indoors, then Anything else |
