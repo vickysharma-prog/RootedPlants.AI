@@ -244,6 +244,10 @@ pre .c { color: var(--faint); }
   color: var(--gold);
 }
 
+/* Subtitles are burned in by the encoder from the real narration timing, so
+   the card is rendered without them. The hud goes too. */
+.render .sayit, .render #hud { display: none; }
+
 #hud {
   position: fixed;
   right: 18px; bottom: 14px;
@@ -276,7 +280,7 @@ pre .c { color: var(--faint); }
       <h1>The planting is an event.<br><em>The keeping alive is a year.</em></h1>
       <p class="sub">A birthday, a school drive, a company CSR day. They plant it, they take the photo, they post it, and that is where it ends.</p>
     </div>
-    <div class="phone"><span>drop planting footage</span></div>
+    <div class="phone"><span>record: hands planting a sapling</span></div>
     <p class="sayit">The planting is an event. The keeping alive is a year of small boring jobs, and nothing is attached to doing them.</p>
   </section>
 
@@ -321,7 +325,7 @@ pre .c { color: var(--faint); }
         <p>Read at this plant's own coordinates, this morning. Rain pushes the next watering out. Heat pulls it in.</p>
       </div>
     </div>
-    <div class="phone"><span>today screen</span></div>
+    <div class="phone"><span>record: today, with the weather line</span></div>
     <p class="sayit">This is not a timer. Every plant carries its own coordinates, and the schedule moves with the weather actually over it.</p>
   </section>
 
@@ -337,7 +341,7 @@ pre .c { color: var(--faint); }
         <span class="tag">NOTHING UPLOADED</span>
       </div>
     </div>
-    <div class="phone"><span>camera, voice audible</span></div>
+    <div class="phone"><span>record: the camera guiding you, sound on</span></div>
     <p class="sayit">Point it at the plant. Tilt down so the soil is in frame. That is it, take it.</p>
   </section>
 
@@ -357,7 +361,7 @@ pre .c { color: var(--faint); }
         <p>A watered pot against its dry baseline, and the same frame against itself. Five percent sits clear of both.</p>
       </div>
     </div>
-    <div class="phone"><span>checks landing</span></div>
+    <div class="phone"><span>record: the checks landing one by one</span></div>
     <p class="sayit">Each one says the number it measured. The time is taken on our side, never read off the file.</p>
   </section>
 
@@ -383,7 +387,7 @@ pre .c { color: var(--faint); }
         </div>
       </div>
     </div>
-    <div class="phone"><span>it refuses the wrong plant</span></div>
+    <div class="phone"><span>record: it refuses a different plant</span></div>
     <p class="sayit">If photographing any plant earned points, the points would be worth nothing.</p>
   </section>
 
@@ -402,7 +406,7 @@ pre .c { color: var(--faint); }
         <p>What a photograph of an object scores. The least convincing real plant still scored nine.</p>
       </div>
     </div>
-    <div class="phone"><span>that is not a plant</span></div>
+    <div class="phone"><span>record: a notebook, then a real plant</span></div>
     <p class="sayit">It works out what it is from the photograph, and below thirty percent it will not fill the answer in for you.</p>
   </section>
 
@@ -419,7 +423,7 @@ pre .c { color: var(--faint); }
       </div>
       <p class="sub">A name, a plant and a date go to the server. <b>No photographs. No coordinates. No points.</b></p>
     </div>
-    <div class="phone"><span>locked phone, then the message</span></div>
+    <div class="phone"><span>record: locked phone, then the message</span></div>
     <p class="sayit">So this cannot wait to be opened. When something comes due, the same message goes out on every channel you left on.</p>
   </section>
 
@@ -484,10 +488,16 @@ function show(n) {
   i = Math.max(0, Math.min(cards.length - 1, n));
   cards.forEach((c, k) => c.classList.toggle("on", k === i));
   hud.textContent = `${i + 1} / ${cards.length}   ← →   F fullscreen`;
+  // A renderer waits for this before it captures.
+  document.title = `card ${i + 1}`;
+  document.body.dataset.ready = "1";
 }
 
 // Always compose at 1920x1080 and scale to fit, so a card recorded on one
 // screen is the same pixels as a card recorded on another.
+const RENDER = location.search.includes("render");
+if (RENDER) document.documentElement.classList.add("render");
+
 function fit() {
   const s = Math.min(innerWidth / 1920, innerHeight / 1080);
   stage.style.transform = `translate(-50%, -50%) scale(${s})`;
@@ -501,8 +511,15 @@ addEventListener("keydown", (e) => {
 });
 addEventListener("click", () => show(i + 1));
 
+// #3 opens card three, so a renderer can ask for one card at a time.
+function fromHash() {
+  const n = parseInt(location.hash.slice(1), 10);
+  return Number.isFinite(n) && n > 0 ? n - 1 : 0;
+}
+addEventListener("hashchange", () => show(fromHash()));
+
 fit();
-show(0);
+show(fromHash());
 </script>
 </body>
 </html>

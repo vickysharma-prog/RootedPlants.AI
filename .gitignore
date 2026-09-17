@@ -33,6 +33,7 @@ Thumbs.db
 *.mp4
 *.mov
 !web/public/video/*.mp4
+!video/rooted-demo.mp4
 
 # seeded design canvas, rebuilt from design/*.dc.html
 design/rooted-app-screens.html
