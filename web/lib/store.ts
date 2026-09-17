@@ -20,7 +20,7 @@ const DB = "rooted";
 // missing clock schedules nonsense, and nothing here is precious enough to
 // migrate: the photographs a real user has taken are the only thing that
 // would be, and this is still before anybody has taken any.
-const VERSION = 6;
+const VERSION = 7;
 
 export type StoredPlant = {
   id: string;

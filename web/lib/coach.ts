@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import type { TaskKind } from "./data";
 
 /**
@@ -149,4 +150,52 @@ export function say(text: string) {
 
 export function hush() {
   window.speechSynthesis?.cancel();
+}
+
+/* ------------------------------------------------------- the guide, anywhere */
+
+const PREF = "rooted_voice";
+
+/**
+ * One switch for the whole app.
+ *
+ * The camera is not the only place somebody is holding a phone in one hand and
+ * a plant in the other. Registering one, picking what it is, reading a verdict:
+ * all of it is easier heard than read when your hands are busy. So the same
+ * voice follows through those screens, and the same single preference turns it
+ * off everywhere rather than screen by screen.
+ */
+export function voiceOn(): boolean {
+  try {
+    return localStorage.getItem(PREF) !== "off";
+  } catch {
+    return true;
+  }
+}
+
+export function setVoice(on: boolean) {
+  try {
+    localStorage.setItem(PREF, on ? "on" : "off");
+  } catch {
+    // A browser that will not remember it still obeys it for this visit.
+  }
+  if (!on) hush();
+}
+
+/**
+ * Say a line once when a screen arrives, and never repeat it.
+ *
+ * `key` is what makes it once: the same key says nothing again, which is what
+ * keeps a re-render from turning the guide into a stutter.
+ */
+export function useSpoken(key: string, line: string) {
+  const said = useRef("");
+
+  useEffect(() => {
+    if (!key || key === said.current) return;
+    said.current = key;
+    if (voiceOn()) say(line);
+  }, [key, line]);
+
+  useEffect(() => () => hush(), []);
 }

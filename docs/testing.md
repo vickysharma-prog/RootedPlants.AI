@@ -53,7 +53,7 @@ The demo account seeds itself again on the next load.
 | Point it at the floor | It says "Point it at the plant", out loud |
 | Cover the lens | "Too dark to check" |
 | Frame the plant properly | "That is it. Take it." and the ring around the shutter turns green |
-| Tap the speaker icon | Voice stops. The advice stays on screen and the ring still turns green |
+| Tap the speaker icon | Voice stops everywhere, not just here, and stays off next time |
 | Press the shutter | Checks arrive one at a time, each saying the number it measured |
 | Watch the identity check | "It is this plant" with how many points lined up with its first photograph. Several hundred means yes |
 | If everything passes | Card lifts, points count up, leaves drift past |
@@ -62,6 +62,10 @@ The demo account seeds itself again on the next load.
 
 **Worth trying on purpose:** point the camera at a different plant of the same
 species. That is the check that used to pass and now does not.
+
+**The guide speaks on more than the camera.** Each step of adding a plant, the
+task brief, and a redemption all say their one line out loud. The speaker icon
+in the corner of those screens is the same switch as the one in the camera.
 
 ## 5. Your plants
 
@@ -81,8 +85,12 @@ species. That is the check that used to pass and now does not.
 |---|---|
 | Plants, then **Add a plant** | Step one of three: photograph it |
 | Take the photo | Step two, with an offer to identify it from the photograph |
-| **Identify it** | Names the plant with how confident it is, selects it below, and reorders the list so its guesses are first |
-| **I know what it is** | The offer goes away and the picker behaves as it always did |
+| **Identify it** | Names the plant with how confident it is. Above 30% it selects it for you and puts it under "From your photograph". Below that it says it is not sure and only offers |
+| **I know what it is** | The offer goes away and the search stays |
+| Type "mogra" in the search | Jasmine. It searches the names people use, not only the ones on the label |
+| Type "kadi patta" | Curry leaf |
+| Clear the search | Seventy-eight plants in groups: Trees, Flowering, Herbs, Vegetables, Indoors, then Anything else |
+| Scroll to **Anything else** | Five profiles for plants not on the list. Pick how it grows and it schedules from that |
 | Pick one | Step three: name, where it stands, and its spot |
 | Tap **Use where I am now** | Coordinates appear, taken from the device rather than typed |
 | Register it | Straight to its page, with your photo as its baseline |

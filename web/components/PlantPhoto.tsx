@@ -7,6 +7,11 @@ import Image from "next/image";
  * identifier and the name is the caption. On a dark page a bright crop shouts,
  * so the photograph is sunk slightly and edged with a hairline: present, not
  * competing with the type.
+ *
+ * Most of the seventy-odd species carry no photograph, because a stock picture
+ * of somebody else's tomato is not what identifies your tomato. Those get a
+ * mark instead, and the first photograph you take of your own plant replaces
+ * it everywhere that matters.
  */
 export function PlantPhoto({
   src,
@@ -16,7 +21,7 @@ export function PlantPhoto({
   priority = false,
   dim = false,
 }: {
-  src: string;
+  src?: string;
   alt: string;
   size?: number;
   radius?: number;
@@ -25,9 +30,31 @@ export function PlantPhoto({
 }) {
   return (
     <div
-      className="relative shrink-0 overflow-hidden"
-      style={{ width: size, height: size, borderRadius: radius }}
+      className="relative flex shrink-0 items-center justify-center overflow-hidden"
+      style={{
+        width: size,
+        height: size,
+        borderRadius: radius,
+        background: src ? undefined : "var(--surface-strong)",
+      }}
     >
+      {!src ? (
+        <svg
+          width={size * 0.46}
+          height={size * 0.46}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="var(--moss-deep)"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden
+        >
+          <path d="M12 20V9" />
+          <path d="M12 12C7 12 5 9 5 5c4 0 7 3 7 7z" />
+          <path d="M12 14c5-1 7-4 7-8-4 0-7 3-7 8z" />
+        </svg>
+      ) : (
       <Image
         src={src}
         alt={alt}
@@ -37,6 +64,7 @@ export function PlantPhoto({
         className="h-full w-full object-cover"
         style={{ filter: dim ? "saturate(0.7) brightness(0.72)" : "saturate(0.92) brightness(0.9)" }}
       />
+      )}
       <span
         className="pointer-events-none absolute inset-0"
         style={{

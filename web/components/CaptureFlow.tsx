@@ -8,7 +8,8 @@ import { Camera, type Shot } from "./Camera";
 import { Celebration } from "./Celebration";
 import { species, TASK_INSTRUCTION, TASK_LABEL, type TaskKind } from "@/lib/data";
 import { verify, type Check } from "@/lib/verify";
-import { say } from "@/lib/coach";
+import { say, useSpoken } from "@/lib/coach";
+import { VoiceToggle } from "./VoiceToggle";
 import { samePlant, warm } from "@/lib/identity";
 import {
   addLedger,
@@ -49,6 +50,13 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
   const [missing, setMissing] = useState(false);
 
   // "neem-1-water" is a plant id with the task on the end.
+  useSpoken(
+    plant ? `${stage}-${taskId}` : "",
+    stage === "brief"
+      ? TASK_INSTRUCTION[taskId.slice(taskId.lastIndexOf("-") + 1) as TaskKind] ?? ""
+      : "",
+  );
+
   const cut = taskId.lastIndexOf("-");
   const plantId = taskId.slice(0, cut);
   const kind = taskId.slice(cut + 1) as TaskKind;
@@ -183,7 +191,12 @@ export function CaptureFlow({ taskId, offset }: { taskId: string; offset: number
           back="/today"
           eyebrow={`${plant.name}, ${plant.place}`}
           title={TASK_LABEL[kind]}
-          right={<span className="num text-[15px] text-gold">+{pointsFor(kind, plant.streak)}</span>}
+          right={
+            <span className="flex items-center gap-4">
+              <span className="num text-[15px] text-gold">+{pointsFor(kind, plant.streak)}</span>
+              <VoiceToggle />
+            </span>
+          }
         />
         <main className="app-column flex flex-1 flex-col pb-12">
           <div className="rule" />

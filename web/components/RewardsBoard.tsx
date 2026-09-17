@@ -6,6 +6,7 @@ import { Celebration } from "./Celebration";
 import { useRooted } from "@/lib/live";
 import { addLedger, id, type LedgerEntry } from "@/lib/store";
 import { TASK_LABEL } from "@/lib/data";
+import { say, voiceOn } from "@/lib/coach";
 
 /**
  * What the work is worth.
@@ -72,7 +73,9 @@ export function RewardsBoard({ offset }: { offset: number }) {
       points: -item.cost,
       label: item.title,
     });
-    setCode(`RTD-${Math.random().toString(36).slice(2, 8).toUpperCase()}`);
+    const fresh = `RTD-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
+    setCode(fresh);
+    if (voiceOn()) say(`Redeemed. ${item.title}. Your code is on screen.`);
     setConfirming(undefined);
     reload();
   }

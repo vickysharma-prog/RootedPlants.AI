@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { fromFile, shrink } from "@/lib/store";
-import { guide, hush, say, type Guide } from "@/lib/coach";
+import { guide, hush, say, setVoice, voiceOn, type Guide } from "@/lib/coach";
 import type { TaskKind } from "@/lib/data";
 
 export type Shot = { full: Blob; thumb: Blob; fromCamera: boolean };
@@ -46,14 +46,12 @@ export function Camera({
   const video = useRef<HTMLVideoElement>(null);
   const [state, setState] = useState<"opening" | "live" | "closed">("opening");
   const [busy, setBusy] = useState(false);
-  const [voice, setVoice] = useState(true);
+  const [voice, setOn] = useState(true);
   const [tip, setTip] = useState<Guide>({ line: "", ready: false, key: "" });
   const spoken = useRef("");
 
   useEffect(() => {
-    try {
-      setVoice(localStorage.getItem("rooted_voice") !== "off");
-    } catch {}
+    setOn(voiceOn());
   }, []);
 
   // Whoever opens the camera is about to spend several seconds framing a
@@ -107,13 +105,10 @@ export function Camera({
   }, [tip, voice]);
 
   function toggleVoice() {
-    setVoice((on) => {
+    setOn((on) => {
       const next = !on;
-      if (!next) hush();
       spoken.current = "";
-      try {
-        localStorage.setItem("rooted_voice", next ? "on" : "off");
-      } catch {}
+      setVoice(next);
       return next;
     });
   }

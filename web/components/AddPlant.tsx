@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { AppShell, AppHeader, ACTION } from "./AppShell";
 import { BlobImage } from "./BlobImage";
 import { Camera, type Shot } from "./Camera";
 import { SPECIES } from "@/lib/data";
+import { SpeciesPicker } from "./SpeciesPicker";
+import { VoiceToggle } from "./VoiceToggle";
+import { useSpoken } from "@/lib/coach";
 
 type Match = { speciesId: string | null; latin: string; common: string | null; score: number };
 
@@ -40,6 +42,15 @@ export function AddPlant({ offset }: { offset: number }) {
   const [saving, setSaving] = useState(false);
   const [asking, setAsking] = useState<"offer" | "working" | "done" | "off">("offer");
   const [matches, setMatches] = useState<Match[]>([]);
+
+  useSpoken(
+    step,
+    step === "photo"
+      ? "Photograph the whole plant, with the soil around its base in frame. This one becomes its baseline."
+      : step === "what"
+        ? "Search for it by name, or have the photograph identified for you."
+        : "Give it a name you would actually use, and tap to use where you are now.",
+  );
 
   /**
    * Identification is offered, never assumed.
@@ -129,6 +140,7 @@ export function AddPlant({ offset }: { offset: number }) {
           back="/plants"
           eyebrow="Step one of three"
           title="Photograph it."
+          right={<VoiceToggle />}
           lede="This one becomes the baseline. Every later photograph of this plant is measured against it, so take it where the plant actually stands."
         />
         <Camera
@@ -145,7 +157,12 @@ export function AddPlant({ offset }: { offset: number }) {
   if (step === "what")
     return (
       <AppShell>
-        <AppHeader back="/plants" eyebrow="Step two of three" title="What is it?" />
+        <AppHeader
+          back="/plants"
+          eyebrow="Step two of three"
+          title="What is it?"
+          right={<VoiceToggle />}
+        />
         <main className="app-column pb-12">
           <Identify
             state={asking}
@@ -154,40 +171,19 @@ export function AddPlant({ offset }: { offset: number }) {
             onSkip={() => setAsking("off")}
           />
 
-          <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-4">
-            {ordered(SPECIES, matches).map((s) => {
-              const on = s.id === speciesId;
-              return (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => setSpeciesId(s.id)}
-                  className="overflow-hidden rounded-[14px] border text-left transition"
-                  style={{ borderColor: on ? "var(--moss)" : "var(--line-soft)" }}
-                >
-                  <Image
-                    src={s.photo}
-                    alt=""
-                    width={160}
-                    height={120}
-                    className="h-[74px] w-full object-cover"
-                    style={{ opacity: on ? 1 : 0.62 }}
-                  />
-                  <span
-                    className="block px-2.5 py-2 text-[12.5px] leading-tight"
-                    style={{ color: on ? "var(--cream)" : "var(--body)" }}
-                  >
-                    {s.name}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          <p className="mt-6 text-[13.5px] leading-relaxed text-faint">
-            The species sets how often it wants water and feeding. Your local weather
-            then moves that schedule day by day.
+          <p className="mt-7 max-w-[28rem] text-[14px] leading-relaxed text-faint">
+            The species is what sets the schedule: how often it wants water,
+            what to feed it and what goes wrong with it. Your weather then moves
+            that day by day.
           </p>
+
+          <div className="mt-2">
+            <SpeciesPicker
+              value={speciesId}
+              onPick={setSpeciesId}
+              suggested={matches.map((m) => m.speciesId).filter(Boolean) as string[]}
+            />
+          </div>
 
           <button
             className={`${ACTION} mt-9 w-full`}
@@ -207,7 +203,12 @@ export function AddPlant({ offset }: { offset: number }) {
 
   return (
     <AppShell>
-      <AppHeader back="/plants" eyebrow="Step three of three" title="Where does it live?" />
+      <AppHeader
+        back="/plants"
+        eyebrow="Step three of three"
+        title="Where does it live?"
+        right={<VoiceToggle />}
+      />
       <main className="app-column pb-12">
         <div className="flex items-start gap-5">
           <BlobImage
@@ -272,20 +273,6 @@ export function AddPlant({ offset }: { offset: number }) {
         </button>
       </main>
     </AppShell>
-  );
-}
-
-/**
- * Species the photograph pointed at come first, in the order it ranked them.
- * The rest keep their usual order underneath, so nothing disappears and the
- * list never has to be searched twice.
- */
-function ordered(all: typeof SPECIES, matches: Match[]) {
-  const hits = matches.map((m) => m.speciesId).filter(Boolean) as string[];
-  if (!hits.length) return all;
-  const rank = new Map(hits.map((id, i) => [id, i]));
-  return [...all].sort(
-    (a, b) => (rank.get(a.id) ?? 999) - (rank.get(b.id) ?? 999),
   );
 }
 
