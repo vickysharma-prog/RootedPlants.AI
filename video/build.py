@@ -30,7 +30,7 @@ CARDS = "http://localhost:3333/cards.html?render"
 # Warm, confident, and not in a hurry. A demo read like an advert is a demo
 # nobody believes.
 VOICE = "en-US-AndrewNeural"
-RATE = "-4%"
+RATE = "+5%"
 
 CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
@@ -40,85 +40,103 @@ CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 # thinking.
 BEATS = [
     # card, step, line, silence after it
-    (1, 1, "Everybody plants a tree.", 0.9),
-    (1, 2, "Nobody finds out what happened to it.", 1.5),
+    (1, 1, "Everybody plants a tree.", 0.63),
+    (1, 2, "Nobody finds out what happened to it.", 1.05),
 
-    (2, 1, "A birthday. A school drive. A company afternoon.", 0.3),
-    (2, 2, "They plant it, they take the photo, they post it, and that is where it ends.", 0.4),
-    (2, 3, "The planting is an event. The keeping alive is a year.", 0.9),
+    (2, 1, "A birthday. A school drive. A company afternoon.", 0.25),
+    (2, 2, "They plant it, they take the photo, they post it, and that is where it ends.", 0.28),
+    (2, 3, "The planting is an event. The keeping alive is a year.", 0.63),
 
-    (3, 1, "So how much of it lives? India's national auditor spent ten years going and looking.", 0.5),
-    (3, 2, "Of a two point eight million hectare afforestation target, about five percent was actually achieved.", 0.5),
-    (3, 3, "At seventy percent of the sites they assessed, there was little or no improvement in tree cover at all.", 0.5),
-    (3, 4, "One site reported two thousand plantings. Thirty saplings were found on the ground. None of them had survived.", 1.4),
+    (3, 1, "So how much of it lives? India's national auditor went and looked.", 0.35),
+    (3, 2, "Of a two point eight million hectare target, about five percent was achieved.", 0.35),
+    (3, 3, "At seventy percent of the sites, no improvement in tree cover at all.", 0.35),
+    (3, 4, "One site reported two thousand plantings. Thirty were found. None had survived.", 0.98),
 
-    (4, 1, "And here is the part that explains the rest.", 0.5),
-    (4, 2, "Of five hundred and fifty six plantation records, four hundred and thirty one did not say what was planted, where it stood, or whether it lived.", 0.8),
-    (4, 3, "There is no record of what survived, because nobody was ever asked to keep one. Planting is not the solution. Keeping it alive is.", 1.3),
+    (4, 1, "And here is the part that explains the rest.", 0.35),
+    (4, 2, "Four out of five plantation records did not say what was planted, where it stood, or whether it lived.", 0.56),
+    (4, 3, "Nobody was ever asked to keep one. Planting is not the solution. Keeping it alive is.", 0.91),
 
-    (5, 1, "And we already pay people to do boring things.", 0.4),
-    (5, 2, "Pay a credit card bill on time, and you earn points.", 0.4),
-    (5, 3, "Order dinner, take a taxi, board a flight. Points.", 0.4),
-    (5, 4, "Water the tree you planted last year, and nothing happens at all.", 1.2),
+    (5, 1, "And we already pay people to do boring things.", 0.28),
+    (5, 2, "Pay a credit card bill on time, and you earn points.", 0.28),
+    (5, 4, "Water the tree you planted last year, and nothing happens at all.", 0.84),
 
-    (6, 1, "Rooted pays you for keeping it alive.", 0.5),
-    (6, 2, "Register a plant once, then do the small jobs it needs, photographed as you do them. Every one that checks out earns points.", 0.4),
-    (6, 3, "It is a website. There is nothing to install, and it works with no signal.", 0.8),
+    (6, 1, "Rooted pays you for keeping it alive.", 0.35),
+    (6, 2, "Register a plant once. Do the small jobs it needs, photographed as you do them.", 0.28),
 
-    (7, 1, "You do not have to know anything about the plant.", 0.4),
-    (7, 2, "Every plant carries its own coordinates, and the schedule moves with the weather actually over it.", 0.4),
-    (7, 3, "Rain pushes the next watering out. Heat pulls it in.", 0.9),
+    (7, 1, "You do not have to know anything about the plant.", 0.28),
+    (7, 2, "Every plant carries its own coordinates, and the schedule moves with the weather over it.", 0.28),
+    (7, 3, "Rain pushes the next watering out. Heat pulls it in.", 0.63),
 
-    (8, 1, "So nobody has to babysit it. It tells you the job, on the day the job is due.", 0.5),
-    (8, 2, "Water, on this species own interval, moved by the rain and the heat.", 0.4),
-    (8, 3, "Feeding, with what this plant actually wants, and a reminder to use less than you think, because fertiliser the roots do not take ends up in the groundwater.", 0.4),
-    (8, 4, "Pests, with what actually goes wrong with this species and the mildest thing that works, because a spray kills the ladybirds that were handling it for you.", 0.4),
-    (8, 5, "And a weekly look while it is establishing, which is when losing it is most likely and least visible.", 1.0),
+    (8, 1, "So nobody has to babysit it. It tells you the job on the day it is due.", 0.35),
+    (8, 2, "Water, on this species own interval, moved by the rain and the heat.", 0.28),
+    (8, 3, "Feeding, with what this plant wants, and less than you think, because what the roots do not take ends up in the groundwater.", 0.28),
+    (8, 4, "Pests, with what goes wrong with this species, and the mildest thing that works.", 0.28),
+    (8, 5, "And a weekly look while it establishes, which is when losing it is least visible.", 0.70),
 
-    (9, 1, "Every plant also carries a health score.", 0.4),
-    (9, 2, "It is built from how the watering has gone against the schedule this species wants, and how long the run is.", 0.4),
-    (9, 3, "Thriving, steady, watch it, at risk. And one sentence saying what moved it.", 0.5),
-    (9, 4, "What it does not do is read the leaves and tell you the plant is sick. A yellow leaf has a dozen causes, and a number invented from one is a number that gets trusted.", 1.0),
+    (9, 1, "Every plant also carries a health score.", 0.28),
+    (9, 3, "Thriving, steady, watch it, at risk, and one sentence saying what moved it.", 0.35),
+    (9, 4, "It does not read the leaves and call the plant sick. A yellow leaf has a dozen causes.", 0.70),
 
-    (10, 1, "When it is time, the camera tells you what would make the shot pass.", 0.4),
-    (10, 2, "Out loud, because whoever is doing this is holding a watering can.", 0.4),
-    (10, 3, "It reads the frame twice a second, on the phone, and nothing is uploaded to do it.", 0.4),
-    (10, 4, "Tilt down so the soil is in frame. Then the ring around the shutter turns green.", 1.0),
+    (10, 1, "The camera then tells you what would make the shot pass.", 0.28),
+    (10, 2, "Out loud, because whoever is doing this is holding a watering can.", 0.28),
+    (10, 3, "It reads the frame twice a second, on the phone, uploading nothing.", 0.28),
+    (10, 4, "Tilt down so the soil is in frame. Then the ring turns green.", 0.70),
 
-    (11, 1, "Then the photograph is checked, and every check says the number it measured.", 0.4),
-    (11, 2, "That it came off the camera and not a file picker. The time, taken on our side. The location, against where this plant was registered.", 0.4),
-    (11, 3, "And for watering, soil at least five percent darker than that plant's own dry baseline. That threshold was measured, not guessed.", 1.0),
+    (11, 1, "Then it is checked, and every check says the number it measured.", 0.28),
+    (11, 2, "It came off the camera. The time is ours. The location matches where this plant was registered.", 0.28),
+    (11, 3, "And soil five percent darker than that plant's own dry baseline. Measured, not guessed.", 0.70),
 
-    (12, 1, "This is the one that matters. If photographing any plant earned points, the points would be worth nothing.", 0.5),
-    (12, 2, "So OpenCV finds keypoints in this photograph and in the plant's first one, matches them, and asks whether they agree on a single viewpoint.", 0.4),
-    (12, 3, "The same plant returns four hundred and eighty five.", 0.6),
-    (12, 4, "A different plant of the same species, in a similar pot, returns four.", 1.6),
+    (12, 1, "This is the one that matters. If any plant earned points, the points would be worth nothing.", 0.35),
+    (12, 2, "So OpenCV matches keypoints against the plant's first photograph, and asks whether they agree on one viewpoint.", 0.28),
+    (12, 3, "The same plant returns four hundred and eighty five.", 0.42),
+    (12, 4, "A different plant of the same species, in a similar pot, returns four.", 1.12),
 
-    (13, 1, "Registering a plant checks the photograph before it accepts it.", 0.4),
-    (13, 2, "Point it at a notebook and it says so. A plain object scores nought point two percent as a plant. The least convincing real plant still scored nine.", 0.5),
-    (13, 3, "Point it at a plant and it works out what that plant is. Seventy-eight species, searched by the names people actually use.", 0.4),
-    (13, 4, "And five profiles for anything not on the list, because knowing a plant's name and knowing how to keep it alive are different jobs.", 1.0),
+    (13, 1, "Registering a plant checks the photograph before it accepts it.", 0.28),
+    (13, 2, "Point it at a notebook and it says so. An object scores nought point two percent. The weakest real plant scored nine.", 0.35),
+    (13, 3, "Point it at a plant and it works out what it is. Seventy-eight species, searched by local name.", 0.28),
 
-    (14, 1, "The whole premise is that people forget. So this cannot wait to be opened.", 0.5),
-    (14, 2, "When a task comes due, the same message goes out on WhatsApp, on email, and as a text.", 0.4),
-    (14, 3, "A name, a plant and a date go to the server. No photographs. No coordinates. Those never leave the phone.", 1.1),
+    (14, 1, "The whole premise is that people forget. So this cannot wait to be opened.", 0.35),
+    (14, 2, "When a task comes due, the same message goes out on WhatsApp, email and text.", 0.28),
+    (14, 3, "A name, a plant and a date go to the server. No photographs, no coordinates.", 0.77),
 
-    (15, 1, "Organisations spend heavily on planting drives every year, and get back a photograph from planting day.", 0.5),
-    (15, 2, "Rooted produces the record of what actually survived, and every point in it traces to one verified task.", 0.5),
-    (15, 3, "That record is what funds the rewards. The offers in the app are stand-ins, because naming a real company in a demo would put words in their mouth.", 1.1),
+    (15, 1, "Organisations spend heavily on planting drives, and get back a photograph from day one.", 0.35),
+    (15, 2, "Rooted produces the record of what survived, every point traceable to one verified task.", 0.35),
+    (15, 3, "That record funds the rewards. The offers are stand-ins, because naming a real company would put words in their mouth.", 0.77),
 
-    (16, 1, "Two things did not survive contact with a measurement.", 0.5),
-    (16, 2, "I tried to work out the species on the device, from colour and texture. It got the right answer first zero times out of seventeen.", 0.5),
-    (16, 3, "And the check that says this is the same plant used to compare brightness grids. A photograph of a different neem tree walked straight through it.", 0.5),
-    (16, 4, "Against eight percent for guessing at random. It was the weakest thing in the app wearing the name of the strongest. So it was measured, thrown away, and replaced.", 1.4),
+    (16, 1, "Two things did not survive contact with a measurement.", 0.35),
+    (16, 2, "I tried to work out the species on the device. It got the right answer zero times out of seventeen.", 0.35),
+    (16, 3, "And the identity check used to compare brightness grids. A different neem tree walked straight through.", 0.35),
+    (16, 4, "Against eight percent for guessing. It was the weakest thing in the app wearing the name of the strongest, so it was replaced.", 0.98),
 
-    (17, 1, "We reward people for spending money.", 1.1),
-    (17, 3, "Rooted rewards them for keeping something alive.", 1.6),
+    (17, 1, "We reward people for spending money.", 0.77),
+    (17, 3, "Rooted rewards them for keeping something alive.", 1.12),
 
-    (18, 1, "Plant it. Keep it. Get paid for it.", 1.0),
-    (18, 3, "Nothing in here reports a number it did not measure.", 2.4),
+    (18, 1, "Plant it. Keep it. Get paid for it.", 0.70),
+    (18, 3, "Nothing in here reports a number it did not measure.", 1.68),
 ]
 
+
+
+# Which recording plays inside the phone on which card. The ones missing are
+# the shots that need a real plant in a real hand, and those frames say so on
+# screen rather than pretending.
+FOOTAGE = {
+    2: "landing",
+    6: "join",
+    7: "today",
+    9: "plants",
+    11: "howitworks",
+    15: "rewards",
+}
+
+# Where the phone sits in a frame, pinned in the stylesheet so nothing has to
+# be measured.
+SLOT = (1385, 112, 410, 820)
+
+
+def clip_for(card: int):
+    p = HERE / "footage" / f"{FOOTAGE[card]}.mp4" if card in FOOTAGE else None
+    return p if p and p.exists() else None
 
 
 def run(*args, **kw):
@@ -160,6 +178,48 @@ def srt_time(t: float) -> str:
     h, rem = divmod(t, 3600)
     m, s = divmod(rem, 60)
     return f"{int(h):02d}:{int(m):02d}:{int(s):06.3f}".replace(".", ",")
+
+
+def ass_time(t: float) -> str:
+    h, rem = divmod(max(0.0, t), 3600)
+    m, s = divmod(rem, 60)
+    return f"{int(h)}:{int(m):02d}:{s:05.2f}"
+
+
+def write_ass(subs, path: pathlib.Path):
+    """
+    A real subtitle file, with its own canvas.
+
+    The `subtitles` filter hands an SRT to libass with no script resolution on
+    it, so libass measures margins against its own default canvas instead of
+    against 1920 by 1080. A left margin of 110 in that space is most of the
+    width, which is how the captions came out as a column of single words over
+    the middle of the frame. Declaring PlayRes fixes the geometry rather than
+    guessing smaller numbers.
+
+    Bottom left, in its own box, inside the card's own margin. Centred at the
+    bottom it crossed under both the words and the phone, which is the one
+    strip of the frame that belongs to neither.
+    """
+    head = """[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Say,Instrument Sans,44,&H00BBC8C2,&H00BBC8C2,&H00000000,&HB0060A07,0,0,0,0,100,100,0,0,3,14,0,1,110,820,60,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+    rows = [
+        f"Dialogue: 0,{ass_time(a)},{ass_time(b)},Say,,0,0,0,,{t}"
+        for a, b, t in subs
+    ]
+    path.write_text(head + chr(10).join(rows) + chr(10), encoding="utf-8")
 
 
 def chunk(text: str, limit: int = 64):
@@ -212,8 +272,11 @@ async def main():
         sys.exit("ffmpeg is not on PATH")
 
     WORK.mkdir(exist_ok=True)
+    # Files only. The recorder keeps a browser profile in here, and that is a
+    # directory this has no business deleting.
     for old in WORK.glob("*"):
-        old.unlink()
+        if old.is_file():
+            old.unlink()
 
     print(f"voice: {VOICE}\nbeats: {len(BEATS)}\n")
 
@@ -321,26 +384,57 @@ async def main():
         encoding="utf-8",
     )
 
-    # Bottom left, in its own box, inside the card's own left margin.
-    # Centred at the bottom it crossed under both the words and the phone,
-    # which is the one strip of the frame that belongs to neither.
-    style = (
-        "FontName=Instrument Sans,FontSize=20,PrimaryColour=&H00BBC8C2,"
-        "BackColour=&HC8080D06,BorderStyle=3,Outline=7,Shadow=0,"
-        "Alignment=1,MarginL=110,MarginR=780,MarginV=56"
-    )
+    ass = HERE / "rooted-demo.ass"
+    write_ass(subs, ass)
+
+    # 7. Work out when each card is on screen, so its recording can be laid
+    #    into the phone for exactly that stretch and no longer.
+    windows = {}
+    at = 0.0
+    for (c, _st), d in shots:
+        a, b = windows.get(c, (at, at))
+        windows[c] = (min(a, at), max(b, at + d))
+        at += d
+
+    inputs = []
+    x, y, pw, ph = SLOT
+    # Inset a little, so the card's own rounded border still draws around the
+    # recording instead of being covered by its square corners.
+    inset = 5
+    vw, vh = pw - inset * 2, ph - inset * 2
+
+    chain = "[0:v]fps=30,scale=1920:1080:flags=lanczos[base]"
+    last = "base"
+    overlays = []
+
+    for card in sorted(windows):
+        clip = clip_for(card)
+        if not clip:
+            continue
+        start_t, end_t = windows[card]
+        # Two inputs are already taken: the cards and the audio.
+        idx = 2 + len(overlays)
+        inputs += ["-stream_loop", "-1", "-i", str(clip)]
+        chain += f";[{idx}:v]scale={vw}:{vh},setpts=PTS-STARTPTS+{start_t:.3f}/TB[p{card}]"
+        chain += (
+            f";[{last}][p{card}]overlay={x + inset}:{y + inset}:"
+            f"enable='between(t,{start_t:.3f},{end_t:.3f})'[v{card}]"
+        )
+        last = f"v{card}"
+        overlays.append(card)
+
+    chain += f";[{last}]ass={ass.name}[v]"
 
     out = HERE / "rooted-demo.mp4"
-    print("\nencoding")
+    print(f"\nencoding, with footage in {len(overlays)} frames")
     run(
         "ffmpeg", "-loglevel", "error", "-y",
         "-f", "concat", "-safe", "0", "-i", str(shot_list),
         "-i", str(voice_track),
-        "-filter_complex",
-        f"[0:v]fps=30,scale=1920:1080:flags=lanczos,"
-        f"subtitles={srt.name}:force_style='{style}'[v]",
+        *inputs,
+        "-filter_complex", chain,
         "-map", "[v]", "-map", "1:a",
-        "-c:v", "libx264", "-preset", "slow", "-crf", "19",
+        "-c:v", "libx264", "-preset", "medium", "-crf", "19",
         "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
         "-movflags", "+faststart", "-shortest",
         str(out),

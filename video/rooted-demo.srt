@@ -7,541 +7,409 @@ Everybody plants a tree.
 Nobody finds out what happened to it.
 
 3
-00:00:06,000 --> 00:00:07,000
+00:00:05,000 --> 00:00:06,000
 A birthday.
 
 4
-00:00:07,000 --> 00:00:08,000
+00:00:06,000 --> 00:00:07,000
 A school drive.
 
 5
-00:00:08,000 --> 00:00:10,000
+00:00:07,000 --> 00:00:08,000
 A company afternoon.
 
 6
-00:00:10,000 --> 00:00:13,000
+00:00:09,000 --> 00:00:11,000
 They plant it, they take the photo, they post it,
 
 7
-00:00:13,000 --> 00:00:14,000
+00:00:11,000 --> 00:00:13,000
 and that is where it ends.
 
 8
-00:00:15,000 --> 00:00:17,000
+00:00:13,000 --> 00:00:15,000
 The planting is an event.
 
 9
-00:00:17,000 --> 00:00:19,000
+00:00:15,000 --> 00:00:17,000
 The keeping alive is a year.
 
 10
-00:00:20,000 --> 00:00:21,000
+00:00:17,000 --> 00:00:19,000
 So how much of it lives?
 
 11
-00:00:21,000 --> 00:00:25,000
-India's national auditor spent ten years going and looking.
+00:00:19,000 --> 00:00:21,000
+India's national auditor went and looked.
 
 12
-00:00:26,000 --> 00:00:29,000
-Of a two point eight million hectare afforestation target,
+00:00:22,000 --> 00:00:24,000
+Of a two point eight million hectare target,
 
 13
-00:00:29,000 --> 00:00:32,000
-about five percent was actually achieved.
+00:00:24,000 --> 00:00:26,000
+about five percent was achieved.
 
 14
-00:00:32,000 --> 00:00:35,000
-At seventy percent of the sites they assessed,
+00:00:26,000 --> 00:00:28,000
+At seventy percent of the sites,
 
 15
-00:00:35,000 --> 00:00:38,000
-there was little or no improvement in tree cover at all.
+00:00:28,000 --> 00:00:30,000
+no improvement in tree cover at all.
 
 16
-00:00:39,000 --> 00:00:42,000
+00:00:31,000 --> 00:00:33,000
 One site reported two thousand plantings.
 
 17
-00:00:42,000 --> 00:00:44,000
-Thirty saplings were found on the ground.
+00:00:33,000 --> 00:00:35,000
+Thirty were found.
 
 18
-00:00:44,000 --> 00:00:46,000
-None of them had survived.
+00:00:35,000 --> 00:00:36,000
+None had survived.
 
 19
-00:00:47,000 --> 00:00:50,000
+00:00:37,000 --> 00:00:39,000
 And here is the part that explains the rest.
 
 20
-00:00:50,000 --> 00:00:53,000
-Of five hundred and fifty six plantation records,
+00:00:39,000 --> 00:00:42,000
+Four out of five plantation records did not say what was
 
 21
-00:00:53,000 --> 00:00:57,000
-four hundred and thirty one did not say what was planted,
+00:00:43,000 --> 00:00:45,000
+planted, where it stood, or whether it lived.
 
 22
-00:00:57,000 --> 00:00:59,000
-where it stood, or whether it lived.
+00:00:46,000 --> 00:00:48,000
+Nobody was ever asked to keep one.
 
 23
-00:01:00,000 --> 00:01:02,000
-There is no record of what survived,
-
-24
-00:01:02,000 --> 00:01:05,000
-because nobody was ever asked to keep one.
-
-25
-00:01:05,000 --> 00:01:07,000
+00:00:48,000 --> 00:00:50,000
 Planting is not the solution.
 
-26
-00:01:07,000 --> 00:01:08,000
+24
+00:00:50,000 --> 00:00:51,000
 Keeping it alive is.
 
-27
-00:01:09,000 --> 00:01:12,000
+25
+00:00:52,000 --> 00:00:55,000
 And we already pay people to do boring things.
 
-28
-00:01:13,000 --> 00:01:16,000
+26
+00:00:55,000 --> 00:00:58,000
 Pay a credit card bill on time, and you earn points.
 
-29
-00:01:16,000 --> 00:01:20,000
-Order dinner, take a taxi, board a flight.
-
-30
-00:01:20,000 --> 00:01:21,000
-Points.
-
-31
-00:01:21,000 --> 00:01:23,000
+27
+00:00:58,000 --> 00:01:00,000
 Water the tree you planted last year,
 
-32
-00:01:23,000 --> 00:01:25,000
+28
+00:01:00,000 --> 00:01:01,000
 and nothing happens at all.
 
-33
-00:01:26,000 --> 00:01:28,000
+29
+00:01:02,000 --> 00:01:04,000
 Rooted pays you for keeping it alive.
 
-34
-00:01:29,000 --> 00:01:32,000
-Register a plant once, then do the small jobs it needs,
+30
+00:01:05,000 --> 00:01:06,000
+Register a plant once.
 
-35
-00:01:32,000 --> 00:01:34,000
-photographed as you do them.
+31
+00:01:06,000 --> 00:01:09,000
+Do the small jobs it needs, photographed as you do them.
 
-36
-00:01:34,000 --> 00:01:36,000
-Every one that checks out earns points.
-
-37
-00:01:37,000 --> 00:01:38,000
-It is a website.
-
-38
-00:01:38,000 --> 00:01:41,000
-There is nothing to install, and it works with no signal.
-
-39
-00:01:42,000 --> 00:01:45,000
+32
+00:01:10,000 --> 00:01:12,000
 You do not have to know anything about the plant.
 
-40
-00:01:45,000 --> 00:01:47,000
+33
+00:01:12,000 --> 00:01:14,000
 Every plant carries its own coordinates,
 
-41
-00:01:47,000 --> 00:01:51,000
-and the schedule moves with the weather actually over it.
+34
+00:01:14,000 --> 00:01:17,000
+and the schedule moves with the weather over it.
 
-42
-00:01:51,000 --> 00:01:53,000
+35
+00:01:17,000 --> 00:01:19,000
 Rain pushes the next watering out.
 
-43
-00:01:53,000 --> 00:01:55,000
+36
+00:01:19,000 --> 00:01:20,000
 Heat pulls it in.
 
-44
-00:01:55,000 --> 00:01:57,000
+37
+00:01:21,000 --> 00:01:23,000
 So nobody has to babysit it.
 
-45
-00:01:57,000 --> 00:02:00,000
-It tells you the job, on the day the job is due.
+38
+00:01:23,000 --> 00:01:25,000
+It tells you the job on the day it is due.
 
-46
-00:02:01,000 --> 00:02:04,000
+39
+00:01:25,000 --> 00:01:28,000
 Water, on this species own interval,
 
-47
-00:02:04,000 --> 00:02:06,000
+40
+00:01:28,000 --> 00:01:30,000
 moved by the rain and the heat.
 
-48
-00:02:06,000 --> 00:02:09,000
-Feeding, with what this plant actually wants,
+41
+00:01:30,000 --> 00:01:34,000
+Feeding, with what this plant wants, and less than you think,
 
-49
-00:02:09,000 --> 00:02:12,000
-and a reminder to use less than you think,
+42
+00:01:34,000 --> 00:01:37,000
+because what the roots do not take ends up in the groundwater.
 
-50
-00:02:12,000 --> 00:02:15,000
-because fertiliser the roots do not take ends up in the
+43
+00:01:37,000 --> 00:01:40,000
+Pests, with what goes wrong with this species,
 
-51
-00:02:15,000 --> 00:02:16,000
-groundwater.
+44
+00:01:40,000 --> 00:01:42,000
+and the mildest thing that works.
 
-52
-00:02:16,000 --> 00:02:17,000
-Pests,
+45
+00:01:42,000 --> 00:01:45,000
+And a weekly look while it establishes,
 
-53
-00:02:17,000 --> 00:02:20,000
-with what actually goes wrong with this species and the mildest
+46
+00:01:45,000 --> 00:01:47,000
+which is when losing it is least visible.
 
-54
-00:02:20,000 --> 00:02:21,000
-thing that works,
-
-55
-00:02:21,000 --> 00:02:25,000
-because a spray kills the ladybirds that were handling it for
-
-56
-00:02:25,000 --> 00:02:25,000
-you.
-
-57
-00:02:26,000 --> 00:02:28,000
-And a weekly look while it is establishing,
-
-58
-00:02:28,000 --> 00:02:32,000
-which is when losing it is most likely and least visible.
-
-59
-00:02:33,000 --> 00:02:35,000
+47
+00:01:48,000 --> 00:01:50,000
 Every plant also carries a health score.
 
-60
-00:02:36,000 --> 00:02:39,000
-It is built from how the watering has gone against the schedule
+48
+00:01:50,000 --> 00:01:53,000
+Thriving, steady, watch it, at risk,
 
-61
-00:02:39,000 --> 00:02:42,000
-this species wants, and how long the run is.
+49
+00:01:53,000 --> 00:01:55,000
+and one sentence saying what moved it.
 
-62
-00:02:42,000 --> 00:02:45,000
-Thriving, steady, watch it, at risk.
+50
+00:01:56,000 --> 00:01:59,000
+It does not read the leaves and call the plant sick.
 
-63
-00:02:45,000 --> 00:02:48,000
-And one sentence saying what moved it.
+51
+00:01:59,000 --> 00:02:00,000
+A yellow leaf has a dozen causes.
 
-64
-00:02:48,000 --> 00:02:52,000
-What it does not do is read the leaves and tell you the plant is
+52
+00:02:01,000 --> 00:02:04,000
+The camera then tells you what would make the shot pass.
 
-65
-00:02:52,000 --> 00:02:52,000
-sick.
-
-66
-00:02:52,000 --> 00:02:54,000
-A yellow leaf has a dozen causes,
-
-67
-00:02:54,000 --> 00:02:58,000
-and a number invented from one is a number that gets trusted.
-
-68
-00:02:59,000 --> 00:03:00,000
-When it is time,
-
-69
-00:03:00,000 --> 00:03:03,000
-the camera tells you what would make the shot pass.
-
-70
-00:03:03,000 --> 00:03:04,000
+53
+00:02:04,000 --> 00:02:05,000
 Out loud,
 
-71
-00:03:04,000 --> 00:03:08,000
+54
+00:02:05,000 --> 00:02:08,000
 because whoever is doing this is holding a watering can.
 
-72
-00:03:08,000 --> 00:03:11,000
+55
+00:02:09,000 --> 00:02:12,000
 It reads the frame twice a second, on the phone,
 
-73
-00:03:11,000 --> 00:03:14,000
-and nothing is uploaded to do it.
+56
+00:02:12,000 --> 00:02:13,000
+uploading nothing.
 
-74
-00:03:14,000 --> 00:03:16,000
+57
+00:02:13,000 --> 00:02:16,000
 Tilt down so the soil is in frame.
 
-75
-00:03:16,000 --> 00:03:20,000
-Then the ring around the shutter turns green.
+58
+00:02:16,000 --> 00:02:17,000
+Then the ring turns green.
 
-76
-00:03:21,000 --> 00:03:22,000
-Then the photograph is checked,
+59
+00:02:18,000 --> 00:02:21,000
+Then it is checked, and every check says the number it measured.
 
-77
-00:03:22,000 --> 00:03:25,000
-and every check says the number it measured.
+60
+00:02:22,000 --> 00:02:23,000
+It came off the camera.
 
-78
-00:03:25,000 --> 00:03:28,000
-That it came off the camera and not a file picker.
+61
+00:02:23,000 --> 00:02:24,000
+The time is ours.
 
-79
-00:03:28,000 --> 00:03:30,000
-The time, taken on our side.
+62
+00:02:24,000 --> 00:02:27,000
+The location matches where this plant was registered.
 
-80
-00:03:30,000 --> 00:03:34,000
-The location, against where this plant was registered.
+63
+00:02:27,000 --> 00:02:31,000
+And soil five percent darker than that plant's own dry baseline.
 
-81
-00:03:34,000 --> 00:03:35,000
-And for watering,
+64
+00:02:31,000 --> 00:02:33,000
+Measured, not guessed.
 
-82
-00:03:35,000 --> 00:03:39,000
-soil at least five percent darker than that plant's own dry
-
-83
-00:03:39,000 --> 00:03:40,000
-baseline.
-
-84
-00:03:40,000 --> 00:03:42,000
-That threshold was measured, not guessed.
-
-85
-00:03:43,000 --> 00:03:45,000
+65
+00:02:33,000 --> 00:02:35,000
 This is the one that matters.
 
-86
-00:03:45,000 --> 00:03:47,000
-If photographing any plant earned points,
+66
+00:02:35,000 --> 00:02:38,000
+If any plant earned points, the points would be worth nothing.
 
-87
-00:03:48,000 --> 00:03:50,000
-the points would be worth nothing.
+67
+00:02:39,000 --> 00:02:42,000
+So OpenCV matches keypoints against the plant's first
 
-88
-00:03:50,000 --> 00:03:54,000
-So OpenCV finds keypoints in this photograph and in the plant's
+68
+00:02:42,000 --> 00:02:45,000
+photograph, and asks whether they agree on one viewpoint.
 
-89
-00:03:54,000 --> 00:03:56,000
-first one, matches them,
-
-90
-00:03:56,000 --> 00:03:59,000
-and asks whether they agree on a single viewpoint.
-
-91
-00:03:59,000 --> 00:04:02,000
+69
+00:02:45,000 --> 00:02:48,000
 The same plant returns four hundred and eighty five.
 
-92
-00:04:03,000 --> 00:04:07,000
+70
+00:02:49,000 --> 00:02:52,000
 A different plant of the same species, in a similar pot,
 
-93
-00:04:07,000 --> 00:04:08,000
+71
+00:02:52,000 --> 00:02:53,000
 returns four.
 
-94
-00:04:09,000 --> 00:04:13,000
+72
+00:02:54,000 --> 00:02:58,000
 Registering a plant checks the photograph before it accepts it.
 
-95
-00:04:14,000 --> 00:04:16,000
+73
+00:02:58,000 --> 00:03:00,000
 Point it at a notebook and it says so.
 
-96
-00:04:16,000 --> 00:04:20,000
-A plain object scores nought point two percent as a plant.
+74
+00:03:00,000 --> 00:03:03,000
+An object scores nought point two percent.
 
-97
-00:04:20,000 --> 00:04:23,000
-The least convincing real plant still scored nine.
+75
+00:03:03,000 --> 00:03:05,000
+The weakest real plant scored nine.
 
-98
-00:04:24,000 --> 00:04:27,000
-Point it at a plant and it works out what that plant is.
+76
+00:03:05,000 --> 00:03:08,000
+Point it at a plant and it works out what it is.
 
-99
-00:04:27,000 --> 00:04:28,000
-Seventy-eight species,
+77
+00:03:08,000 --> 00:03:10,000
+Seventy-eight species, searched by local name.
 
-100
-00:04:28,000 --> 00:04:31,000
-searched by the names people actually use.
-
-101
-00:04:31,000 --> 00:04:34,000
-And five profiles for anything not on the list,
-
-102
-00:04:34,000 --> 00:04:38,000
-because knowing a plant's name and knowing how to keep it alive
-
-103
-00:04:38,000 --> 00:04:39,000
-are different jobs.
-
-104
-00:04:40,000 --> 00:04:43,000
+78
+00:03:11,000 --> 00:03:13,000
 The whole premise is that people forget.
 
-105
-00:04:43,000 --> 00:04:45,000
+79
+00:03:13,000 --> 00:03:15,000
 So this cannot wait to be opened.
 
-106
-00:04:45,000 --> 00:04:50,000
+80
+00:03:15,000 --> 00:03:19,000
 When a task comes due, the same message goes out on WhatsApp,
 
-107
-00:04:50,000 --> 00:04:51,000
-on email, and as a text.
+81
+00:03:19,000 --> 00:03:20,000
+email and text.
 
-108
-00:04:52,000 --> 00:04:55,000
+82
+00:03:20,000 --> 00:03:24,000
 A name, a plant and a date go to the server.
 
-109
-00:04:55,000 --> 00:04:56,000
-No photographs.
+83
+00:03:24,000 --> 00:03:26,000
+No photographs, no coordinates.
 
-110
-00:04:56,000 --> 00:04:57,000
-No coordinates.
+84
+00:03:27,000 --> 00:03:29,000
+Organisations spend heavily on planting drives,
 
-111
-00:04:57,000 --> 00:04:59,000
-Those never leave the phone.
+85
+00:03:29,000 --> 00:03:31,000
+and get back a photograph from day one.
 
-112
-00:05:00,000 --> 00:05:04,000
-Organisations spend heavily on planting drives every year,
+86
+00:03:32,000 --> 00:03:34,000
+Rooted produces the record of what survived,
 
-113
-00:05:04,000 --> 00:05:07,000
-and get back a photograph from planting day.
+87
+00:03:34,000 --> 00:03:37,000
+every point traceable to one verified task.
 
-114
-00:05:07,000 --> 00:05:11,000
-Rooted produces the record of what actually survived,
+88
+00:03:38,000 --> 00:03:39,000
+That record funds the rewards.
 
-115
-00:05:11,000 --> 00:05:14,000
-and every point in it traces to one verified task.
+89
+00:03:39,000 --> 00:03:41,000
+The offers are stand-ins,
 
-116
-00:05:15,000 --> 00:05:17,000
-That record is what funds the rewards.
+90
+00:03:41,000 --> 00:03:44,000
+because naming a real company would put words in their mouth.
 
-117
-00:05:17,000 --> 00:05:19,000
-The offers in the app are stand-ins,
-
-118
-00:05:19,000 --> 00:05:23,000
-because naming a real company in a demo would put words in their
-
-119
-00:05:23,000 --> 00:05:24,000
-mouth.
-
-120
-00:05:25,000 --> 00:05:28,000
+91
+00:03:45,000 --> 00:03:48,000
 Two things did not survive contact with a measurement.
 
-121
-00:05:28,000 --> 00:05:31,000
-I tried to work out the species on the device,
+92
+00:03:48,000 --> 00:03:51,000
+I tried to work out the species on the device.
 
-122
-00:05:31,000 --> 00:05:33,000
-from colour and texture.
+93
+00:03:51,000 --> 00:03:54,000
+It got the right answer zero times out of seventeen.
 
-123
-00:05:33,000 --> 00:05:36,000
-It got the right answer first zero times out of seventeen.
+94
+00:03:54,000 --> 00:03:57,000
+And the identity check used to compare brightness grids.
 
-124
-00:05:37,000 --> 00:05:40,000
-And the check that says this is the same plant used to compare
+95
+00:03:57,000 --> 00:03:59,000
+A different neem tree walked straight through.
 
-125
-00:05:40,000 --> 00:05:41,000
-brightness grids.
+96
+00:04:00,000 --> 00:04:02,000
+Against eight percent for guessing.
 
-126
-00:05:41,000 --> 00:05:45,000
-A photograph of a different neem tree walked straight through
-
-127
-00:05:45,000 --> 00:05:45,000
-it.
-
-128
-00:05:46,000 --> 00:05:48,000
-Against eight percent for guessing at random.
-
-129
-00:05:48,000 --> 00:05:52,000
+97
+00:04:02,000 --> 00:04:05,000
 It was the weakest thing in the app wearing the name of the
 
-130
-00:05:52,000 --> 00:05:52,000
-strongest.
+98
+00:04:05,000 --> 00:04:06,000
+strongest, so it was replaced.
 
-131
-00:05:52,000 --> 00:05:55,000
-So it was measured, thrown away, and replaced.
-
-132
-00:05:57,000 --> 00:05:59,000
+99
+00:04:07,000 --> 00:04:09,000
 We reward people for spending money.
 
-133
-00:06:00,000 --> 00:06:03,000
+100
+00:04:10,000 --> 00:04:13,000
 Rooted rewards them for keeping something alive.
 
-134
-00:06:04,000 --> 00:06:05,000
+101
+00:04:14,000 --> 00:04:14,000
 Plant it.
 
-135
-00:06:05,000 --> 00:06:06,000
+102
+00:04:14,000 --> 00:04:15,000
 Keep it.
 
-136
-00:06:06,000 --> 00:06:07,000
+103
+00:04:15,000 --> 00:04:16,000
 Get paid for it.
 
-137
-00:06:08,000 --> 00:06:11,000
+104
+00:04:17,000 --> 00:04:20,000
 Nothing in here reports a number it did not measure.

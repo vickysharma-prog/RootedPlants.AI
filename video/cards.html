@@ -219,15 +219,18 @@ pre {
 pre .k { color: var(--moss); }
 pre .c { color: var(--faint); }
 
+/* Pinned rather than laid out, so the encoder knows exactly where to put the
+   recording without measuring anything. 410 by 820 at 1385,112. */
 .phone {
-  align-self: center;
+  position: absolute;
+  left: 1385px;
+  top: 112px;
   width: 410px;
   height: 820px;
   border: 1px solid var(--line);
   border-radius: 44px;
   display: grid;
   place-items: center;
-  margin-bottom: 160px;
   padding: 0 30px;
   text-align: center;
 }
@@ -551,10 +554,10 @@ pre .c { color: var(--faint); }
   </section>
 
   <!-- 15 -->
-  <section class="card wide">
+  <section class="card">
     <div class="left">
       <p class="eyebrow">Where the rewards come from</p>
-      <h1 class="small">Drives buy a photograph from planting day.<br><em>Rooted produces the record of what survived.</em></h1>
+      <h1 class="small">Drives buy a photograph<br>from planting day.<br><em>Rooted produces the record<br>of what survived.</em></h1>
       <pre data-step="2"><span class="c">// every point traceable to one verified task</span>
 <span class="k">water</span>   30 pts   soil darker than its own dry baseline
 <span class="k">feed</span>    50 pts   the surface changed from bare
@@ -563,6 +566,7 @@ pre .c { color: var(--faint); }
 <span class="c">streak  7d x1.2    14d x1.4    30d x2</span></pre>
       <p class="sub" data-step="3">That record is what funds the rewards. The offers in the app are stand-ins, because naming a real company in a demo would put words in their mouth.</p>
     </div>
+    <div class="phone"><span>rewards</span></div>
   </section>
 
   <!-- 16 -->
