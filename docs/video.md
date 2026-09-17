@@ -1,114 +1,194 @@
 # The video
 
-Three minutes minimum, five maximum, both hard. Target **4:30**.
+**4:00.** Floor is 3:00, ceiling is 5:00, both hard.
 
-Record on a phone against **https://rootedplants.vercel.app**, because the
+Recorded on a phone against **https://rootedplants.vercel.app**, because the
 camera, the location check and the voice only work on a real device over
 HTTPS, and those are the parts worth showing.
 
 ---
 
-## The shape
+## The rule this is cut to
 
-Every beat below is something that runs. Nothing here is a mockup and nothing
-needs a caveat spoken over it.
+**Fifteen beats. None longer than thirty seconds. Most between ten and
+twenty.**
 
-### 0:00 – 0:35 · Why this exists
+A demo loses people in the gaps, not in the content. Every beat below either
+shows something working or says something true, and the moment it has done
+that, it cuts. No transitions, no wipes, no music swelling under a point that
+has not been made yet. Hard cuts only.
 
-Landing page, forest moving behind it. Sound on for a moment.
+Three things carry the whole film, so they get the space and everything else
+gets out of their way:
 
-> "Everybody plants a tree. A birthday, a school drive, a company CSR day.
-> They plant it, they take the photo, they post it, and that is where it ends.
-> Nobody finds out what happened to that tree.
->
-> We hand out points for spending money. Pay a credit card bill on time and
-> you earn something. So why not pay people for keeping something alive?"
+1. **The voice guiding the camera** (beat 7)
+2. **The check refusing a different plant** (beat 10)
+3. **The reminder arriving on a phone that is not open** (beat 12)
 
-**Serves:** Originality, Adherence to Track. The environmental connection is
-the product, not an angle on it.
+---
 
-### 0:35 – 1:10 · The schedule is real
+## The shot list
 
-Sign in. Today, with tasks due.
+### 1 · 0:00 – 0:10 · Cold open, no logo
 
-Point at the line under a task: *"7mm of rain recently, 34° today"*.
+**Shot:** Hands pressing soil around a sapling. Close, no face. Real, shot on
+the phone beforehand.
 
-> "That is not a timer. Every plant carries its own coordinates, and the
-> schedule is moved by the weather actually over it. Rain pushes the next
-> watering out. A heat spell pulls it in. A pest check comes round sooner
-> after warm wet days, because that is when pests turn up."
+> "Everybody plants a tree."
 
-Tap **+3 days**. The list refills.
+Beat. Cut on the silence.
 
-> "That control is there because a watering due on Saturday cannot be shown in
-> a five minute video."
+> "Nobody finds out what happened to it."
 
-### 1:10 – 2:20 · The loop
+**Edit:** No title card yet. The first ten seconds are the only ten seconds
+you are guaranteed, so nothing is spent on a name.
 
-Tap a task.
+### 2 · 0:10 – 0:26 · The problem
 
-> "It tells you exactly what the photograph has to show, before the camera
-> opens. There is no hidden test."
+**Shot:** The landing page on a laptop, forest moving behind the words. Let it
+move for two full seconds before speaking.
 
-Open the camera. **Let the voice be heard.** Point it away first so it says
-*"Point it at the plant"*, then frame it properly until it says *"That is it.
-Take it."* and the ring turns green.
+> "A birthday, a school drive, a company CSR day. They plant it, they take the
+> photo, they post it, and that is where it ends. The planting is an event.
+> The keeping alive is a year of small boring jobs, and nothing is attached to
+> doing them."
+
+### 3 · 0:26 – 0:38 · The turn
+
+**Shot:** Scroll to the line on the landing page that makes the argument. Hold
+on it.
+
+> "We already pay people to do boring things. Pay a credit card bill on time
+> and you earn points. So why is nothing pointed at the thing our lives
+> actually depend on?"
+
+Now the name, once, on screen only. Do not say it.
+
+### 4 · 0:38 – 0:56 · The schedule is real
+
+**Shot:** Phone. Today, tasks due. Zoom to the line under a task.
+
+> "This is not a timer. Every plant carries its own coordinates, and the
+> schedule moves with the weather actually over it."
+
+**On screen:** highlight *"7mm of rain recently, 34 degrees today"*.
+
+> "Rain pushes the next watering out. Heat pulls it in. A pest check comes
+> round sooner after warm wet days, because that is when pests turn up."
+
+### 5 · 0:56 – 1:06 · Time, moved
+
+**Shot:** Tap **+3 days**. The list refills.
+
+> "That control exists because a watering due on Saturday cannot be shown in a
+> four minute video."
+
+**Edit:** Say it plainly. A judge who spots a demo shortcut you did not
+mention stops trusting the rest.
+
+### 6 · 1:06 – 1:20 · No hidden test
+
+**Shot:** Tap a task. The brief.
+
+> "Before the camera opens it tells you exactly what the photograph has to
+> show. The instruction is the check. Follow it and you pass every time."
+
+### 7 · 1:20 – 1:50 · The voice
+
+**The first of the three beats that matter. Give it thirty seconds.**
+
+**Shot:** Open the camera. Hold the phone so the screen is readable.
+
+**Let the app's own voice carry this. Do not narrate over it.**
+
+- Point at the floor → *"Point it at the plant."*
+- Tilt up but too far back → *"Tilt down so the soil is in frame."*
+- Frame it properly → *"That is it. Take it."* and the ring turns green.
+
+Only then, over the top:
 
 > "Whoever is doing this is holding a watering can. So it reads the frame a few
-> times a second and says the one thing that would make the shot pass, out
-> loud."
+> times a second and says the one thing that would make the shot pass."
 
-Shutter. Checks land one at a time.
+### 8 · 1:50 – 2:10 · The working, shown
+
+**Shot:** Shutter. Checks landing one at a time. Let each one sit long enough
+to read.
 
 > "Each one says the number it measured. Where the photograph came from. The
-> time, taken on our side, never read off the file. The location, against where
-> this plant was registered."
+> time, taken on our side, never read off the file. The location, against
+> where this plant was registered."
 
-Points, with leaves across the screen.
+### 9 · 2:10 – 2:20 · Paid
 
-**Serves:** Completion. This is the whole product in seventy seconds.
+**Shot:** Points counting up, leaves crossing the screen.
 
-### 2:20 – 3:05 · The check that makes it mean anything
+> "Two minutes of work, photographed as you do it. That is the whole loop."
 
-Do the same task again, but point the camera at **a different plant of the
-same species**.
+### 10 · 2:20 – 2:50 · The check that makes it mean anything
 
-> "This is the one that matters. If photographing any plant earned points, the
-> points would be worth nothing."
+**The centre of the film. Thirty seconds. Slow down.**
 
-Let it fail on **It is this plant**.
+**Shot:** Same task again. Walk to a **different plant of the same species**.
+Show both plants in one frame first so nobody thinks it is a trick.
+
+> "If photographing any plant earned points, the points would be worth
+> nothing."
+
+Shutter. Let it fail on **It is this plant**.
+
+**On screen, as text, while it fails:**
+
+```
+same plant        485 points agree
+different plant     4 points agree
+```
 
 > "OpenCV finds keypoints in this photograph and in the plant's first one,
-> matches them, and asks whether the matches agree on a single viewpoint. The
-> same plant returns four hundred and eighty five. A different plant of the same
-> species, in a similar pot, returns four.
->
-> It runs on the phone. No photograph is uploaded to do it."
+> matches them, and asks whether they agree on a single viewpoint. Four
+> hundred and eighty five against four. It runs on the phone, and no
+> photograph is uploaded to do it."
 
-**Serves:** Technology. Say the two numbers out loud. They are the argument.
+**Edit:** Silence for a beat after "four". Let the number land.
 
-### 3:05 – 3:40 · Adding a plant
+### 11 · 2:50 – 3:08 · Adding a plant
 
-**Add a plant**, and photograph something that is not a plant first.
+**Shot:** Add a plant. Photograph something that is obviously not a plant
+first, a notebook or a mug.
+
+*That is not a plant.*
 
 > "It checks the photograph before it accepts it."
 
-*That is not a plant.* Then photograph a real one.
+Then a real one. It names it and says how confident.
 
-> "It works out what it is from the photograph, and it says how confident it
-> is. Below thirty percent it will not fill the answer in for you."
+> "It works out what it is. Below thirty percent it will not fill the answer in
+> for you."
 
-Type **mogra** into the search.
+Type **mogra** in the search.
 
-> "Seventy-eight plants, and it searches the names people actually use. And for
-> anything not on the list, five profiles by how it grows, because knowing a
-> plant's name and knowing how to keep it alive are different jobs."
+> "Seventy-eight plants, searched by the names people actually use."
 
-Register it. Points land.
+### 12 · 3:08 – 3:26 · The reminder
 
-### 3:40 – 4:05 · Where the money comes from
+**The third beat that matters.**
 
-Rewards. Balance, then redeem one.
+**Shot:** Lock the phone. Put it down. Hold on the dark screen for two
+seconds, which will feel long and should.
+
+Then the notification arrives. Open the WhatsApp message and the email.
+
+> "The whole premise is that people forget. So this cannot wait to be opened.
+> The schedule is registered with a clock on our side, and when something comes
+> due the same message goes out on every channel you left on."
+
+**On screen:** the actual message text.
+
+> "No photographs and no coordinates go with it. A name, a plant, and a date."
+
+### 13 · 3:26 – 3:40 · Where the money comes from
+
+**Shot:** Rewards. Balance, then redeem one.
 
 > "Organisations spend heavily on planting drives every year and get back a
 > photograph from planting day. Rooted produces the record of what actually
@@ -116,44 +196,77 @@ Rewards. Balance, then redeem one.
 > stand-ins, because naming a real company in a demo would put words in their
 > mouth."
 
-### 4:05 – 4:30 · What I got wrong
+### 14 · 3:40 – 3:56 · What I threw away
 
-The honest beat. Do not skip it, it is a scored criterion.
+**Shot:** You, or a plain card. Stop screen-recording. This beat is scored and
+it is the one most people skip.
 
-> "Two things I had to throw away.
+> "Two things did not survive contact with a measurement.
 >
-> I tried to identify the species on the device, from colour and texture. I
-> measured it before shipping it: it got the right species first zero times out
-> of seventeen, against eight percent for guessing at random. Neem and curry
-> leaf are both green pinnate leaves and no histogram separates them. So it
-> went, and a real identification service does that job.
+> I tried to identify the species on the device from colour and texture. It got
+> the right species first zero times out of seventeen, against eight percent for
+> guessing. Neem and curry leaf are both green pinnate leaves and no histogram
+> separates them.
 >
-> And the check that says this is the same plant used to be a comparison of
-> eight by eight brightness grids. A photograph of a different neem tree passed
-> it. It was the weakest thing in the app wearing the name of the strongest, so
-> it was replaced with keypoint matching.
->
-> Nothing in here reports a number it did not measure."
+> And the check that says this is the same plant used to compare brightness
+> grids. A photograph of a different neem tree passed it. It was the weakest
+> thing in the app wearing the name of the strongest."
+
+### 15 · 3:56 – 4:00 · Out
+
+**Shot:** The sapling from beat 1, then black.
+
+> "Nothing in here reports a number it did not measure."
+
+URL on screen. No outro music tail.
+
+---
+
+## Editing notes
+
+**Cuts.** Hard, always. A cross-fade in a demo reads as padding.
+
+**Silence.** Three places earn it: after "nobody finds out what happened to
+it", after "four", and the two seconds on the locked phone. Everywhere else,
+keep moving.
+
+**Sound.** The app's voice is a character in beat 7 and should be the loudest
+thing in it. Forest ambience under beats 1 to 3 only, then drop it. No music
+under beats 10 and 14.
+
+**Screen recording.** Record the phone screen natively rather than pointing a
+camera at it, except in beat 7 and beat 10 where a hand holding a phone in
+front of a real plant is the point.
+
+**Text on screen.** Only for the numbers, and only three times: the weather
+line, 485 against 4, and the reminder text. A demo with a caption on every
+shot is a demo that does not trust its own footage.
+
+**Do not.** No stock music swell, no speed ramps, no drone shot, no "hi, my
+name is and today I will be showing you". The first ten seconds are the whole
+fight.
 
 ---
 
 ## Before recording
 
-- Phone, HTTPS, on the live URL. Not localhost.
-- Sound on for the landing and for the camera.
-- Have **two plants of the same species** to hand. The 2:20 beat needs them.
-- Have something that is not a plant to hand for 3:05.
-- Clear site data first so the demo account seeds fresh and the numbers are
-  the ones described here.
-- Check no real phone number is on screen in the account.
+- Phone, HTTPS, the live URL. Not localhost.
+- **Two plants of the same species**, side by side. Beat 10 is the film.
+- Something that is plainly not a plant, for beat 11.
+- Reminders connected and tested, for beat 12, with a message already proven
+  to arrive.
+- Clear site data so the demo account seeds fresh and the numbers match this
+  script.
+- Check the account screen for a real number before it is on camera.
+- Shoot beat 1 in daylight. It is the only shot that is not a screen.
 
 ## What each criterion is served by
 
 | Criterion | Beat |
 |---|---|
-| Originality | 0:00, rewards pointed at keeping rather than spending |
-| Adherence to Track | 0:00, and the whole product |
-| Completion | 1:10, the loop closed end to end |
-| Learning | 4:05, what was measured and thrown away |
-| Design | Throughout, without mentioning it |
-| Technology | 2:20, the two numbers |
+| Originality | 3, rewards pointed at keeping rather than spending |
+| Adherence to Track | 1 to 3, and the whole product |
+| Completion | 6 to 9, the loop closed end to end |
+| Learning | 14, what was measured and thrown away |
+| Design | Throughout, without ever mentioning it |
+| Technology | 10, the two numbers |
