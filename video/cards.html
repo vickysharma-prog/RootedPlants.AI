@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rooted, title cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/*
+ * The cards the video is cut from.
+ *
+ * The demo is not a screen recording with somebody talking over it. It is
+ * this, with the phone recording dropped into the empty frame on the right,
+ * which is why it can look like the product instead of like a capture of it.
+ * Same tokens as the app, same serif, same mono, so nothing on screen
+ * announces that it came from a different tool.
+ *
+ * Open it, press F for fullscreen, arrow keys to move. 1920x1080.
+ */
+:root {
+  --bg: #0a0f0b;
+  --cream: #ede9de;
+  --body: #c2c8bb;
+  --faint: #838b7e;
+  --gold: #b08c4a;
+  --moss: #9ec9ad;
+  --overdue: #cf9a56;
+  --line: rgba(237, 233, 222, 0.1);
+  --surface: rgba(237, 233, 222, 0.04);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  background: #000;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  color: var(--cream);
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Fixed 1920x1080, scaled to whatever window it is in, so what is recorded is
+   always the same pixels regardless of the screen it was composed on. */
+#stage {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 1920px; height: 1080px;
+  transform-origin: center;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 96px 110px 0;
+  background:
+    radial-gradient(1200px 700px at 18% 0%, rgba(158, 201, 173, 0.05), transparent 60%),
+    radial-gradient(900px 600px at 95% 100%, rgba(176, 140, 74, 0.05), transparent 60%),
+    var(--bg);
+}
+.card.on { display: grid; grid-template-columns: 1fr 470px; gap: 90px; }
+
+.left { align-self: center; padding-bottom: 90px; max-width: 900px; }
+
+.eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+h1 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: 88px;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  margin-top: 22px;
+}
+h1 em { font-style: italic; color: var(--body); }
+h1.small { font-size: 66px; }
+
+.sub {
+  font-size: 27px;
+  line-height: 1.5;
+  color: var(--body);
+  margin-top: 30px;
+  max-width: 780px;
+}
+.sub b { color: var(--cream); font-weight: 600; }
+
+/* The technical claims, named compactly so the voice does not have to list
+   them. They appear one at a time in the edit. */
+.tags { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+.tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 17px;
+}
+.tag.lit { color: var(--moss); border-color: rgba(158, 201, 173, 0.45); }
+
+/* A number, and one line saying what it is. Never a number on its own. */
+.evidence {
+  margin-top: 40px;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--gold);
+  background: var(--surface);
+  padding: 26px 32px;
+  max-width: 640px;
+}
+.evidence .n {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 54px;
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+  line-height: 1;
+}
+.evidence .n.moss { color: var(--moss); }
+.evidence .n.bad { color: var(--overdue); }
+.evidence p { margin-top: 12px; font-size: 20px; color: var(--body); }
+
+.stats { display: flex; gap: 22px; margin-top: 44px; }
+.stat {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 26px 28px;
+  flex: 1;
+}
+.stat .n {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 44px;
+  color: var(--cream);
+  line-height: 1;
+}
+.stat p { margin-top: 14px; font-size: 17px; line-height: 1.45; color: var(--body); }
+.stat .src {
+  margin-top: 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.compare { display: flex; gap: 20px; margin-top: 40px; }
+.compare > div {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 26px 30px;
+}
+.compare .n {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 68px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.compare p {
+  margin-top: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+pre {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 19px;
+  line-height: 1.85;
+  color: var(--body);
+  margin-top: 34px;
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+}
+pre .k { color: var(--moss); }
+pre .c { color: var(--faint); }
+
+/* Where the phone recording is dropped in the editor. Nothing is played
+   here: this is a hole in the frame with a hairline round it. */
+.phone {
+  align-self: center;
+  width: 430px;
+  height: 880px;
+  border: 1px solid var(--line);
+  border-radius: 46px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 90px;
+}
+.phone span {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(131, 139, 126, 0.5);
+}
+.card.wide.on { grid-template-columns: 1fr; }
+.card.wide .left { max-width: 1400px; }
+
+/* Burned in, every second of the film. Judges watch muted. */
+.sayit {
+  position: absolute;
+  left: 0; right: 0; bottom: 54px;
+  text-align: center;
+  font-size: 23px;
+  color: var(--body);
+  padding: 0 200px;
+}
+
+/* Only when it is the card on screen. A bare display:grid here overrode the
+   display:none every other card relies on, and the last card sat on top of
+   all of them. */
+.card.end.on { display: grid; place-items: center; text-align: center; }
+.end h1 { font-size: 96px; }
+.qr { display: flex; gap: 46px; margin-top: 52px; justify-content: center; }
+.qr div { text-align: center; }
+.qr img, .qr .box {
+  width: 150px; height: 150px;
+  background: var(--cream);
+  display: grid; place-items: center;
+  color: #444; font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+}
+.qr p {
+  margin-top: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.url {
+  margin-top: 40px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  color: var(--gold);
+}
+
+#hud {
+  position: fixed;
+  right: 18px; bottom: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: #555;
+  z-index: 10;
+}
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+  <!-- 1 -->
+  <section class="card wide">
+    <div class="left" style="display:grid;place-items:center;text-align:center;height:100%;padding-bottom:0">
+      <div>
+        <h1 style="font-size:104px">Everybody plants a tree.</h1>
+        <h1 style="font-size:104px;margin-top:8px"><em>Nobody finds out what happened to it.</em></h1>
+      </div>
+    </div>
+    <p class="sayit">Everybody plants a tree. Nobody finds out what happened to it.</p>
+  </section>
+
+  <!-- 2 -->
+  <section class="card">
+    <div class="left">
+      <p class="eyebrow">The problem</p>
+      <h1>The planting is an event.<br><em>The keeping alive is a year.</em></h1>
+      <p class="sub">A birthday, a school drive, a company CSR day. They plant it, they take the photo, they post it, and that is where it ends.</p>
+    </div>
+    <div class="phone"><span>drop planting footage</span></div>
+    <p class="sayit">The planting is an event. The keeping alive is a year of small boring jobs, and nothing is attached to doing them.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="card wide">
+    <div class="left">
+      <p class="eyebrow">Why nothing holds anybody to it</p>
+      <h1 class="small">We already pay people to do boring things.</h1>
+      <div class="stats">
+        <div class="stat">
+          <p class="n">2.0bn</p>
+          <p>Trees pledged in national planting drives each year</p>
+          <p class="src">Survival unrecorded</p>
+        </div>
+        <div class="stat">
+          <p class="n">Points</p>
+          <p>Paid for settling a credit card bill on time</p>
+          <p class="src">Every major bank</p>
+        </div>
+        <div class="stat">
+          <p class="n">Nothing</p>
+          <p>Attached to watering the tree you planted</p>
+          <p class="src">Until now</p>
+        </div>
+      </div>
+    </div>
+    <p class="sayit">Pay a credit card bill on time and you earn points. So why is nothing pointed at the thing our lives actually depend on?</p>
+  </section>
+
+  <!-- 4 -->
+  <section class="card">
+    <div class="left">
+      <p class="eyebrow">Rooted</p>
+      <h1>The schedule follows <em>your weather.</em></h1>
+      <div class="tags">
+        <span class="tag lit">OPEN-METEO</span>
+        <span class="tag lit">PER-PLANT COORDINATES</span>
+        <span class="tag">LIVE, NOT MOCKED</span>
+      </div>
+      <div class="evidence">
+        <p class="n moss">7mm rain · 34&deg;</p>
+        <p>Read at this plant's own coordinates, this morning. Rain pushes the next watering out. Heat pulls it in.</p>
+      </div>
+    </div>
+    <div class="phone"><span>today screen</span></div>
+    <p class="sayit">This is not a timer. Every plant carries its own coordinates, and the schedule moves with the weather actually over it.</p>
+  </section>
+
+  <!-- 5 -->
+  <section class="card">
+    <div class="left">
+      <p class="eyebrow">The camera</p>
+      <h1>It tells you what <em>would make the shot pass.</em></h1>
+      <p class="sub">Out loud, because whoever is doing this is holding a watering can.</p>
+      <div class="tags">
+        <span class="tag lit">READS THE FRAME EVERY 450MS</span>
+        <span class="tag lit">SPEECH SYNTHESIS, ON DEVICE</span>
+        <span class="tag">NOTHING UPLOADED</span>
+      </div>
+    </div>
+    <div class="phone"><span>camera, voice audible</span></div>
+    <p class="sayit">Point it at the plant. Tilt down so the soil is in frame. That is it, take it.</p>
+  </section>
+
+  <!-- 6 -->
+  <section class="card">
+    <div class="left">
+      <p class="eyebrow">Every check says what it measured</p>
+      <h1 class="small">No number it did not measure.</h1>
+      <div class="tags">
+        <span class="tag lit">CAMERA, NOT A FILE PICKER</span>
+        <span class="tag lit">SERVER CLOCK</span>
+        <span class="tag lit">120M OF THE REGISTERED SPOT</span>
+        <span class="tag lit">SOIL 5% DARKER THAN ITS DRY BASELINE</span>
+      </div>
+      <div class="evidence">
+        <p class="n">28.4% vs 0.0%</p>
+        <p>A watered pot against its dry baseline, and the same frame against itself. Five percent sits clear of both.</p>
+      </div>
+    </div>
+    <div class="phone"><span>checks landing</span></div>
+    <p class="sayit">Each one says the number it measured. The time is taken on our side, never read off the file.</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="card">
+    <div class="left">
+      <p class="eyebrow">The check that makes the points mean anything</p>
+      <h1>Is it <em>this</em> plant?</h1>
+      <div class="tags">
+        <span class="tag lit">ORB KEYPOINTS</span>
+        <span class="tag lit">LOWE RATIO TEST</span>
+        <span class="tag lit">RANSAC HOMOGRAPHY</span>
+        <span class="tag lit">OPENCV, IN THE BROWSER</span>
+      </div>
+      <div class="compare">
+        <div>
+          <p class="n" style="color:var(--moss)">485</p>
+          <p>Same plant</p>
+        </div>
+        <div>
+          <p class="n" style="color:var(--overdue)">4</p>
+          <p>Different plant, same species</p>
+        </div>
+      </div>
+    </div>
+    <div class="phone"><span>it refuses the wrong plant</span></div>
+    <p class="sayit">If photographing any plant earned points, the points would be worth nothing.</p>
+  </section>
+
+  <!-- 8 -->
+  <section class="card">
+    <div class="left">
+      <p class="eyebrow">Registering one</p>
+      <h1 class="small">It checks the photograph<br>before it accepts it.</h1>
+      <div class="tags">
+        <span class="tag lit">78 SPECIES, SEARCHED BY LOCAL NAME</span>
+        <span class="tag lit">IDENTIFIED FROM THE PHOTO</span>
+        <span class="tag">ASKED FOR ONCE, BEFORE THE CAMERA</span>
+      </div>
+      <div class="evidence">
+        <p class="n bad">0.2%</p>
+        <p>What a photograph of an object scores. The least convincing real plant still scored nine.</p>
+      </div>
+    </div>
+    <div class="phone"><span>that is not a plant</span></div>
+    <p class="sayit">It works out what it is from the photograph, and below thirty percent it will not fill the answer in for you.</p>
+  </section>
+
+  <!-- 9 -->
+  <section class="card">
+    <div class="left">
+      <p class="eyebrow">The part that cannot wait to be opened</p>
+      <h1>The whole premise is that <em>people forget.</em></h1>
+      <div class="tags">
+        <span class="tag lit">WHATSAPP</span>
+        <span class="tag lit">EMAIL</span>
+        <span class="tag lit">TEXT</span>
+        <span class="tag lit">HOURLY CLOCK</span>
+      </div>
+      <p class="sub">A name, a plant and a date go to the server. <b>No photographs. No coordinates. No points.</b></p>
+    </div>
+    <div class="phone"><span>locked phone, then the message</span></div>
+    <p class="sayit">So this cannot wait to be opened. When something comes due, the same message goes out on every channel you left on.</p>
+  </section>
+
+  <!-- 10 -->
+  <section class="card wide">
+    <div class="left">
+      <p class="eyebrow">Where the rewards come from</p>
+      <h1 class="small">Drives buy a photograph from planting day.<br><em>Rooted produces the record of what survived.</em></h1>
+      <pre><span class="c">// every point traceable to a verified task</span>
+<span class="k">water</span>      30 pts   soil darker than its own dry baseline
+<span class="k">fertilise</span>  50 pts   the surface changed from bare
+<span class="k">pest</span>       35 pts   close and sharp enough to see an aphid
+<span class="k">check-in</span>   15 pts   the leaves are in frame
+<span class="c">streak multiplier  7d x1.2   14d x1.4   30d x2</span></pre>
+    </div>
+    <p class="sayit">That record is what funds the rewards. The offers in here are stand-ins, because naming a real company in a demo would put words in their mouth.</p>
+  </section>
+
+  <!-- 11 -->
+  <section class="card wide">
+    <div class="left">
+      <p class="eyebrow">What did not survive a measurement</p>
+      <h1 class="small">Two things I threw away.</h1>
+      <div class="compare" style="max-width:1100px">
+        <div>
+          <p class="n" style="color:var(--overdue)">0 / 17</p>
+          <p>Species guessed on device, from colour and texture</p>
+        </div>
+        <div>
+          <p class="n" style="color:var(--overdue)">Passed</p>
+          <p>A different neem tree, through the old identity check</p>
+        </div>
+      </div>
+      <p class="sub" style="margin-top:36px">Against eight percent for guessing at random. Neem and curry leaf are both green pinnate leaves, and no histogram separates them.</p>
+    </div>
+    <p class="sayit">It was the weakest thing in the app wearing the name of the strongest.</p>
+  </section>
+
+  <!-- 12 -->
+  <section class="card wide end">
+    <div>
+      <h1>Rooted</h1>
+      <p class="sub" style="text-align:center;margin-left:auto;margin-right:auto">Get paid for keeping a tree alive.</p>
+      <div class="qr">
+        <div><div class="box" id="qr1">QR</div><p>Live app</p></div>
+        <div><div class="box" id="qr2">QR</div><p>Code</p></div>
+      </div>
+      <p class="url">rootedplants.vercel.app</p>
+    </div>
+    <p class="sayit">Nothing in here reports a number it did not measure.</p>
+  </section>
+
+</div>
+
+<div id="hud"></div>
+
+<script>
+const cards = [...document.querySelectorAll(".card")];
+let i = 0;
+
+function show(n) {
+  i = Math.max(0, Math.min(cards.length - 1, n));
+  cards.forEach((c, k) => c.classList.toggle("on", k === i));
+  hud.textContent = `${i + 1} / ${cards.length}   ← →   F fullscreen`;
+}
+
+// Always compose at 1920x1080 and scale to fit, so a card recorded on one
+// screen is the same pixels as a card recorded on another.
+function fit() {
+  const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+  stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+}
+
+addEventListener("resize", fit);
+addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") show(i + 1);
+  if (e.key === "ArrowLeft") show(i - 1);
+  if (e.key.toLowerCase() === "f") document.documentElement.requestFullscreen?.();
+});
+addEventListener("click", () => show(i + 1));
+
+fit();
+show(0);
+</script>
+</body>
+</html>

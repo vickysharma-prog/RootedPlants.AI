@@ -222,6 +222,53 @@ URL on screen. No outro music tail.
 
 ---
 
+## How it is composed
+
+**This is not a screen recording with somebody talking over it.** That is what
+a demo looks like when nobody decided how it should look. It is a designed
+frame with the phone recording dropped into it, which is why it can look like
+the product rather than like a capture of the product.
+
+Every frame:
+
+```
+┌──────────────────────────────────┬────────────┐
+│  EYEBROW IN MONO                 │            │
+│  Large serif headline            │   phone    │
+│  ─ PILL · PILL · PILL ─          │  recording │
+│                                  │            │
+│  ┌ evidence ─────────┐           │            │
+│  │ 485        vs   4 │           │            │
+│  │ same plant  other │           │            │
+│  └───────────────────┘           │            │
+├──────────────────────────────────┴────────────┤
+│        burned-in subtitle, every second       │
+└───────────────────────────────────────────────┘
+```
+
+`video/cards.html` renders all twelve of these at 1920x1080, in the app's own
+tokens: same serif, same mono, same dark and gold. Open it, press **F**, arrow
+keys to move, and screen-record it. Then drop the phone footage into the empty
+frame on the right in the editor.
+
+Four things that frame is doing, all of them deliberate:
+
+**The phone is never fullscreen.** A fullscreen phone recording leaves nowhere
+to put the argument, so the argument ends up in the voiceover where a judge
+watching on mute will never hear it.
+
+**The pill tags name the technical claims** so the voice does not have to list
+them. ORB KEYPOINTS, RANSAC HOMOGRAPHY, OPENCV IN THE BROWSER. They light up
+one at a time as each is mentioned.
+
+**Every number comes in a box with a line underneath saying what it is.** A
+number on its own is decoration. 485 next to 4, labelled same plant and
+different plant, is an argument.
+
+**Subtitles are burned in for the whole film.** Judges watch on mute, and a
+video about care that cannot be followed without sound is making a point it
+did not intend.
+
 ## Editing notes
 
 **Cuts.** Hard, always. A cross-fade in a demo reads as padding.
@@ -238,9 +285,16 @@ under beats 10 and 14.
 camera at it, except in beat 7 and beat 10 where a hand holding a phone in
 front of a real plant is the point.
 
-**Text on screen.** Only for the numbers, and only three times: the weather
-line, 485 against 4, and the reminder text. A demo with a caption on every
-shot is a demo that does not trust its own footage.
+**Text on screen.** The card carries the headline and the numbers. Do not add
+a second layer of captions on top of the footage as well: the card is already
+saying it.
+
+**Reveal in stages.** Within a card, the headline lands first, then the pills
+one at a time, then the evidence box. Everything arriving at once is a poster,
+not a film.
+
+**The ending card** carries the URL and a QR code for it, because a judge with
+a phone in their hand should be able to open the thing without typing.
 
 **Do not.** No stock music swell, no speed ramps, no drone shot, no "hi, my
 name is and today I will be showing you". The first ten seconds are the whole
