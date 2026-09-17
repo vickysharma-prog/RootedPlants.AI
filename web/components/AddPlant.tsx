@@ -9,6 +9,9 @@ import { Camera, type Shot } from "./Camera";
 import { SPECIES } from "@/lib/data";
 
 type Match = { speciesId: string | null; latin: string; common: string | null; score: number };
+
+/** Below this it offers a guess. At or above it, it fills the answer in. */
+const SURE = 0.3;
 import { id, putPhoto, putPlant } from "@/lib/store";
 
 type Step = "photo" | "what" | "where";
@@ -55,7 +58,11 @@ export function AddPlant({ offset }: { offset: number }) {
       const data = await res.json();
       const found: Match[] = Array.isArray(data.matches) ? data.matches : [];
       setMatches(found);
-      const best = found.find((m) => m.speciesId);
+      // Only pre-select when it is actually sure. A studio cutout of a curry
+      // branch came back as jasmine at nine percent, and an app that fills the
+      // answer in at nine percent is an app that teaches people to stop
+      // reading it.
+      const best = found.find((m) => m.speciesId && m.score >= SURE);
       if (best?.speciesId) setSpeciesId(best.speciesId);
     } catch {
       setMatches([]);
@@ -319,7 +326,6 @@ function Identify({
   if (state === "working")
     return <p className="label py-2 text-faint">Looking at your photograph</p>;
 
-  const known = matches.filter((m) => m.speciesId);
   const top = matches[0];
 
   if (!top)
@@ -329,21 +335,27 @@ function Identify({
       </p>
     );
 
+  const sure = top.score >= SURE;
+  const ours = Boolean(top.speciesId);
+
   return (
     <div className="rise-in rounded-[16px] border border-line-soft bg-surface p-5">
-      <p className="label" style={{ color: known.length ? "var(--verified)" : "var(--gold)" }}>
-        {known.length ? "Looks like" : "Closest match"}
+      <p
+        className="label"
+        style={{ color: sure && ours ? "var(--verified)" : "var(--gold)" }}
+      >
+        {sure ? (ours ? "Looks like" : "Closest match") : "Not sure from this one"}
       </p>
-      <p className="display mt-1.5 text-[24px] text-cream">
-        {top.common ?? top.latin}
-      </p>
+      <p className="display mt-1.5 text-[24px] text-cream">{top.common ?? top.latin}</p>
       <p className="num mt-1 text-[12.5px] text-faint">
         {top.latin} · {Math.round(top.score * 100)}% confident
       </p>
-      <p className="mt-3 text-[13.5px] leading-relaxed text-faint">
-        {known.length
-          ? "Selected below. Change it if that is not right."
-          : "Not one of the twelve this app carries a care profile for, so pick the closest below."}
+      <p className="mt-3 max-w-[27rem] text-[13.5px] leading-relaxed text-faint">
+        {!sure
+          ? "Too unsure to fill in for you. Its guesses are at the front of the list below, but look before you tap."
+          : ours
+            ? "Selected below. Change it if that is not right."
+            : "Not one of the twelve this app carries a care profile for, so pick the closest below."}
       </p>
     </div>
   );
