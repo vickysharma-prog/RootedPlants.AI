@@ -49,9 +49,9 @@ export function MeBoard({
   }, []);
 
   /**
-   * The hourly clock is the real behaviour. Nobody is going to wait an hour in
-   * the middle of a demo to see it, so this sends the same message through the
-   * same code, now.
+   * The morning clock is the real behaviour. Nobody is going to wait until
+   * tomorrow in the middle of a demo to see it, so this sends the same message
+   * through the same code, now.
    */
   async function sendNow() {
     setSending(true);

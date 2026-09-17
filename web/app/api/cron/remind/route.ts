@@ -4,9 +4,14 @@ import { notify } from "@/lib/notify";
 /**
  * The clock.
  *
- * Runs on a schedule, finds everything that has come due and not been sent,
- * sends it on whichever channels that person left switched on, and marks it so
- * an hourly clock does not become an hourly nag.
+ * Runs once a day, a little after eight in the morning in India, finds
+ * everything that has come due and not been sent, sends it on whichever
+ * channels that person left switched on, and marks it as sent.
+ *
+ * Once a day rather than hourly, and not only because the free plan allows one:
+ * nobody wants to be told about a plant every hour, and watering is a morning
+ * job anyway. Marking what has been sent is what keeps a daily clock from
+ * repeating itself if it runs twice.
  *
  * This is the part that makes the product what it claims to be. Everything
  * else in here waits for somebody to open the app, and the whole premise is

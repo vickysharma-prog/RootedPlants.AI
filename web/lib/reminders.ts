@@ -105,8 +105,8 @@ export async function remove(id: string): Promise<void> {
  * Who is overdue and has not been told yet.
  *
  * `graceHours` keeps the app from messaging somebody the minute a task turns
- * due at three in the morning. Anything sent already is left alone, which is
- * what stops an hourly clock becoming an hourly nag.
+ * due. Anything sent already is left alone, which is what keeps the clock from
+ * repeating itself.
  */
 export function dueNow(sub: Subscriber, now = Date.now(), graceHours = 0): Due[] {
   const cutoff = now - graceHours * 3600_000;
