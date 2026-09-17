@@ -67,6 +67,10 @@ export function useRooted(offset: number): Live {
       points: await balance(),
       history: await ledger(),
     });
+
+    // Fire and forget. A reminder that cannot be registered is worth one
+    // console-free failure, never a screen that will not load.
+    void pushSchedule(due, next);
   }, [offset]);
 
   useEffect(() => {
@@ -74,6 +78,49 @@ export function useRooted(offset: number): Live {
   }, [load]);
 
   return { ...state, reload: load };
+}
+
+/**
+ * Tell the server what is coming up, so a reminder can arrive without the app.
+ *
+ * Sent after the schedule is worked out, which is the only moment it is known.
+ * It carries names and dates and nothing else: no photographs, no coordinates,
+ * no points. If there is no store configured the call simply reports that and
+ * nothing is kept.
+ */
+export async function pushSchedule(due: Task[], next: Task[]) {
+  const channels = readChannels();
+  const rows = [...due, ...next].slice(0, 12).map((t) => ({
+    plant: t.plant.name,
+    task: t.label,
+    dueAt: new Date(Date.now() + t.dueIn * 86_400_000).toISOString(),
+    why: t.why,
+  }));
+
+  try {
+    const res = await fetch("/api/reminders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ channels, due: rows }),
+    });
+    return res.ok ? await res.json() : null;
+  } catch {
+    return null;
+  }
+}
+
+/** The channels this person left switched on, as the account screen set them. */
+export function readChannels(): string[] {
+  try {
+    const raw = localStorage.getItem("rooted_channels");
+    const on = raw ? (JSON.parse(raw) as Record<string, boolean>) : null;
+    if (!on) return ["email", "whatsapp", "sms"];
+    return Object.entries(on)
+      .filter(([, v]) => v)
+      .map(([k]) => k);
+  } catch {
+    return ["email", "whatsapp", "sms"];
+  }
 }
 
 /** The streak the header shows: the longest run any plant is currently on. */
