@@ -145,6 +145,7 @@ brands. That is what a catalogue looks like before partners sign.
 | [`state.md`](state.md) | What is running today, what is decided, what is still open |
 | [`progress.md`](progress.md) | Dated log, including what broke and why |
 | [`docs/design.md`](docs/design.md) | The look, screen by screen, and the rules behind it |
+| [`docs/video.md`](docs/video.md) | The demo narrative, beat by beat |
 | [`docs/testing.md`](docs/testing.md) | Every feature, and how to check it yourself |
 | [`docs/verification.md`](docs/verification.md) | How a care task is proved, and what is deliberately not attempted |
 | [`docs/rewards.md`](docs/rewards.md) | Points, streaks, and where the money comes from |

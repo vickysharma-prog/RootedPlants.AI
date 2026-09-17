@@ -210,8 +210,10 @@ the idea works.
    is connected, so every push to `main` deploys itself and
    `rootedplants.vercel.app` follows production. Deployment protection is off,
    so the link opens for anybody without a Vercel account.
-2. **Record the video.** The loop is the video: Today, a task, the camera
-   talking you through it, the checks landing one at a time, the points.
+2. **Record the video.** Narrative written beat by beat in `docs/video.md`,
+   with the two numbers that carry the Technology mark and the honest beat that
+   carries Learning. Needs a phone on HTTPS and two plants of the same species
+   to hand.
 3. **Flip the repo public** before the deadline: `gh repo edit --visibility public`.
    Not needed for the deploy, since Vercel builds from a private repo on the
    free plan, but the submission asks for a viewable code link and the commit
