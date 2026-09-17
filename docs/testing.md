@@ -80,7 +80,9 @@ species. That is the check that used to pass and now does not.
 | What to do | What should happen |
 |---|---|
 | Plants, then **Add a plant** | Step one of three: photograph it |
-| Take the photo | Step two: twelve species to pick from |
+| Take the photo | Step two, with an offer to identify it from the photograph |
+| **Identify it** | Names the plant with how confident it is, selects it below, and reorders the list so its guesses are first |
+| **I know what it is** | The offer goes away and the picker behaves as it always did |
 | Pick one | Step three: name, where it stands, and its spot |
 | Tap **Use where I am now** | Coordinates appear, taken from the device rather than typed |
 | Register it | Straight to its page, with your photo as its baseline |

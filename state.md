@@ -44,6 +44,7 @@ address. No database or API key is needed to run what exists today.
 | `/me` | Account and reminder channels | Done |
 | `/api/weather` | Weather over one plant | Done, cached on our side |
 | `/api/now` | The clock a proof is stamped with | Done |
+| `/api/identify` | Names the species in a photograph | Built, **needs `PLANTNET_API_KEY` and one real call to confirm the response shape** |
 
 **Working for real, not mocked:**
 

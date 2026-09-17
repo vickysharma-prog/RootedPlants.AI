@@ -20,11 +20,19 @@ export default function Privacy() {
           page. They are not used to train anything, and they are not sold.
         </p>
         <p>
-          As it stands they never leave your phone at all. Your plants, your
-          photographs and your points are held by the browser on the device,
-          and the checking runs there too, on a small copy of the picture. No
-          photograph is uploaded, no model is called, and there is no server
-          holding a library of where people live.
+          They stay on your phone. Your plants, your photographs and your points
+          are held by the browser on the device, and the checking runs there
+          too, on a small copy of the picture. No proof photograph is ever
+          uploaded, and there is no server holding a library of where people
+          live.
+        </p>
+        <p>
+          There is exactly one exception, and it only happens if you ask for it.
+          When you add a plant you can have the photograph identified for you.
+          That one picture goes to a plant identification service so it can name
+          the species, and nothing else about you goes with it. The offer says
+          so before you tap it, and saying no leaves you with the same list of
+          species to pick from.
         </p>
         <p>
           The trade is that an account lives on one device. Clearing the

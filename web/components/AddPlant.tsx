@@ -7,6 +7,8 @@ import { AppShell, AppHeader, ACTION } from "./AppShell";
 import { BlobImage } from "./BlobImage";
 import { Camera, type Shot } from "./Camera";
 import { SPECIES } from "@/lib/data";
+
+type Match = { speciesId: string | null; latin: string; common: string | null; score: number };
 import { id, putPhoto, putPlant } from "@/lib/store";
 
 type Step = "photo" | "what" | "where";
@@ -33,6 +35,33 @@ export function AddPlant({ offset }: { offset: number }) {
   const [at, setAt] = useState<{ lat: number; lon: number }>();
   const [locating, setLocating] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [asking, setAsking] = useState<"offer" | "working" | "done" | "off">("offer");
+  const [matches, setMatches] = useState<Match[]>([]);
+
+  /**
+   * Identification is offered, never assumed.
+   *
+   * This is the only moment in the app when a photograph leaves the phone, so
+   * it happens on a tap, after a sentence that says exactly that. Saying no
+   * leaves the picker exactly as it was.
+   */
+  async function identify() {
+    if (!shot) return;
+    setAsking("working");
+    try {
+      const body = new FormData();
+      body.append("image", shot.full, "plant.jpg");
+      const res = await fetch("/api/identify", { method: "POST", body });
+      const data = await res.json();
+      const found: Match[] = Array.isArray(data.matches) ? data.matches : [];
+      setMatches(found);
+      const best = found.find((m) => m.speciesId);
+      if (best?.speciesId) setSpeciesId(best.speciesId);
+    } catch {
+      setMatches([]);
+    }
+    setAsking("done");
+  }
 
   function locate() {
     setLocating(true);
@@ -111,8 +140,15 @@ export function AddPlant({ offset }: { offset: number }) {
       <AppShell>
         <AppHeader back="/plants" eyebrow="Step two of three" title="What is it?" />
         <main className="app-column pb-12">
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
-            {SPECIES.map((s) => {
+          <Identify
+            state={asking}
+            matches={matches}
+            onAsk={identify}
+            onSkip={() => setAsking("off")}
+          />
+
+          <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-4">
+            {ordered(SPECIES, matches).map((s) => {
               const on = s.id === speciesId;
               return (
                 <button
@@ -229,5 +265,86 @@ export function AddPlant({ offset }: { offset: number }) {
         </button>
       </main>
     </AppShell>
+  );
+}
+
+/**
+ * Species the photograph pointed at come first, in the order it ranked them.
+ * The rest keep their usual order underneath, so nothing disappears and the
+ * list never has to be searched twice.
+ */
+function ordered(all: typeof SPECIES, matches: Match[]) {
+  const hits = matches.map((m) => m.speciesId).filter(Boolean) as string[];
+  if (!hits.length) return all;
+  const rank = new Map(hits.map((id, i) => [id, i]));
+  return [...all].sort(
+    (a, b) => (rank.get(a.id) ?? 999) - (rank.get(b.id) ?? 999),
+  );
+}
+
+function Identify({
+  state,
+  matches,
+  onAsk,
+  onSkip,
+}: {
+  state: "offer" | "working" | "done" | "off";
+  matches: Match[];
+  onAsk: () => void;
+  onSkip: () => void;
+}) {
+  if (state === "off") return null;
+
+  if (state === "offer")
+    return (
+      <div className="rounded-[16px] border border-line-soft bg-surface p-5">
+        <p className="text-[15px] leading-relaxed text-cream">
+          Not sure what it is? The photograph can be identified for you.
+        </p>
+        <p className="mt-2.5 text-[13.5px] leading-relaxed text-faint">
+          This is the only time a photograph leaves your phone. It goes to a
+          plant identification service and nowhere else, and only this one.
+        </p>
+        <div className="mt-5 flex items-center gap-5">
+          <button type="button" onClick={onAsk} className="link-arrow inline-flex text-cream">
+            <span className="link-text font-semibold">Identify it</span>
+          </button>
+          <button type="button" onClick={onSkip} className="text-[14px] text-faint">
+            I know what it is
+          </button>
+        </div>
+      </div>
+    );
+
+  if (state === "working")
+    return <p className="label py-2 text-faint">Looking at your photograph</p>;
+
+  const known = matches.filter((m) => m.speciesId);
+  const top = matches[0];
+
+  if (!top)
+    return (
+      <p className="text-[14.5px] leading-relaxed text-faint">
+        That one could not be identified. Pick it below.
+      </p>
+    );
+
+  return (
+    <div className="rise-in rounded-[16px] border border-line-soft bg-surface p-5">
+      <p className="label" style={{ color: known.length ? "var(--verified)" : "var(--gold)" }}>
+        {known.length ? "Looks like" : "Closest match"}
+      </p>
+      <p className="display mt-1.5 text-[24px] text-cream">
+        {top.common ?? top.latin}
+      </p>
+      <p className="num mt-1 text-[12.5px] text-faint">
+        {top.latin} · {Math.round(top.score * 100)}% confident
+      </p>
+      <p className="mt-3 text-[13.5px] leading-relaxed text-faint">
+        {known.length
+          ? "Selected below. Change it if that is not right."
+          : "Not one of the twelve this app carries a care profile for, so pick the closest below."}
+      </p>
+    </div>
   );
 }
