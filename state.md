@@ -47,7 +47,7 @@ address. No database or API key is needed to run what exists today.
 | `/api/identify` | Names the species in a photograph, and says whether there is a plant in it at all | **Working.** Confirmed live: neem 93%, a wall 0.5%, a notebook refused |
 | `/api/reminders` | The browser registers what is due, so a clock can run | Built. Sends nothing until the keys below are set |
 | `/api/reminders/send` | Sends one now, for the demo | Built |
-| `/api/cron/remind` | The hourly clock | Built, scheduled in `vercel.json` |
+| `/api/cron/remind` | The daily clock, a little after eight in the morning in India | Built, scheduled in `vercel.json` |
 
 **Working for real, not mocked:**
 

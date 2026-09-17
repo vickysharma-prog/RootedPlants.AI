@@ -126,7 +126,7 @@ in the corner of those screens is the same switch as the one in the camera.
 |---|---|
 | Me, then scroll to the channels | Any channel with no keys on this deployment says **not connected** beside its name, rather than looking switched on and going nowhere |
 | The line under the rule | Says whether your next few tasks are registered with the reminder service |
-| **Send me one now** | Sends the same message the hourly clock would, through the same code, to the address and number this account was made with |
+| **Send me one now** | Sends the same message the daily clock would, through the same code, to the address and number this account was made with |
 | The result | One line per channel, each saying whether it went and why not if it did not |
 | Switch a channel off, then send again | It is left out |
 

@@ -502,7 +502,15 @@ The awkward part is that plants live on the phone, so no server knows whose
 plant is overdue and there is nothing for a clock to run against. The smallest
 thing that solves it: the browser registers who to reach, what the plant is
 called, and when the next few tasks are due. No photographs, no coordinates, no
-points. An hourly cron reads that and sends on whichever channels are on.
+points. A daily cron reads that and sends on whichever channels are on.
+
+It was hourly until it met the plan it runs on. A Hobby account allows one cron
+a day, so the deploy carrying the whole reminder pipeline was refused outright
+and I did not notice, because every push after it touched only the video and
+the docs, which Vercel correctly skips when the root directory is the app. The
+app sat eight commits behind production for a day. Daily is the better
+behaviour anyway: nobody wants to hear about a plant every hour, and watering
+is a morning job.
 
 ### What broke
 

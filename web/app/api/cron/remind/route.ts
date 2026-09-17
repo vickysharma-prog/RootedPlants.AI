@@ -1,5 +1,5 @@
 import { all, dueNow, put } from "@/lib/reminders";
-import { notify } from "@/lib/notify";
+import { configured, notify } from "@/lib/notify";
 
 /**
  * The clock.
@@ -23,11 +23,22 @@ export const maxDuration = 60;
 export async function GET(request: Request) {
   // Vercel signs its cron requests. Anything else needs the secret, so this
   // cannot be used as a way to make somebody else's phone buzz.
+  //
+  // With no secret set this used to let anybody through, which was harmless
+  // only for as long as there was nothing configured to send. It fails closed
+  // now: the moment a channel can actually reach somebody, a secret is
+  // required, so adding keys without one cannot quietly open a door.
   const secret = process.env.CRON_SECRET;
   const auth = request.headers.get("authorization");
   const fromVercel = request.headers.get("user-agent")?.includes("vercel-cron");
-  if (secret && auth !== `Bearer ${secret}` && !fromVercel)
-    return Response.json({ error: "not-authorised" }, { status: 401 });
+  const canSend = Object.values(configured()).some(Boolean);
+
+  if (!fromVercel) {
+    if (!secret && canSend)
+      return Response.json({ error: "no-cron-secret-set" }, { status: 401 });
+    if (secret && auth !== `Bearer ${secret}`)
+      return Response.json({ error: "not-authorised" }, { status: 401 });
+  }
 
   const origin = new URL(request.url).origin;
   const people = await all();

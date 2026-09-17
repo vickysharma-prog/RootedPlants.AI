@@ -214,7 +214,7 @@ the same list against routes.
 - [x] The species read off the photograph, and a photograph with no plant in
       it refused before the plant is registered
 - [x] Identity: the same plant, proved with keypoints rather than asserted
-- [x] Reminders on WhatsApp, email and text, on an hourly clock, sending only
+- [x] Reminders on WhatsApp, email and text, on a daily clock, sending only
       a name, a plant and a date
 - [x] The demo film, built from the repo rather than edited by hand
 - [x] Points ledger, with the balance and the history of how it was earned
