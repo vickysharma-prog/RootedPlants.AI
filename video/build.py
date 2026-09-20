@@ -95,7 +95,7 @@ BEATS = [
     (13, 2, "Point it at a notebook and it says so. An object scores nought point two percent. The weakest real plant scored nine.", 0.35),
     (13, 3, "Point it at a plant and it works out what it is. Seventy-eight species, searched by local name.", 0.28),
 
-    (14, 1, "The whole premise is that people forget. So this cannot wait to be opened.", 0.35),
+    (14, 1, "A plant cannot wait for you to remember it. So Rooted does not wait to be opened.", 0.35),
     (14, 2, "When a task comes due, the same message goes out on WhatsApp, email and text.", 0.28),
     (14, 3, "A name, a plant and a date go to the server. No photographs, no coordinates.", 0.77),
 
@@ -103,16 +103,19 @@ BEATS = [
     (15, 2, "Rooted produces the record of what survived, every point traceable to one verified task.", 0.35),
     (15, 3, "That record funds the rewards. The offers are stand-ins, because naming a real company would put words in their mouth.", 0.77),
 
-    (16, 1, "Two things did not survive contact with a measurement.", 0.35),
-    (16, 2, "I tried to work out the species on the device. It got the right answer zero times out of seventeen.", 0.35),
-    (16, 3, "And the identity check used to compare brightness grids. A different neem tree walked straight through.", 0.35),
-    (16, 4, "Against eight percent for guessing. It was the weakest thing in the app wearing the name of the strongest, so it was replaced.", 0.98),
+    (16, 1, "And somebody is already paying for all of this.", 0.35),
+    (16, 2, "Indian companies put forty thousand crore rupees into social spending in a single year.", 0.35),
+    (16, 3, "Three thousand four hundred crore of that went into environmental work, up forty percent in one year.", 0.35),
+    (16, 4, "And above ten crore, the law already asks them for an independent assessment of what the money achieved.", 0.42),
+    (16, 5, "The money is there. The proof is the part nobody can produce. Rooted makes it, one verified task at a time, by the person who did the work.", 0.98),
 
     (17, 1, "We reward people for spending money.", 0.77),
     (17, 3, "Rooted rewards them for keeping something alive.", 1.12),
 
-    (18, 1, "Plant it. Keep it. Get paid for it. Open it on your phone, and keep something alive.", 0.70),
-    (18, 3, "Nothing in here reports a number it did not measure.", 1.68),
+    (18, 1, "Plant it. Keep it. Get paid for it.", 0.35),
+    (18, 2, "Rooted is already everywhere. It opens on any phone, Android or iPhone, and sits on the home screen like an app. There is no store and nothing to install.", 0.35),
+    (18, 3, "Scan the left one to use it. Scan the right one to read every line of it.", 0.63),
+    (18, 4, "Nothing in here reports a number it did not measure.", 1.68),
 ]
 
 
@@ -423,18 +426,60 @@ async def main():
             "-map", "[a]", "-c:a", "aac", "-b:a", "192k", str(mixed))
         voice_track = mixed
 
-    # 5. The cards, each held for as long as its lines take. A slow push in,
-    #    because a still frame under a voice reads as a slide and this is not
-    #    a slide deck.
-    shot_list = WORK / "shots.txt"
+    # 5. The cards, each held for as long as its lines take, dissolved into
+    #    one another rather than cut.
+    #
+    #    Held perfectly still and cut hard, a step arriving reads as a jump.
+    #    Dissolved, the same step reads as the thing appearing while the line
+    #    is said, which is what it is. A step inside a card gets a quick one,
+    #    a new card a slower one, so a change of subject is felt.
+    #
+    #    Timing, so the voice never lands on a half-drawn frame: every shot is
+    #    fully on screen at the moment its first line starts. An xfade input
+    #    of length d+T placed at offset t-T finishes its transition exactly at
+    #    t and leaves the running total at t+d, so the picture comes out the
+    #    same length as the soundtrack.
     def frame(key):
-        return (WORK / f"f{key[0]:02d}_{key[1]}.png").as_posix()
+        return WORK / f"f{key[0]:02d}_{key[1]}.png"
 
-    shot_list.write_text(
-        "\n".join(f"file '{frame(k)}'\nduration {d:.3f}" for k, d in shots)
-        + f"\nfile '{frame(shots[-1][0])}'",
-        encoding="utf-8",
-    )
+    STEP_FADE = 0.26
+    CARD_FADE = 0.55
+
+    starts = []
+    at = 0.0
+    for _k, d in shots:
+        starts.append(at)
+        at += d
+
+    fades = [0.0]
+    for i in range(1, len(shots)):
+        same_card = shots[i][0][0] == shots[i - 1][0][0]
+        room = min(shots[i - 1][1], shots[i][1]) - 0.05
+        fades.append(min(STEP_FADE if same_card else CARD_FADE, room))
+
+    picture = WORK / "picture.mp4"
+    pic_inputs = []
+    for i, (k, d) in enumerate(shots):
+        pic_inputs += ["-loop", "1", "-t", f"{d + fades[i]:.3f}", "-i", str(frame(k))]
+
+    steps = ["[0:v]fps=30,scale=1920:1080,format=yuv420p,setsar=1[x0]"]
+    for i in range(1, len(shots)):
+        steps.append(f"[{i}:v]fps=30,scale=1920:1080,format=yuv420p,setsar=1[s{i}]")
+        steps.append(
+            f"[x{i - 1}][s{i}]xfade=transition=fade:"
+            f"duration={fades[i]:.3f}:offset={starts[i] - fades[i]:.3f}[x{i}]"
+        )
+    steps.append(f"[x{len(shots) - 1}]null[out]")
+
+    script = WORK / "picture.filter"
+    script.write_text(";".join(steps), encoding="utf-8")
+
+    print(f"\ndissolving {len(shots)} shots into one picture track")
+    run("ffmpeg", "-loglevel", "error", "-y", *pic_inputs,
+        "-filter_complex_script", str(script),
+        "-map", "[out]", "-c:v", "libx264", "-preset", "veryfast",
+        "-crf", "16", "-pix_fmt", "yuv420p", str(picture))
+    print(f"  {duration(picture):.2f}s against a {total:.2f}s soundtrack")
 
     # 6. Subtitles, burned in, because judges watch on mute.
     srt = HERE / "rooted-demo.srt"
@@ -491,7 +536,7 @@ async def main():
     print(f"\nencoding, with footage in {len(overlays)} frames")
     run(
         "ffmpeg", "-loglevel", "error", "-y",
-        "-f", "concat", "-safe", "0", "-i", str(shot_list),
+        "-i", str(picture),
         "-i", str(voice_track),
         *inputs,
         "-filter_complex", chain,

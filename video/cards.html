@@ -31,6 +31,9 @@
   --overdue: #cf9a56;
   --line: rgba(237, 233, 222, 0.1);
   --surface: rgba(237, 233, 222, 0.04);
+  /* One shadow, used everywhere, so every panel sits the same distance off
+     the background. */
+  --lift: 0 18px 44px rgba(0, 0, 0, 0.35);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -116,12 +119,24 @@ h1.big { font-size: 102px; }
 .tag.q { color: var(--faint); border-color: var(--line); }
 
 .evidence {
+  position: relative;
   margin-top: 34px;
   border: 1px solid var(--line);
-  border-left: 2px solid var(--gold);
+  border-radius: 20px;
   background: var(--surface);
-  padding: 24px 30px;
+  box-shadow: var(--lift);
+  padding: 26px 32px 26px 36px;
   max-width: 760px;
+  overflow: hidden;
+}
+/* The gold edge, kept inside the radius rather than fighting it. */
+.evidence::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 14px; bottom: 14px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, var(--gold), rgba(176, 140, 74, 0.25));
 }
 .evidence .n {
   font-family: "JetBrains Mono", monospace;
@@ -135,13 +150,27 @@ h1.big { font-size: 102px; }
 .evidence p { margin-top: 11px; font-size: 19px; line-height: 1.5; color: var(--body); }
 
 /* Data, as cards that arrive one at a time. */
-.stats { display: flex; gap: 20px; margin-top: 38px; }
+.stats { display: flex; gap: 22px; margin-top: 38px; }
 .stat {
+  position: relative;
   border: 1px solid var(--line);
+  border-radius: 22px;
   background: var(--surface);
-  padding: 26px;
+  box-shadow: var(--lift);
+  padding: 28px 28px 26px;
   flex: 1;
+  overflow: hidden;
 }
+/* A thin bar along the top in the colour of the number below it, so three
+   cards side by side read as three separate facts. */
+.stat::before {
+  content: "";
+  position: absolute;
+  left: 28px; right: 28px; top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--overdue), transparent);
+}
+.stat:has(.n.ok)::before { background: linear-gradient(90deg, var(--moss), transparent); }
 .stat .n {
   font-family: "JetBrains Mono", monospace;
   font-size: 44px;
@@ -164,8 +193,10 @@ h1.big { font-size: 102px; }
 .compare > div {
   flex: 1;
   border: 1px solid var(--line);
+  border-radius: 22px;
   background: var(--surface);
-  padding: 24px 28px;
+  box-shadow: var(--lift);
+  padding: 26px 30px;
 }
 .compare .n {
   font-family: "JetBrains Mono", monospace;
@@ -183,15 +214,25 @@ h1.big { font-size: 102px; }
 }
 
 /* The four jobs, as a list that fills in. */
-.jobs { margin-top: 30px; max-width: 1280px; }
+.jobs {
+  margin-top: 30px;
+  max-width: 1280px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: var(--lift);
+  padding: 6px 32px;
+  overflow: hidden;
+}
 .job {
   display: grid;
   grid-template-columns: 130px 1fr 96px;
   gap: 26px;
   align-items: baseline;
-  padding: 17px 0;
+  padding: 19px 0;
   border-top: 1px solid var(--line);
 }
+.job:first-child { border-top: 0; }
 .job .what {
   font-family: "JetBrains Mono", monospace;
   font-size: 15px;
@@ -213,8 +254,12 @@ pre {
   line-height: 1.8;
   color: var(--body);
   margin-top: 30px;
-  border-left: 1px solid var(--line);
-  padding-left: 26px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow: var(--lift);
+  padding: 26px 30px;
+  max-width: 1120px;
 }
 pre .k { color: var(--moss); }
 pre .c { color: var(--faint); }
@@ -227,8 +272,13 @@ pre .c { color: var(--faint); }
   top: 112px;
   width: 410px;
   height: 820px;
-  border: 1px solid var(--line);
-  border-radius: 44px;
+  border: 1px solid rgba(237, 233, 222, 0.16);
+  border-radius: 46px;
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow:
+    0 0 0 6px rgba(10, 15, 11, 0.9),
+    0 0 0 7px rgba(237, 233, 222, 0.07),
+    0 40px 90px rgba(0, 0, 0, 0.55);
   display: grid;
   place-items: center;
   padding: 0 30px;
@@ -264,36 +314,51 @@ pre .c { color: var(--faint); }
 .bezel .right { display: flex; align-items: center; gap: 6px; }
 
 
-.card.end.on { display: grid; place-items: center; text-align: center; }
+.card.end.on { display: grid; place-items: center; text-align: center; padding: 92px 110px; }
 .end h1 { font-size: 100px; }
-.qr { display: flex; gap: 44px; margin-top: 44px; justify-content: center; }
+/* Two columns of equal width, each one centred on its own code, so the
+   captions line up with each other instead of drifting with the length of
+   the address underneath them. */
+.qr {
+  display: flex;
+  gap: 56px;
+  margin-top: 34px;
+  justify-content: center;
+  align-items: start;
+}
+.qr > div { width: 440px; text-align: center; }
 .qr .box {
-  width: 168px; height: 168px;
+  width: 156px; height: 156px;
   display: block;
-  border-radius: 6px;
+  margin: 0 auto;
+  border-radius: 8px;
 }
-.qr .link {
-  margin-top: 7px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 14px;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--gold);
-}
-.qr p {
-  margin-top: 13px;
+.qr .cap {
+  margin-top: 15px;
   font-family: "JetBrains Mono", monospace;
   font-size: 13px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--faint);
 }
-.url {
-  margin-top: 32px;
+.qr .link {
+  margin-top: 6px;
   font-family: "JetBrains Mono", monospace;
-  font-size: 21px;
+  font-size: 16px;
+  white-space: nowrap;
   color: var(--gold);
+  word-break: break-all;
+  line-height: 1.4;
 }
+.closer {
+  margin-top: 38px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
 
 /* A hairline that draws itself between the two halves of the closing line. */
 .rule {
@@ -599,19 +664,26 @@ pre .c { color: var(--faint); }
   <!-- 16 -->
   <section class="card wide">
     <div class="left">
-      <p class="eyebrow">What did not survive a measurement</p>
-      <h1 class="small">Two things I threw away.</h1>
-      <div class="compare" style="max-width:1150px">
-        <div data-step="2">
-          <p class="n" style="color:var(--overdue)">0 / 17</p>
-          <p>Species guessed on device, from colour and texture</p>
+      <p class="eyebrow">Who pays for this, and why they need it</p>
+      <h1 class="small">Companies already spend the money.<br><em>Nobody can show them what lived.</em></h1>
+      <div class="stats">
+        <div class="stat" data-step="2">
+          <p class="n ok">&#8377;40,794 cr</p>
+          <p>Spent on CSR by Indian companies in one year, a record</p>
+          <p class="src">FY 2024&ndash;25</p>
         </div>
-        <div data-step="3">
-          <p class="n" style="color:var(--overdue)">Passed</p>
-          <p>A different neem tree, through the old identity check</p>
+        <div class="stat" data-step="3">
+          <p class="n ok">&#8377;3,397 cr</p>
+          <p>Of it on environmental work, up forty percent in a year</p>
+          <p class="src">Environmental sustainability</p>
+        </div>
+        <div class="stat" data-step="4">
+          <p class="n">Required</p>
+          <p>An independent impact assessment, for any CSR spend above ten crore</p>
+          <p class="src">Companies Act</p>
         </div>
       </div>
-      <p class="sub" data-step="4">Against eight percent for guessing at random. It was the weakest thing in the app wearing the name of the strongest.</p>
+      <p class="sub" data-step="5">The law already asks them to prove it. <b>The proof is the one thing nobody produces.</b> Rooted makes it, one verified task at a time, by the person who did the work.</p>
     </div>
   </section>
 
@@ -631,21 +703,31 @@ pre .c { color: var(--faint); }
   <!-- 18 -->
   <section class="card wide end">
     <div>
-      <h1 style="font-size:116px">Rooted</h1>
-      <p class="sub" style="text-align:center;margin:18px auto 0;font-size:28px">Plant it. Keep it. Get paid for it.</p>
-      <div class="qr" data-step="2">
+      <p class="eyebrow" style="text-align:center">Rooted is already everywhere</p>
+      <h1 style="font-size:104px;margin-top:14px">Rooted</h1>
+      <p class="sub" style="text-align:center;margin:16px auto 0;font-size:27px">Plant it. Keep it. Get paid for it.</p>
+
+      <div class="tags" data-step="2" style="justify-content:center;margin-top:30px">
+        <span class="tag">ANY PHONE</span>
+        <span class="tag">ANDROID AND IPHONE</span>
+        <span class="tag">ADD TO HOME SCREEN</span>
+        <span class="tag">NO APP STORE</span>
+      </div>
+
+      <div class="qr" data-step="3">
         <div>
           <img class="box" src="assets/qr-app.png" alt="">
-          <p>Use it</p>
+          <p class="cap">Open it</p>
           <p class="link">rootedplants.vercel.app</p>
         </div>
         <div>
           <img class="box" src="assets/qr-code.png" alt="">
-          <p>Read it</p>
+          <p class="cap">Read the code</p>
           <p class="link">github.com/vickysharma-prog/nextstep-2026</p>
         </div>
       </div>
-      <p data-step="3" style="margin-top:34px;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)">Nothing in here reports a number it did not measure</p>
+
+      <p data-step="4" class="closer">Nothing in here reports a number it did not measure</p>
     </div>
   </section>
 
