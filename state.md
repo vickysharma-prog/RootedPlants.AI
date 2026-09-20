@@ -254,11 +254,11 @@ the idea works.
 
 Tick these on the day, not on the hour.
 
-- [ ] Demo video recorded, between 3:00 and 5:00, both bounds respected
-- [ ] Video uploaded and the link is public and plays in an incognito window
+- [x] Demo video recorded, 4:54, inside the 3:00 to 5:00 bounds
+- [x] Video uploaded and public: https://youtu.be/h2Nqt7q6UvM
 - [ ] **Repo flipped to public** (`gh repo edit --visibility public`), README
       explains how to run it
-- [ ] Live link works, if there is one
+- [x] Live link works: https://rootedplants.vercel.app
 - [ ] Devpost project page complete
 - [ ] `state.md` "Prior art carried in" is accurate and honest
 - [ ] Submitted, with hours to spare, not minutes

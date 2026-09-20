@@ -231,8 +231,11 @@ all.
 
 ## Try it
 
-- Live: https://rootedplants.vercel.app
+- Live app: https://rootedplants.vercel.app
+- Demo video: https://youtu.be/h2Nqt7q6UvM
 - Code: https://github.com/vickysharma-prog/RootedPlants.AI
+- Release, with the film attached:
+  https://github.com/vickysharma-prog/RootedPlants.AI/releases/tag/v1.0
 
 The demo link opens a seeded account, so every screen works without signing up.
 
@@ -240,7 +243,7 @@ The demo link opens a seeded account, so every screen works without signing up.
 
 ## Video description, with chapters
 
-For the YouTube or Vimeo upload. The timestamps are read off the finished cut,
+Live at https://youtu.be/h2Nqt7q6UvM. The timestamps are read off the finished cut,
 `video/rooted-demo.mp4`, 4:54.
 
 RootedPlants.AI. Plant it. Keep it. Get paid for it.

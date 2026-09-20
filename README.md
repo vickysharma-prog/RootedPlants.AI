@@ -12,7 +12,7 @@ pays you for keeping something alive.
 | | |
 |---|---|
 | **Live app** | [rootedplants.vercel.app](https://rootedplants.vercel.app) |
-| **Demo video** | [4:54, in this repo](video/rooted-demo.mp4) |
+| **Demo video** | [Watch on YouTube, 4:54](https://youtu.be/h2Nqt7q6UvM) |
 | **Install it** | Open the live app on a phone and add it to the home screen. Android and iPhone, no store. |
 | **Numbers** | Every figure below is in [`docs/evidence.md`](docs/evidence.md) with its source |
 
@@ -21,6 +21,8 @@ much as for the sapling from last month's drive. Same app, same schedule.
 
 Built solo for [NextStep Hacks 2026](https://nextstep2026.devpost.com/), Earth
 Forward track.
+
+[![Watch the demo](https://img.youtube.com/vi/h2Nqt7q6UvM/maxresdefault.jpg)](https://youtu.be/h2Nqt7q6UvM)
 
 ---
 
