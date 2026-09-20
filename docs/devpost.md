@@ -42,42 +42,53 @@ room and a lemon tree by a kitchen window run on the same year of small boring
 jobs, and nothing is attached to doing any of them. We pay people to pay a
 credit card bill on time. We pay nobody to keep a plant alive.
 
-## What it does
+## What it does (nine steps, one loop, all on a phone)
 
-**Register a plant once.** A photograph, a species, and the spot read off the
-device rather than typed. That first photograph becomes the baseline every
-later one is measured against.
+**Register:** one photograph, and the species comes back from the photograph
+rather than a dropdown, searched by the names people use, so "mogra" finds
+jasmine and "kadi patta" finds curry leaf. The spot is read off the device,
+never typed. That first photograph becomes the baseline every later one is
+measured against, for as long as the plant lives.
 
-**The schedule follows your weather.** Each species carries a care profile, and
-open-meteo moves each watering by what the weather actually did at that plant's
-coordinates. Rain pushes it out. A heat spell pulls it in. A pest check comes
-round sooner after warm wet days, because that is when pests arrive.
+**Refuse:** point it at a notebook and it says so, out loud, before anything is
+registered. A plain object scores 0.2% as a plant, a wall 0.5%, the weakest
+real plant photograph 9%. The bar is 3%.
 
-**It comes to you.** When a task is due the same message goes out on WhatsApp,
-on email and as a text, and the plant asks in its own words: "💧 Neem is
-thirsty. Vicky, your neem is asking for water. It has been waiting 1 day." A
-plant cannot wait for you to remember it.
+**Schedule:** each species carries its own watering interval, what to feed it
+with and what goes wrong with it, and open-meteo then moves every task by the
+weather at that plant's own coordinates. Rain pushes the next watering out. A
+heat spell pulls it in. A pest check comes round sooner after warm wet days,
+because that is when pests arrive. The line under the task says what moved it.
 
-**The camera talks you through the shot,** out loud, because whoever holds the
-phone is also holding a watering can. It reads the live frame twice a second on
-the device and says the one thing that would make the shot pass. The ring round
-the shutter turns green when there is nothing left to fix.
+**Remind:** when a task comes due the same message goes out on WhatsApp, on
+email and as a text, and the plant asks in its own words. "💧 Neem is thirsty.
+Vicky, your neem is asking for water. It has been waiting 1 day." A name, a
+plant and a date reach the server to send it. No photographs. No coordinates.
 
-**Then every check reports the number it measured,** and the app shows you the
-number:
+**Shoot:** the camera says the one thing that would make the shot pass, out
+loud, because whoever holds the phone is also holding a watering can. It reads
+the live frame twice a second on the device. Tilt down so the soil is in
+frame. Hold still for a second. That is it, take it. The ring round the
+shutter turns green when there is nothing left to fix.
 
-| Check | What it requires | Measured |
-|---|---|---|
-| Came off the camera | Not a file picker | |
-| Timed on our side | Server clock, not the file's | |
-| Within 120 m | Of where the plant was registered | |
-| It is that plant | ORB keypoints and a RANSAC homography against the plant's own first photograph | 485 agreeing points for the same plant, 4 for a different neem in a similar pot |
-| Watering happened | Soil darker than that plant's own dry baseline | 28.4% for a watered pot, 0.0% for the same frame against itself, threshold 5% |
-| It is a plant at all | PlantNet confidence before registration is accepted | 0.2% for an object, 0.5% for a wall, 9% for the weakest real plant, threshold 3% |
+**Check:** five checks, and every one reports the number it measured instead of
+a verdict. It came off the camera, not a file picker. The time is taken on our
+side, not read off the file. The location is within 120 m of where the plant
+was registered. The soil is at least 5% darker than that plant's own dry
+baseline: a watered pot measured 28.4%, the same frame against itself 0.0%.
 
-Points land, and they redeem. Because every point traces back to one verified
-task, what comes out is the record of what survived: the instrument the law
-already asks for and nobody currently produces.
+**Prove it is that plant:** ORB keypoints and a RANSAC homography against the
+plant's own first photograph, run in the browser on a 256 px copy with nothing
+uploaded. The same plant returned 485 agreeing points. A different neem in a
+similar pot returned 4.
+
+**Score:** every plant carries a health band and one sentence saying what moved
+it, computed from how the schedule has actually gone. It never reads the
+leaves and calls the plant sick, because a yellow leaf has a dozen causes.
+
+**Earn and redeem:** points land on the task, not on the planting, and they
+redeem. Because every point traces back to one verified task, what accumulates
+is not a score. It is the record of what survived.
 
 ## Technological implementation
 
@@ -184,11 +195,39 @@ they had done the job properly.
 
 ## Impact
 
-A documented failure with a documented cause: four out of five records say
-nothing about survival. Money that is already being spent and already legally
-required to prove itself. And a record produced by the one person who was there
-every time, as they do the work, rather than reconstructed afterwards by
-somebody who was not.
+**It moves the unit of account.** Everything built around planting counts
+saplings put in the ground, which is why 431 of 556 plantation journals could
+be filled in without anyone knowing whether a single tree lived. Rooted counts
+something else: one verified act of care, by one named person, at one set of
+coordinates, on one day. Add those up and you have survival, measured
+continuously, by the only person who was there every time.
+
+**It puts the household in the same system as the forest.** A planting drive
+is one afternoon a year. A balcony is 365 days of it. The tulsi, the money
+plant, the lemon by the kitchen window and the sapling from last month's drive
+all run on the same year of small boring jobs, so they run on the same app and
+the same schedule. That is the part nobody is serving, and it is the larger
+number: the plants already in people's homes, already being kept alive for
+free, by people nobody has ever paid or counted.
+
+**It turns a cost into an instrument.** ₹3,397 crore went into environmental
+CSR in one year, up 40%, and above a ₹10 crore obligation the Companies Act
+already requires an independent assessment of what the money achieved. Today a
+company buys a planting and receives a photograph from day one. With this it
+buys a year of proof: what was planted, where it stands, and whether it lived,
+each line traceable to a photograph that passed five checks. The spending does
+not change. What comes back does.
+
+**It pays the right person.** Loyalty points, credit card rewards and streaks
+have trained a whole economy to pay people for spending. This points the same
+machinery at keeping something alive, and it pays the person holding the
+watering can rather than the organisation holding the press release.
+
+**And it is honest about what it knows.** Every number on screen is a number
+the app measured. The identity check separates the same plant from a different
+one of the same species by 485 to 4. Nothing here reports a figure it did not
+measure, which is the only reason the record it produces is worth anything at
+all.
 
 ## Try it
 
