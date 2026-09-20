@@ -30,6 +30,12 @@ CUTS = {
     "guide": (18.0, [
         ("WhatsApp Video 2026-09-20 at 15.44.57.mp4", 14.5, 26.5),
     ]),
+    # The points landing, and then the photograph everything is measured
+    # against: the day it went in, still at the bottom of the plant's page.
+    "earned": (24.5, [
+        ("WhatsApp Video 2026-09-20 at 15.41.49.mp4", 76.0, 87.5),
+        ("WhatsApp Video 2026-09-20 at 15.41.49.mp4", 88.0, 98.0),
+    ]),
     # Registering: it refuses a notebook out loud, and then the species list
     # with the names people actually use.
     "register": (19.0, [

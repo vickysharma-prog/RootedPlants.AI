@@ -7,7 +7,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Say,Instrument Sans,44,&H00BBC8C2,&H00BBC8C2,&H00000000,&HB0060A07,0,0,0,0,100,100,0,0,3,14,0,1,110,820,60,1
+Style: Say,Instrument Sans,44,&H00BBC8C2,&H00BBC8C2,&H00000000,&HB0060A07,0,0,0,0,100,100,0,0,3,14,0,1,110,950,60,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -92,31 +92,40 @@ Dialogue: 0,0:03:07.64,0:03:10.03,Say,,0,0,0,,An object scores nought point two 
 Dialogue: 0,0:03:10.07,0:03:12.05,Say,,0,0,0,,The weakest real plant scored nine.
 Dialogue: 0,0:03:12.44,0:03:15.25,Say,,0,0,0,,Point it at a plant and it works out what it is.
 Dialogue: 0,0:03:15.29,0:03:17.97,Say,,0,0,0,,Seventy-eight species, searched by local name.
-Dialogue: 0,0:03:18.29,0:03:20.51,Say,,0,0,0,,The whole premise is that people forget.
-Dialogue: 0,0:03:20.55,0:03:22.38,Say,,0,0,0,,So this cannot wait to be opened.
-Dialogue: 0,0:03:22.77,0:03:26.64,Say,,0,0,0,,When a task comes due, the same message goes out on WhatsApp,
-Dialogue: 0,0:03:26.68,0:03:27.60,Say,,0,0,0,,email and text.
-Dialogue: 0,0:03:27.92,0:03:30.99,Say,,0,0,0,,A name, a plant and a date go to the server.
-Dialogue: 0,0:03:31.03,0:03:33.18,Say,,0,0,0,,No photographs, no coordinates.
-Dialogue: 0,0:03:33.99,0:03:36.59,Say,,0,0,0,,Organisations spend heavily on planting drives,
-Dialogue: 0,0:03:36.63,0:03:38.78,Say,,0,0,0,,and get back a photograph from day one.
-Dialogue: 0,0:03:39.17,0:03:41.91,Say,,0,0,0,,Rooted produces the record of what survived,
-Dialogue: 0,0:03:41.95,0:03:44.62,Say,,0,0,0,,every point traceable to one verified task.
-Dialogue: 0,0:03:45.01,0:03:46.70,Say,,0,0,0,,That record funds the rewards.
-Dialogue: 0,0:03:46.74,0:03:48.14,Say,,0,0,0,,The offers are stand-ins,
-Dialogue: 0,0:03:48.18,0:03:51.65,Say,,0,0,0,,because naming a real company would put words in their mouth.
-Dialogue: 0,0:03:52.46,0:03:55.30,Say,,0,0,0,,Two things did not survive contact with a measurement.
-Dialogue: 0,0:03:55.69,0:03:58.20,Say,,0,0,0,,I tried to work out the species on the device.
-Dialogue: 0,0:03:58.24,0:04:01.09,Say,,0,0,0,,It got the right answer zero times out of seventeen.
-Dialogue: 0,0:04:01.48,0:04:04.42,Say,,0,0,0,,And the identity check used to compare brightness grids.
-Dialogue: 0,0:04:04.46,0:04:06.87,Say,,0,0,0,,A different neem tree walked straight through.
-Dialogue: 0,0:04:07.26,0:04:09.04,Say,,0,0,0,,Against eight percent for guessing.
-Dialogue: 0,0:04:09.08,0:04:12.11,Say,,0,0,0,,It was the weakest thing in the app wearing the name of the
-Dialogue: 0,0:04:12.15,0:04:13.67,Say,,0,0,0,,strongest, so it was replaced.
-Dialogue: 0,0:04:14.69,0:04:16.67,Say,,0,0,0,,We reward people for spending money.
-Dialogue: 0,0:04:17.48,0:04:20.01,Say,,0,0,0,,Rooted rewards them for keeping something alive.
-Dialogue: 0,0:04:21.17,0:04:21.70,Say,,0,0,0,,Plant it.
-Dialogue: 0,0:04:21.74,0:04:22.22,Say,,0,0,0,,Keep it.
-Dialogue: 0,0:04:22.26,0:04:23.24,Say,,0,0,0,,Get paid for it.
-Dialogue: 0,0:04:23.28,0:04:26.31,Say,,0,0,0,,Open it on your phone, and keep something alive.
-Dialogue: 0,0:04:27.05,0:04:29.75,Say,,0,0,0,,Nothing in here reports a number it did not measure.
+Dialogue: 0,0:03:18.29,0:03:20.64,Say,,0,0,0,,A plant cannot wait for you to remember it.
+Dialogue: 0,0:03:20.68,0:03:22.69,Say,,0,0,0,,So Rooted does not wait to be opened.
+Dialogue: 0,0:03:23.08,0:03:26.95,Say,,0,0,0,,When a task comes due, the same message goes out on WhatsApp,
+Dialogue: 0,0:03:26.99,0:03:27.91,Say,,0,0,0,,email and text.
+Dialogue: 0,0:03:28.23,0:03:31.30,Say,,0,0,0,,A name, a plant and a date go to the server.
+Dialogue: 0,0:03:31.34,0:03:33.50,Say,,0,0,0,,No photographs, no coordinates.
+Dialogue: 0,0:03:34.31,0:03:36.90,Say,,0,0,0,,Organisations spend heavily on planting drives,
+Dialogue: 0,0:03:36.94,0:03:39.09,Say,,0,0,0,,and get back a photograph from day one.
+Dialogue: 0,0:03:39.48,0:03:42.22,Say,,0,0,0,,Rooted produces the record of what survived,
+Dialogue: 0,0:03:42.26,0:03:44.94,Say,,0,0,0,,every point traceable to one verified task.
+Dialogue: 0,0:03:45.33,0:03:47.01,Say,,0,0,0,,That record funds the rewards.
+Dialogue: 0,0:03:47.05,0:03:48.45,Say,,0,0,0,,The offers are stand-ins,
+Dialogue: 0,0:03:48.49,0:03:51.96,Say,,0,0,0,,because naming a real company would put words in their mouth.
+Dialogue: 0,0:03:52.77,0:03:55.08,Say,,0,0,0,,And somebody is already paying for all of this.
+Dialogue: 0,0:03:55.47,0:03:59.11,Say,,0,0,0,,Indian companies put forty thousand crore rupees into social
+Dialogue: 0,0:03:59.15,0:04:00.71,Say,,0,0,0,,spending in a single year.
+Dialogue: 0,0:04:01.10,0:04:04.06,Say,,0,0,0,,Three thousand four hundred crore of that went into
+Dialogue: 0,0:04:04.10,0:04:06.94,Say,,0,0,0,,environmental work, up forty percent in one year.
+Dialogue: 0,0:04:07.33,0:04:08.47,Say,,0,0,0,,And above ten crore,
+Dialogue: 0,0:04:08.51,0:04:12.17,Say,,0,0,0,,the law already asks them for an independent assessment of what
+Dialogue: 0,0:04:12.21,0:04:13.29,Say,,0,0,0,,the money achieved.
+Dialogue: 0,0:04:13.75,0:04:14.84,Say,,0,0,0,,The money is there.
+Dialogue: 0,0:04:14.88,0:04:17.29,Say,,0,0,0,,The proof is the part nobody can produce.
+Dialogue: 0,0:04:17.33,0:04:19.97,Say,,0,0,0,,Rooted makes it, one verified task at a time,
+Dialogue: 0,0:04:20.01,0:04:21.82,Say,,0,0,0,,by the person who did the work.
+Dialogue: 0,0:04:22.84,0:04:24.82,Say,,0,0,0,,We reward people for spending money.
+Dialogue: 0,0:04:25.63,0:04:28.16,Say,,0,0,0,,Rooted rewards them for keeping something alive.
+Dialogue: 0,0:04:29.32,0:04:29.98,Say,,0,0,0,,Plant it.
+Dialogue: 0,0:04:30.02,0:04:30.60,Say,,0,0,0,,Keep it.
+Dialogue: 0,0:04:30.64,0:04:31.84,Say,,0,0,0,,Get paid for it.
+Dialogue: 0,0:04:32.23,0:04:34.00,Say,,0,0,0,,Rooted is already everywhere.
+Dialogue: 0,0:04:34.04,0:04:36.56,Say,,0,0,0,,It opens on any phone, Android or iPhone,
+Dialogue: 0,0:04:36.60,0:04:39.05,Say,,0,0,0,,and sits on the home screen like an app.
+Dialogue: 0,0:04:39.09,0:04:41.60,Say,,0,0,0,,There is no store and nothing to install.
+Dialogue: 0,0:04:41.99,0:04:43.71,Say,,0,0,0,,Scan the left one to use it.
+Dialogue: 0,0:04:43.75,0:04:46.46,Say,,0,0,0,,Scan the right one to read every line of it.
+Dialogue: 0,0:04:47.13,0:04:49.83,Say,,0,0,0,,Nothing in here reports a number it did not measure.

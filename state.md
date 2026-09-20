@@ -241,10 +241,14 @@ the idea works.
    email, `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` and `TWILIO_WHATSAPP_FROM`
    for WhatsApp, and `KV_REST_API_URL` with `KV_REST_API_TOKEN` for the clock
    to have somewhere to look. Names are in `web/.env.example`.
-6. **The three shots the film still wants.** Each empty frame in the video says
-   on screen what belongs in it. Three of them need a real plant in a real
-   hand and cannot be generated: the camera guiding you, it refusing a
-   different plant of the same species, and a notebook being refused.
+6. ~~The three shots the film still wants.~~ **Shot and cut in.** Three
+   recordings off my own phone, with the in and out points written down in
+   `video/cut.py`: the camera talking through a shot, the app refusing a
+   notebook out loud, and the points landing on a registered plant. Every
+   frame in the film now carries a picture. One more is coming, a task being
+   completed with a watering can, and it goes into frame eleven.
+7. **Devpost page.** Written and paste-ready in `docs/devpost.md`. Every
+   number in it is in `docs/evidence.md` with its source.
 
 ## Submission checklist
 

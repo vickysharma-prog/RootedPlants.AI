@@ -1,10 +1,10 @@
 """Build the demo video.
 
 Renders the title cards, speaks the narration, burns the subtitles and cuts
-the whole thing together. What it does not do is fill the phone-shaped hole in
-the middle of seven of those cards: that is real footage of a real plant and it
-has to be shot, not generated. Every one of those frames is labelled on screen
-with what to record into it.
+the whole thing together. The phone in the middle of ten of those cards plays
+a recording: screen captures of the live site for the screens, and phone
+footage for the shots that needed a real plant in a real hand. A card with no
+recording for it says on screen what belongs there rather than pretending.
 
     cd video
     python -m http.server 3333 &
@@ -16,6 +16,7 @@ Needs ffmpeg on PATH and `pip install edge-tts`.
 """
 
 import asyncio
+import os
 import pathlib
 import shutil
 import subprocess
@@ -121,16 +122,16 @@ BEATS = [
 
 
 
-# Which recording plays inside the phone on which card. The ones missing are
-# the shots that need a real plant in a real hand, and those frames say so on
-# screen rather than pretending.
+# Which recording plays inside the phone on which card. Anything missing here
+# leaves the card's own label on screen saying what belongs there.
 FOOTAGE = {
     2: "landing",
     6: "join",
     7: "today",
     9: "plants",
-    11: "howitworks",
     10: "guide",
+    11: "howitworks",
+    12: "earned",
     13: "register",
     14: "handheld",
     15: "rewards",
@@ -496,40 +497,56 @@ async def main():
         room = min(shots[i - 1][1], shots[i][1]) / 2
         fades.append(min(STEP_FADE if same_card else CARD_FADE, room))
 
+    # Every boundary is decided in whole frames before a single picture is
+    # written, and each shot takes exactly the frames between its own two
+    # boundaries. Asking the concat demuxer to hold a still for a fraction of
+    # a frame does not work: it rounds each one up and the picture came out
+    # four and a half seconds longer than the voice, drifting the whole way.
+    edges = []
+    at = 0.0
+    for _key, d in shots:
+        edges.append(round(at * FPS))
+        at += d
+    edges.append(round(at * FPS))
+
+    seq = WORK / "seq"
     blends = WORK / "blend"
-    if blends.exists():
-        shutil.rmtree(blends)
-    blends.mkdir(parents=True)
+    for d in (seq, blends):
+        if d.exists():
+            shutil.rmtree(d)
+        d.mkdir(parents=True)
 
     print(f"\ndissolving {len(shots)} shots")
-    lines = []
-    for i, (key, d) in enumerate(shots):
+    order = []
+    for i, (key, _d) in enumerate(shots):
+        span = edges[i + 1] - edges[i]
         out_fade = fades[i + 1] if i + 1 < len(shots) else 0.0
-        lines.append(f"file '{frame(key).as_posix()}'")
-        lines.append(f"duration {max(0.04, d - out_fade):.4f}")
+        steps = min(span - 1, round(out_fade * FPS)) if out_fade > 0 else 0
 
-        if out_fade <= 0:
+        order += [frame(key)] * (span - steps)
+        if steps <= 0:
             continue
-        steps = max(1, round(out_fade * FPS))
         a = cv2.imread(str(frame(key)))
         b = cv2.imread(str(frame(shots[i + 1][0])))
         for s in range(1, steps + 1):
             k = s / (steps + 1)
             tween = blends / f"b{i:03d}_{s:02d}.png"
             cv2.imwrite(str(tween), cv2.addWeighted(a, 1 - k, b, k, 0))
-            lines.append(f"file '{tween.as_posix()}'")
-            lines.append(f"duration {out_fade / steps:.4f}")
+            order.append(tween)
 
-    # The concat demuxer ignores the duration on the last entry, so the final
-    # frame is named twice: once with its length, once to close the list.
-    lines.append(f"file '{frame(shots[-1][0]).as_posix()}'")
-    shot_list = WORK / "shots.txt"
-    shot_list.write_text("\n".join(lines), encoding="utf-8")
+    # One name per frame. Hard links rather than copies, so eight thousand
+    # frames cost what the handful of distinct pictures behind them cost.
+    for n, src in enumerate(order):
+        link = seq / f"{n:06d}.png"
+        try:
+            os.link(src, link)
+        except OSError:
+            shutil.copyfile(src, link)
 
     picture = WORK / "picture.mp4"
     run("ffmpeg", "-loglevel", "error", "-y",
-        "-f", "concat", "-safe", "0", "-i", str(shot_list),
-        "-vf", f"fps={FPS},format=yuv420p", "-c:v", "libx264",
+        "-framerate", str(FPS), "-i", str(seq / "%06d.png"),
+        "-vf", "format=yuv420p", "-c:v", "libx264",
         "-preset", "veryfast", "-crf", "16", str(picture))
     print(f"  {duration(picture):.2f}s against a {total:.2f}s soundtrack")
 
@@ -609,7 +626,9 @@ async def main():
 
     print(f"\n{out}  {out.stat().st_size / 1e6:.1f} MB  {int(total) // 60}:{int(total) % 60:02d}")
     print(f"{srt}")
-    print("\nSeven frames have a phone-shaped hole with what to record written in it.")
+    missing = [c for c in sorted(windows) if c in FOOTAGE and not clip_for(c)]
+    if missing:
+        print(f"\nno recording for card(s) {missing}: those frames say so on screen.")
 
 
 if __name__ == "__main__":
