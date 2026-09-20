@@ -558,3 +558,44 @@ plantings where thirty were found and none had survived. The figure that is
 actually our product is that four out of five plantation records did not say
 what was planted, where it stood, or whether it lived. Every number is in
 `docs/evidence.md` with its source.
+
+---
+
+## 20 Sep 2026 - the phone in the film, and who pays for it
+
+**The reminder frame stopped being a drawing.** It was an illustration of a
+notification inside an illustration of a phone, and it read as exactly that.
+It is now a handheld shot of somebody holding a real phone, with our own lock
+screen laid onto the glass. `video/phoneshot.py` measures the four corners of
+the display in one reference frame, follows them through every frame with
+optical flow and a homography, and warps our lock screen into place, fading it
+up two seconds in where the phone actually wakes. The shot gets the right of
+the frame at full height instead of a drawn bezel, so it reads as footage.
+
+**The steps dissolve now instead of cutting.** Handing sixty stills to ffmpeg's
+xfade filter opened sixty decoders at once and ran the machine out of memory.
+Mixing two images at a time with OpenCV and dropping the result into the concat
+list costs nothing, and the arithmetic still lands every shot whole on the
+first syllable of its line.
+
+**The narration was re-spoken on every build.** The work directory was wiped at
+the start of each run, which included the fifty-nine spoken lines, so a change
+to one card cost four minutes of network. They are kept and matched against the
+text that produced them. The same run also lost four minutes to one dropped
+socket, so the voice retries.
+
+**Three recordings off my own phone went in.** Registering a plant, the camera
+talking through the shot, and the app refusing a notebook out loud. `video/cut.py`
+holds the in and out points, so the cuts are written down rather than
+remembered.
+
+**The section about what I threw away came out.** In its place, who pays for
+this: ₹40,794 crore of CSR in one year, ₹3,397 crore of it environmental and up
+forty percent, and an independent impact assessment that the Companies Act
+already requires above ten crore. The money is spent and the law already asks
+for the proof. The proof is the part nobody produces.
+
+**And it installs.** The manifest had empty icons and colours from a palette we
+dropped two weeks ago, so "add to home screen" gave you a blank square. Real
+icons, the dark theme, opening straight on today. That is what "Rooted is
+everywhere" on the last card is standing on.

@@ -3,9 +3,9 @@ import type { TaskKind } from "./data";
 /**
  * Getting a reminder to somebody who has stopped thinking about the plant.
  *
- * The whole premise is that people forget. A product built on that cannot then
- * wait to be opened, so the reminder has to arrive where somebody already is:
- * a message on their phone, and an email they will see later.
+ * A plant cannot wait for you to remember it, so this cannot wait to be
+ * opened. The reminder has to arrive where somebody already is: a message on
+ * their phone, and an email they will see later.
  *
  * Every sender below is optional. Without its keys it reports that it is not
  * configured rather than throwing, because a missing key should cost you a

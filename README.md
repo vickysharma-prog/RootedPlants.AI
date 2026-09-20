@@ -64,9 +64,9 @@ Watering has to show soil at least 5% darker than that plant's dry baseline. A
 pest photo has to be close and sharp enough that something the size of an aphid
 would show.
 
-**It reaches you, rather than waiting to be opened.** The whole premise is that
-people forget, so when a task comes due the same message goes out on WhatsApp,
-on email and as a text. A name, a plant and a date go to the server for that.
+**It reaches you, rather than waiting to be opened.** A plant cannot wait for
+you to remember it, so when a task comes due the same message goes out on
+WhatsApp, on email and as a text. A name, a plant and a date go to the server for that.
 No photographs and no coordinates: those never leave the phone.
 
 **Get paid for keeping it.** Points land when the photo clears, streaks

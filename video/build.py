@@ -21,6 +21,7 @@ import shutil
 import subprocess
 import sys
 
+import cv2
 import edge_tts
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -129,22 +130,26 @@ FOOTAGE = {
     7: "today",
     9: "plants",
     11: "howitworks",
-    14: "reminder",
+    10: "guide",
+    13: "register",
+    14: "handheld",
     15: "rewards",
 }
 
-# A notification lands about two and a third seconds into the reminder clip.
-# Two soft notes at that moment, so the arrival is heard as well as seen.
-CHIME_AT = 2.35
+# A notification lands four seconds into the handheld clip: two for the phone
+# to wake, two more for the message. Two soft notes there, so the arrival is
+# heard as well as seen.
+CHIME_AT = 4.05
 
 
-# Where the phone sits in a frame, pinned in the stylesheet so nothing has to
-# be measured.
-SLOT = (1385, 112, 410, 820)
+# Where the recording sits in a frame, pinned in the stylesheet so nothing has
+# to be measured: left, top, width, height, and how much of the top the card's
+# own status bar takes.
+SLOT = (1385, 112, 410, 820, 44)
 
-# The card draws a status bar across the top of the phone, and the recording
-# starts below it.
-BEZEL_TOP = 44
+# The reminder is not a screen recording, it is a shot of somebody holding a
+# phone, so it gets the whole right of the frame and none of the drawn chrome.
+SLOTS = {14: (980, 0, 940, 1080, 0)}
 
 
 def clip_for(card: int):
@@ -163,16 +168,42 @@ async def speak(text: str, out: pathlib.Path):
     encoder padding at each end, and joining fifty-six of them by copy added
     three and a quarter seconds that the picture knew nothing about, so the
     voice drifted further behind the frames the longer it ran.
+
+    The voice comes over the network, and a build that speaks fifty-seven
+    lines will sooner or later hit one timeout. Losing four minutes of work to
+    one dropped socket is not worth it, so it tries again.
     """
-    tts = edge_tts.Communicate(text, VOICE, rate=RATE)
-    cues = []
-    with open(out, "wb") as f:
-        async for chunk in tts.stream():
-            if chunk["type"] == "audio":
-                f.write(chunk["data"])
-            elif chunk["type"] == "WordBoundary":
-                cues.append((chunk["offset"] / 1e7, chunk["duration"] / 1e7, chunk["text"]))
-    return cues
+    for attempt in range(4):
+        tts = edge_tts.Communicate(text, VOICE, rate=RATE)
+        cues = []
+        try:
+            with open(out, "wb") as f:
+                async for chunk in tts.stream():
+                    if chunk["type"] == "audio":
+                        f.write(chunk["data"])
+                    elif chunk["type"] == "WordBoundary":
+                        cues.append(
+                            (chunk["offset"] / 1e7, chunk["duration"] / 1e7, chunk["text"])
+                        )
+            if out.stat().st_size > 0:
+                return cues
+        except Exception as err:
+            if attempt == 3:
+                raise
+            print(f"    retrying: {type(err).__name__}")
+        await asyncio.sleep(2 + attempt * 3)
+    return []
+
+
+def size(path: pathlib.Path):
+    """How big a clip is, so nothing has to assume a phone's shape."""
+    out = run(
+        "ffprobe", "-v", "error", "-select_streams", "v:0",
+        "-show_entries", "stream=width,height",
+        "-of", "csv=p=0:s=x", str(path),
+    ).stdout.strip()
+    w, h = out.split("x")
+    return int(w), int(h)
 
 
 def duration(path: pathlib.Path) -> float:
@@ -229,7 +260,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Say,Instrument Sans,44,&H00BBC8C2,&H00BBC8C2,&H00000000,&HB0060A07,0,0,0,0,100,100,0,0,3,14,0,1,110,820,60,1
+Style: Say,Instrument Sans,44,&H00BBC8C2,&H00BBC8C2,&H00000000,&HB0060A07,0,0,0,0,100,100,0,0,3,14,0,1,110,950,60,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -292,9 +323,10 @@ async def main():
 
     WORK.mkdir(exist_ok=True)
     # Files only. The recorder keeps a browser profile in here, and that is a
-    # directory this has no business deleting.
+    # directory this has no business deleting. The spoken lines stay too, or
+    # the cache below would never survive long enough to be a cache.
     for old in WORK.glob("*"):
-        if old.is_file():
+        if old.is_file() and not old.name.startswith("say"):
             old.unlink()
 
     print(f"voice: {VOICE}\nbeats: {len(BEATS)}\n")
@@ -307,9 +339,16 @@ async def main():
     for i, (card, step, text, hold) in enumerate(BEATS):
         mp3 = WORK / f"say{i:02d}.mp3"
         wav = WORK / f"say{i:02d}.wav"
-        await speak(text, mp3)
-        run("ffmpeg", "-loglevel", "error", "-y", "-i", str(mp3),
-            "-ar", "44100", "-ac", "1", "-c:a", "pcm_s16le", str(wav))
+        # A line that has not changed is not spoken again. Most rebuilds
+        # change a card or a number, not the script, and this turns four
+        # minutes of network into none.
+        said = WORK / f"say{i:02d}.said"
+        stamp = f"{VOICE} {RATE}\n{text}"
+        if not (wav.exists() and said.exists() and said.read_text(encoding="utf-8") == stamp):
+            await speak(text, mp3)
+            run("ffmpeg", "-loglevel", "error", "-y", "-i", str(mp3),
+                "-ar", "44100", "-ac", "1", "-c:a", "pcm_s16le", str(wav))
+            said.write_text(stamp, encoding="utf-8")
         spoken = duration(wav)
 
         # Subtitles follow the words, not the beat, so they never sit ahead of
@@ -434,51 +473,64 @@ async def main():
     #    is said, which is what it is. A step inside a card gets a quick one,
     #    a new card a slower one, so a change of subject is felt.
     #
-    #    Timing, so the voice never lands on a half-drawn frame: every shot is
-    #    fully on screen at the moment its first line starts. An xfade input
-    #    of length d+T placed at offset t-T finishes its transition exactly at
-    #    t and leaves the running total at t+d, so the picture comes out the
-    #    same length as the soundtrack.
+    #    The blend is drawn here rather than left to ffmpeg. Handing sixty
+    #    stills to the xfade filter means sixty decoders and sixty filter
+    #    graphs open at once, which ran the machine out of memory. Mixing two
+    #    images at a time costs nothing and the concat list swallows the
+    #    result, so the fade frames are simply more pictures in the sequence.
+    #
+    #    The arithmetic keeps the voice off a half-drawn frame: a shot holds
+    #    for its own length less the fade that follows it, then the fade runs,
+    #    and the next shot is whole exactly when its first line starts. The
+    #    lengths still add up to the soundtrack.
     def frame(key):
         return WORK / f"f{key[0]:02d}_{key[1]}.png"
 
     STEP_FADE = 0.26
     CARD_FADE = 0.55
-
-    starts = []
-    at = 0.0
-    for _k, d in shots:
-        starts.append(at)
-        at += d
+    FPS = 30
 
     fades = [0.0]
     for i in range(1, len(shots)):
         same_card = shots[i][0][0] == shots[i - 1][0][0]
-        room = min(shots[i - 1][1], shots[i][1]) - 0.05
+        room = min(shots[i - 1][1], shots[i][1]) / 2
         fades.append(min(STEP_FADE if same_card else CARD_FADE, room))
 
+    blends = WORK / "blend"
+    if blends.exists():
+        shutil.rmtree(blends)
+    blends.mkdir(parents=True)
+
+    print(f"\ndissolving {len(shots)} shots")
+    lines = []
+    for i, (key, d) in enumerate(shots):
+        out_fade = fades[i + 1] if i + 1 < len(shots) else 0.0
+        lines.append(f"file '{frame(key).as_posix()}'")
+        lines.append(f"duration {max(0.04, d - out_fade):.4f}")
+
+        if out_fade <= 0:
+            continue
+        steps = max(1, round(out_fade * FPS))
+        a = cv2.imread(str(frame(key)))
+        b = cv2.imread(str(frame(shots[i + 1][0])))
+        for s in range(1, steps + 1):
+            k = s / (steps + 1)
+            tween = blends / f"b{i:03d}_{s:02d}.png"
+            cv2.imwrite(str(tween), cv2.addWeighted(a, 1 - k, b, k, 0))
+            lines.append(f"file '{tween.as_posix()}'")
+            lines.append(f"duration {out_fade / steps:.4f}")
+
+    # The concat demuxer ignores the duration on the last entry, so the final
+    # frame is named twice: once with its length, once to close the list.
+    lines.append(f"file '{frame(shots[-1][0]).as_posix()}'")
+    shot_list = WORK / "shots.txt"
+    shot_list.write_text("\n".join(lines), encoding="utf-8")
+
     picture = WORK / "picture.mp4"
-    pic_inputs = []
-    for i, (k, d) in enumerate(shots):
-        pic_inputs += ["-loop", "1", "-t", f"{d + fades[i]:.3f}", "-i", str(frame(k))]
-
-    steps = ["[0:v]fps=30,scale=1920:1080,format=yuv420p,setsar=1[x0]"]
-    for i in range(1, len(shots)):
-        steps.append(f"[{i}:v]fps=30,scale=1920:1080,format=yuv420p,setsar=1[s{i}]")
-        steps.append(
-            f"[x{i - 1}][s{i}]xfade=transition=fade:"
-            f"duration={fades[i]:.3f}:offset={starts[i] - fades[i]:.3f}[x{i}]"
-        )
-    steps.append(f"[x{len(shots) - 1}]null[out]")
-
-    script = WORK / "picture.filter"
-    script.write_text(";".join(steps), encoding="utf-8")
-
-    print(f"\ndissolving {len(shots)} shots into one picture track")
-    run("ffmpeg", "-loglevel", "error", "-y", *pic_inputs,
-        "-filter_complex_script", str(script),
-        "-map", "[out]", "-c:v", "libx264", "-preset", "veryfast",
-        "-crf", "16", "-pix_fmt", "yuv420p", str(picture))
+    run("ffmpeg", "-loglevel", "error", "-y",
+        "-f", "concat", "-safe", "0", "-i", str(shot_list),
+        "-vf", f"fps={FPS},format=yuv420p", "-c:v", "libx264",
+        "-preset", "veryfast", "-crf", "16", str(picture))
     print(f"  {duration(picture):.2f}s against a {total:.2f}s soundtrack")
 
     # 6. Subtitles, burned in, because judges watch on mute.
@@ -495,17 +547,6 @@ async def main():
     write_ass(subs, ass)
 
     inputs = []
-    x, y, pw, ph = SLOT
-    # Inset a little, so the card's own rounded border still draws around the
-    # recording instead of being covered by its square corners.
-    inset = 5
-    vw = pw - inset * 2
-    vh = ph - BEZEL_TOP
-    # Scaled to the width and then cropped, never squashed. A 390 by 844
-    # recording forced into this box would be visibly the wrong shape, and the
-    # app has enough room at the top of every screen to give up sixty pixels
-    # to the status bar that now sits there.
-    tall = round(vw * 844 / 390)
 
     chain = "[0:v]fps=30,scale=1920:1080:flags=lanczos[base]"
     last = "base"
@@ -516,15 +557,28 @@ async def main():
         if not clip:
             continue
         start_t, end_t = windows[card]
+        x, y, pw, ph, bezel = SLOTS.get(card, SLOT)
+        # The drawn phone is inset a little, so its own rounded border still
+        # shows around the recording instead of being covered by the square
+        # corners of a video. A shot that bleeds off the frame is not.
+        inset = 0 if card in SLOTS else 5
+        vw = pw - inset * 2
+        vh = ph - bezel
+        # Scaled to the width and then cropped, never squashed.
+        sw, sh = size(clip)
+        tall = round(vw * sh / sw)
+        # A screen recording gives up its top strip to the status bar the card
+        # draws. A shot of a phone is framed as it was shot.
+        lift = 22 if card in FOOTAGE and card not in SLOTS else 0
         # Two inputs are already taken: the cards and the audio.
         idx = 2 + len(overlays)
         inputs += ["-stream_loop", "-1", "-i", str(clip)]
         chain += (
-            f";[{idx}:v]scale={vw}:{tall},crop={vw}:{vh}:0:{max(0, (tall - vh) // 2 - 22)},"
+            f";[{idx}:v]scale={vw}:{tall},crop={vw}:{vh}:0:{max(0, (tall - vh) // 2 - lift)},"
             f"setpts=PTS-STARTPTS+{start_t:.3f}/TB[p{card}]"
         )
         chain += (
-            f";[{last}][p{card}]overlay={x + inset}:{y + BEZEL_TOP}:"
+            f";[{last}][p{card}]overlay={x + inset}:{y + bezel}:"
             f"enable='between(t,{start_t:.3f},{end_t:.3f})'[v{card}]"
         )
         last = f"v{card}"
