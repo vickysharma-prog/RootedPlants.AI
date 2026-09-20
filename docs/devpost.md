@@ -236,8 +236,49 @@ all.
 
 The demo link opens a seeded account, so every screen works without signing up.
 
-## Built with
+---
 
-next.js · react · typescript · tailwind · opencv · webassembly · indexeddb ·
-plantnet-api · open-meteo · resend · twilio · upstash-redis · vercel ·
-vercel-cron · web-speech-api · pwa
+## Video description, with chapters
+
+For the YouTube or Vimeo upload. The timestamps are read off the finished cut,
+`video/rooted-demo.mp4`, 4:54.
+
+RootedPlants.AI. Plant it. Keep it. Get paid for it.
+
+Everybody plants a tree. Nobody finds out what happened to it. India's national
+auditor spent ten years counting: about 5% of a 2.8 million hectare target
+achieved, no improvement in tree cover at roughly 70% of the sites assessed,
+and 431 of 556 plantation journals that never recorded what was planted, where
+it stood, or whether it lived.
+
+RootedPlants.AI pays people for the year after the planting. Register a plant,
+get a schedule that moves with the weather over it, prove each job with a
+photograph, and earn points that redeem. Every check reports the number it
+measured, on screen, including the one that decides whether it is the same
+plant: 485 agreeing keypoints against its own first photograph, 4 against a
+different neem in a similar pot.
+
+Built solo for NextStep Hacks 2026, Earth Forward track. Nothing in the film
+reports a number it did not measure.
+
+Live: https://rootedplants.vercel.app
+Code: https://github.com/vickysharma-prog/RootedPlants.AI
+
+0:00 Everybody plants a tree
+0:17 What the auditor found
+0:51 We pay people for everything except this
+1:02 The balcony and the drive, same app
+1:25 Four jobs, moved by your weather
+2:07 The camera talks you through the shot
+2:29 Every check says the number it measured
+2:44 Is it the same plant: 485 against 4
+3:05 Registering, and what it refuses
+3:24 The reminder arriving on a real phone
+3:40 The record, and who is already paying for it
+4:28 Where the points should have been pointing
+
+## Built with (Devpost tags)
+
+next.js, react, typescript, tailwind, opencv, webassembly, indexeddb,
+plantnet-api, open-meteo, resend, twilio, upstash-redis, vercel, vercel-cron,
+web-speech-api, pwa, ffmpeg, python
