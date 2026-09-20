@@ -1,6 +1,6 @@
-# Rooted
+# RootedPlants.AI
 
-Everybody plants a tree. Nobody finds out what happened to it.
+**Everybody plants a tree. Nobody finds out what happened to it.**
 
 You plant it, you take the photo, you post it. Then a year of small boring
 jobs decides whether it lives, and nothing is holding you to them. Rooted
@@ -9,14 +9,38 @@ holds you to them, and pays you for it.
 Spend money, earn points. Pay the credit card bill on time, earn more. Rooted
 pays you for keeping something alive.
 
-**Live: [rootedplants.vercel.app](https://rootedplants.vercel.app)** ·
-**[Demo video](video/rooted-demo.mp4)**
+| | |
+|---|---|
+| **Live app** | [rootedplants.vercel.app](https://rootedplants.vercel.app) |
+| **Demo video** | [4:54, in this repo](video/rooted-demo.mp4) |
+| **Install it** | Open the live app on a phone and add it to the home screen. Android and iPhone, no store. |
+| **Numbers** | Every figure below is in [`docs/evidence.md`](docs/evidence.md) with its source |
 
 It is for the tulsi on the balcony and the money plant in the living room as
 much as for the sapling from last month's drive. Same app, same schedule.
 
-Built for [NextStep Hacks 2026](https://nextstep2026.devpost.com/), Earth
+Built solo for [NextStep Hacks 2026](https://nextstep2026.devpost.com/), Earth
 Forward track.
+
+---
+
+## Why
+
+India's national auditor spent ten years on the Green India Mission across 15
+states. About **5%** of a 2.8 million hectare planting target was achieved. At
+roughly **70%** of the sites assessed, tree cover had not improved at all. At
+one site, 2,000 plantings were reported, 30 to 40 saplings were found, and
+none had lived.
+
+One line explains the rest. **431 of 556 plantation journals did not record
+the species planted, the coordinates, or the survival percentage.** Nobody was
+ever asked to keep that record, so nobody kept it.
+
+Meanwhile Indian companies spent **₹40,794 crore** on CSR in FY 2024-25 and
+**₹3,397 crore** of it on environmental work, up 40% in a year. Above a ₹10
+crore obligation the Companies Act already requires an independent assessment
+of what the money achieved. The spending exists and the law already asks for
+proof. The proof is what nobody can produce.
 
 ---
 
@@ -74,6 +98,84 @@ multiply, and losing a plant to something outside your control costs nothing.
 
 Full detail: [`how it is verified`](docs/verification.md) ·
 [`the reward economy`](docs/rewards.md) · [`every objection, answered`](docs/risks.md)
+
+## Architecture
+
+Phone first, and almost everything stays on the phone. The only thing that
+reaches a server is what is needed to send a reminder.
+
+```mermaid
+flowchart TB
+    subgraph phone["The phone, offline capable"]
+        UI["Next.js 16 App Router, React 19"]
+        IDB[("IndexedDB<br/>plants, photographs, points")]
+        CV["OpenCV 5 in WebAssembly<br/>ORB + RANSAC identity"]
+        TTS["Web Speech API<br/>the camera guide, out loud"]
+        UI --- IDB
+        UI --- CV
+        UI --- TTS
+    end
+
+    subgraph edge["Our server, Vercel"]
+        ID["/api/identify<br/>PlantNet proxy, key stays here"]
+        NOW["/api/now<br/>the clock, taken on our side"]
+        CRON["/api/cron/remind<br/>once a day"]
+    end
+
+    subgraph out["Third parties"]
+        PN["PlantNet"]
+        OM["open-meteo"]
+        RS["Resend, email"]
+        TW["Twilio, WhatsApp and text"]
+        UP[("Upstash Redis<br/>who has been reminded")]
+    end
+
+    UI -- "photograph" --> ID --> PN
+    UI -- "coordinates" --> OM
+    UI -- "shutter pressed" --> NOW
+    UI -- "name, plant, date" --> CRON
+    CRON --> RS
+    CRON --> TW
+    CRON --- UP
+```
+
+**What never leaves the device:** photographs, baselines, coordinates, points
+and history. The identity check runs in the browser on a 256 px copy, so the
+one comparison that decides whether points are earned needs no upload and no
+signal.
+
+**What does leave:** the photograph goes to PlantNet once, at registration,
+to answer what the plant is and whether it is a plant at all. Coordinates go
+to open-meteo to move the schedule. A name, a plant and a date go to the cron
+so it can send a reminder.
+
+| File | What it decides |
+|---|---|
+| [`web/lib/store.ts`](web/lib/store.ts) | Everything on the device, and the health band |
+| [`web/lib/verify.ts`](web/lib/verify.ts) | The five checks and their thresholds |
+| [`web/lib/identity.ts`](web/lib/identity.ts) | Is this the same plant |
+| [`web/lib/coach.ts`](web/lib/coach.ts) | What the camera says, and when |
+| [`web/lib/notify.ts`](web/lib/notify.ts) | One message, every channel |
+| [`web/lib/data.ts`](web/lib/data.ts) | 78 species, their care, their local names |
+| [`video/build.py`](video/build.py) | The demo film, built from this repo |
+
+## Every number the app shows, it measured
+
+| Check | Threshold | Measured |
+|---|---|---|
+| Is it the same plant | 25 agreeing keypoints | **485** against its own baseline, **4** against a different neem in a similar pot |
+| Did the watering happen | soil 5% darker | **28.4%** for a watered pot, **0.0%** for the same frame against itself |
+| Is it a plant at all | 3% PlantNet confidence | **0.2%** an object, **0.5%** a wall, **9%** the weakest real plant |
+| Is it here | within 120 m | read off the device, never typed |
+| Did it come off the camera | live stream only | a file picker is reported as one |
+
+Three earlier versions were replaced because the number was bad, and that is
+written up in [`progress.md`](progress.md). An on-device colour and texture
+classifier scored **0 out of 17** against 8% for guessing. Greenness as a
+plant test turned out useless, because real plants run from 0% to 97% green.
+The framing check used to include the soil, so watering the plant properly
+darkened the soil, dropped the score, and failed the check because the
+watering had worked.
 
 ## Running it
 
@@ -140,9 +242,15 @@ means filling the form again. An identity provider and a user table fix that
 and change nothing else about whether the idea works, so they are a later
 problem.
 
-**Reminders actually going out.** The channels are on the account screen and
-each can be switched on its own, and the scheduling data is channel agnostic,
-so adding one is a sender rather than a rewrite. Nothing sends yet.
+**Reminders, on this deployment.** The senders are written and wired: one
+message composed once in `web/lib/notify.ts`, sent through Resend for email
+and Twilio for WhatsApp and text, fired by a Vercel cron once a day. Each
+channel switches on its own and a missing key costs you that channel rather
+than the whole reminder, which is what the account screen reports. This
+deployment carries no keys, so it reaches no channels until they are set:
+`RESEND_API_KEY`, `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`,
+`TWILIO_WHATSAPP_FROM`, `KV_REST_API_URL` and `KV_REST_API_TOKEN`. Names are
+in `web/.env.example`.
 
 **A server-side database.** IndexedDB is the right shape for a phone-first app
 whose photographs should not leave the device, and it is genuinely what runs.
