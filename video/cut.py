@@ -22,11 +22,17 @@ TAKES = pathlib.Path.home() / "Downloads"
 # apart from one that is a little taller.
 W, H = 576, 1280
 
-# Which recordings carry sound worth keeping. The camera recording caught the
-# app's own voice off the phone itself, clean, with digital silence between
-# the lines. The others were caught on the microphone with the room behind
-# them, so they come through as picture only.
-WITH_SOUND = {"guide", "verify", "earned"}
+# Which recordings carry sound worth keeping. Wherever the app spoke, it goes
+# in. Two of these were captured off the phone itself and are clean. The
+# notebook one was caught on the microphone with a room behind it, so it gets
+# the noise taken off before it is used.
+WITH_SOUND = {"guide", "verify", "earned", "register"}
+
+# A room, taken off. The high pass drops the rumble the microphone added, and
+# the denoiser learns the steady part and leaves the voice.
+SCRUB = {"register": "highpass=f=220,afftdn=nr=22:nf=-28,"
+                     "agate=threshold=0.05:ratio=5:attack=15:release=220,"
+                     "volume=2.6"}
 
 # name: [(file, from, to), ...] and how long the finished clip should run.
 # Anything left over after the pieces is the last frame, held.
@@ -49,8 +55,8 @@ CUTS = {
     ]),
     # Registering: it refuses a notebook out loud, and then the species list
     # with the names people actually use.
-    "register": (19.0, [
-        ("WhatsApp Video 2026-09-20 at 16.26.41.mp4", 23.0, 34.0),
+    "register": (22.0, [
+        ("WhatsApp Video 2026-09-20 at 16.26.41.mp4", 20.0, 34.0),
         ("WhatsApp Video 2026-09-20 at 15.41.49.mp4", 43.5, 51.0),
     ]),
 }
@@ -75,6 +81,7 @@ def main():
                 # recording from a slightly taller phone still lines up with
                 # the rest instead of being squashed to fit.
                 "-vf", f"scale={W}:-2,crop={W}:{H},fps=30,setsar=1",
+                *(["-af", SCRUB[name]] if name in SCRUB else []),
                 *(["-c:a", "aac", "-b:a", "128k"] if name in WITH_SOUND else ["-an"]),
                 "-c:v", "libx264", "-preset", "slow", "-crf", "18",
                 "-pix_fmt", "yuv420p", str(part))

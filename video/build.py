@@ -53,7 +53,7 @@ BEATS = [
     (3, 1, "So how much of it lives? India's national auditor went and looked.", 0.35),
     (3, 2, "Of a two point eight million hectare target, about five percent was achieved.", 0.35),
     (3, 3, "At seventy percent of the sites, no improvement in tree cover at all.", 0.35),
-    (3, 4, "One site reported two thousand plantings. Thirty were found. None had survived.", 0.98),
+    (3, 4, "One site reported two thousand plantings. Thirty were found. None had survived.", 0.60),
 
     (4, 1, "And here is the part that explains the rest.", 0.35),
     (4, 2, "Four out of five plantation records did not say what was planted, where it stood, or whether it lived.", 0.56),
@@ -92,10 +92,10 @@ BEATS = [
     (12, 1, "This is the one that matters. If any plant earned points, the points would be worth nothing.", 0.35),
     (12, 2, "So OpenCV matches keypoints against the plant's first photograph, and asks whether they agree on one viewpoint.", 0.28),
     (12, 3, "The same plant returns four hundred and eighty five.", 0.42),
-    (12, 4, "A different plant of the same species, in a similar pot, returns four.", 1.12),
+    (12, 4, "A different plant of the same species, in a similar pot, returns four.", 0.70),
 
     (13, 1, "Registering a plant checks the photograph before it accepts it.", 0.28),
-    (13, 2, "Point it at a notebook and it says so. An object scores nought point two percent. The weakest real plant scored nine.", 0.35),
+    (13, 2, "Point it at a notebook and it says so. An object scores nought point two percent. The weakest real plant scored nine.", 3.00),
     (13, 3, "Point it at a plant and it works out what it is. Seventy-eight species, searched by local name.", 0.28),
 
     (14, 1, "A plant cannot wait for you to remember it. So Rooted does not wait to be opened.", 0.35),
@@ -110,15 +110,15 @@ BEATS = [
     (16, 2, "Indian companies put forty thousand crore rupees into social spending in a single year.", 0.35),
     (16, 3, "Three thousand four hundred crore of that went into environmental work, up forty percent in one year.", 0.35),
     (16, 4, "And above ten crore, the law already asks them for an independent assessment of what the money achieved.", 0.42),
-    (16, 5, "The money is there. The proof is the part nobody can produce. Rooted makes it, one verified task at a time, by the person who did the work.", 0.98),
+    (16, 5, "The money is there. The proof is the part nobody can produce. Rooted makes it, one verified task at a time, by the person who did the work.", 0.50),
 
     (17, 1, "We reward people for spending money.", 0.77),
-    (17, 3, "Rooted rewards them for keeping something alive.", 1.12),
+    (17, 3, "Rooted rewards them for keeping something alive.", 0.80),
 
     (18, 1, "Plant it. Keep it. Get paid for it.", 0.35),
     (18, 2, "Rooted is already everywhere. It opens on any phone and sits on the home screen like an app. No store, nothing to install.", 0.35),
     (18, 3, "Scan the left one to use it. Scan the right one to read every line of it.", 0.63),
-    (18, 4, "Nothing in here reports a number it did not measure.", 1.68),
+    (18, 4, "Nothing in here reports a number it did not measure.", 1.20),
 ]
 
 
@@ -142,6 +142,14 @@ FOOTAGE = {
 # message is there with it. Two soft notes on that frame, so the arrival is
 # heard as well as seen.
 CHIME_AT = 2.35
+
+# How loud each recording's own sound sits under the narration. Two of them
+# were captured off the phone and are clean. The notebook one was caught on a
+# microphone with a room behind it, so it comes in lower: enough to hear the
+# app refuse the photograph, not enough to bring the room with it.
+UNDER = {"register": 0.58}
+UNDER_DEFAULT = 0.82
+
 
 
 # Where the recording sits in a frame, pinned in the stylesheet so nothing has
@@ -536,7 +544,8 @@ async def main():
             # two apart.
             parts.append(
                 f"[{idx}:a]aformat=sample_rates=44100:channel_layouts=mono,"
-                f"volume=0.62,adelay={at_ms}|{at_ms}[x{idx}]"
+                f"volume={UNDER.get(FOOTAGE.get(card), UNDER_DEFAULT)},"
+                f"adelay={at_ms}|{at_ms}[x{idx}]"
             )
             names.append(f"[x{idx}]")
 

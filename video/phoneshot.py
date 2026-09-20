@@ -49,9 +49,22 @@ GLASS = np.float32([
 NOTICE_AT = np.float32([
     [264, 738],
     [754, 692],
-    [782, 1010],
-    [293, 1056],
+    [764, 925],
+    [287, 969],
 ])
+
+# The card's own background colour, as it comes out of the browser. Every
+# pixel that differs from it is text, an icon or the border, and those are the
+# only parts that stay opaque when the panel goes to glass.
+PAPER = np.float32([59, 49, 44])
+
+# How much of the screen behind it shows through, how far that is blurred, and
+# how soft the whole thing is left. The plate is a handheld shot at a wide
+# aperture, so an overlay that stays perfectly sharp reads as a sticker.
+THROUGH = 0.34
+FROST = 21
+SOFTEN = 1.15
+GRAIN = 2.2
 
 # The corner radius, as a fraction of the notification's width.
 RADIUS = 0.076
@@ -158,6 +171,10 @@ def main():
     mask = rounded(nw, nh, int(nw * RADIUS))
     mask = cv2.GaussianBlur(mask, (0, 0), 2.0).astype(np.float32) / 255.0
 
+    # Which pixels are the message and which are the panel it sits on.
+    ink = np.abs(notice.astype(np.float32) - PAPER).max(axis=2) / 255.0
+    ink = np.clip(ink * 3.2, 0, 1)
+
     quads = track(frames, REF, [GLASS, NOTICE_AT])
     awake = lit(frames, quads)
     # The first frame where the screen is more than half up. The notification
@@ -190,10 +207,25 @@ def main():
             q = q - down
 
             hm = cv2.getPerspectiveTransform(src, q)
-            laid = cv2.warpPerspective(notice, hm, (w, h))
+            laid = cv2.warpPerspective(notice, hm, (w, h)).astype(np.float32)
+            pen = cv2.warpPerspective(ink, hm, (w, h))[:, :, None]
             a = cv2.warpPerspective(mask, hm, (w, h)) * alpha_now * ease
+
+            # Glass, not paper. The wallpaper behind it is blurred and left
+            # partly visible through the panel, the way a notification on a
+            # real screen is, and only the words stay solid on top.
+            plate = frame.astype(np.float32)
+            behind = cv2.GaussianBlur(plate, (0, 0), FROST)
+            panel = behind * THROUGH + PAPER * (1 - THROUGH)
+            card = panel * (1 - pen) + laid * pen
+
+            # Matched to the shot it sits in: the plate is soft at this
+            # aperture, and it has grain.
+            card = cv2.GaussianBlur(card, (0, 0), SOFTEN)
+            card += np.random.normal(0, GRAIN, card.shape).astype(np.float32)
+
             a = a[:, :, None]
-            out = (laid * a + frame * (1 - a)).astype(np.uint8)
+            out = np.clip(card * a + plate * (1 - a), 0, 255).astype(np.uint8)
         enc.stdin.write(out.tobytes())
         last = out
 

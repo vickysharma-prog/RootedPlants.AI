@@ -19,13 +19,14 @@
  * because a banner sized for somebody holding the phone is unreadable by the
  * time it is a fifth of a frame.
  *
- * Rendered at 1400 by 940.
+ * Rendered at 1400 by 665, on its own background colour, which phoneshot.py
+ * uses to work out which pixels are text and which are the panel.
  */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
   width: 1400px;
-  height: 940px;
+  height: 665px;
   background: transparent;
   font-family: -apple-system, "SF Pro Text", "Instrument Sans", system-ui, sans-serif;
   color: #fff;
@@ -34,37 +35,40 @@ html, body {
 
 .banner {
   width: 1400px;
-  height: 940px;
-  border-radius: 106px;
-  padding: 0 92px;
+  height: 665px;
+  border-radius: 78px;
+  padding: 0 74px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* It sits on a lit screen in the shot, so it carries its own light rather
      than relying on a blur that a warp cannot reproduce. */
-  background: rgba(46, 51, 61, 0.97);
-  border: 5px solid rgba(255, 255, 255, 0.17);
+  /* Flat and opaque here. The translucency that makes it look like glass
+     on a real screen is done in the composite, against the wallpaper that is
+     actually behind it. */
+  background: rgb(44, 49, 59);
+  border: 4px solid rgba(255, 255, 255, 0.22);
 }
 
 .head {
   display: flex;
   align-items: center;
-  gap: 34px;
-  font-size: 66px;
+  gap: 28px;
+  font-size: 56px;
   font-weight: 500;
   opacity: 0.88;
 }
 .mark {
-  width: 118px; height: 118px;
-  border-radius: 32px;
+  width: 96px; height: 96px;
+  border-radius: 26px;
   background: linear-gradient(160deg, #9ec9ad, #6f9e7e);
   display: grid; place-items: center;
   flex: none;
 }
-.when { margin-left: auto; font-size: 60px; opacity: 0.68; }
+.when { margin-left: auto; font-size: 50px; opacity: 0.68; }
 
-h3 { margin-top: 56px; font-size: 118px; font-weight: 600; line-height: 1.18; }
-p { margin-top: 32px; font-size: 68px; line-height: 1.36; opacity: 0.93; }
+h3 { margin-top: 40px; font-size: 104px; font-weight: 600; line-height: 1.18; }
+p { margin-top: 24px; font-size: 62px; line-height: 1.36; opacity: 0.93; }
 </style>
 </head>
 <body>
@@ -72,7 +76,7 @@ p { margin-top: 32px; font-size: 68px; line-height: 1.36; opacity: 0.93; }
 <div class="banner">
   <div class="head">
     <span class="mark">
-      <svg width="66" height="66" viewBox="0 0 24 24" fill="none" stroke="#0a0f0b" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#0a0f0b" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 20V9"/><path d="M12 12C7 12 5 9 5 5c4 0 7 3 7 7z"/><path d="M12 14c5-1 7-4 7-8-4 0-7 3-7 8z"/>
       </svg>
     </span>
