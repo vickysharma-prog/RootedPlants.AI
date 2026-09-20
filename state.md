@@ -186,7 +186,7 @@ it is just knowing how to do it.
 ## Environment
 
 - Machine: Windows 11, PowerShell primary.
-- Repo: `C:\Users\admin\nextstep-2026`
+- Repo: `C:\Users\admin\RootedPlants.AI`
 - GitHub account: `vickysharma-prog`
 - Git identity: `vicky sharma <raghunathsharma296@gmail.com>`. This has to be
   an email on the GitHub account, otherwise commits will not link to the

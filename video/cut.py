@@ -22,19 +22,30 @@ TAKES = pathlib.Path.home() / "Downloads"
 # apart from one that is a little taller.
 W, H = 576, 1280
 
+# Which recordings carry sound worth keeping. The camera recording caught the
+# app's own voice off the phone itself, clean, with digital silence between
+# the lines. The others were caught on the microphone with the room behind
+# them, so they come through as picture only.
+WITH_SOUND = {"guide", "verify", "earned"}
+
 # name: [(file, from, to), ...] and how long the finished clip should run.
 # Anything left over after the pieces is the last frame, held.
 CUTS = {
     # The camera talking you through the shot: a clean frame, a pan onto the
     # plant, and the line that says it is right.
-    "guide": (18.0, [
-        ("WhatsApp Video 2026-09-20 at 15.44.57.mp4", 14.5, 26.5),
+    "guide": (22.0, [
+        ("WhatsApp Video 2026-09-20 at 15.44.57.mp4", 8.8, 26.5),
     ]),
     # The points landing, and then the photograph everything is measured
     # against: the day it went in, still at the bottom of the plant's page.
     "earned": (24.5, [
         ("WhatsApp Video 2026-09-20 at 15.41.49.mp4", 76.0, 87.5),
         ("WhatsApp Video 2026-09-20 at 15.41.49.mp4", 88.0, 98.0),
+    ]),
+    # What the app says back once the shutter goes: checking it, and then
+    # every check with the number it measured.
+    "verify": (18.0, [
+        ("WhatsApp Video 2026-09-20 at 15.44.57.mp4", 26.5, 40.0),
     ]),
     # Registering: it refuses a notebook out loud, and then the species list
     # with the names people actually use.
@@ -64,7 +75,8 @@ def main():
                 # recording from a slightly taller phone still lines up with
                 # the rest instead of being squashed to fit.
                 "-vf", f"scale={W}:-2,crop={W}:{H},fps=30,setsar=1",
-                "-an", "-c:v", "libx264", "-preset", "slow", "-crf", "18",
+                *(["-c:a", "aac", "-b:a", "128k"] if name in WITH_SOUND else ["-an"]),
+                "-c:v", "libx264", "-preset", "slow", "-crf", "18",
                 "-pix_fmt", "yuv420p", str(part))
             parts.append(part)
 
@@ -78,9 +90,10 @@ def main():
 
         # Held on the last frame out to the length the frame runs for.
         out = OUT / f"{name}.mp4"
+        pad = ["-af", f"apad=whole_dur={length}"] if name in WITH_SOUND else ["-an"]
         run("ffmpeg", "-loglevel", "error", "-y", "-i", str(joined),
             "-vf", f"tpad=stop_mode=clone:stop_duration={length}",
-            "-t", f"{length}",
+            *pad, "-t", f"{length}",
             "-c:v", "libx264", "-preset", "slow", "-crf", "18",
             "-pix_fmt", "yuv420p", str(out))
         print(f"  {name:10} {length:4.1f}s  {out.stat().st_size / 1e6:.1f} MB")
