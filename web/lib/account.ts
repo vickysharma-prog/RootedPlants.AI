@@ -9,7 +9,7 @@ import { cookies } from "next/headers";
  * server so the app can greet you by name.
  *
  * What that buys: anybody can be through the door in eight seconds, which is
- * what a person recording a demo needs and what a judge opening a link wants.
+ * what a person recording a demo needs and what somebody opening a link wants.
  * What it costs: an account lives on one device, and moving to another means
  * filling the form again. For what this is, that is the right trade.
  */
