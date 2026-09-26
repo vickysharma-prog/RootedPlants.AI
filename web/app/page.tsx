@@ -159,7 +159,6 @@ export default function Landing() {
                 <span className="link-text text-[14.5px]">Privacy</span>
               </Link>
             </nav>
-            <p className="label">NextStep Hacks 2026 &middot; Earth Forward</p>
           </div>
         </footer>
       </main>

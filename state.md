@@ -8,19 +8,6 @@ the environment that are easy to forget.
 
 ---
 
-## Countdown
-
-| | |
-|---|---|
-| Deadline | **Sep 20, 2026 @ 5:00pm EDT** |
-| Same in IST | Sep 21, 2026 @ 2:30am |
-| Working days left | 3 |
-
-Plan against Sep 20. See "Open questions" below for why that date is worth a
-second look.
-
----
-
 ## What is built and running
 
 Live at **https://rootedplants.vercel.app**.
@@ -97,12 +84,11 @@ for numbers. Rows rather than cards. Three text colours, one accent.
 
 ## Decided
 
-- Entering NextStep Hacks 2026, Earth Forward track, solo.
 - **The build is Rooted**: register a tree, get a weather-adjusted care
   schedule, complete care tasks with a proof photo, earn points, redeem them
   from a partner catalogue. Full writeup in `project.md` section 2.
 - **Website built as a PWA, not a native app.** Camera and phone layout
-  without an app store between the judge and the demo.
+  without an app store between the user and the app.
 - Stack: Next.js 16 on Vercel, open-meteo for weather, hand-authored care
   profiles. Postgres and object storage go in when the capture flow needs
   them; nothing so far has.
@@ -125,13 +111,8 @@ for numbers. Rows rather than cards. Three text colours, one accent.
   physical pixels. See `docs/verification.md`.
 - Demo runs on a seeded account with plants already due, plus a "jump forward
   3 days" control. A schedule cannot be demonstrated by waiting for it.
-- **Repo is private while building, and goes public before submission.** The
-  rules require a viewable code link, so it has to flip on or before Sep 20.
-  Put it on the submission checklist, not in memory.
-- The commit history dated inside Aug 21 - Sep 20 is what proves the project
-  was built in-period. That holds whether the repo is private or public, the
-  dates travel with the commits. So: commit early, commit often, and do not
-  squash the history into one drop at the end.
+- The repo is public and the commit history is the build record. Commit
+  early, commit often, and do not squash the history into one drop at the end.
 - Tracking lives in three files at the repo root: `project.md` (what and why),
   `progress.md` (dated log) and `state.md` (this file).
 
@@ -139,29 +120,19 @@ for numbers. Rows rather than cards. Three text colours, one accent.
 
 Each of these blocks something. Answer them before building past them.
 
-1. **Eligibility, blocking.** Students only, 13 to 24 as of 21 Aug 2026,
-   entering as an individual and not on behalf of a company. This voids the
-   whole week if it is wrong, so it gets answered before anything else.
-2. **Deadline, worth one check.** The Devpost header says
-   "Deadline: Sep 20, 2026 @ 5:00pm EDT", and the rules page agrees. But the
-   overview prose also describes the period as "Aug 21 to Sep 13, extended one
-   additional week", which would read as Sep 27. The two do not reconcile.
-   Planning to Sep 20 because it is the tighter of the two and the one stated
-   as the deadline. If it turns out to be the 27th, that is a free week. The
-   reverse mistake would be fatal, so it is not worth making.
-3. **The watering check is not validated yet.** Soil darkening on aligned
+1. **The watering check is not validated yet.** Soil darkening on aligned
    pixels is the one genuine sensor for "did you water". Two photos of one pot,
    dry and just watered, run through `tools/soil_delta.py`, settles it in
    fifteen minutes. If the drop is inside the noise, watering falls back to a
    vision check for visible water and the other layers carry more weight.
    **Do this before building on it.**
-4. **Name.** "Rooted" is a working name. Cheap to change until the video is
+2. **Name.** "Rooted" is a working name. Cheap to change until the video is
    recorded, expensive after.
-5. **Live deployment.** Decided: yes, Vercel. **Not done yet**, and it needs
+3. **Live deployment.** Decided: yes, Vercel. **Not done yet**, and it needs
    a Vercel login, so it is a ten minute job somebody has to sit through. The
    longer it waits the more it becomes a last-day job, which is exactly what
    it was supposed to avoid.
-6. **Data store.** Nothing persists yet. The points ledger is the first thing
+4. **Data store.** Nothing persists yet. The points ledger is the first thing
    that genuinely needs it. Neon or Vercel Postgres, one free account,
    `DATABASE_URL` into `web/.env.local`.
 
@@ -172,8 +143,7 @@ what it is, where it came from, and what it does. This is the disclosure the
 rules ask for, and it is also what keeps the in-period claim clean.
 
 Nothing has been carried in. No code, no data, no assets. Everything in this
-repo was written on or after 2026-09-16, inside the hackathon window, and the
-commit history shows it.
+repo was written on or after 2026-09-16, and the commit history shows it.
 
 | Component | Origin | Status |
 |---|---|---|
@@ -226,12 +196,7 @@ the idea works.
    with the two numbers that carry the Technology mark and the honest beat that
    carries Learning. Needs a phone on HTTPS and two plants of the same species
    to hand.
-3. **Flip the repo public** before the deadline: `gh repo edit --visibility public`.
-   Not needed for the deploy, since Vercel builds from a private repo on the
-   free plan, but the submission asks for a viewable code link and the commit
-   history dated inside Aug 21 to Sep 20 is the evidence that this was built in
-   period. So it stays private while building and goes public before the form
-   is submitted.
+3. ~~Flip the repo public.~~ **Done.**
 4. Take a real dry-pot and just-watered pair on my own phone and re-check the
    5% threshold against them. The current number was set against a real photo
    and a controlled darkening of it, which proved the check separates them by
@@ -247,18 +212,4 @@ the idea works.
    notebook out loud, and the points landing on a registered plant. Every
    frame in the film now carries a picture. One more is coming, a task being
    completed with a watering can, and it goes into frame eleven.
-7. **Devpost page.** Written and paste-ready in `docs/devpost.md`. Every
-   number in it is in `docs/evidence.md` with its source.
 
-## Submission checklist
-
-Tick these on the day, not on the hour.
-
-- [x] Demo video recorded, 4:54, inside the 3:00 to 5:00 bounds
-- [x] Video uploaded and public: https://youtu.be/h2Nqt7q6UvM
-- [ ] **Repo flipped to public** (`gh repo edit --visibility public`), README
-      explains how to run it
-- [x] Live link works: https://rootedplants.vercel.app
-- [ ] Devpost project page complete
-- [ ] `state.md` "Prior art carried in" is accurate and honest
-- [ ] Submitted, with hours to spare, not minutes

@@ -113,10 +113,10 @@ else: geotagged, time-stamped, species-labelled, photo-verified survival data,
 at scale, over years.
 
 Nobody has that. It is what the CSR and government money is actually buying,
-and it is an Earth Forward argument on its own, because survival rates that
+and it is an environmental argument on its own, because survival rates that
 nobody measures cannot be improved.
 
-## For the hackathon
+## For the demo
 
 The catalogue is seeded with demo partners. Generic names, no real brands, no
 real logos. This is what a rewards catalogue looks like before partners sign,

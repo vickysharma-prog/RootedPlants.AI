@@ -19,9 +19,6 @@ pays you for keeping something alive.
 It is for the tulsi on the balcony and the money plant in the living room as
 much as for the sapling from last month's drive. Same app, same schedule.
 
-Built solo for [NextStep Hacks 2026](https://nextstep2026.devpost.com/), Earth
-Forward track.
-
 [![Watch the demo](https://img.youtube.com/vi/h2Nqt7q6UvM/maxresdefault.jpg)](https://youtu.be/h2Nqt7q6UvM)
 
 ---
@@ -228,7 +225,7 @@ room, and the location check passes on the first task wherever you open it.
 
 ## Not built yet, on purpose
 
-This is a hackathon build with a deadline, so the time went where it changes
+This is a first release, so the time went where it changes
 whether the idea works and whether it matters. These are designed and
 deliberately not wired:
 
@@ -281,7 +278,7 @@ brands. That is what a catalogue looks like before partners sign.
 | [`video/`](video) | The demo film, and everything that builds it |
 | [`docs/evidence.md`](docs/evidence.md) | Every number the pitch uses, and where it came from |
 
-## Media
+## Credits and media
 
 Every photograph, clip and recording here is CC0, public domain, or under the
 Pexels licence, so none of it carries an attribution condition. Provenance is
@@ -295,9 +292,14 @@ a Bitcoin buried in a pot. `tools/forest_candidates.py` and
 sheet, so everything gets looked at before it ships. Four of twenty forest
 clips were usable.
 
+## AI usage
+
+I used an AI coding assistant for parts of the code and the docs. The idea,
+the product, the design and every decision in it are mine.
+
 ## Build window
 
-Everything here was written during the hackathon period, Aug 21 to Sep 20,
-2026. The commit history is the record. Anything carried in from earlier work
+The project started on 16 Sep 2026 and everything here was written from that
+day on. The commit history is the record. Anything carried in from earlier work
 is disclosed in [`state.md`](state.md) under "Prior art carried in", which
 currently lists nothing.

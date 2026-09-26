@@ -1,8 +1,8 @@
 # Progress log
 
 One entry per working session. Newest at the top. This is not just a diary:
-"Learning" is a scored criterion at NextStep Hacks, and it is scored on what
-I can say about what I built and what it cost me. The honest notes here are the
+What I learn is only worth
+something if I can say it about what I built and what it cost me. The honest notes here are the
 raw material for that. Write down the thing that broke, not only the thing that
 worked.
 
@@ -223,7 +223,7 @@ cost one fetch with no API key.
 **Decided along the way**
 
 - Website as a PWA, not a native app. Camera and location are both available
-  in the browser, and a judge opens a link in one tap. Spending a day of four
+  in the browser, and anybody opens a link in one tap. Spending a day of four
   on distribution would be spending it badly.
 - Every external call in the loop fails soft. The weather call falls back to a
   plain schedule rather than blocking the page, because a care reminder that
@@ -293,7 +293,7 @@ Disclosed as prior work in `state.md`. Technique reused, no code copied.
 - Wrote the idea into `project.md`. Rooted: everybody plants a tree and nobody
   follows up, so attach the reward system we point at spending to keeping a
   tree alive instead.
-- Cut the scope to one closed loop for the deadline: register, schedule,
+- Cut the scope to one closed loop for the first release: register, schedule,
   Today list, complete with proof photo, points, redeem. Push notifications,
   social feed and teams are out, written down so they stay out.
 - Two decisions that came out of thinking about the video rather than the
@@ -316,17 +316,9 @@ Disclosed as prior work in `state.md`. Technique reused, no code copied.
 
 **Done**
 
-- Read the full NextStep Hacks 2026 brief off Devpost and wrote the rules that
-  matter into `project.md`: Earth Forward theme, Sep 20 5:00pm EDT deadline,
-  3 to 5 minute video, public repo, six judging criteria.
-- Created this repo, public, so the commit history stands as the record that
-  the project was built inside the Aug 21 to Sep 20 window.
+- Created this repo, public, so the commit history stands as the record of
+  when the project was built.
 - Set up the tracking files: `project.md`, `progress.md`, `state.md`.
-
-**Open**
-
-- Two things to confirm, both in `state.md`: the Sep 20 vs Sep 27 deadline
-  discrepancy on the Devpost page, and eligibility (students only, 13 to 24).
 
 ## Sep 17, 2026
 
@@ -441,7 +433,7 @@ to find.
 `vercel.app` domain, so `rooted-vicky-sharma.vercel.app` answers a stranger
 with a Vercel login page. The alias `rootedplants.vercel.app` is open and
 serves the real site, which is why it worked for me and not from another
-machine. Worth knowing before a judge clicks the wrong one.
+machine. Worth knowing before somebody clicks the wrong one.
 
 The lesson I want to keep: a deploy that works from my own machine has proved
 almost nothing. Both faults were invisible from here and both would have been
@@ -451,7 +443,7 @@ Resolved both, and took a readable domain while I was there:
 **rootedplants.vercel.app**, attached to the project rather than pinned to one
 deployment, so it follows production instead of going stale the next time
 something ships. Protection is off, so the link opens for anybody without a
-Vercel account, which is the only thing that matters when a judge clicks it.
+Vercel account, which is the only thing that matters when somebody clicks it.
 
 ## Sep 18, 2026
 

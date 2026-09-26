@@ -116,7 +116,7 @@ Now the name, once, on screen only. Do not say it.
 > "That control exists because a watering due on Saturday cannot be shown in a
 > four minute video."
 
-**Edit:** Say it plainly. A judge who spots a demo shortcut you did not
+**Edit:** Say it plainly. A viewer who spots a demo shortcut you did not
 mention stops trusting the rest.
 
 ### 6 · 1:06 – 1:20 · No hidden test
@@ -287,7 +287,7 @@ frame on the right in the editor.
 Four things that frame is doing, all of them deliberate:
 
 **The phone is never fullscreen.** A fullscreen phone recording leaves nowhere
-to put the argument, so the argument ends up in the voiceover where a judge
+to put the argument, so the argument ends up in the voiceover where a viewer
 watching on mute will never hear it.
 
 **The pill tags name the technical claims** so the voice does not have to list
@@ -298,7 +298,7 @@ one at a time as each is mentioned.
 number on its own is decoration. 485 next to 4, labelled same plant and
 different plant, is an argument.
 
-**Subtitles are burned in for the whole film.** Judges watch on mute, and a
+**Subtitles are burned in for the whole film.** Most people watch on mute, and a
 video about care that cannot be followed without sound is making a point it
 did not intend.
 
@@ -326,7 +326,7 @@ saying it.
 one at a time, then the evidence box. Everything arriving at once is a poster,
 not a film.
 
-**The ending card** carries the URL and a QR code for it, because a judge with
+**The ending card** carries the URL and a QR code for it, because a viewer with
 a phone in their hand should be able to open the thing without typing.
 
 **Do not.** No stock music swell, no speed ramps, no drone shot, no "hi, my
@@ -347,13 +347,3 @@ fight.
 - Check the account screen for a real number before it is on camera.
 - Shoot beat 1 in daylight. It is the only shot that is not a screen.
 
-## What each criterion is served by
-
-| Criterion | Beat |
-|---|---|
-| Originality | 3, rewards pointed at keeping rather than spending |
-| Adherence to Track | 1 to 3, and the whole product |
-| Completion | 6 to 9, the loop closed end to end |
-| Learning | 14, what was measured and thrown away |
-| Design | Throughout, without ever mentioning it |
-| Technology | 10, the two numbers |

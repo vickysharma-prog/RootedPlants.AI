@@ -64,7 +64,7 @@ WhatsApp, together. This is ordinary, food delivery apps do it every day, and
 reaching people is a solved problem. Inside the app the Today list is the
 surface: one screen, what is due now, nothing competing with it.
 
-For the hackathon the Today list is the demo surface. The scheduling data model
+For now the Today list is the main surface. The scheduling data model
 is channel agnostic, so adding a channel is a sender and not a rewrite.
 
 ### "Care advice that is wrong will kill plants."
@@ -109,7 +109,7 @@ task.
 
 ---
 
-## Hackathon-specific
+## Demo-specific
 
 **Scope.** One closed loop, finished, beats six half features. Completion is a
 scored criterion. The cut is in `project.md` and it is not reopened.
@@ -119,8 +119,7 @@ seeded fallback. The demo account starts with plants already due, and there is
 a control to move time forward, because a schedule cannot be demonstrated by
 waiting for it.
 
-**Originality.** The softest of the six criteria for this idea, which is why
-the line above about verified proof has to be spoken in the video rather than
-left for the judge to infer.
+**Originality.** The line above about verified proof has to be spoken in the
+video rather than left for the viewer to infer.
 
 **Video bounds.** Three minutes floor, five minutes ceiling. Target 4:30.

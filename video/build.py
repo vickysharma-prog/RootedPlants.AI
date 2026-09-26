@@ -675,7 +675,7 @@ async def main():
                               flags=cv2.INTER_LINEAR,
                               borderMode=cv2.BORDER_REPLICATE)
 
-    # 6. Subtitles, burned in, because judges watch on mute.
+    # 6. Subtitles, burned in, because most people watch on mute.
     srt = HERE / "rooted-demo.srt"
     srt.write_text(
         "\n\n".join(
@@ -703,7 +703,7 @@ async def main():
          "-c:v", "libx264", "-preset", "medium", "-crf", "19",
          "-pix_fmt", "yuv420p",
          # Straight out of the mix this landed at -26 LUFS, which is a demo a
-         # judge has to reach for the volume to hear. Platforms normalise to
+         # viewer has to reach for the volume to hear. Platforms normalise to
          # about -14, so this lands near it with headroom left.
          "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
          "-c:a", "aac", "-b:a", "192k",
